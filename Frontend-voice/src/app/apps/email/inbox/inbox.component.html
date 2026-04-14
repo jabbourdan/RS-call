@@ -1,0 +1,185 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Inbox
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Apps
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Email
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Inbox
+        </li>
+    </ol>
+</div>
+
+<!-- Inbox -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-1">
+
+        <!-- Sidebar -->
+        <app-sidebar />
+
+    </div>
+    <div class="lg:col-span-2">
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header mb-[15px] md:mb-[20px] flex items-center justify-between">
+                <div class="trezo-card-subtitle flex items-center">
+                    <div class="form-check relative top-[1px]">
+                        <input type="checkbox" class="cursor-pointer">
+                    </div>
+                    <div class="trezo-card-dropdown relative ltr:ml-[2px] rtl:mr-[2px] ltr:mr-[15px] rtl:ml-[15px] ltr:md:mr-[25px] rtl:md:ml-[25px]">
+                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[25px] leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                            <i class="material-symbols-outlined !text-lg">
+                                arrow_drop_down
+                            </i>
+                        </button>
+                        @if (isCardHeaderOpen) {
+                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        All
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        None
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Read
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Unread
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Starred
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Unstarred
+                                    </button>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <button type="button" class="inline-block transition-all leading-none hover:text-primary-500 ltr:mr-[10px] rtl:ml-[10px]">
+                        <i class="material-symbols-outlined !text-lg">
+                            archive
+                        </i>
+                    </button>
+                    <button type="button" class="inline-block transition-all leading-none hover:text-primary-500 ltr:mr-[10px] rtl:ml-[10px]">
+                        <i class="material-symbols-outlined !text-lg">
+                            help_clinic
+                        </i>
+                    </button>
+                    <button type="button" class="inline-block transition-all leading-none hover:text-primary-500 ltr:mr-[10px] rtl:ml-[10px]">
+                        <i class="material-symbols-outlined !text-lg">
+                            delete
+                        </i>
+                    </button>
+                    <div class="trezo-card-dropdown2 relative">
+                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-black dark:text-white leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu2()">
+                            <i class="material-symbols-outlined !text-lg">
+                                more_vert
+                            </i>
+                        </button>
+                        @if (isCardHeaderOpen2) {
+                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Mark as unread
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Snooze
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Add star
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Mark as important
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Mark as not important
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Forward as attachment
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Filter
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Mute
+                                    </button>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="trezo-card-content relative">
+
+                <!-- Nav Links -->
+                <ul class="inbox-nav-links">
+                    <li class="inline-block ltr:mr-[38px] rtl:ml-[38px] ltr:last:mr-0 rtl:last:ml-0">
+                        <a routerLink="/dashboard/apps/email" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="relative inline-block font-medium pb-[9px] md:pb-[14px] transition-all hover:text-primary-500">
+                            <span class="inline-block relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-lg absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 -mt-px md:mt-0">
+                                    inbox
+                                </i>
+                                Primary
+                            </span>
+                            <span class="custom-border absolute left-0 right-0 bottom-0 h-[2px] bg-primary-500 transition-all"></span>
+                        </a>
+                    </li>
+                    <li class="inline-block ltr:mr-[38px] rtl:ml-[38px] ltr:last:mr-0 rtl:last:ml-0">
+                        <a routerLink="/dashboard/apps/email/promotions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="relative inline-block font-medium pb-[9px] md:pb-[14px] transition-all hover:text-primary-500">
+                            <span class="inline-block relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-lg absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 -mt-px md:mt-0">
+                                    shoppingmode
+                                </i>
+                                Promotions
+                            </span>
+                            <span class="custom-border absolute left-0 right-0 bottom-0 h-[2px] bg-primary-500 transition-all"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Router Outlet -->
+                <router-outlet />
+
+            </div>
+        </div>
+    </div>
+</div>

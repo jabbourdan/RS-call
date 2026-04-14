@@ -1,0 +1,65 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        My Profile
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            My Profile
+        </li>
+    </ol>
+</div>
+
+<!-- My Profile -->
+<div class="grid grid-cols-1 2xl:grid-cols-2 gap-[25px] mb-[25px]">
+
+    <!-- Welcome -->
+    <app-mp-welcome />
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-[25px]">
+
+        <!-- Total Projects -->
+        <app-mp-total-projects />
+        
+        <!-- Total Orders -->
+        <app-mp-total-orders />
+
+        <!-- Total Revenue -->
+        <app-mp-total-revenue />
+
+    </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-1">
+
+        <!-- Profile Intro -->
+        <app-mp-profile-intro />
+
+        <!-- Profile Information -->
+        <app-mp-profile-information />
+
+        <!-- Additional Information -->
+        <app-mp-additional-information />
+
+    </div>
+    <div class="lg:col-span-2 2xl:col-span-3">
+
+        <!-- Overview -->
+        <app-mp-overview />
+
+        <!-- To Do List -->
+        <app-mp-to-do-list />
+
+        <!-- Recent Activity -->
+        <app-mp-recent-activity />
+
+    </div>
+</div>

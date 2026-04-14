@@ -1,0 +1,216 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Add User
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Users
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Add User
+        </li>
+    </ol>
+</div>
+
+<!-- Add User -->
+<form>
+    <div class="grid grid-cols-1 xl:grid-cols-5 2xl:grid-cols-3 gap-[25px] mb-[25px]">
+        <div class="xl:col-span-3 2xl:col-span-2">
+            <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+                <div class="trezo-card-content">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                User ID
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="E.g. #JAN-123">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                User Name
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="E.g. Olivia John">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Email Address
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="E.g. olivia@trezo.com">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Location
+                            </label>
+                            <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option value="1">
+                                    Washington D.C
+                                </option>
+                                <option value="2">
+                                    Chicago
+                                </option>
+                                <option value="3">
+                                    Oklahoma City
+                                </option>
+                                <option value="4">
+                                    San Diego
+                                </option>
+                                <option value="5">
+                                    Los Angeles
+                                </option>
+                                <option value="6">
+                                    Las Vegas
+                                </option>
+                                <option value="7">
+                                    San Francisco
+                                </option>
+                                <option value="8">
+                                    Istanbul
+                                </option>
+                                <option value="9">
+                                    London
+                                </option>
+                                <option value="10">
+                                    Dubai
+                                </option>
+                                <option value="11">
+                                    Antalya
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Phone Number
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. +1 555-445-4455">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Projects
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 27">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Add Some Info
+                            </label>
+                            <textarea class="h-[140px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] p-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. It makes me feel..."></textarea>
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Facebook
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. https://www.facebook.com/">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                X
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. https://x.com/">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Linkedin
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. https://www.linkedin.com/">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                GitHub
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. https://github.com/">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Profile Picture
+                            </label>
+                            <file-upload class="file-uploader"></file-upload>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="xl:col-span-2 2xl:col-span-1">
+            <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+                <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+                    <div class="trezo-card-title">
+                        <h5 class="!mb-0">
+                            Privacy Policy
+                        </h5>
+                    </div>
+                </div>
+                <div class="trezo-card-content">
+                    <div class="mb-[20px] md:mb-[25px]">
+                        <div class="form-check flex items-center gap-[8px] mb-[10px] last:mb-0">
+                            <input type="checkbox" class="cursor-pointer" id="allowUsersToShowYourEmail">
+                            <label for="allowUsersToShowYourEmail" class="cursor-pointer">
+                                Allow users to show your email
+                            </label>
+                        </div>
+                        <div class="form-check flex items-center gap-[8px] mb-[10px] last:mb-0">
+                            <input type="checkbox" class="cursor-pointer" id="allowUsersToShowYourExperiences">
+                            <label for="allowUsersToShowYourExperiences" class="cursor-pointer">
+                                Allow users to show your experiences
+                            </label>
+                        </div>
+                        <div class="form-check flex items-center gap-[8px] mb-[10px] last:mb-0">
+                            <input type="checkbox" class="cursor-pointer" id="allowUsersToShowYourFollowers">
+                            <label for="allowUsersToShowYourFollowers" class="cursor-pointer">
+                                Allow users to show your followers
+                            </label>
+                        </div>
+                    </div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Select Your Skills
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option selected>
+                            Select
+                        </option>
+                        <option value="1">
+                            Leadership
+                        </option>
+                        <option value="2">
+                            Project Management
+                        </option>
+                        <option value="3">
+                            Data Analysis
+                        </option>
+                        <option value="4">
+                            Teamwork
+                        </option>
+                        <option value="5">
+                            Web Development
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card mb-[25px]">
+        <div class="trezo-card-content">
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[19px] rtl:ml-[19px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400">
+                Cancel
+            </button>
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+                <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                    <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add User
+                </span>
+            </button>
+        </div>
+    </div>
+</form>

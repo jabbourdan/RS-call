@@ -1,0 +1,1292 @@
+<!-- Categories -->
+<div class="trezo-card mb-[25px]">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0 !text-md md:!text-[20px] !font-medium">
+                Categories
+            </h5>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <ul class="categories-navs mb-[10px]">
+            <li class="nav-item inline-block mb-[15px] ltr:mr-[15px] rtl:ml-[15px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link py-[16px] px-[22px] rounded-md text-black dark:text-white transition-all border-[2px] border-gray-100 dark:border-[#172036]" [ngClass]="{'active': currentTab === 'tab1'}" (click)="switchTab($event, 'tab1')">
+                    <img src="images/icons/container.svg" class="inline-block" alt="container">
+                    <div class="block font-medium text-md mt-[12px] mb-[2px]">
+                        All
+                    </div>
+                    <div class="relative text-gray-500 dark:text-gray-400 font-medium">
+                        <span class="text-xs left-0 right-0 top-1/2 -translate-y-1/2 absolute transition-all">
+                            450
+                        </span>
+                        <span class="text-xs transition-all">
+                            450 Products
+                        </span>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[15px] ltr:mr-[15px] rtl:ml-[15px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link py-[16px] px-[22px] rounded-md text-black dark:text-white transition-all border-[2px] border-gray-100 dark:border-[#172036]" [ngClass]="{'active': currentTab === 'tab2'}" (click)="switchTab($event, 'tab2')">
+                    <img src="images/icons/data.svg" class="inline-block" alt="data">
+                    <div class="block font-medium text-md mt-[12px] mb-[2px]">
+                        Electronics
+                    </div>
+                    <div class="relative text-gray-500 dark:text-gray-400 font-medium">
+                        <span class="text-xs left-0 right-0 top-1/2 -translate-y-1/2 absolute transition-all">
+                            45
+                        </span>
+                        <span class="text-xs transition-all">
+                            45 Products
+                        </span>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[15px] ltr:mr-[15px] rtl:ml-[15px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link py-[16px] px-[22px] rounded-md text-black dark:text-white transition-all border-[2px] border-gray-100 dark:border-[#172036]" [ngClass]="{'active': currentTab === 'tab3'}" (click)="switchTab($event, 'tab3')">
+                    <img src="images/icons/clothing.svg" class="inline-block" alt="clothing">
+                    <div class="block font-medium text-md mt-[12px] mb-[2px]">
+                        Clothing
+                    </div>
+                    <div class="relative text-gray-500 dark:text-gray-400 font-medium">
+                        <span class="text-xs left-0 right-0 top-1/2 -translate-y-1/2 absolute transition-all">
+                            29
+                        </span>
+                        <span class="text-xs transition-all">
+                            29 Products
+                        </span>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[15px] ltr:mr-[15px] rtl:ml-[15px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link py-[16px] px-[22px] rounded-md text-black dark:text-white transition-all border-[2px] border-gray-100 dark:border-[#172036]" [ngClass]="{'active': currentTab === 'tab4'}" (click)="switchTab($event, 'tab4')">
+                    <img src="images/icons/face.svg" class="inline-block" alt="face">
+                    <div class="block font-medium text-md mt-[12px] mb-[2px]">
+                        Beauty
+                    </div>
+                    <div class="relative text-gray-500 dark:text-gray-400 font-medium">
+                        <span class="text-xs left-0 right-0 top-1/2 -translate-y-1/2 absolute transition-all">
+                            34
+                        </span>
+                        <span class="text-xs transition-all">
+                            34 Products
+                        </span>
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[15px] ltr:mr-[15px] rtl:ml-[15px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link py-[16px] px-[22px] rounded-md text-black dark:text-white transition-all border-[2px] border-gray-100 dark:border-[#172036]" [ngClass]="{'active': currentTab === 'tab5'}" (click)="switchTab($event, 'tab5')">
+                    <img src="images/icons/food.svg" class="inline-block" alt="food">
+                    <div class="block font-medium text-md mt-[12px] mb-[2px]">
+                        Foods
+                    </div>
+                    <div class="relative text-gray-500 dark:text-gray-400 font-medium">
+                        <span class="text-xs left-0 right-0 top-1/2 -translate-y-1/2 absolute transition-all">
+                            18
+                        </span>
+                        <span class="text-xs transition-all">
+                            18 Products
+                        </span>
+                    </div>
+                </button>
+            </li>
+        </ul>
+        @if (currentTab === 'tab1') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-[25px]">
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product16.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Apple iPhone 16
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Smartphones
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $799
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product18.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Levi's 501
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Pants
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $89
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product15.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Maybelline Lash
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $29
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product19.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Quaker Oats
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Breakfast
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $99
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product20.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Fitbit Charge
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Wearables
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $179
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product17.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Adidas Women
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Outerwear
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $85
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product21.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Galaxy Tab
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Tablets
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $649
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product22.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                H&M Basic
+                            </a>
+                        </h4>
+                        <span class="block">
+                            T-Shirts
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $20
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product23.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                L'Oréal Paris
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $69
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab2') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-[25px]">
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product23.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                L'Oréal Paris
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $69
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product22.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                H&M Basic
+                            </a>
+                        </h4>
+                        <span class="block">
+                            T-Shirts
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $20
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product21.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Galaxy Tab
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Tablets
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $649
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product17.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Adidas Women
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Outerwear
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $85
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product20.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Fitbit Charge
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Wearables
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $179
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product19.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Quaker Oats
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Breakfast
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $99
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product15.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Maybelline Lash
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $29
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product18.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Levi's 501
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Pants
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $89
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product16.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Apple iPhone 16
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Smartphones
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $799
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab3') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-[25px]">
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product18.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Levi's 501
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Pants
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $89
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product19.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Quaker Oats
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Breakfast
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $99
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product20.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Fitbit Charge
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Wearables
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $179
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product23.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                L'Oréal Paris
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $69
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product21.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Galaxy Tab
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Tablets
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $649
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product15.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Maybelline Lash
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $29
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product17.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Adidas Women
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Outerwear
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $85
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product22.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                H&M Basic
+                            </a>
+                        </h4>
+                        <span class="block">
+                            T-Shirts
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $20
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product16.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Apple iPhone 16
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Smartphones
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $799
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab4') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-[25px]">
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product15.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Maybelline Lash
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $29
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product20.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Fitbit Charge
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Wearables
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $179
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product19.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Quaker Oats
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Breakfast
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $99
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product17.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Adidas Women
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Outerwear
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $85
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product21.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Galaxy Tab
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Tablets
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $649
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product22.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                H&M Basic
+                            </a>
+                        </h4>
+                        <span class="block">
+                            T-Shirts
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $20
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product16.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Apple iPhone 16
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Smartphones
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $799
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product18.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Levi's 501
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Pants
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $89
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product23.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                L'Oréal Paris
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $69
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab5') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-[25px]">
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product19.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Quaker Oats
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Breakfast
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $99
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product17.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Adidas Women
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Outerwear
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $85
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product21.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Galaxy Tab
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Tablets
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $649
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product22.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                H&M Basic
+                            </a>
+                        </h4>
+                        <span class="block">
+                            T-Shirts
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $20
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product23.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                L'Oréal Paris
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $69
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product16.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Apple iPhone 16
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Smartphones
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $799
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product18.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Levi's 501
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Pants
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $89
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product15.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Maybelline Lash
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Makeup
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $29
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-[15px] md:p-[20px] bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036]">
+                    <a routerLink="." class="block rounded-md">
+                        <img src="images/products/product20.jpg" class="rounded-md" alt="product-image">
+                    </a>
+                    <div class="mt-[18px]">
+                        <h4 class="!font-medium !text-lg md:!text-[20px] !mb-[4px]">
+                            <a routerLink="." class="transition-all hover:text-primary-500">
+                                Fitbit Charge
+                            </a>
+                        </h4>
+                        <span class="block">
+                            Wearables
+                        </span>
+                        <div class="mt-[12px] flex items-center justify-between">
+                            <span class="block leading-none text-success-600 font-medium text-lg md:text-xl">
+                                $179
+                            </span>
+                            <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-sm text-primary-500 bg-primary-100 dark:bg-dark transition-all hover:text-white hover:bg-primary-500">
+                                <i class="material-symbols-outlined">
+                                    shopping_cart
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-content">
+        <div class="sm:flex sm:items-center justify-between">
+            <p class="!mb-0">
+                Showing 9 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

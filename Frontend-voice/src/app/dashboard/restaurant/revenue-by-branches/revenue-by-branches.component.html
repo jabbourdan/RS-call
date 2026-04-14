@@ -1,0 +1,137 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Revenue by Branches
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="flex items-center justify-center min-h-[189px]">
+            <img src="images/vector-map.png" alt="vector-map">
+        </div>
+        <ul class="mt-[20px] md:mt-[25px]">
+            <li class="flex items-center justify-between border-b first:border-t border-primary-50 dark:border-[#172036] py-[10px] md:py-[12px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="images/flags/portugal.svg" class="w-[24px]" alt="portugal">
+                    <span class="block font-medium">
+                        Portugal
+                    </span>
+                </div>
+                <div class="w-[150px]">
+                    <div class="leading-none flex items-center gap-[12px]">
+                        <div class="flex w-full h-[5px] overflow-hidden rounded-md bg-primary-100 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-primary-400 rounded-md" style="width: 85%;"></div>
+                        </div>
+                        <span class="block">
+                            85%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="flex items-center justify-between border-b first:border-t border-primary-50 dark:border-[#172036] py-[10px] md:py-[12px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="images/flags/germany.svg" class="w-[24px]" alt="germany">
+                    <span class="block font-medium">
+                        Germany
+                    </span>
+                </div>
+                <div class="w-[150px]">
+                    <div class="leading-none flex items-center gap-[12px]">
+                        <div class="flex w-full h-[5px] overflow-hidden rounded-md bg-secondary-100 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-secondary-400 rounded-md" style="width: 65%;"></div>
+                        </div>
+                        <span class="block">
+                            65%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="flex items-center justify-between border-b first:border-t border-primary-50 dark:border-[#172036] py-[10px] md:py-[12px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="images/flags/spain.svg" class="w-[24px]" alt="spain">
+                    <span class="block font-medium">
+                        Spain
+                    </span>
+                </div>
+                <div class="w-[150px]">
+                    <div class="leading-none flex items-center gap-[12px]">
+                        <div class="flex w-full h-[5px] overflow-hidden rounded-md bg-purple-100 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-purple-400 rounded-md" style="width: 45%;"></div>
+                        </div>
+                        <span class="block">
+                            45%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="flex items-center justify-between border-b first:border-t border-primary-50 dark:border-[#172036] py-[10px] md:py-[12px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="images/flags/canada.svg" class="w-[24px]" alt="canada">
+                    <span class="block font-medium">
+                        Canada
+                    </span>
+                </div>
+                <div class="w-[150px]">
+                    <div class="leading-none flex items-center gap-[12px]">
+                        <div class="flex w-full h-[5px] overflow-hidden rounded-md bg-success-100 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-success-500 rounded-md" style="width: 75%;"></div>
+                        </div>
+                        <span class="block">
+                            75%
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="flex items-center justify-between border-b first:border-t border-primary-50 dark:border-[#172036] py-[10px] md:py-[12px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="images/flags/usa.svg" class="w-[24px]" alt="usa">
+                    <span class="block font-medium">
+                        USA
+                    </span>
+                </div>
+                <div class="w-[150px]">
+                    <div class="leading-none flex items-center gap-[12px]">
+                        <div class="flex w-full h-[5px] overflow-hidden rounded-md bg-danger-100 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-danger-500 rounded-md" style="width: 20%;"></div>
+                        </div>
+                        <span class="block">
+                            20%
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

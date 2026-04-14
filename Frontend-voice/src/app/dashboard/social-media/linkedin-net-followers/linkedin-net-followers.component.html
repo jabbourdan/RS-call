@@ -1,0 +1,85 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header sm:mb-[15px] sm:flex items-center justify-between">
+        <div class="trezo-card-title mb-[10px] sm:mb-0">
+            <h5 class="!mb-[3px] md:!mb-0 !text-lg md:!text-[20px]">
+                LinkedIn Net Followers
+            </h5>
+            <p>
+                Net followers growth: <span class="text-primary-500">+275</span>
+            </p>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block rounded-md border border-gray-100 py-[5px] md:py-[6.5px] px-[12px] md:px-[19px] transition-all hover:bg-gray-50 dark:border-[#172036] dark:hover:bg-[#0a0e19]" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        {{ selectedTimeframe }}
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last Day')">
+                                Last Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last Week')">
+                                Last Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last Month')">
+                                Last Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last Year')">
+                                Last Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <ul class="sm:flex items-center gap-[25px] md:gap-[35px] lg:gap-[50px]">
+            <li class="inline-block mt-[15px] sm:mt-0 ltr:mr-[15px] rtl:ml-[15px] ltr:sm:mr-0 rtl:sm:ml-0">
+                <span class="block font-medium text-black">
+                    56,100
+                </span>
+                <span class="block mt-px text-xs">
+                    Starting Followers
+                </span>
+            </li>
+            <li class="inline-block mt-[15px] sm:mt-0 ltr:mr-[15px] rtl:ml-[15px] ltr:sm:mr-0 rtl:sm:ml-0">
+                <span class="block font-medium text-black">
+                    300
+                </span>
+                <span class="block mt-px text-xs">
+                    New Followers
+                </span>
+            </li>
+            <li class="inline-block mt-[15px] sm:mt-0 ltr:mr-[15px] rtl:ml-[15px] ltr:sm:mr-0 rtl:sm:ml-0">
+                <span class="block font-medium text-black">
+                    25
+                </span>
+                <span class="block mt-px text-xs">
+                    Unfollows
+                </span>
+            </li>
+            <li class="inline-block mt-[15px] sm:mt-0 ltr:mr-[15px] rtl:ml-[15px] ltr:sm:mr-0 rtl:sm:ml-0">
+                <span class="block font-medium text-black">
+                    56,375
+                </span>
+                <span class="block mt-px text-xs">
+                    Ending Followers
+                </span>
+            </li>
+        </ul>
+        <div class="-mb-[25px]">
+            <div id="linkedin_net_followers_chart"></div>
+        </div>
+    </div>
+</div>

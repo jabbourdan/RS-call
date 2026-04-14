@@ -1,0 +1,152 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-[3px] md:!mb-0 !text-lg md:!text-[20px]">
+                Suggestions
+            </h5>
+            <p>
+                People may you know
+            </p>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <ul>
+            <li class="flex items-center justify-between mb-[10.7px] pb-[10.7px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user40.jpg" class="rounded-full w-[44px]" alt="user-image">
+                    <div>
+                        <span class="block text-black dark:text-white font-medium">
+                            Sophia Adams
+                        </span>
+                        <span class="text-xs">
+                            12 mutual friends
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-[5px]">
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-danger-200 dark:border-[#172036] text-orange-500 text-md transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                        <i class="ri-delete-bin-7-line"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-primary-200 dark:border-[#172036] text-primary-500 text-md transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <i class="ri-user-add-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10.7px] pb-[10.7px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user37.jpg" class="rounded-full w-[44px]" alt="user-image">
+                    <div>
+                        <span class="block text-black dark:text-white font-medium">
+                            Liam Roberts
+                        </span>
+                        <span class="text-xs">
+                            8 mutual friends
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-[5px]">
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-danger-200 dark:border-[#172036] text-orange-500 text-md transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                        <i class="ri-delete-bin-7-line"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-primary-200 dark:border-[#172036] text-primary-500 text-md transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <i class="ri-user-add-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10.7px] pb-[10.7px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user54.jpg" class="rounded-full w-[44px]" alt="user-image">
+                    <div>
+                        <span class="block text-black dark:text-white font-medium">
+                            Olivia Martinez
+                        </span>
+                        <span class="text-xs">
+                            15 mutual friends
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-[5px]">
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-danger-200 dark:border-[#172036] text-orange-500 text-md transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                        <i class="ri-delete-bin-7-line"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-primary-200 dark:border-[#172036] text-primary-500 text-md transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <i class="ri-user-add-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10.7px] pb-[10.7px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user41.jpg" class="rounded-full w-[44px]" alt="user-image">
+                    <div>
+                        <span class="block text-black dark:text-white font-medium">
+                            Ethan Clarke
+                        </span>
+                        <span class="text-xs">
+                            10 mutual friends
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-[5px]">
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-danger-200 dark:border-[#172036] text-orange-500 text-md transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                        <i class="ri-delete-bin-7-line"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-primary-200 dark:border-[#172036] text-primary-500 text-md transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <i class="ri-user-add-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10.7px] pb-[10.7px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user43.jpg" class="rounded-full w-[44px]" alt="user-image">
+                    <div>
+                        <span class="block text-black dark:text-white font-medium">
+                            Isabella Cruz
+                        </span>
+                        <span class="text-xs">
+                            7 mutual friends
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-[5px]">
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-danger-200 dark:border-[#172036] text-orange-500 text-md transition-all hover:bg-orange-500 hover:text-white hover:border-orange-500">
+                        <i class="ri-delete-bin-7-line"></i>
+                    </button>
+                    <button type="button" class="flex items-center justify-center w-[34px] h-[34px] rounded-full border border-primary-200 dark:border-[#172036] text-primary-500 text-md transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <i class="ri-user-add-line"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Users by Country
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        Last Week
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="text-center md:mt-[39px]">
+            <img src="images/vector-map.png" class="inline-block" alt="vector-map">
+        </div>
+        <ul class="grid grid-cols-2">
+            <li>
+                <div class="relative mt-[14px] md:mt-[16px] ltr:pl-[30px] rtl:pr-[30px] pt-[14px] md:pt-[16px]">
+                    <img src="images/flags/usa.svg" class="absolute top-[18px] ltr:left-0 rtl:right-0 w-[20px]" alt="usa">
+                    <span class="block font-medium text-xs mb-[4px]">
+                        United States
+                    </span>
+                    <h6 class="!mb-0 !text-md !font-semibold">
+                        12,800 <span class="text-xs text-gray-500 dark:text-gray-400">35.6%</span>
+                    </h6>
+                </div>
+            </li>
+            <li>
+                <div class="relative mt-[14px] md:mt-[16px] ltr:pl-[30px] rtl:pr-[30px] pt-[14px] md:pt-[16px]">
+                    <img src="images/flags/uk.svg" class="absolute top-[18px] ltr:left-0 rtl:right-0 w-[20px]" alt="usa">
+                    <span class="block font-medium text-xs mb-[4px]">
+                        United Kingdom
+                    </span>
+                    <h6 class="!mb-0 !text-md !font-semibold">
+                        6,750 <span class="text-xs text-gray-500 dark:text-gray-400">18.7%</span>
+                    </h6>
+                </div>
+            </li>
+            <li>
+                <div class="relative border-t border-gray-100 dark:border-[#172036] mt-[14px] md:mt-[16px] ltr:pl-[30px] rtl:pr-[30px] pt-[14px] md:pt-[16px]">
+                    <img src="images/flags/canada.svg" class="absolute top-[18px] ltr:left-0 rtl:right-0 w-[20px]" alt="usa">
+                    <span class="block font-medium text-xs mb-[4px]">
+                        Canada
+                    </span>
+                    <h6 class="!mb-0 !text-md !font-semibold">
+                        2,500 <span class="text-xs text-gray-500 dark:text-gray-400">6.3%</span>
+                    </h6>
+                </div>
+            </li>
+            <li>
+                <div class="relative border-t border-gray-100 dark:border-[#172036] mt-[14px] md:mt-[16px] ltr:pl-[30px] rtl:pr-[30px] pt-[14px] md:pt-[16px]">
+                    <img src="images/flags/australia.svg" class="absolute top-[18px] ltr:left-0 rtl:right-0 w-[20px]" alt="usa">
+                    <span class="block font-medium text-xs mb-[4px]">
+                        Australia
+                    </span>
+                    <h6 class="!mb-0 !text-md !font-semibold">
+                        2,200 <span class="text-xs text-gray-500 dark:text-gray-400">5.4%</span>
+                    </h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

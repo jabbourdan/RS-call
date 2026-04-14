@@ -1,0 +1,173 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Chat
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                View
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Delete
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Block
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Report
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="chat-body h-[202px] overflow-y-scroll ltr:-mr-[25px] rtl:-ml-[25px] rotate-180">
+            <ul class="flex-col-reverse flex ltr:pl-[25px] rtl:pr-[25px] justify-end">
+                <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                    <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                    <div class="ltr:text-left rtl:text-right">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md text-sm">
+                                Hey Olivia, have you had a chance to check out the new admin dashboard?
+                            </p>
+                        </div>
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md text-sm">
+                                Oh, they've got this Kanban board for task management. You can drag and drop tasks between columns – it's so intuitive. Makes managing tasks a breeze. 🔥
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-left rtl:text-right mb-[13px] mt-[6px]">
+                        09:10 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                    <div class="ltr:text-right rtl:text-left">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md text-sm">
+                                Oh, you mean the one for project?
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-right rtl:text-left mb-[13px] mt-[6px]">
+                        09:20 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                    <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                    <div class="ltr:text-left rtl:text-right">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md text-sm">
+                                Yeah, that's the one! It's got a sleek Material Design, and the features are pretty robust.
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-left rtl:text-right mb-[13px] mt-[6px]">
+                        09:20 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                    <div class="ltr:text-right rtl:text-left">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md text-sm">
+                                Nice! What features are you finding?
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-right rtl:text-left mb-[13px] mt-[6px]">
+                        09:21 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                    <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                    <div class="ltr:text-left rtl:text-right">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md text-sm">
+                                Well, it has a project overview with all the key metrics on the landing page – project
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-left rtl:text-right mb-[13px] mt-[6px]">
+                        09:22 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                    <div class="ltr:text-right rtl:text-left">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md text-sm">
+                                That sounds handy. How about the task management features?
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-right rtl:text-left mb-[13px] mt-[6px]">
+                        09:25 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                    <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                    <div class="ltr:text-left rtl:text-right">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md text-sm">
+                                Oh, they've got this Kanban board for task management. You can drag and drop tasks between columns – it's so intuitive. Makes tasks a breeze. 🔥
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-left rtl:text-right mb-[13px] mt-[6px]">
+                        09:30 AM
+                    </span>
+                </li>
+                <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                    <div class="ltr:text-right rtl:text-left">
+                        <div class="mb-[5px] last:mb-0">
+                            <p class="py-[8px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md text-sm">
+                                Sweet! What about team collaboration?
+                            </p>
+                        </div>
+                    </div>
+                    <span class="block text-xs ltr:text-right rtl:text-left mb-[13px] mt-[6px]">
+                        09:31 AM
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="md:flex gap-[15px]">
+            <div class="relative flex gap-[8px] items-center top-[2px]">
+                <button class="inline-block transition-all hover:text-primary-500" type="button">
+                    <i class="material-symbols-outlined !text-md">
+                        sentiment_satisfied
+                    </i>
+                </button>
+                <button class="inline-block transition-all hover:text-primary-500" type="button">
+                    <i class="material-symbols-outlined !text-md">
+                        attach_file
+                    </i>
+                </button>
+            </div>
+            <div class="relative mt-[15px] md:mt-0 flex-auto">
+                <input type="text" class="block text-sm w-full rounded-md bg-gray-50 dark:bg-[#15203c] px-[15px] h-[45px] text-black dark:text-white placeholder:text-gray-500 dark:text-gray-400 outline-0" placeholder="Write your message...">
+                <button type="submit" class="absolute ltr:right-[15px] rtl:left-[15px] transition-all hover:text-primary-500 top-1/2 -translate-y-1/2 mt-[2px]">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        send
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

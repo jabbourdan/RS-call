@@ -1,0 +1,758 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Chat
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Apps
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Chat
+        </li>
+    </ol>
+</div>
+
+<!-- Chat -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-1">
+
+        <!-- Sidebar -->
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0 !text-md !font-medium">
+                        Messages
+                    </h5>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <form class="relative mb-[20px]">
+                    <label class="absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white top-1/2 -translate-y-1/2">
+                        <i class="material-symbols-outlined !text-lg">
+                            search
+                        </i>
+                    </label>
+                    <input type="text" class="block w-full rounded-md text-black dark:text-white bg-gray-50 dark:bg-[#15203c] border border-gray-50 dark:border-[#15203c] focus:border-primary-500 h-[40px] outline-0 transition-all text-xs placeholder:text-gray-500 dark:placeholder:text-gray-400 ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[15px] rtl:pl-[15px]" placeholder="Search">
+                </form>
+                <ul class="chat-sidebar-navs flex border-b border-gray-100 dark:border-[#172036]">
+                    <li class="nav-item ltr:mr-[19px] rtl:ml-[19px] xl:ltr:mr-[30px] xl:rtl:ml-[30px] ltr:last:mr-0 rtl:ml-0"[ngClass]="{'active': currentTab === 'tab1'}">
+                        <button type="button" (click)="switchTab($event, 'tab1')" class="nav-link font-medium relative pb-[8px] transition-all">
+                            All Message
+                        </button>
+                    </li>
+                    <li class="nav-item ltr:mr-[19px] rtl:ml-[19px] xl:ltr:mr-[30px] xl:rtl:ml-[30px] ltr:last:mr-0 rtl:ml-0"[ngClass]="{'active': currentTab === 'tab2'}">
+                        <button type="button" (click)="switchTab($event, 'tab2')" class="nav-link font-medium relative pb-[8px] transition-all">
+                            Group Chat
+                        </button>
+                    </li>
+                    <li class="nav-item ltr:mr-[19px] rtl:ml-[19px] xl:ltr:mr-[30px] xl:rtl:ml-[30px] ltr:last:mr-0 rtl:ml-0"[ngClass]="{'active': currentTab === 'tab3'}">
+                        <button type="button" (click)="switchTab($event, 'tab3')" class="nav-link font-medium relative pb-[8px] transition-all">
+                            Contacts
+                        </button>
+                    </li>
+                </ul>
+                <div class="chat-sidebar-tab-content">
+                    @if (currentTab === 'tab1') {
+                        <div class="ltr:-mr-[20px] rtl:-ml-[20px] md:ltr:-mr-[25px] md:rtl:-ml-[25px]">
+                            <div class="chat-users-list overflow-y-scroll h-[476px] md:h-[559px] lg:h-[720px] xl:h-[820px] ltr:pr-[20px] rtl:pl-[20px] md:ltr:pr-[25px] md:rtl:pl-[25px] pt-[20px]">
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user31.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Sarah Smith
+                                            </span>
+                                            <span class="text-success-600 block text-xs mt-[4px]">
+                                                Typing...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        Just Now
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user6.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Michael Johnson
+                                            </span>
+                                            <span class="block text-xs mt-[4px] relative ltr:pl-[16px] rtl:pr-[16px]">
+                                                <i class="ri-file-text-line ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2 -mt-[.5px]"></i>
+                                                Attachment...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        10:20 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user7.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Emily Brown
+                                            </span>
+                                            <span class="block text-xs mt-[4px] relative ltr:pl-[16px] rtl:pr-[16px]">
+                                                <i class="ri-mic-line ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2 -mt-[.5px]"></i>
+                                                Voice message
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        9:30 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user8.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                David Martinez
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Excellent work...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        3:20 PM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user9.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Jessica Taylor
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Hello! Mr.. 🔥
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        12:00 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user10.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Christopher Lee
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Very good...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        8:30 PM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user11.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Amanda Rodriguez
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                That’s cool...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        2:20 PM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user12.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Daniel Garcia
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Good morning!😀
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        10:00 PM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user13.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Jennifer Thomas
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Hi John!
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        11:10 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user14.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Elizabeth Clark
+                                            </span>
+                                            <span class="text-success-600 block text-xs mt-[4px]">
+                                                Sounds good...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        12:30 PM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user15.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                William Lewis
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                How are you?😐
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        11:20 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user16.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Michelle King
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Good evening!
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        10:40 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (currentTab === 'tab2') {
+                        <div class="ltr:-mr-[20px] rtl:-ml-[20px] md:ltr:-mr-[25px] md:rtl:-ml-[25px]">
+                            <div class="mt-[20px] ltr:pr-[20p] rtl:pl-[20px] ltr:md:pr-[25px] rtl:md:pl-[20px]">
+                                <button type="button" class="block w-full text-center py-[11.8px] px-[22px] text-white bg-primary-500 transition-all text-md font-medium hover:bg-primary-400">
+                                    + Create New Group
+                                </button>
+                            </div>
+                            <div class="chat-users-list overflow-y-scroll h-[476px] md:h-[559px] lg:h-[720px] xl:h-[820px] ltr:pr-[20px] rtl:pl-[20px] md:ltr:pr-[25px] md:rtl:pl-[25px] pt-[20px]">
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/products/product1.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                UI/UX Designer Group
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Divan: Sure I’ll submit the file...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        Just Now
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/products/product2.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Web Development Group
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Divan: <span class="text-success-600">Typing...</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        10:20 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/products/product3.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Discussion Group
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Divan: Great ! 🔥
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        9:30 AM
+                                    </span>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/products/product4.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Design Group
+                                            </span>
+                                            <span class="block text-xs mt-[4px]">
+                                                Olivia: Hello! Mr..
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs block">
+                                        12:00 AM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (currentTab === 'tab3') {
+                        <div class="ltr:-mr-[20px] rtl:-ml-[20px] md:ltr:-mr-[25px] md:rtl:-ml-[25px]">
+                            <div class="chat-users-list overflow-y-scroll h-[476px] md:h-[559px] lg:h-[720px] xl:h-[820px] ltr:pr-[20px] rtl:pl-[20px] md:ltr:pr-[25px] md:rtl:pl-[25px] pt-[20px]">
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user31.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Sarah Smith
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user6.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Michael Johnson
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user7.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Emily Brown
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user8.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                David Martinez
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user9.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Jessica Taylor
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user10.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Christopher Lee
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user11.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Amanda Rodriguez
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user12.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-success-500 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Daniel Garcia
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user13.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Jennifer Thomas
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user14.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Elizabeth Clark
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user15.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                William Lewis
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between mb-[13.5px] pb-[13.5px] border-b border-gray-100 dark:border-[#172036] last:border-0 last:pb-0 last:mb-0">
+                                    <div class="flex items-center">
+                                        <div class="relative ltr:mr-[10px] rtl:ml-[10px]">
+                                            <img src="images/users/user16.jpg" alt="user-image" class="rounded-full w-[35px]">
+                                            <span class="absolute ltr:right-0 rtl:left-0 bottom-0 w-[10px] h-[10px] rounded-full bg-orange-400 border-[2px] border-white dark:border-[#0c1427]"></span>
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-black dark:text-white">
+                                                Michelle King
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="lg:col-span-2">
+
+        <!-- Chat -->
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header sm:flex items-center justify-between">
+                <div class="trezo-card-title">
+                    <div class="flex items-center">
+                        <div class="relative ltr:mr-[15px] rtl:ml-[15px]">
+                            <img src="images/users/user31.jpg" alt="user-image" class="rounded-full w-[75px]">
+                            <span class="absolute bg-success-500 w-[10px] h-[10px] rounded-full border-[2px] border-white dark:border-[#0c1427] bottom-[5px] ltr:right-[5px] rtl:left-[5px]"></span>
+                        </div>
+                        <div>
+                            <span class="font-semibold block text-black dark:text-white text-md">
+                                Sarah Smith
+                            </span>
+                            <span class="mt-[2px]">
+                                Active Now
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="trezo-card-subtitle mt-[15px] sm:mt-0 flex items-center gap-[15px]">
+                    <button type="button" class="inline-block transition-all hover:text-primary-500">
+                        <i class="material-symbols-outlined !text-md">
+                            call
+                        </i>
+                    </button>
+                    <button type="button" class="inline-block transition-all hover:text-primary-500">
+                        <i class="material-symbols-outlined !text-md">
+                            videocam
+                        </i>
+                    </button>
+                    <div class="trezo-card-dropdown relative">
+                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 relative -top-px leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                            <i class="ri-more-fill"></i>
+                        </button>
+                        @if (isCardHeaderOpen) {
+                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Mute Chat
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Delete
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                        Block
+                                    </button>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <div class="border-t border-gray-100 dark:border-[#172036] mt-[20px] mb-[18px]"></div>
+                <span class="text-xs pb-[18px] block">
+                    2023-11-10 09:15 AM
+                </span>
+                <div class="chat-body h-[707px] overflow-y-scroll ltr:-mr-[25px] rtl:-ml-[25px] rotate-180">
+                    <ul class="flex-col-reverse flex ltr:pl-[25px] rtl:pr-[25px] justify-end">
+                        <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                            <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                            <div class="ltr:text-left rtl:text-right">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md">
+                                        Hey Olivia, have you had a chance to check out the new admin dashboard?
+                                    </p>
+                                </div>
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md">
+                                        Oh, they've got this Kanban board for task management. You can drag and drop tasks between columns – it's so intuitive. Makes managing tasks a breeze. 🔥
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-left rtl:text-right mb-[20px] mt-[7px]">
+                                09:10 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                            <div class="ltr:text-right rtl:text-left">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md">
+                                        Oh, you mean the one for project management?
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-right rtl:text-left mb-[20px] mt-[7px]">
+                                09:20 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                            <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                            <div class="ltr:text-left rtl:text-right">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md">
+                                        Yeah, that's the one! It's got a sleek Material Design, and the features are pretty robust.
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-left rtl:text-right mb-[20px] mt-[7px]">
+                                09:20 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                            <div class="ltr:text-right rtl:text-left">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md">
+                                        Nice! What features are you finding interesting?
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-right rtl:text-left mb-[20px] mt-[7px]">
+                                09:21 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                            <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                            <div class="ltr:text-left rtl:text-right">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md">
+                                        Well, it has a project overview with all the key metrics on the landing page – project
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-left rtl:text-right mb-[20px] mt-[7px]">
+                                09:22 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                            <div class="ltr:text-right rtl:text-left">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md">
+                                        That sounds handy. How about the task management features?
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-right rtl:text-left mb-[20px] mt-[7px]">
+                                09:25 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 ltr:pl-[45px] rtl:pr-[45px] w-full md:w-[90%]">
+                            <img src="images/users/user31.jpg" width="35" alt="user" class="rounded-full top-0 ltr:left-0 rtl:right-0 absolute">
+                            <div class="ltr:text-left rtl:text-right">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-gray-50 dark:bg-[#15203c] ltr:rounded-r-md rtl:rounded-l-md">
+                                        Oh, they've got this Kanban board for task management. You can drag and drop tasks between columns – it's so intuitive.
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-left rtl:text-right mb-[20px] mt-[7px]">
+                                09:30 AM
+                            </span>
+                        </li>
+                        <li class="relative rotate-180 w-full md:w-[90%] ltr:text-right md:rtl:text-left md:ltr:mr-auto rtl:ml-auto">
+                            <div class="ltr:text-right rtl:text-left">
+                                <div class="mb-[5px] last:mb-0">
+                                    <p class="py-[10px] px-[15px] inline-block bg-primary-500 text-white ltr:rounded-l-md rtl:rounded-l-md">
+                                        Sweet! What about team collaboration?
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="block text-xs ltr:text-right rtl:text-left mb-[20px] mt-[7px]">
+                                09:31 AM
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:flex gap-[20px] rounded-md p-[20px] bg-gray-50 dark:bg-[#15203c]">
+                    <div class="relative flex gap-[10px] items-center top-[2px]">
+                        <button class="inline-block transition-all hover:text-primary-500" type="button">
+                            <i class="material-symbols-outlined !text-md">
+                                sentiment_satisfied
+                            </i>
+                        </button>
+                        <button class="inline-block transition-all hover:text-primary-500" type="button">
+                            <i class="material-symbols-outlined !text-md">
+                                attach_file
+                            </i>
+                        </button>
+                        <button class="inline-block transition-all hover:text-primary-500" type="button">
+                            <i class="material-symbols-outlined !text-md">
+                                mic_none
+                            </i>
+                        </button>
+                        <button class="inline-block transition-all hover:text-primary-500" type="button">
+                            <i class="material-symbols-outlined !text-md">
+                                image
+                            </i>
+                        </button>
+                    </div>
+                    <div class="relative mt-[15px] md:mt-0 md:ltr:pr-[70px] md:rtl:pl-[70px] flex-auto">
+                        <input type="text" class="block w-full rounded-md bg-white dark:bg-[#0c1427] px-[15px] h-[55px] text-black dark:text-white placeholder:text-gray-500 dark:text-gray-400 outline-0" placeholder="Type your message">
+                        <button type="submit" class="md:absolute flex items-center justify-center ltr:right-0 rtl:left-0 rounded-sm transition-all bg-primary-500 text-white hover:bg-primary-400 md:top-1/2 md:-translate-y-1/2 w-[55px] h-[55px] mt-[15px] md:mt-0">
+                            <i class="material-symbols-outlined">
+                                send
+                            </i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

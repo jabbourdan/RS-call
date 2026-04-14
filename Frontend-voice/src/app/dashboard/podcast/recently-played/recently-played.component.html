@@ -1,0 +1,430 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0 !font-semibold">
+                Recently Played
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <a routerLink="." class="inline-block relative ltr:pr-[13px] rtl:pl-[13px] leading-none transition-all hover:text-primary-500">
+                View All <i class="ri-arrow-right-s-line absolute top-1/2 -translate-y-1/2 ltr:-right-[8px] rtl:-left-[8px] text-[23px] -mt-px"></i>
+            </a>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <div class="table-responsive overflow-x-auto -mt-[14px]">
+            <table class="w-full without-top-bottom-border">
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist1.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        Mastering Digital Marketing
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        Sarah Johnson
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 40min. ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                8,200
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            45:30
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu1">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu1')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu1']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist2.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        Content Marketing Essentials
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        Tom Richards
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 1h. ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                9,500
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            25:50
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu2">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu2')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu2']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist3.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        Social Media Trends for 2025
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        David Chen
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 1day ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                7,400
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            30:20
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu3">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu3')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu3']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist4.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        Building Brand Loyalty
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        Michael Young
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 2days ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                10,200
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            15:35
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu4">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu4')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu4']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md bottom-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist5.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        Content Creation Techniques
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        Lisa Kim
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 3days ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            18:45
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu5">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu5')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu5']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md bottom-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[10px]">
+                                <a href="#" target="_blank" class="inline-block leading-none text-xl text-primary-500">
+                                    <i class="ri-play-large-fill"></i>
+                                </a>
+                                <div class="rounded-md w-[34px]">
+                                    <img alt="user-image" class="rounded-md" src="images/playlists/playlist6.jpg">
+                                </div>
+                                <div>
+                                    <span class="font-medium inline-block mb-[3px]">
+                                        The Future of AI in Marketing
+                                    </span>
+                                    <span class="block text-gray-500 dark:text-gray-400 text-xs">
+                                        Tom Richards
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            Played 4days ago
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <span class="block text-gray-500 dark:text-gray-400 relative ltr:pl-[27px] rtl:pr-[27px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 text-primary-500">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <button type="button" class="leading-none text-xl text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500">
+                                <i class="ri-heart-line"></i>
+                            </button>
+                        </td>
+                        <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            22:15
+                        </td>
+                        <td class="ltr:text-left rtl:text-right ltr:last:text-right rtl:last:text-left whitespace-nowrap px-[20px] py-[12.5px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] md:ltr:last:pr-[25px] md:rtl:last:pl-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]" id="menu6">
+                                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[20px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="menuBtn('menu6')">
+                                    <i class="ri-more-fill"></i>
+                                </button>
+                                @if (openMenus['menu1']) {
+                                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md bottom-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-add-fill text-primary-500"></i>
+                                                Add to Playlist
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-multi-image-line text-primary-500"></i>
+                                                Go to Album
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                <i class="ri-dropbox-line text-primary-500"></i>
+                                                View Credits
+                                            </button>
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

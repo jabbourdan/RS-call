@@ -1,0 +1,19 @@
+// Campaign card hover effect
+.campaign-card {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+}
+
+// Stat item dividers
+.stat-item + .stat-item {
+    border-left: 1px solid #e5e7eb;
+
+    [dir='rtl'] & {
+        border-left: none;
+        border-right: 1px solid #e5e7eb;
+    }
+}

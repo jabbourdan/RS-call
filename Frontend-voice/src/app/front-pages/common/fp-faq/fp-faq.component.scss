@@ -1,0 +1,20 @@
+.toc-accordion {
+    .toc-accordion-item {
+        .toc-accordion-button {
+            &.open {
+                i {
+                    &::before {
+                        content: "\ea78";
+                    }
+                }
+            }
+        }
+        .toc-accordion-collapse {
+            @apply hidden;
+
+            &.open {
+                @apply block;
+            }
+        }
+    }
+}

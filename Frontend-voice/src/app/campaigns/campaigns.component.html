@@ -1,0 +1,491 @@
+<!-- Page Hero Banner -->
+<div class="relative mb-[28px] rounded-2xl overflow-hidden shadow-lg"
+     style="background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 60%, #a78bfa 100%);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[80px] -right-[80px] w-[260px] h-[260px] rounded-full" style="background: rgba(255,255,255,0.07);"></div>
+        <div class="absolute bottom-0 left-[10%] w-[180px] h-[180px] rounded-full" style="background: rgba(255,255,255,0.05);"></div>
+        <svg class="absolute inset-0 w-full h-full" style="opacity:0.06;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="dots-cam" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1.5" fill="white"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots-cam)"/>
+        </svg>
+    </div>
+    <div class="relative z-10 px-[28px] py-[24px] md:py-[28px] md:flex md:items-center md:justify-between">
+        <div class="flex items-center gap-[16px]">
+            <div class="w-[50px] h-[50px] rounded-2xl flex items-center justify-center flex-shrink-0"
+                 style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.25);">
+                <i class="material-symbols-outlined !text-[26px] text-white">campaign</i>
+            </div>
+            <div>
+                <h4 class="!mb-0 !text-white font-bold tracking-tight">{{ 'CAMPAIGNS.PAGE_TITLE' | translate }}</h4>
+                <p class="text-[13px] mt-[3px]" style="color: rgba(255,255,255,0.65);">{{ 'CAMPAIGNS.PAGE_SUBTITLE' | translate }}</p>
+            </div>
+        </div>
+        <nav class="mt-[14px] md:mt-0 flex items-center gap-[6px] text-[12.5px] font-medium px-[14px] py-[7px] rounded-full"
+             style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85);">
+            <a routerLink="/dashboard" class="flex items-center gap-[4px] transition-opacity hover:opacity-100" style="opacity:0.7;">
+                <i class="material-symbols-outlined !text-[14px]">home</i>
+                {{ 'CONTACTS.BREADCRUMB_HOME' | translate }}
+            </a>
+            <i class="material-symbols-outlined !text-[13px]" style="opacity:0.4;">chevron_right</i>
+            <span>{{ 'CAMPAIGNS.PAGE_TITLE' | translate }}</span>
+        </nav>
+    </div>
+</div>
+
+<!-- ─── Success / Error banners ───────────────────────────────────────────────── -->
+@if (successMessage) {
+    <div class="flex items-center gap-3 p-4 mb-[25px] rounded-md bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400">
+        <i class="ri-checkbox-circle-line text-xl leading-none"></i>
+        <span class="flex-1 text-sm font-medium">{{ successMessage }}</span>
+        <button (click)="dismissMessages()" class="leading-none opacity-60 hover:opacity-100">
+            <i class="ri-close-fill text-lg"></i>
+        </button>
+    </div>
+}
+@if (errorMessage) {
+    <div class="flex items-center gap-3 p-4 mb-[25px] rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400">
+        <i class="ri-error-warning-line text-xl leading-none"></i>
+        <span class="flex-1 text-sm font-medium">{{ errorMessage }}</span>
+        <button (click)="dismissMessages()" class="leading-none opacity-60 hover:opacity-100">
+            <i class="ri-close-fill text-lg"></i>
+        </button>
+    </div>
+}
+
+<!-- ─── Main Card ───────────────────────────────────────────────────────────── -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+
+    <!-- Header row -->
+    <div class="trezo-card-header flex items-center justify-between mb-[20px]">
+        <div>
+            <h5 class="mb-0">{{ 'CAMPAIGNS.PAGE_TITLE' | translate }}</h5>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {{ campaigns.length }} {{ 'CAMPAIGNS.TOTAL_LABEL' | translate }}
+            </p>
+        </div>
+        <button
+            (click)="openAddDialog()"
+            class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
+        >
+            <i class="ri-add-line text-base leading-none"></i>
+            {{ 'CAMPAIGNS.BTN_ADD' | translate }}
+        </button>
+    </div>
+
+    <!-- ─── Loading skeleton ──────────────────────────────────────────────────── -->
+    @if (isLoading) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+            @for (i of [1,2,3]; track i) {
+                <div class="rounded-md border border-gray-100 dark:border-gray-700 p-[20px] animate-pulse">
+                    <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-3 w-2/3"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded mb-4 w-full"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-5"></div>
+                    <div class="grid grid-cols-4 gap-2">
+                        @for (j of [1,2,3,4]; track j) {
+                            <div class="h-10 bg-gray-100 dark:bg-gray-700 rounded"></div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- ─── Empty state ───────────────────────────────────────────────────────── -->
+    @if (!isLoading && campaigns.length === 0) {
+        <div class="flex flex-col items-center justify-center py-[60px] text-center">
+            <div class="w-[80px] h-[80px] rounded-full bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center mb-5">
+                <i class="material-symbols-outlined text-primary-500 !text-[40px]">campaign</i>
+            </div>
+            <h6 class="mb-2">{{ 'CAMPAIGNS.EMPTY_TITLE' | translate }}</h6>
+            <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[300px] mb-5">
+                {{ 'CAMPAIGNS.EMPTY_DESC' | translate }}
+            </p>
+            <button
+                (click)="openAddDialog()"
+                class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
+            >
+                <i class="ri-add-line text-base leading-none"></i>
+                {{ 'CAMPAIGNS.BTN_ADD' | translate }}
+            </button>
+        </div>
+    }
+
+    <!-- ─── Campaign cards grid ───────────────────────────────────────────────── -->
+    @if (!isLoading && campaigns.length > 0) {
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+            @for (campaign of campaigns; track trackById($index, campaign)) {
+                <div class="campaign-card trezo-card-content rounded-md border border-gray-100 dark:border-gray-700 p-[20px] flex flex-col">
+
+                    <!-- Card top: name + status badge + delete btn -->
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                        <h6 class="font-semibold text-base leading-snug break-words flex-1">{{ campaign.name }}</h6>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <span class="inline-block text-[11px] font-semibold px-[10px] py-[3px] rounded-full" [ngClass]="statusBadge[campaign.status]">
+                                {{ statusI18n[campaign.status] | translate }}
+                            </span>
+                            <button
+                                (click)="confirmDelete(campaign)"
+                                title="{{ 'CAMPAIGNS.BTN_DELETE' | translate }}"
+                                class="w-[28px] h-[28px] flex items-center justify-center rounded-md text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            >
+                                <i class="ri-delete-bin-line text-base leading-none"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2 flex-1">
+                        {{ campaign.description || ('CAMPAIGNS.NO_DESCRIPTION' | translate) }}
+                    </p>
+
+                    <!-- ─── Stats row ──────────────────────────────────────── -->
+                    <div class="grid grid-cols-2 gap-[8px] mb-4">
+                        <!-- Total Leads -->
+                        <div class="flex items-center gap-[10px] px-[12px] py-[10px] rounded-md bg-gray-50 dark:bg-[#0a1020]">
+                            <div class="w-[32px] h-[32px] rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center shrink-0">
+                                <i class="ri-group-line text-gray-600 dark:text-gray-300 text-base leading-none"></i>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-none mb-[3px]">{{ 'CAMPAIGNS.STAT_TOTAL_LEADS' | translate }}</p>
+                                <p class="text-base font-bold text-gray-800 dark:text-white leading-none">{{ campaign.stats.total_leads }}</p>
+                            </div>
+                        </div>
+                        <!-- Calls Today -->
+                        <div class="flex items-center gap-[10px] px-[12px] py-[10px] rounded-md bg-purple-50 dark:bg-purple-900/10">
+                            <div class="w-[32px] h-[32px] rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center shrink-0">
+                                <i class="ri-phone-line text-purple-600 dark:text-purple-400 text-base leading-none"></i>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-purple-500 dark:text-purple-400 leading-none mb-[3px]">{{ 'CAMPAIGNS.STAT_CALLS_TODAY' | translate }}</p>
+                                <p class="text-base font-bold text-purple-700 dark:text-purple-300 leading-none">{{ campaign.stats.calls_today }}</p>
+                            </div>
+                        </div>
+                        <!-- Answered -->
+                        <div class="flex items-center gap-[10px] px-[12px] py-[10px] rounded-md bg-blue-50 dark:bg-blue-900/10">
+                            <div class="w-[32px] h-[32px] rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
+                                <i class="ri-phone-answer-line text-blue-600 dark:text-blue-400 text-base leading-none"></i>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-blue-500 dark:text-blue-400 leading-none mb-[3px]">{{ 'CAMPAIGNS.STAT_ANSWERED' | translate }}</p>
+                                <p class="text-base font-bold text-blue-700 dark:text-blue-300 leading-none">{{ campaign.stats.answered }}</p>
+                            </div>
+                        </div>
+                        <!-- Closed Deals -->
+                        <div class="flex items-center gap-[10px] px-[12px] py-[10px] rounded-md bg-green-50 dark:bg-green-900/10">
+                            <div class="w-[32px] h-[32px] rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                                <i class="ri-checkbox-circle-line text-green-600 dark:text-green-400 text-base leading-none"></i>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-green-600 dark:text-green-400 leading-none mb-[3px]">{{ 'CAMPAIGNS.STAT_CLOSED_DEALS' | translate }}</p>
+                                <p class="text-base font-bold text-green-700 dark:text-green-300 leading-none">{{ campaign.stats.closed_deals }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card created date -->
+                    <p class="text-[11px] text-gray-400 dark:text-gray-500 mb-4">
+                        <i class="ri-calendar-line ltr:mr-1 rtl:ml-1"></i>
+                        {{ campaign.created_at | date:'mediumDate' }}
+                    </p>
+
+                    <!-- Action buttons -->
+                    <div class="flex gap-[8px] mt-auto">
+                        <button
+                            (click)="openEditDialog(campaign)"
+                            class="flex-1 flex items-center justify-center gap-1 py-[7px] px-[10px] rounded-md text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors"
+                        >
+                            <i class="ri-edit-line text-base leading-none"></i>
+                            {{ 'CAMPAIGNS.BTN_EDIT' | translate }}
+                        </button>
+                        <button
+                            (click)="viewLeads(campaign.campaign_id)"
+                            class="flex-1 flex items-center justify-center gap-1 py-[7px] px-[10px] rounded-md text-sm font-medium bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
+                        >
+                            <i class="ri-group-line text-base leading-none"></i>
+                            {{ 'CAMPAIGNS.BTN_VIEW_LEADS' | translate }}
+                        </button>
+                        <button
+                            (click)="importLeads(campaign.campaign_id)"
+                            title="{{ 'CAMPAIGNS.BTN_IMPORT' | translate }}"
+                            class="w-[36px] h-[36px] flex items-center justify-center rounded-md border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors shrink-0"
+                        >
+                            <i class="ri-upload-2-line text-base leading-none"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ─── Create / Edit Dialog ─────────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+@if (showFormDialog) {
+    <div class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px] active">
+        <div class="popup-dialog flex transition-all max-w-[600px] min-h-full items-center mx-auto">
+            <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+
+                <!-- Dialog header -->
+                <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between gap-2">
+                    <h5 class="mb-0">
+                        {{ (isEditMode ? 'CAMPAIGNS.FORM_EDIT_TITLE' : 'CAMPAIGNS.FORM_ADD_TITLE') | translate }}
+                    </h5>
+                    <button
+                        (click)="closeFormDialog()"
+                        class="inline-block transition-all rounded-full w-[32px] h-[32px] text-center leading-[32px] text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-[#15203c]"
+                    >
+                        <i class="ri-close-fill text-2xl leading-none"></i>
+                    </button>
+                </div>
+
+                <div class="trezo-card-content">
+                    <form (ngSubmit)="submitForm()" #campaignForm="ngForm" novalidate>
+
+                        <!-- ─── Basic Info ─────────────────────────────────── -->
+                        <div class="mb-[18px]">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-[6px]">
+                                {{ 'CAMPAIGNS.FORM_NAME' | translate }}
+                                <span class="text-red-500 ltr:ml-1 rtl:mr-1">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                [(ngModel)]="formData.name"
+                                name="name"
+                                placeholder="{{ 'CAMPAIGNS.FORM_NAME_PLACEHOLDER' | translate }}"
+                                class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[10px] px-[14px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
+                                [ngClass]="{'border-red-400': formErrors.name}"
+                            />
+                            @if (formErrors.name) {
+                                <p class="text-xs text-red-500 mt-1">{{ formErrors.name }}</p>
+                            }
+                        </div>
+
+                        <div class="mb-[18px]">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-[6px]">
+                                {{ 'CAMPAIGNS.FORM_DESC' | translate }}
+                            </label>
+                            <textarea
+                                [(ngModel)]="formData.description"
+                                name="description"
+                                rows="2"
+                                placeholder="{{ 'CAMPAIGNS.FORM_DESC_PLACEHOLDER' | translate }}"
+                                class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[10px] px-[14px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors resize-none"
+                            ></textarea>
+                        </div>
+
+                        @if (isEditMode) {
+                            <div class="mb-[18px]">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-[6px]">
+                                    {{ 'CAMPAIGNS.FORM_STATUS' | translate }}
+                                </label>
+                                <select
+                                    [(ngModel)]="formData.status"
+                                    name="status"
+                                    class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[10px] px-[14px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500 transition-colors"
+                                >
+                                    @for (s of statusOptions; track s) {
+                                        <option [value]="s">{{ statusI18n[s] | translate }}</option>
+                                    }
+                                </select>
+                            </div>
+                        }
+
+                        <!-- ─── Settings toggle ───────────────────────────── -->
+                        <button
+                            type="button"
+                            (click)="showSettings = !showSettings"
+                            class="flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400 mb-[16px] hover:underline"
+                        >
+                            <i [class]="showSettings ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" class="text-base leading-none"></i>
+                            {{ 'CAMPAIGNS.SETTINGS_TITLE' | translate }}
+                        </button>
+
+                        @if (showSettings) {
+                            <div class="border border-gray-100 dark:border-gray-700 rounded-md p-[16px] mb-[18px] space-y-[14px]">
+
+                                <!-- Phone 1 + Phone 2 -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_PHONE1' | translate }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            [(ngModel)]="formData.phone_number_used1"
+                                            name="phone1"
+                                            placeholder="+972501234567"
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_PHONE2' | translate }}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            [(ngModel)]="formData.phone_number_used2"
+                                            name="phone2"
+                                            placeholder="+972509876543"
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Change number after + Max calls -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_CHANGE_AFTER' | translate }}
+                                        </label>
+                                        <input
+                                            type="number"
+                                            [(ngModel)]="formData.change_number_after"
+                                            name="changeAfter"
+                                            min="1"
+                                            placeholder="e.g. 50"
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_MAX_CALLS' | translate }}
+                                        </label>
+                                        <input
+                                            type="number"
+                                            [(ngModel)]="formData.max_calls_to_unanswered_lead"
+                                            name="maxCalls"
+                                            min="1"
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Algorithm + Cooldown -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_ALGORITHM' | translate }}
+                                        </label>
+                                        <select
+                                            [(ngModel)]="formData.calling_algorithm"
+                                            name="algorithm"
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                        >
+                                            @for (a of algorithmOptions; track a) {
+                                                <option [value]="a">{{ a | titlecase }}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                            {{ 'CAMPAIGNS.SETTINGS_COOLDOWN' | translate }}
+                                        </label>
+                                        <div class="flex items-center gap-2">
+                                            <input
+                                                type="number"
+                                                [(ngModel)]="formData.cooldown_minutes"
+                                                name="cooldown"
+                                                min="0"
+                                                class="flex-1 border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                            />
+                                            <span class="text-xs text-gray-400 whitespace-nowrap">{{ 'CAMPAIGNS.SETTINGS_MINUTES' | translate }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Statuses (comma-separated) -->
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                        {{ 'CAMPAIGNS.SETTINGS_STATUSES' | translate }}
+                                    </label>
+                                    <textarea
+                                        [(ngModel)]="formData.statusesRaw"
+                                        name="statusesRaw"
+                                        rows="2"
+                                        placeholder="ממתין, ענה, לא רלוונטי, עסקה נסגרה, פולו אפ, אל תתקשר"
+                                        class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 resize-none"
+                                        dir="rtl"
+                                    ></textarea>
+                                    <p class="text-[11px] text-gray-400 mt-1">{{ 'CAMPAIGNS.SETTINGS_STATUSES_HINT' | translate }}</p>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- ─── Form actions ──────────────────────────────── -->
+                        <div class="flex gap-[10px] justify-end mt-[8px]">
+                            <button
+                                type="button"
+                                (click)="closeFormDialog()"
+                                class="py-[9px] px-[18px] rounded-md text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors"
+                            >
+                                {{ 'CONTACTS.BTN_CANCEL' | translate }}
+                            </button>
+                            <button
+                                type="submit"
+                                [disabled]="formSubmitting"
+                                class="py-[9px] px-[18px] rounded-md text-sm font-medium bg-primary-500 hover:bg-primary-600 text-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                            >
+                                @if (formSubmitting) {
+                                    <span class="flex items-center gap-2">
+                                        <i class="ri-loader-4-line animate-spin leading-none"></i>
+                                        {{ 'CONTACTS.BTN_SAVING' | translate }}
+                                    </span>
+                                } @else {
+                                    {{ (isEditMode ? 'CONTACTS.BTN_SAVE_CHANGES' : 'CAMPAIGNS.BTN_CREATE') | translate }}
+                                }
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ─── Delete Confirm Dialog ────────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+@if (showDeleteConfirm) {
+    <div class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto active">
+        <div class="popup-dialog flex transition-all max-w-[400px] min-h-full items-center mx-auto">
+            <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[25px] rounded-md text-center">
+                <div class="w-[60px] h-[60px] rounded-full bg-red-100 dark:bg-red-900/20 flex items-center justify-center mx-auto mb-4">
+                    <i class="ri-delete-bin-line text-red-500 text-2xl leading-none"></i>
+                </div>
+                <h5 class="mb-2">{{ 'CAMPAIGNS.DELETE_TITLE' | translate }}</h5>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                    {{ 'CAMPAIGNS.DELETE_DESC' | translate }}
+                </p>
+                <p class="text-sm font-semibold text-gray-800 dark:text-white mb-[20px]">"{{ deletingName }}"</p>
+                <div class="flex gap-[10px] justify-center">
+                    <button
+                        (click)="cancelDelete()"
+                        class="py-[9px] px-[20px] rounded-md text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors"
+                    >
+                        {{ 'CONTACTS.BTN_CANCEL' | translate }}
+                    </button>
+                    <button
+                        (click)="executeDelete()"
+                        [disabled]="deleteSubmitting"
+                        class="py-[9px] px-[20px] rounded-md text-sm font-medium bg-red-500 hover:bg-red-600 text-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                        @if (deleteSubmitting) {
+                            <span class="flex items-center gap-2">
+                                <i class="ri-loader-4-line animate-spin leading-none"></i>
+                                {{ 'CONTACTS.BTN_DELETING' | translate }}
+                            </span>
+                        } @else {
+                            {{ 'CAMPAIGNS.BTN_DELETE' | translate }}
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

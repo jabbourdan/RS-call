@@ -1,0 +1,28 @@
+<!-- Welcome -->
+<app-welcome />
+
+<div class="mt-[25px] xl:-mt-[67px]">
+
+    <!-- Stats -->
+    <app-stats
+        [totalLeads]="totalLeads"
+        [totalContacts]="totalContacts"
+        [followUpsCount]="followUps.length"
+        [closedDeals]="closedDeals"
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+        <div class="lg:col-span-2">
+
+            <!-- Leads per Campaign -->
+            <app-leads-in-campaign [campaigns]="campaigns" />
+
+        </div>
+        <div class="lg:col-span-1">
+
+            <!-- Follow-Ups Today -->
+            <app-recent-clients [followUps]="followUps" />
+
+        </div>
+    </div>
+</div>

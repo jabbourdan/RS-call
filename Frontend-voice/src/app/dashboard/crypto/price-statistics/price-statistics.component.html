@@ -1,0 +1,154 @@
+<div class="trezo-card border border-gray-100 dark:border-[#172036] pt-[15px] pb-[20px] md:pb-[25px] px-[20px] md:px-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between border-b border-gray-100 dark:border-[#172036] px-[20px] md:px-[25px] pb-[15px] -mx-[20px] md:-mx-[25px]">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Market Price Statistics
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle sm:flex items-center gap-[22px]">
+            <div class="my-[15px] sm:my-0">
+                <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[9px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                    1H
+                </button>
+                <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[9px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                    24H
+                </button>
+                <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[9px] py-[1.5px] transition-all bg-primary-50 dark:bg-[#15203c] hover:bg-primary-50 dark:hover:bg-[#15203c] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                    1W
+                </button>
+                <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[9px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                    1M
+                </button>
+                <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[9px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                    1Y
+                </button>
+            </div>
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn flex items-center font-semibold relative text-black dark:text-white ltr:pr-[20px] rtl:pl-[20px]" (click)="toggleCardHeaderMenu()">
+                    <img src="images/cryptocurrencies/big-bitcoin.svg" class="w-[24px] ltr:mr-[6px] rtl:ml-[6px]" alt="bitcoin">
+                    Bitcoin
+                    <i class="ri-arrow-down-s-line text-[20px] absolute ltr:-right-[4px] rtl:-left-[4px] top-1/2 -translate-y-1/2"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="flex items-center w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                <img src="images/cryptocurrencies/ethereum.svg" class="w-[22px] ltr:mr-[8px] rtl:ml-[8px]" alt="ethereum">
+                                Ethereum
+                                <span class="font-normal ltr:ml-[3px] rtl:mr-[3px] text-gray-500 dark:text-gray-400">
+                                    (ETH)
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                <img src="images/cryptocurrencies/bitcoin.svg" class="w-[22px] ltr:mr-[8px] rtl:ml-[8px]" alt="bitcoin">
+                                Bitcoin
+                                <span class="font-normal ltr:ml-[3px] rtl:mr-[3px] text-gray-500 dark:text-gray-400">
+                                    (BTC)
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                <img src="images/cryptocurrencies/solana.svg" class="w-[22px] ltr:mr-[8px] rtl:ml-[8px]" alt="solana">
+                                Solana
+                                <span class="font-normal ltr:ml-[3px] rtl:mr-[3px] text-gray-500 dark:text-gray-400">
+                                    (SOL)
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                <img src="images/cryptocurrencies/cardano.png" class="w-[22px] ltr:mr-[8px] rtl:ml-[8px]" alt="cardano">
+                                Cardano
+                                <span class="font-normal ltr:ml-[3px] rtl:mr-[3px] text-gray-500 dark:text-gray-400">
+                                    (ADA)
+                                </span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="flex items-center w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                <img src="images/cryptocurrencies/binance.svg" class="w-[22px] ltr:mr-[8px] rtl:ml-[8px]" alt="binance">
+                                Binance
+                                <span class="font-normal ltr:ml-[3px] rtl:mr-[3px] text-gray-500 dark:text-gray-400">
+                                    (BNB)
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="market-price-statistics md:flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="images/cryptocurrencies/big-bitcoin.svg" alt="bitcoin">
+                <div class="ltr:ml-[10px] rtl:mr-[10px]">
+                    <span class="text-black dark:text-white uppercase font-medium">
+                        Bitcoin
+                        <span class="font-normal text-gray-500 dark:text-gray-400">
+                            (BTC)
+                        </span>
+                    </span>
+                    <h4 class="!mb-0 mt-[6px] !text-lg md:!text-[20px] !font-semibold">
+                        $27,500
+                        <span class="relative font-medium text-base text-success-700 -top-px ltr:ml-[2px] rtl:mr-[2px] ltr:pl-[24px] rtl:pr-[24px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-[20px] top-1/2 -translate-y-1/2">
+                                trending_up
+                            </i>
+                            +2.3%
+                        </span>
+                    </h4>
+                </div>
+            </div>
+            <ul class="my-[15px] md:my-0">
+                <li class="inline-block text-black dark:text-white font-semibold mx-[20px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <span class="block text-gray-500 dark:text-gray-400 mb-[5px] font-normal">
+                        Closing Price
+                    </span>
+                    $27,200
+                </li>
+                <li class="inline-block text-black dark:text-white font-semibold mx-[20px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <span class="block text-gray-500 dark:text-gray-400 mb-[5px] font-normal">
+                        24h Volume
+                    </span>
+                    $35B
+                </li>
+            </ul>
+            <div class="trezo-card-dropdown2 relative ltr:-mr-[8px] rtl:-ml-[8px]">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu2()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen2) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+        <div class="mt-[15px] -mb-[15px]">
+            <div id="price_statistics_chart"></div>
+        </div>
+    </div>
+</div>

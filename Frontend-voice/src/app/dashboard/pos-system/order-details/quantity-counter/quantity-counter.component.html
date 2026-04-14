@@ -1,0 +1,9 @@
+<div class="relative w-[90px]">
+    <button class="top-1/2 -translate-y-1/2 absolute text-[20px] ltr:left-[12px] rtl:right-[12px] text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500" (click)="decrement()">
+        -
+    </button>
+    <input type="text" class="text-base h-[34px] rounded-md text-center block w-full bg-gray-50 dark:bg-[#15203c] text-black outline-0 font-medium dark:text-white" [(ngModel)]="value" readonly />
+    <button class="top-1/2 -translate-y-1/2 absolute text-[20px] ltr:right-[12px] rtl:left-[12px] text-gray-500 dark:text-gray-400 transition-all hover:text-primary-500" (click)="increment()">
+        +
+    </button>
+</div>

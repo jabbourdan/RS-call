@@ -1,0 +1,81 @@
+<!-- Breadcrumb -->
+<div
+    class="trezo-card bg-cover bg-no-repeat bg-center p-[20px] md:p-[25px] rounded-md mb-[25px]"
+    style="background-image: url(images/sparklines/sparkline-bg.jpg);"
+>
+    <div class="trezo-card-content md:flex items-center justify-between">
+        <h5 class="!mb-0 !text-white">
+            Crypto Performance
+        </h5>
+        <ol class="breadcrumb mt-[12px] md:mt-0">
+            <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0 before:text-white">
+                <a routerLink="." class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] text-white">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-white top-1/2 -translate-y-1/2">
+                        home
+                    </i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0 text-white before:text-white">
+                Crypto Performance
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] mb-[25px]">
+
+    <!-- Performance Per Investment -->
+    <app-performance-per-investment />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px]">
+
+        <!-- Portfolio Value -->
+        <app-portfolio-value />
+
+        <!-- Crypto Market Cap -->
+        <app-crypto-market-cap />
+
+        <div class="sm:col-span-2">
+        
+            <!-- Transactions History -->
+            <app-transactions-history />
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-2">
+
+        <!-- Market Performance -->
+        <app-market-performance />
+
+    </div>
+    <div class="lg:col-span-3">
+
+        <!-- Performance Metrics -->
+        <app-performance-metrics />
+
+    </div>
+</div>
+
+<!-- Individual Asset Performance -->
+<app-individual-asset-performance />
+    
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="xl:col-span-1">
+
+        <!-- Risk Stability Indicators -->
+        <app-risk-stability-indicators />
+
+    </div>
+    <div class="xl:col-span-2">
+
+        <!-- Comparative Analysis -->
+        <app-comparative-analysis />
+
+    </div>
+</div>

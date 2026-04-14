@@ -1,0 +1,772 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Menus
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Restaurant
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Menus
+        </li>
+    </ol>
+</div>
+
+<!-- Menus -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+        <div class="trezo-card-title">
+            <form class="relative sm:w-[265px]">
+                <label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        search
+                    </i>
+                </label>
+                <input type="text" placeholder="Search here....." class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400">
+            </form>
+        </div>
+        <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
+            <button type="button" class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white" (click)="toggleClass()">
+                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
+                    <i class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add New Dish
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[14px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                Code
+                            </div>
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[14px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Item
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[14px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Price
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[14px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Ingredients
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[14px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #001
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu1.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Fish Cutlet
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $16.00
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                pan-seared chicken, lemon zest, garlic butter, parsley
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #002
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu2.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken Carbonara Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $15.50
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                grilled chicken, honey mustard glaze, spinach, garlic
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #003
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu3.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken Piccata Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $14.50
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                shredded chicken, buffalo sauce, ranch dressing
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #004
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu4.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Thai Peanut Chicken Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $13.99
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                spaghetti, chicken, crispy bacon, egg yolk, Parmesan, cream
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #005
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu5.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken Bolognese Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $14.75
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                pan-fried chicken, capers, white wine sauce, lemon
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #006
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu6.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Mediterranean Chicken Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $15.99
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                grilled chicken, olives, sun-dried tomatoes, feta
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #007
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu7.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken Parmesan Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $16.50
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                breaded chicken cutlets, marinara sauce, spaghetti
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #008
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu8.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken and Mushroom Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $12.99
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                spaghetti, chicken slices, sautéed mushrooms, garlic
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #009
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu9.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Teriyaki Chicken Spaghetti Stir-Fry
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $13.50
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                chicken strips, teriyaki sauce, bell peppers, sesame seeds
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #010
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/restaurant/menu10.png" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <a routerLink="." class="font-semibold inline-block transition-all hover:text-primary-500">
+                                    Chicken Fajita Spaghetti
+                                </a>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                $15.25
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                chicken, fajita seasoning, bell peppers
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[14px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pt-[14px] sm:flex sm:items-center justify-between">
+            <p class="!mb-0 text-xs">
+                Showing 10 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Popup -->
+<div
+    class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px]"
+    [class.active]="classApplied"
+>
+    <div class="popup-dialog flex transition-all max-w-[550px] md:max-w-[800px] min-h-full items-center mx-auto">
+        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header bg-gray-50 dark:bg-[#15203c] mb-[20px] md:mb-[25px] flex items-center justify-between -mx-[20px] md:-mx-[25px] -mt-[20px] md:-mt-[25px] p-[20px] md:p-[25px] rounded-t-md">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0">
+                        Add New Dish
+                    </h5>
+                </div>
+                <div class="trezo-card-subtitle">
+                    <button
+                        (click)="toggleClass()"
+                        class="text-[23px] transition-all leading-none text-black dark:text-white hover:text-primary-500"
+                    >
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <form>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] md:gap-[25px]">
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Dish Code
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. #3215">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Name
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. Parsley Chicken">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Dish Code
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. #3215">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Price
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. $12.50">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Calorie
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 3215 Kcal">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Carbs
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 525 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Protein
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 125 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Fibres
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 15 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Fat
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 25 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Vitamins
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 13 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Sugar
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 214 gm">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Minerals
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 5 gm">
+                        </div>
+                        <div class="sm:col-span-1">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Order In Queue
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. 17">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Ingredients Details
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. Parsley, chicken, mozzarella, buffalo sauce">
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Upload Item Images
+                            </label>
+                            <file-upload class="file-uploader"></file-upload>
+                        </div>
+                    </div>
+                    <div class="mt-[20px] md:mt-[25px] ltr:text-right rtl:text-left">
+                        <button type="button" class="rounded-md inline-block transition-all font-medium ltr:mr-[15px] rtl:ml-[15px] px-[26.5px] py-[12px] bg-danger-500 text-white hover:bg-danger-400" (click)="toggleClass()">
+                            Cancel
+                        </button>
+                        <button type="button" class="inline-block bg-primary-500 text-white py-[12px] px-[26.5px] transition-all rounded-md hover:bg-primary-400">
+                            <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
+                                    add
+                                </i>
+                                Add Dish
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

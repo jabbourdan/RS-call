@@ -1,0 +1,123 @@
+<div class="header-area bg-white dark:bg-[#0c1427] py-[13px] px-[20px] md:px-[25px] fixed top-0 z-[9] rounded-b-md transition-all" id="header-area">
+    <div class="md:flex md:items-center md:justify-between">
+        <div class="flex items-center justify-center md:justify-normal">
+            <div class="relative leading-none top-px ltr:mr-[13px] ltr:md:mr-[18px] ltr:lg:mr-[23px] rtl:ml-[13px] rtl:md:ml-[18px] rtl:lg:ml-[23px]">
+                <button type="button" class="hide-sidebar-toggle transition-all inline-block hover:text-primary-500" (click)="toggleSidebar()">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        menu
+                    </i>
+                </button>
+            </div>
+
+        </div>
+        <ul class="flex items-center justify-center md:justify-normal mt-[13px] md:mt-0">
+            <li class="relative mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                <button type="button" class="light-dark-toggle leading-none inline-block transition-all relative top-[2px] text-orange-400" (click)="toggleTheme()">
+                    <i class="material-symbols-outlined !text-[20px] md:!text-[22px]">
+                        light_mode
+                    </i>
+                </button>
+            </li>
+            <li class="relative language-menu mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                <button type="button" class="leading-none pr-[12px] inline-block transition-all relative top-[2px] hover:text-primary-500" id="languageMenuButton" (click)="toggleClass('languageMenuButton')" [class.active]="buttonStates['languageMenuButton']">
+                    <i class="material-symbols-outlined !text-[20px] md:!text-[22px]">
+                        translate
+                    </i>
+                    <i class="ri-arrow-down-s-line text-[15px] absolute -right-[3px] top-1/2 -translate-y-1/2 -mt-[2px]"></i>
+                </button>
+                <div class="language-menu-dropdown bg-white dark:bg-[#0c1427] shadow-3xl dark:shadow-none pt-[13px] md:pt-[14px] absolute mt-[18px] md:mt-[21px] w-[200px] md:w-[240px] z-[50] top-full ltr:left-0 ltr:md:left-auto ltr:lg:right-0 rtl:right-0 rtl:md:right-auto rtl:lg:left-0 rounded-md">
+                    <span class="block text-black dark:text-white font-semibold px-[20px] pb-[14px] text-sm md:text-[15px]">
+                        {{ 'HEADER.CHOOSE_LANGUAGE' | translate }}
+                    </span>
+                    <ul>
+                        @for (lang of languages; track lang.code) {
+                            <li class="border-t border-dashed border-gray-100 dark:border-[#172036]">
+                                <button
+                                    type="button"
+                                    (click)="changeLanguage(lang.code)"
+                                    class="text-black dark:text-white px-[20px] py-[12px] block w-full font-medium transition-all hover:bg-gray-50 dark:hover:bg-[#172036] text-start"
+                                    [ngClass]="{ '!text-primary-500': currentLang === lang.code }"
+                                >
+                                    <div class="flex items-center">
+                                        <img [src]="lang.flag" class="w-[30px] ltr:mr-[10px] rtl:ml-[10px] rounded-sm" [alt]="lang.label">
+                                        {{ lang.label }}
+                                    </div>
+                                </button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+            <li class="relative mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                <button type="button" class="leading-none inline-block transition-all relative top-[2px] hover:text-primary-500" (click)="toggleFullscreen()">
+                    <i class="material-symbols-outlined !text-[22px] md:!text-xl">
+                        {{ isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}
+                    </i>
+                </button>
+            </li>
+            <li class="relative notifications-menu mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                <button type="button" class="leading-none inline-block transition-all relative top-[2px] hover:text-primary-500" id="notificationsMenuBtn" (click)="toggleClass('notificationsMenuBtn')" [class.active]="buttonStates['notificationsMenuBtn']">
+                    <i class="material-symbols-outlined !text-[22px] md:!text-xl">
+                        notifications
+                    </i>
+                </button>
+                <div class="notifications-menu-dropdown bg-white dark:bg-[#0c1427] transition-all shadow-3xl dark:shadow-none py-[17px] absolute mt-[17px] md:mt-[20px] w-[290px] md:w-[350px] z-[1] top-full ltr:-right-[120px] ltr:md:right-0 rtl:-left-[120px] rtl:md:left-0 rounded-md">
+                    <div class="flex items-center justify-between px-[20px] pb-[17px]">
+                        <span class="font-semibold text-black dark:text-white text-[15px]">
+                            Notifications
+                        </span>
+                    </div>
+                    <div class="px-[20px] py-[30px] text-center text-gray-400 dark:text-gray-500 text-sm">
+                        <i class="material-symbols-outlined !text-[40px] mb-[8px] block">notifications_none</i>
+                        No notifications yet
+                    </div>
+                </div>
+            </li>
+            <li class="relative profile-menu mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                <button type="button" class="flex items-center -mx-[5px] relative ltr:pr-[14px] rtl:pl-[14px] text-black dark:text-white" id="profileMenuBtn" (click)="toggleClass('profileMenuBtn')" [class.active]="buttonStates['profileMenuBtn']">
+                    <div class="w-[35px] h-[35px] md:w-[42px] md:h-[42px] rounded-full ltr:md:mr-[2px] ltr:lg:mr-[8px] rtl:md:ml-[2px] rtl:lg:ml-[8px] border-[2px] border-primary-200 inline-flex items-center justify-center bg-primary-500 text-white font-bold text-sm md:text-base flex-shrink-0">
+                        {{ userInitials }}
+                    </div>
+                    <span class="block font-semibold text-[0] lg:text-base">
+                        {{ (currentUser()?.full_name || 'User').split(' ')[0] }}
+                    </span>
+                    <i class="ri-arrow-down-s-line text-[15px] absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2 mt-px"></i>
+                </button>
+                <div class="profile-menu-dropdown bg-white dark:bg-[#0c1427] transition-all shadow-3xl dark:shadow-none py-[22px] absolute mt-[13px] md:mt-[14px] w-[210px] z-[1] top-full ltr:right-0 rtl:left-0 rounded-md">
+                    <div class="flex items-center border-b border-gray-100 dark:border-[#172036] pb-[12px] mx-[20px] mb-[10px]">
+                        <div class="rounded-full w-[38px] h-[38px] ltr:mr-[9px] rtl:ml-[9px] border-2 border-primary-200 inline-flex items-center justify-center bg-primary-500 text-white font-bold text-sm flex-shrink-0">
+                            {{ userInitials }}
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="block text-black dark:text-white font-medium truncate" [title]="currentUser()?.full_name || ''">
+                                {{ currentUser()?.full_name || 'User' }}
+                            </span>
+                            <span class="block text-xs capitalize text-gray-500 dark:text-gray-400">
+                                {{ currentUser()?.role || '' }}
+                            </span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a routerLink="/dashboard/settings" class="block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500">
+                                <i class="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
+                                    credit_card
+                                </i>
+                                Billing &amp; Plan
+                            </a>
+                        </li>
+                        <li>
+                            <button type="button" (click)="signOut()" class="block w-full text-left relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500">
+                                <i class="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
+                                    logout
+                                </i>
+                                Logout
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>

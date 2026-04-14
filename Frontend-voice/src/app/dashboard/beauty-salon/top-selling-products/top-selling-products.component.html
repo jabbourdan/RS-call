@@ -1,0 +1,279 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Top Selling Products
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block rounded-md border border-[#f5f7f8] bg-[#f5f7f8] dark:bg-[#0a0e19] py-[5px] md:py-[6.5px] px-[12px] md:px-[19px] transition-all hover:bg-gray-50 dark:border-[#172036] dark:hover:bg-[#0a0e19]" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        This Month
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2 mt-px"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content relative" id="topSellingProductsSlides">
+        <owl-carousel-o [options]="topSellingProductsSlides">
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product24.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Hair Treatment
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $23.50
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                321
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product25.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Focial Kit
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $20.50
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                124
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product26.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Winter Cream
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $12.43
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                99
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product27.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Perfume
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $22.12
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                23
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product24.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Hair Treatment
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $23.50
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                321
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product25.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Focial Kit
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $20.50
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                124
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product26.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Winter Cream
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $12.43
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                99
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template carouselSlide>
+                <div>
+                    <a
+                        routerLink="."
+                        class="h-[183px] rounded-md block bg-no-repeat bg-center bg-cover"
+                        style="background-image: url(images/products/product27.jpg);"
+                    ></a>
+                    <div class="flex justify-between mt-[15px]">
+                        <div>
+                            <h6 class="!text-base !font-semibold !mb-[4px]">
+                                <a routerLink="." class="text-black dark:text-white transition-all hover:text-primary-500">
+                                    Perfume
+                                </a>
+                            </h6>
+                            <span class="block font-semibold text-primary-800">
+                                $22.12
+                            </span>
+                        </div>
+                        <div class="text-center">
+                            <span class="inline-block text-xs rounded-[30px] px-[10px] border border-success-300 text-success-700 bg-success-100 dark:border-[#15203c] dark:bg-[#15203c]">
+                                23
+                            </span>
+                            <span class="text-xs block mt-[3px]">
+                                sold
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                {{ 'REA_FOLLOW_UPS_TODAY.TITLE' | translate }}
+            </h5>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        @if (followUps.length === 0) {
+            <p class="text-center text-gray-400 py-[20px]">{{ 'REA_FOLLOW_UPS_TODAY.EMPTY' | translate }}</p>
+        } @else {
+            <ul>
+                @for (item of followUps; track item.lead_id) {
+                    <li class="relative flex items-center gap-[12px] py-[10.5px] border-b first:border-t border-primary-50 dark:border-[#172036]">
+                        <div class="flex items-center justify-center w-[35px] h-[35px] rounded-full bg-primary-100 dark:bg-[#172036] shrink-0">
+                            <i class="ri-user-line text-primary-500 text-[16px]"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span class="block font-semibold text-gray-900 dark:text-gray-400 truncate">
+                                {{ item.name || ('REA_FOLLOW_UPS_TODAY.UNKNOWN' | translate) }}
+                            </span>
+                            <span class="block text-xs mt-[3px] text-gray-500 truncate">
+                                {{ item.campaign_name || '-' }}
+                            </span>
+                        </div>
+                        <span class="shrink-0 text-xs font-medium text-primary-500">
+                            {{ formatTime(item.follow_up_date) }}
+                        </span>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

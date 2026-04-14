@@ -1,0 +1,97 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Sessions by Channel
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        {{ selectedTimeframe }}
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last 7 Days')">
+                                Last 7 Days
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last 15 Days')">
+                                Last 15 Days
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('Last 30 Days')">
+                                Last 30 Days
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div id="sessions_by_channel_chart"></div>
+        <ul class="text-center my-[10px]">
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-secondary-500 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Email
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    976
+                </h6>
+            </li>
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-success-500 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Organic Search
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    651
+                </h6>
+            </li>
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-purple-500 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Direct Browse
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    818
+                </h6>
+            </li>
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-secondary-300 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Paid Search
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    459
+                </h6>
+            </li>
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-primary-500 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Social
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    320
+                </h6>
+            </li>
+            <li class="inline-block ltr:text-left rtl:text-right mx-[13px] lg:mx-[10px] xl:mx-[13px] mt-[15px]">
+                <span class="block text-xs mb-[8px] flex items-center justify-center">
+                    <span class="block bg-orange-500 w-[11px] h-[11px] ltr:mr-[8px] rtl:ml-[8px] rounded-sm relative -top-[1px]"></span>
+                    Referral
+                </span>
+                <h6 class="!mb-0 !leading-none !font-medium !text-lg ltr:ml-[19px] rtl:mr-[19px]">
+                    209
+                </h6>
+            </li>
+        </ul>
+    </div>
+</div>

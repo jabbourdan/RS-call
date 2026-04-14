@@ -1,0 +1,1183 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Property List
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Real Estate
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Property List
+        </li>
+    </ol>
+</div>
+
+<!-- Property List -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header sm:flex items-center justify-between">
+        <div class="trezo-card-title">
+            <form class="relative sm:w-[265px]">
+                <label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        search
+                    </i>
+                </label>
+                <input type="text" placeholder="Search property here....." class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400">
+            </form>
+        </div>
+        <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
+            <a routerLink="/dashboard/real-estate-page/add-property" class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white">
+                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
+                    <i class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add Property
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    New York
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown1">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown1')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown1') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property1.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $18,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-success-100 text-success-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sale
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                35 Prince Consort Road
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1800sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user1.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Harold Cook
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    London
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown2">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown2')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown2') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property2.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $220,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-secondary-100 text-secondary-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Rent
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                58 Gateway Road Portland
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    8Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    6Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    2000sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user2.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Debra Sisk
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    France
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown3">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown3')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown3') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property3.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $350,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-orange-100 text-orange-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sold
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                18 Chemin Challet
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    8Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    7Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    2200sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user3.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Herbert Rojas
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Australia
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown4">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown4')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown4') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property4.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $158,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-secondary-100 text-secondary-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Rent
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                51 Decca Road GUNN
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    8Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    8Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    2000sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user4.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Steven Bryant
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Italy
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown5">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown5')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown5') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property5.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $99,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-orange-100 text-orange-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sold
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                35 Vicolo Tre Marchetti
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1500sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user5.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Jannie James
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Germany
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown6">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown6')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown6') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property6.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $110,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-success-100 text-success-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sale
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Ansbacher Strasse 44
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    10Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    10Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    2500sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user6.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Larry Greenberg
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Poland
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown7">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown7')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown7') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property7.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $150,500
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-secondary-100 text-secondary-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Rent
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Czerwonych Beretów 124
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1800sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user7.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Kara Spangler
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Norway
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown8">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown8')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown8') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property8.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $120,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-secondary-100 text-secondary-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Rent
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Moeneveien 228 VARTEIG
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    5Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1400sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user8.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Benjamin Dinh
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Netherlands
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown9">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown9')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown9') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property9.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $190,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-success-100 text-success-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sale
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Overburgkade 23
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    6Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1900sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user9.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Jane Wright
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Spain
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown10">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown10')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown10') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property10.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $155,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-success-100 text-success-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sale
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Paseo Junquera, 98
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1800sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user10.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Kirk Jensen
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Hungary
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown11">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown11')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown11') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property11.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $340,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-orange-100 text-orange-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Sold
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                8985 Becsvölgye Nyár utca
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    10Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    10Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    2500sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user1.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Harold Cook
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+            <div class="trezo-card-title">
+                <h5 class="!mb-0">
+                    Portugal
+                </h5>
+            </div>
+            <div class="trezo-card-subtitle">
+                <div class="trezo-card-dropdown relative" data-dropdown="dropdown12">
+                    <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleDropdown('dropdown12')">
+                        <i class="ri-more-fill"></i>
+                    </button>
+                    @if (activeDropdown === 'dropdown12') {
+                        <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    View
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Edit
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                    Delete
+                                </button>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="trezo-card-content">
+            <a routerLink="/dashboard/real-estate-page/property-details" class="block rounded-[5px]">
+                <img src="images/properties/property12.jpg" class="inline-block rounded-[5px]" alt="property-image">
+            </a>
+            <div class="flex items-center justify-between mb-[9px] mt-[20px]">
+                <h3 class="!text-lg !mb-0 !text-orange-500">
+                    $250,000
+                </h3>
+                <span class="inline-block text-xs rounded-[4px] bg-secondary-100 text-secondary-600 dark:bg-[#15203c] text-xs py-px px-[9px]">
+                    Rent
+                </span>
+            </div>
+            <span class="block relative pt-px ltr:pl-[22px] rtl:pr-[22px]">
+                <i class="material-symbols-outlined text-primary-500 absolute ltr:-left-[2px] rtl:-right-[2px] top-1/2 -translate-y-1/2 !text-[19px]">
+                    location_on
+                </i>
+                Largo Prazeres 32
+            </span>
+            <ul class="mt-[17px] py-[10px] border-y border-primary-50 dark:border-[#172036]">
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bed
+                    </i>
+                    6Bed
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        bathtub
+                    </i>
+                    5Bath
+                </li>
+                <li class="relative inline-block relative ltr:pl-[24px] rtl:pr-[24px] ltr:mr-[20px] rtl:ml-[20px] ltr:last:mr-0 rtl:last:ml-0">
+                    <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-primary-500 !text-lg">
+                        square_foot
+                    </i>
+                    1800sqft
+                </li>
+            </ul>
+            <div class="mt-[20px] flex items-center justify-between">
+                <div class="flex items-center gap-[12px]">
+                    <img src="images/users/user11.jpg" class="rounded-full w-[40px]" alt="user-image">
+                    <div>
+                        <span class="sm:text-[15px] md:text-md block font-semibold text-black dark:text-white">
+                            Judith Brooks
+                        </span>
+                        <span class="block">
+                            Owner
+                        </span>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/real-estate-page/property-details" class="inline-block font-medium sm:text-[15px] md:text-md text-primary-500 transition-all hover:text-primary-400 hover:underline">
+                    View More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-content">
+        <div class="sm:flex sm:items-center justify-between">
+            <p class="!mb-0">
+                Showing 12 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

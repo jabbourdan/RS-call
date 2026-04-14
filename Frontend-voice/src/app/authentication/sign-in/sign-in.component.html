@@ -1,0 +1,144 @@
+<!-- Sign In -->
+<div class="relative bg-white dark:bg-[#0a0e19] py-[60px] md:py-[80px] lg:py-[135px]">
+
+    <!-- Top Controls: Language Switcher + Light/Dark Toggle -->
+    <div class="absolute top-[20px] md:top-[25px] ltr:right-[20px] rtl:left-[20px] ltr:md:right-[25px] rtl:md:left-[25px] flex items-center gap-[14px] z-50">
+
+        <!-- Language Switcher -->
+        <div class="relative lang-menu-wrapper">
+            <button
+                type="button"
+                (click)="toggleLangMenu()"
+                class="flex items-center gap-[3px] text-gray-500 dark:text-gray-400 hover:text-primary-500 transition-all"
+            >
+                <i class="material-symbols-outlined !text-[22px]">translate</i>
+                <i class="material-symbols-outlined !text-[16px] transition-transform" [ngClass]="{ 'rotate-180': isLangMenuOpen }">expand_more</i>
+            </button>
+
+            @if (isLangMenuOpen) {
+                <div class="absolute top-full mt-[6px] ltr:right-0 rtl:left-0 z-50 w-[160px] bg-white dark:bg-[#0c1427] border border-gray-200 dark:border-[#172036] rounded-[10px] shadow-lg overflow-hidden">
+                    @for (lang of languages; track lang.code) {
+                        <button
+                            type="button"
+                            (click)="applyLanguage(lang.code)"
+                            class="flex items-center gap-[10px] w-full px-[14px] py-[10px] text-sm text-black dark:text-white hover:bg-gray-50 dark:hover:bg-[#172036] transition-all"
+                            [ngClass]="{ '!text-primary-500 bg-primary-50 dark:bg-[#172036]': currentLang === lang.code }"
+                        >
+                            <img [src]="lang.flag" class="w-[20px] h-[14px] object-cover rounded-sm" [alt]="lang.label" />
+                            <span>{{ lang.label }}</span>
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Light/Dark Toggle -->
+        <button type="button" class="light-dark-toggle flex items-center transition-all text-orange-400 hover:text-orange-500" (click)="toggleTheme()">
+            <i class="material-symbols-outlined !text-[22px]">light_mode</i>
+        </button>
+    </div>
+    <div class="mx-auto px-[12.5px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1255px]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center">
+            <div class="xl:ltr:-mr-[25px] xl:rtl:-ml-[25px] 2xl:ltr:-mr-[45px] 2xl:rtl:-ml-[45px] rounded-[25px] order-2 lg:order-1">
+                <img src="images/sign-in.jpg" alt="sign-in-image" class="rounded-[25px]">
+            </div>
+            <div class="xl:ltr:pl-[90px] xl:rtl:pr-[90px] 2xl:ltr:pl-[120px] 2xl:rtl:pr-[120px] order-1 lg:order-2">
+                <img src="images/logo-big.svg" alt="logo" class="inline-block dark:hidden">
+                <img src="images/white-logo-big.svg" alt="logo" class="hidden dark:inline-block">
+                <div class="my-[17px] md:my-[25px]">
+                    <h1 class="!font-semibold !text-[22px] md:!text-xl lg:!text-2xl !mb-[5px] md:!mb-[7px]">
+                        {{ 'SIGN_IN.TITLE' | translate }}
+                    </h1>
+                    <p class="font-medium lg:text-md text-[#445164] dark:text-gray-400">
+                        {{ 'SIGN_IN.WELCOME' | translate }}
+                        <a routerLink="/authentication/sign-up" class="text-primary-500 transition-all font-semibold hover:underline ms-[4px]">
+                            {{ 'SIGN_IN.CREATE_ACCOUNT' | translate }}
+                        </a>
+                    </p>
+                </div>
+                <!-- Social buttons (UI only, no function yet) -->
+                <div class="flex items-center justify-between mb-[20px] md:mb-[23px] gap-[12px]">
+                    <div class="grow">
+                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
+                            <img src="images/icons/google.svg" class="inline-block" alt="google">
+                        </button>
+                    </div>
+                    <div class="grow">
+                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
+                            <img src="images/icons/facebook2.svg" class="inline-block" alt="facebook">
+                        </button>
+                    </div>
+                    <div class="grow">
+                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
+                            <img src="images/icons/apple.svg" class="inline-block" alt="apple">
+                        </button>
+                    </div>
+                </div>
+                <!-- Sign-in form -->
+                <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
+                <div class="mb-[15px] relative">
+                    <label class="mb-[10px] md:mb-[12px] text-black dark:text-white font-medium block">
+                        {{ 'SIGN_IN.EMAIL_LABEL' | translate }}
+                    </label>
+                    <input
+                        type="email"
+                        [(ngModel)]="email"
+                        name="email"
+                        class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+                        [placeholder]="'SIGN_IN.EMAIL_PLACEHOLDER' | translate"
+                    >
+                </div>
+                <div class="mb-[15px] relative" id="passwordHideShow">
+                    <label class="mb-[10px] md:mb-[12px] text-black dark:text-white font-medium block">
+                        {{ 'SIGN_IN.PASSWORD_LABEL' | translate }}
+                    </label>
+                    <input
+                        [type]="isPasswordVisible ? 'text' : 'password'"
+                        [(ngModel)]="password"
+                        name="password"
+                        class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
+                        id="password"
+                        [placeholder]="'SIGN_IN.PASSWORD_PLACEHOLDER' | translate"
+                    >
+                    <button class="absolute text-lg ltr:right-[20px] rtl:left-[20px] bottom-[12px] transition-all hover:text-primary-500" (click)="togglePasswordVisibility()" type="button">
+                        <i [ngClass]="isPasswordVisible ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                @if (errorMessage) {
+                    <div class="mb-[15px] flex items-center gap-[8px] text-red-500 text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md px-[14px] py-[10px]">
+                        <i class="material-symbols-outlined !text-[18px]">error</i>
+                        <span>{{ errorMessage }}</span>
+                    </div>
+                }
+
+                <a routerLink="/authentication/forgot-password" class="inline-block text-primary-500 transition-all font-semibold hover:underline">
+                    {{ 'SIGN_IN.FORGOT_PASSWORD' | translate }}
+                </a>
+                <button
+                    type="submit"
+                    [disabled]="isLoading"
+                    class="md:text-md block w-full text-center transition-all rounded-md font-medium mt-[20px] md:mt-[25px] py-[12px] px-[25px] text-white bg-primary-500 hover:bg-primary-400 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                    <span class="flex items-center justify-center gap-[5px]">
+                        @if (isLoading) {
+                            <i class="material-symbols-outlined animate-spin !text-[20px]">progress_activity</i>
+                            {{ 'SIGN_IN.LOADING' | translate }}
+                        } @else {
+                            <i class="material-symbols-outlined">login</i>
+                            {{ 'SIGN_IN.BUTTON' | translate }}
+                        }
+                    </span>
+                </button>
+                <p class="mt-[15px] md:mt-[20px]">
+                    {{ 'SIGN_IN.NO_ACCOUNT' | translate }}
+                    <a routerLink="/authentication/sign-up" class="text-primary-500 transition-all font-semibold hover:underline ms-[4px]">
+                        {{ 'SIGN_IN.SIGN_UP' | translate }}
+                    </a>
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

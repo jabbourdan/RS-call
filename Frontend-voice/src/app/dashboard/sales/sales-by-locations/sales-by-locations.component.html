@@ -1,0 +1,136 @@
+<div class="trezo-card border border-gray-100 dark:border-[#172036] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Sales by Locations
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="text-center">
+            <img src="images/vector-map.png" class="inline-block" alt="vector-map">
+        </div>
+        <div class="table-responsive overflow-x-auto mt-[9px] without-border">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="font-medium text-xs ltr:text-left rtl:text-right px-[14px] pb-[8px] whitespace-nowrap ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0">
+                            Country
+                        </th>
+                        <th class="font-medium text-xs ltr:text-right rtl:text-left px-[14px] pb-[8px] whitespace-nowrap ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0">
+                            Orders
+                        </th>
+                        <th class="font-medium text-xs ltr:text-right rtl:text-left px-[14px] pb-[8px] whitespace-nowrap ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0">
+                            Earnings
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="browser-image" src="images/flags/usa.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[10px] rtl:mr-[10px]">
+                                    USA
+                                </span>
+                            </div>
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            22,124
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            $250.4k
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="browser-image" src="images/flags/germany.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[10px] rtl:mr-[10px]">
+                                    Germany
+                                </span>
+                            </div>
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            18,320
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            $180.3k
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="browser-image" src="images/flags/uk.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[10px] rtl:mr-[10px]">
+                                    UK
+                                </span>
+                            </div>
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            12,560
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            $125.6k
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="browser-image" src="images/flags/canada.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[10px] rtl:mr-[10px]">
+                                    Canada
+                                </span>
+                            </div>
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            8,720
+                        </td>
+                        <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[14px] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 py-[11px] border-b border-gray-100 dark:border-[#172036]">
+                            $94.1k
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

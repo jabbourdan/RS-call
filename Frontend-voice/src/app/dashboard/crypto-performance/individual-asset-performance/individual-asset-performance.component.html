@@ -1,0 +1,291 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md mb-[25px]">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Individual Asset Performance
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block rounded-md border border-gray-100 py-[5px] md:py-[6.5px] px-[12px] md:px-[19px] transition-all hover:bg-gray-50 dark:border-[#172036] dark:hover:bg-[#0a0e19]" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        Last 30 Days
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2 md:mt-px"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last 7 Days
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last 15 Days
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last 30 Days
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <thead class="text-black dark:text-white">
+                    <tr>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Asset
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Allocation %
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            ROI
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Current Value
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Net Gain/Los
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            1D Change
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            7D Change
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Sparkline
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="cryptocurrency-image" src="images/cryptocurrencies/bitcoin.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[8px] rtl:mr-[8px]">
+                                    Bitcoin
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs font-normal">(BTC)</span>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            35%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +120%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $35,000
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $15,000
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +0.5%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +3.0%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <img src="images/sparklines/sparkline1.png" alt="sparkline-chart">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="cryptocurrency-image" src="images/cryptocurrencies/ethereum.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[8px] rtl:mr-[8px]">
+                                    Ethereum
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs font-normal">(ETH)</span>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            25%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +80%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $25,000
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $8,000
+                        </td>
+                        <td class="text-danger-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            -1.0%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +1.5%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <img src="images/sparklines/sparkline2.png" alt="sparkline-chart">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="cryptocurrency-image" src="images/cryptocurrencies/binance.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[8px] rtl:mr-[8px]">
+                                    Binance
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs font-normal">(BNB)</span>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            15%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +30%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $7,500
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $1,500
+                        </td>
+                        <td class="text-danger-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            -2.5%
+                        </td>
+                        <td class="text-danger-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            -5.0%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <img src="images/sparklines/sparkline3.png" alt="sparkline-chart">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="cryptocurrency-image" src="images/cryptocurrencies/tether.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[8px] rtl:mr-[8px]">
+                                    Tether
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs font-normal">(USDT)</span>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            10%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +45%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $4,500
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $1,000
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +0.2%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +2.0%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <img src="images/sparklines/sparkline4.png" alt="sparkline-chart">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="w-[22px]">
+                                    <img alt="cryptocurrency-image" src="images/cryptocurrencies/xrp.svg">
+                                </div>
+                                <span class="block font-medium ltr:ml-[8px] rtl:mr-[8px]">
+                                    XRP
+                                    <span class="text-gray-500 dark:text-gray-400 text-xs font-normal">(XRP)</span>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            5%
+                        </td>
+                        <td class="text-danger-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            -10%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $3,000
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            $1,200
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +1.5%
+                        </td>
+                        <td class="text-success-600 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            +4.5%
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[8px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] border-b border-gray-100 dark:border-[#172036]">
+                            <img src="images/sparklines/sparkline5.png" alt="sparkline-chart">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="px-[20px] md:px-[25px] pt-[15px] sm:flex sm:items-center justify-between">
+            <p class="!mb-0 text-sm">
+                Showing 5 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div
+    class="mt-[20px] md:mt-[30px] md:max-w-[370px]"
+    [ngClass]="{ 'playing': isPlaying }"
+>
+    <audio #audioElement (timeupdate)="updateProgressBar()" (canplay)="updateDuration()" (loadedmetadata)="updateDuration()">
+        <source src="https://cldup.com/qR72ozoaiQ.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+    <div class="flex items-center gap-[15px]">
+        <button type="button" class="flex items-center justify-center w-[44px] h-[44px] text-xl transition-all text-primary-500 bg-primary-200 rounded-full hover:bg-primary-500 hover:text-white dark:bg-dark text-[20px]" (click)="togglePlayPause()">
+            {{ isPlaying ? '⏸' : '▶' }}
+        </button>
+        <div class="relative z-[1] grow">
+            @if (duration > 0) {
+                <span class="block ltr:text-right rtl:text-left text-white">
+                    {{ formatTime(duration) }}
+                </span>
+            }
+            <div class="mt-[5px] h-[4px] w-full relative rounded-[30px] bg-gray-400">
+                <div class="bg-primary-500 w-0 h-full rounded-[30px]" [style.width]="progress + '%'"></div>
+            </div>
+            <div class="wave-container flex items-center absolute rtl:left-0 rtl:right-0 bottom-0 -z-[1]">
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+                <span class="wave-bar w-[2px] h-[30px] ltr:ml-px rtl:mr-px ltr:md:ml-[2.5px] rtl:md:mr-[2.5px] ltr:xl:ml-[3px] rtl:xl:mr-[3px] ltr:first:ml-0 rtl:first:mr-0 bg-gray-600 transition-all"></span>
+            </div>
+        </div>
+    </div>
+</div>

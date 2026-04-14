@@ -1,0 +1,111 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Create NFT
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            NFT
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Create NFT
+        </li>
+    </ol>
+</div>
+
+<!-- Create NFT -->
+<form>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[20px] md:gap-[25px]">
+                <div class="sm:col-span-3">
+                    <label class="mb-[15px] text-black dark:text-white text-lg font-bold block">
+                        Upload Image, Video, Audio, or 3D Model
+                    </label>
+                    <file-upload class="file-uploader"></file-upload>
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        Product Name <span class="text-orange-600">*</span>
+                    </label>
+                    <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400" value="Christmas Eve">
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        Description
+                    </label>
+                    <textarea class="h-[140px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] p-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400"></textarea>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        Item Price
+                    </label>
+                    <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400" value="12.50 ETH">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        Size
+                    </label>
+                    <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400" value="2.50 MB">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        Properties
+                    </label>
+                    <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400">
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="mb-[10px] text-gray-500 dark:text-white font-semibold block">
+                        External Link
+                    </label>
+                    <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400">
+                </div>
+                <div class="sm:col-span-3">
+                    <div class="flex items-center gap-[20px]">
+                        <div class="form-radio flex items-center gap-[8px]">
+                            <input type="radio" class="cursor-pointer" checked name="whoWillSeeMyProfile" id="onlyMe">
+                            <label class="inline-block font-medium text-gray-900 dark:text-gray-400 cursor-pointer" for="onlyMe">
+                                Put On Sale
+                            </label>
+                        </div>
+                        <div class="form-radio flex items-center gap-[8px]">
+                            <input type="radio" class="cursor-pointer" name="whoWillSeeMyProfile" id="myFollowers">
+                            <label class="inline-block font-medium text-gray-900 dark:text-gray-400 cursor-pointer" for="myFollowers">
+                                Instant Sale Price
+                            </label>
+                        </div>
+                        <div class="form-radio flex items-center gap-[8px]">
+                            <input type="radio" class="cursor-pointer" name="whoWillSeeMyProfile" id="everyone">
+                            <label class="inline-block font-medium text-gray-900 dark:text-gray-400 cursor-pointer" for="everyone">
+                                Unlock One Purchased
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card mb-[25px]">
+        <div class="trezo-card-content">
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[15px] rtl:ml-[15px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400">
+                Cancel
+            </button>
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+                <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                    <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Create NFT
+                </span>
+            </button>
+        </div>
+    </div>
+</form>

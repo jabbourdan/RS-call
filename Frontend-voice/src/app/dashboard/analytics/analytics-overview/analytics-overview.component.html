@@ -1,0 +1,128 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Analytics Overview
+            </h5>
+        </div>
+        <div class="analytics-overview-buttons trezo-card-subtitle mt-[13px] sm:mt-0">
+            <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[15.5px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] -mx-[.5px] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md" [class.active]="selectedTimeframe === 'Day'" (click)="onTimeframeChange('Day')">
+                Day
+            </button>
+            <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[15.5px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] -mx-[.5px] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md" [class.active]="selectedTimeframe === 'Week'" (click)="onTimeframeChange('Week')">
+                Week
+            </button>
+            <button type="button" class="inline-block border border-gray-100 dark:border-[#172036] px-[15.5px] py-[1.5px] transition-all hover:bg-primary-50 dark:hover:bg-[#15203c] -mx-[.5px] ltr:first:rounded-l-md rtl:first:rounded-r-lg ltr:last:rounded-r-md rtl:last:rounded-l-md" [class.active]="selectedTimeframe === 'Month'" (click)="onTimeframeChange('Month')">
+                Month
+            </button>
+        </div>
+    </div>
+    <div class="trezo-card-content -mt-[9px] sm:-mt-[17px] md:-mt-[22px]">
+        <p class="text-xs">
+            Track, Analyze, and Optimize Performance
+        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-[20px] md:gap-[25px]">
+            <div class="lg:col-span-2">
+                <div class="-mb-[18px]">
+                    <div id="analytics_overview_chart"></div>
+                </div>
+            </div>
+            <div class="lg:col-span-1">
+                <ul class="lg:mt-[20px] lg:ltr:-ml-[20px] lg:rtl:-mr-[20px]">
+                    <li class="mb-[24px] last:mb-0">
+                        <div class="flex justify-between">
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    New Users
+                                </span>
+                                <h5 class="!text-md !mb-0">
+                                    19.5k
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Goal Reached
+                                </span>
+                                <h5 class="!text-md !mb-0 !text-gray-500 dark:!text-gray-400 ltr:text-right rtl:text-left">
+                                    75%
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="mt-[11px] flex w-full h-[4px] overflow-hidden rounded-md bg-primary-50 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-primary-500 rounded-md" style="width: 75%;"></div>
+                        </div>
+                    </li>
+                    <li class="mb-[24px] last:mb-0">
+                        <div class="flex justify-between">
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Page Views
+                                </span>
+                                <h5 class="!text-md !mb-0">
+                                    48k
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Goal Reached
+                                </span>
+                                <h5 class="!text-md !mb-0 !text-gray-500 dark:!text-gray-400 ltr:text-right rtl:text-left">
+                                    45%
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="mt-[11px] flex w-full h-[4px] overflow-hidden rounded-md bg-primary-50 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-purple-500 rounded-md" style="width: 45%;"></div>
+                        </div>
+                    </li>
+                    <li class="mb-[24px] last:mb-0">
+                        <div class="flex justify-between">
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Page Sessions
+                                </span>
+                                <h5 class="!text-md !mb-0">
+                                    33.3k
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Goal Reached
+                                </span>
+                                <h5 class="!text-md !mb-0 !text-gray-500 dark:!text-gray-400 ltr:text-right rtl:text-left">
+                                    55%
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="mt-[11px] flex w-full h-[4px] overflow-hidden rounded-md bg-primary-50 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-secondary-500 rounded-md" style="width: 55%;"></div>
+                        </div>
+                    </li>
+                    <li class="mb-[24px] last:mb-0">
+                        <div class="flex justify-between">
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Bounce Rate
+                                </span>
+                                <h5 class="!text-md !mb-0">
+                                    22.45%
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="block text-xs mb-[2px] text-black dark:text-white">
+                                    Goal Reached
+                                </span>
+                                <h5 class="!text-md !mb-0 !text-gray-500 dark:!text-gray-400 ltr:text-right rtl:text-left">
+                                    35%
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="mt-[11px] flex w-full h-[4px] overflow-hidden rounded-md bg-primary-50 dark:bg-[#172036]">
+                            <div class="flex flex-col justify-center overflow-hidden bg-danger-500 rounded-md" style="width: 35%;"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

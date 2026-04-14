@@ -1,0 +1,309 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Cart
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            eCommerce
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Cart
+        </li>
+    </ol>
+</div>
+
+<!-- Cart -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-2">
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0">
+                        Your Order
+                    </h5>
+                </div>
+                <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
+                    <h5 class="!mb-0">
+                        Customer ID : 357951
+                    </h5>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <div class="table-responsive overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="text-black dark:text-white">
+                            <tr>
+                                <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Order ID
+                                </th>
+                                <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Product
+                                </th>
+                                <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Quantity
+                                </th>
+                                <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Price
+                                </th>
+                                <th class="font-medium text-left px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tr-md">
+                                    Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-black dark:text-white">
+                            <tr>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    #JAN-2345
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <div class="flex items-center">
+                                        <div class="rounded-md w-[40px]">
+                                            <img src="images/products/product1.jpg" class="inline-block rounded-md" alt="product-image">
+                                        </div>
+                                        <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                            <a routerLink="/dashboard/ecommerce-page/product-details" class="block font-medium md:text-[15px] transition-all hover:text-primary-500">
+                                                Smart Band
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <app-quantity-counter [initialValue]="1" />
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $80.00
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $80.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    #JAN-1323
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <div class="flex items-center">
+                                        <div class="rounded-md w-[40px]">
+                                            <img src="images/products/product2.jpg" class="inline-block rounded-md" alt="product-image">
+                                        </div>
+                                        <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                            <a routerLink="/dashboard/ecommerce-page/product-details" class="block font-medium md:text-[15px] transition-all hover:text-primary-500">
+                                                Headphone
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <app-quantity-counter [initialValue]="7" />
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $150.00
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $450.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    #DEC-1234
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <div class="flex items-center">
+                                        <div class="rounded-md w-[40px]">
+                                            <img src="images/products/product3.jpg" class="inline-block rounded-md" alt="product-image">
+                                        </div>
+                                        <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                            <a routerLink="/dashboard/ecommerce-page/product-details" class="block font-medium md:text-[15px] transition-all hover:text-primary-500">
+                                                iPhone 15 Plus
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <app-quantity-counter [initialValue]="1" />
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $750.00
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $750.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    #DEC-3567
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <div class="flex items-center">
+                                        <div class="rounded-md w-[40px]">
+                                            <img src="images/products/product4.jpg" class="inline-block rounded-md" alt="product-image">
+                                        </div>
+                                        <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                            <a routerLink="/dashboard/ecommerce-page/product-details" class="block font-medium md:text-[15px] transition-all hover:text-primary-500">
+                                                Bluetooth Speaker
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <app-quantity-counter [initialValue]="5" />
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $15.00
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $75.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    #DEC-1098
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <div class="flex items-center">
+                                        <div class="rounded-md w-[40px]">
+                                            <img src="images/products/product5.jpg" class="inline-block rounded-md" alt="product-image">
+                                        </div>
+                                        <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                            <a routerLink="/dashboard/ecommerce-page/product-details" class="block font-medium md:text-[15px] transition-all hover:text-primary-500">
+                                                Airbuds 2nd Gen
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    <app-quantity-counter [initialValue]="2" />
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $25.00
+                                </td>
+                                <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $50.00
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form class="max-w-[430px] mt-[20px] md:mt-[25px]">
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. #ARP1217">
+                    <button type="button" class="mt-[15px] md:mt-[20px] font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+                        <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                            <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                                done_all
+                            </i>
+                            Apply
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="lg:col-span-1">
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0">
+                        Order Summary
+                    </h5>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <div class="table-responsive overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="text-black dark:text-white">
+                            <tr>
+                                <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Description
+                                </th>
+                                <th class="font-medium ltr:text-right rtl:text-left px-[20px] py-[11px] bg-gray-50 dark:bg-[#15203c] whitespace-nowrap first:rounded-tl-md">
+                                    Price
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-black dark:text-white">
+                            <tr>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Grand Total :
+                                </td>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $1,105.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Discount :
+                                </td>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    -$105.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Tax :
+                                </td>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $75.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Subtotal :
+                                </td>
+                                <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $1,000.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Shipping Charge :
+                                </td>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $80.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Coupon Charge :
+                                </td>
+                                <td class="text-gray-500 dark:text-gray-400 ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $20.00
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    Total :
+                                </td>
+                                <td class="font-medium ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
+                                    $900.00
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h6 class="mt-[20px] md:mt-[25px] mb-[10px]">
+                    Add A Note
+                </h6>
+                <form>
+                    <textarea class="h-[140px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] p-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="It makes me feel..."></textarea>
+                    <button type="button" class="mt-[20px] md:mt-[25px] font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+                        <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                            <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                                add
+                            </i>
+                            Proceed To Shipping
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

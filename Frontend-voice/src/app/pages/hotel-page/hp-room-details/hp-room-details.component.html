@@ -1,0 +1,192 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Room Details
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Hotel
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Rooms
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Room Details
+        </li>
+    </ol>
+</div>
+
+<!-- Room Details -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="xl:col-span-1">
+        <div class="trezo-card">
+            <div class="trezo-card-content">
+                <owl-carousel-o [options]="{items: 1, dots: false, animateIn: 'fadeIn', margin: 15, animateOut: 'fadeOut'}" #owlCar>
+                    <ng-container>
+                        @for (image of roomImages; track $index) {
+                            <ng-template carouselSlide [id]="image.url">
+                                <div class="bg-white dark:bg-[#0c1427] p-[13px]">
+                                    <img [src]="image.url" [alt]="image.url" class="rounded-md">
+                                </div>
+                            </ng-template>
+                        }
+                    </ng-container>
+                </owl-carousel-o>
+                <div class="mt-[15px]"></div>
+                <owl-carousel-o [options]="{items: 4, dots: false, margin: 15, autoWidth: true}">
+                    <ng-container>
+                        @for (image of roomImages; let i = $index; track $index) {
+                            <ng-template carouselSlide [id]="image.url+i">
+                                <a
+                                    (click)="owlCar.to(image.url); changeImage(image.url+i)"
+                                    class="rounded-md cursor-pointer"
+                                >
+                                    <img [src]="image.url" [alt]="image.url" class="rounded-md cursor-pointer">
+                                </a>
+                            </ng-template>
+                        }
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+    <div class="xl:col-span-2">
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md lg:h-full">
+            <div class="trezo-card-content">
+                <div class="sm:flex items-center gap-[15px]">
+                    <img src="images/users/user80.jpg" alt="user-image" class="rounded-full w-[85px]">
+                    <div class="mt-[15px] sm:mt-0">
+                        <span class="block text-xs">
+                            Code: TRZ-32
+                        </span>
+                        <h3 class="!text-[20px] md:!text-xl !mb-0 mt-[5px]">
+                            Serenity Suite
+                        </h3>
+                        <ul>
+                            <li class="inline-block relative mt-[10px] ltr:mr-[21px] rtl:ml-[21px] ltr:pl-[25px] rtl:pr-[25px] ltr:last:mr-0 rtl:last:ml-0">
+                                <i class="ri-phone-fill absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-orange-500 text-lg"></i>
+                                +321 1245 6457
+                            </li>
+                            <li class="inline-block relative mt-[10px] ltr:mr-[21px] rtl:ml-[21px] ltr:pl-[25px] rtl:pr-[25px] ltr:last:mr-0 rtl:last:ml-0">
+                                <i class="ri-mail-line absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-orange-500 text-lg"></i>
+                                anderson350&#64;gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="h-[1px] bg-gray-100 dark:bg-[#172036] my-[20px] md:my-[25px]"></div>
+                <div class="sm:flex gap-[40px]">
+                    <div class="flex items-center gap-[10px] mb-[15px] last:mb-0 sm:mb-0">
+                        <img src="images/icons/schedule.svg" alt="schedule">
+                        <div>
+                            <span class="text-xs block mb-px">
+                                Check In
+                            </span>
+                            <span class="block font-semibold text-black dark:text-white">
+                                23 June 2025, 15:12 AM
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-[10px] mb-[15px] last:mb-0 sm:mb-0">
+                        <img src="images/icons/schedule.svg" alt="schedule">
+                        <div>
+                            <span class="text-xs block mb-px">
+                                Check Out
+                            </span>
+                            <span class="block font-semibold text-black dark:text-white">
+                                25 June 2025, 14:20 PM
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-[1px] bg-gray-100 dark:bg-[#172036] my-[20px] md:my-[25px]"></div>
+                <h4 class="!text-lg !mb-[13px]">
+                    Room Info
+                </h4>
+                <ul class="mb-[20px] md:mb-[25px] grid grid-cols-1 sm:grid-cols-2">
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Room Code
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">L1-15</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Bathroom
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">2</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Room Name
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Moonlight</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Air Conditioner
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Yes</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Rate
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">$156</span>/night
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Free WiFi
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Yes</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Bed
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">2</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Heater
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">No</span>
+                        </span>
+                    </li>
+                </ul>
+                <h4 class="!text-lg !mb-[13px]">
+                    Description
+                </h4>
+                <p>
+                    This room captures the essence of boundless potential, symbolized by a surreal landscape where the sky meets the earth in a dazzling fusion of colors. The intricate design features flowing lines that blend together, representing the limitless paths we can take in life.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reviews -->
+<app-reviews />

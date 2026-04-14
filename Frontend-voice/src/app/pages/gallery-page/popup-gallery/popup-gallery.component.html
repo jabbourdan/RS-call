@@ -1,0 +1,18 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Popup Gallery
+            </h5>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[25px]">
+            @for (image of _album; let i = $index; track $index) {
+                <div class="rounded-md">
+                    <img [src]="image.thumb" (click)="open(i)" class="rounded-md cursor-pointer" alt="gallery-image" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

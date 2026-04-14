@@ -1,0 +1,103 @@
+<div class="trezo-card working-schedule-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Working Schedule
+            </h5>
+        </div>
+    </div>
+    <div class="trezo-card-content relative">
+        <div class="calendar">
+            <div class="header flex items-center justify-between mb-[20px]">
+                <button (click)="previousMonth()" class="transition-all text-black bg-gray-100 dark:text-white dark:bg-[#172036] flex items-center justify-center rounded-full w-[30px] h-[30px] hover:bg-primary-500 hover:text-white">
+                    <i class="material-symbols-outlined rtl:-scale-x-[1]">
+                        chevron_left
+                    </i>
+                </button>
+                <span class="block font-medium text-black dark:text-white">
+                    {{ monthNames[currentMonth] }} {{ currentYear }}
+                </span>
+                <button (click)="nextMonth()" class="transition-all text-black bg-gray-100 dark:text-white dark:bg-[#172036] flex items-center justify-center rounded-full w-[30px] h-[30px] hover:bg-primary-500 hover:text-white">
+                    <i class="material-symbols-outlined rtl:-scale-x-[1]">
+                        chevron_right
+                    </i>
+                </button>
+            </div>
+            <div class="weekdays grid grid-cols-7 mb-[6px] text-center">
+                @for (day of weekdays; track $index) {
+                    <div class="text-black dark:text-white font-medium">
+                        {{ day }}
+                    </div>
+                }
+            </div>
+            <div class="days grid grid-cols-7 text-center">
+                @for (day of daysInMonth; track $index) {
+                    <div
+                        class="w-[32px] h-[32px] cursor-pointer leading-[31px] rounded-full my-[7px] mx-auto"
+                        [ngClass]="{ 'current-day': isToday(day) }"
+                    >
+                        @if (day !== null) {
+                            <span>
+                                {{ day }}
+                            </span>
+                        }
+                        @if (day === null) {
+                            <span>
+                                &nbsp;
+                            </span> <!-- Placeholder for empty days -->
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="mt-[19px] relative">
+            <span class="block mb-[14px] font-medium">
+                Upcoming Events:
+            </span>
+            <owl-carousel-o [options]="upcomingEventsSlides">
+                <ng-template carouselSlide>
+                    <div class="relative ltr:pl-[14px] rtl:pr-[14px]">
+                        <div class="absolute ltr:left-0 rtl:right-0 top-[4px] w-[7px] h-[7px] rounded-sm bg-primary-500"></div>
+                        <h6 class="!text-sm !mb-[5px] !font-semibold">
+                            Pythons Unleashed: A Development Expedition
+                        </h6>
+                        <span class="text-xs">
+                            <span class="text-primary-500">
+                                15 April 2025
+                            </span>
+                            - 12.00 PM - 6.00 PM 
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="relative ltr:pl-[14px] rtl:pr-[14px]">
+                        <div class="absolute ltr:left-0 rtl:right-0 top-[4px] w-[7px] h-[7px] rounded-sm bg-primary-500"></div>
+                        <h6 class="!text-sm !mb-[5px] !font-semibold">
+                            Pythons Unleashed: A Development Expedition
+                        </h6>
+                        <span class="text-xs">
+                            <span class="text-primary-500">
+                                15 April 2025
+                            </span>
+                            - 12.00 PM - 6.00 PM 
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="relative ltr:pl-[14px] rtl:pr-[14px]">
+                        <div class="absolute ltr:left-0 rtl:right-0 top-[4px] w-[7px] h-[7px] rounded-sm bg-primary-500"></div>
+                        <h6 class="!text-sm !mb-[5px] !font-semibold">
+                            Pythons Unleashed: A Development Expedition
+                        </h6>
+                        <span class="text-xs">
+                            <span class="text-primary-500">
+                                15 April 2025
+                            </span>
+                            - 12.00 PM - 6.00 PM 
+                        </span>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+    </div>
+</div>

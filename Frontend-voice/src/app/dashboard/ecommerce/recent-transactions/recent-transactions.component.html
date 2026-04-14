@@ -1,0 +1,144 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Recent Transactions
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[26px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <ul>
+            <li class="flex items-center justify-between mb-[15px] md:mb-[18px] lg:mb-[21.6px] last:mb-0">
+                <div class="flex items-center">
+                    <div class="w-[41px] h-[41px] ltr:mr-[12px] rtl:ml-[12px] bg-primary-100 dark:bg-[#15203c] text-primary-500 rounded-full flex items-center justify-center">
+                        <i class="material-symbols-outlined">
+                            credit_card
+                        </i>
+                    </div>
+                    <div>
+                        <span class="block font-medium text-black dark:text-white text-base md:text-md mb-[3px] md:mb-[2px] font-medium">
+                            Master Card
+                        </span>
+                        <span class="block text-sm">
+                            16 Jun 2025 - 7:12 pm
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-success-600">
+                    +1,520
+                </span>
+            </li>
+            <li class="flex items-center justify-between mb-[15px] md:mb-[18px] lg:mb-[21.6px] last:mb-0">
+                <div class="flex items-center">
+                    <div class="w-[41px] h-[41px] ltr:mr-[12px] rtl:ml-[12px] bg-danger-100 dark:bg-[#15203c] text-danger-500 rounded-full flex items-center justify-center">
+                        <i class="material-symbols-outlined">
+                            redeem
+                        </i>
+                    </div>
+                    <div>
+                        <span class="block font-medium text-black dark:text-white text-base md:text-md mb-[3px] md:mb-[2px] font-medium">
+                            Paypal
+                        </span>
+                        <span class="block text-sm">
+                            15 Jun 2025 - 1:42 am
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-danger-500">
+                    -2,250
+                </span>
+            </li>
+            <li class="flex items-center justify-between mb-[15px] md:mb-[18px] lg:mb-[21.6px] last:mb-0">
+                <div class="flex items-center">
+                    <div class="w-[41px] h-[41px] ltr:mr-[12px] rtl:ml-[12px] bg-purple-100 dark:bg-[#15203c] text-purple-500 rounded-full flex items-center justify-center">
+                        <i class="material-symbols-outlined">
+                            account_balance
+                        </i>
+                    </div>
+                    <div>
+                        <span class="block font-medium text-black dark:text-white text-base md:text-md mb-[3px] md:mb-[2px] font-medium">
+                            Wise
+                        </span>
+                        <span class="block text-sm">
+                            14 Jun 2025 - 4:21 pm
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-success-600">
+                    +3,560
+                </span>
+            </li>
+            <li class="flex items-center justify-between mb-[15px] md:mb-[18px] lg:mb-[21.6px] last:mb-0">
+                <div class="flex items-center">
+                    <div class="w-[41px] h-[41px] ltr:mr-[12px] rtl:ml-[12px] bg-secondary-100 dark:bg-[#15203c] text-secondary-500 rounded-full flex items-center justify-center">
+                        <i class="material-symbols-outlined">
+                            currency_ruble
+                        </i>
+                    </div>
+                    <div>
+                        <span class="block font-medium text-black dark:text-white text-base md:text-md mb-[3px] md:mb-[2px] font-medium">
+                            Payoneer
+                        </span>
+                        <span class="block text-sm">
+                            13 Jun 2025 - 2:42 am
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-success-600">
+                    +6,500
+                </span>
+            </li>
+            <li class="flex items-center justify-between mb-[15px] md:mb-[18px] lg:mb-[21.6px] last:mb-0">
+                <div class="flex items-center">
+                    <div class="w-[41px] h-[41px] ltr:mr-[12px] rtl:ml-[12px] bg-success-100 dark:bg-[#15203c] text-success-600 rounded-full flex items-center justify-center">
+                        <i class="material-symbols-outlined">
+                            credit_score
+                        </i>
+                    </div>
+                    <div>
+                        <span class="block font-medium text-black dark:text-white text-base md:text-md mb-[3px] md:mb-[2px] font-medium">
+                            Credit Card
+                        </span>
+                        <span class="block text-sm">
+                            12 Jun 2025 - 3:20 pm
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-danger-500">
+                    -4,320
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

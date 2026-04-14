@@ -1,0 +1,85 @@
+<!-- Mobile: Toggle left panel button -->
+<div class="lg:hidden mb-[12px]">
+    <button
+        type="button"
+        class="flex items-center gap-[6px] text-sm text-primary-500 font-medium"
+        (click)="toggleMobileDrawer()"
+    >
+        <i class="material-symbols-outlined !text-[20px]">{{ showMobileDrawer ? 'close' : 'menu' }}</i>
+        {{ 'LEAD_MANAGEMENT.SHOW_LEADS' | translate }}
+    </button>
+</div>
+
+<!-- 3-panel layout -->
+<div class="panels-wrapper relative">
+
+    <!-- Mobile overlay backdrop -->
+    @if (showMobileDrawer) {
+        <div
+            class="fixed inset-0 bg-black/40 z-[10] lg:hidden"
+            (click)="toggleMobileDrawer()"
+        ></div>
+    }
+
+    <!-- LEFT PANEL: Lead List -->
+    <div
+        class="lead-panel-left trezo-card bg-white dark:bg-[#0c1427] rounded-md p-[16px]"
+        [class.mobile-drawer-open]="showMobileDrawer"
+    >
+        @if (isLoadingLeads) {
+            <div class="flex items-center justify-center h-[200px]">
+                <span class="material-symbols-outlined animate-spin text-primary-500 !text-[32px]">progress_activity</span>
+            </div>
+        } @else if (leadsError) {
+            <div class="text-red-500 text-sm text-center p-4">{{ leadsError }}</div>
+        } @else {
+            <app-lead-list
+                [campaigns]="campaigns"
+                [leads]="filteredLeads"
+                [selectedCampaignId]="selectedCampaignId"
+                [selectedLeadId]="selectedLead?.lead_id ?? null"
+                [isRollActive]="isRollActive"
+                [rollStats]="rollStats"
+                [rollError]="rollError"
+                (campaignChanged)="onCampaignChanged($event)"
+                (leadSelected)="onLeadSelected($event)"
+                (autoDialerClicked)="onAutoDialerClicked()"
+            ></app-lead-list>
+        }
+    </div>
+
+    <!-- CENTER PANEL: Timeline -->
+    <div class="lead-panel-center trezo-card bg-white dark:bg-[#0c1427] rounded-md p-[16px] md:p-[20px] flex-1 min-w-0">
+        @if (isLoadingTimeline) {
+            <div class="flex items-center justify-center h-[300px]">
+                <span class="material-symbols-outlined animate-spin text-primary-500 !text-[32px]">progress_activity</span>
+            </div>
+        } @else if (timelineError) {
+            <div class="text-red-500 text-sm text-center p-4">{{ timelineError }}</div>
+        } @else {
+            <app-lead-timeline
+                [lead]="selectedLead"
+                [events]="timelineEvents"
+                [callStatus]="callStatus"
+                [campaigns]="campaigns"
+                [selectedCampaignId]="selectedCampaignId"
+                (campaignChanged)="onCampaignChanged($event)"
+                (commentAdded)="onCommentAdded($event)"
+            ></app-lead-timeline>
+        }
+    </div>
+
+    <!-- RIGHT PANEL: Detail / Actions -->
+    <div class="lead-panel-right trezo-card bg-white dark:bg-[#0c1427] rounded-md p-[16px] md:p-[20px]">
+        <app-lead-detail
+            [lead]="selectedLead"
+            [representatives]="representatives"
+            [performance]="performance"
+            [isRollActive]="isRollActive"
+            [activeCallId]="activeCallId"
+            (statusChanged)="onStatusChanged($event)"
+            (callInitiated)="onCallInitiated($event)"
+            (callEnded)="onCallEnded($event)"
+        ></app-lead-detail>
+    </div>
+</div>

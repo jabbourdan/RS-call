@@ -1,0 +1,201 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Staff Performance Scores
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user58.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Joanna Watson
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                98
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user59.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Angela Carter
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                97
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user60.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Walter White
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                96
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user61.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Gary Simon
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                88
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user62.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Zinia Anderson
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                85
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user63.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Loren Walter
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                82
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user64.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Jessy Pinkman
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                80
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user65.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Handy Curter
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                77
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[30px]">
+                                    <img src="images/users/user66.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-medium inline-block">
+                                    Skyler Lorensa
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[10px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                75
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

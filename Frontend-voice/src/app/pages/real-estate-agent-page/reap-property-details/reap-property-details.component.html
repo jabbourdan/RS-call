@@ -1,0 +1,258 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Property Details
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Real Estate Agent
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Properties
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Property Details
+        </li>
+    </ol>
+</div>
+
+<!-- Property Details -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[25px] mb-[25px]">
+    <div class="xl:col-span-1">
+        <div class="trezo-card">
+            <div class="trezo-card-content relative">
+                <owl-carousel-o [options]="{items: 1, dots: false, animateIn: 'fadeIn', margin: 15, animateOut: 'fadeOut'}" #owlCar>
+                    <ng-container>
+                        @for (image of propertyImages; track $index) {
+                            <ng-template carouselSlide [id]="image.url">
+                                <div class="bg-white dark:bg-[#0c1427] p-[13px]">
+                                    <img [src]="image.url" [alt]="image.url" class="rounded-md">
+                                </div>
+                            </ng-template>
+                        }
+                    </ng-container>
+                </owl-carousel-o>
+                <div class="mt-[15px]"></div>
+                <owl-carousel-o [options]="{items: 4, dots: false, margin: 15, autoWidth: true}">
+                    <ng-container>
+                        @for (image of propertyImages; let i = $index; track $index) {
+                            <ng-template carouselSlide [id]="image.url+i">
+                                <a
+                                    (click)="owlCar.to(image.url); changeImage(image.url+i)"
+                                    class="rounded-md cursor-pointer"
+                                >
+                                    <img [src]="image.url" [alt]="image.url" class="rounded-md cursor-pointer">
+                                </a>
+                            </ng-template>
+                        }
+                    </ng-container>
+                </owl-carousel-o>
+                <span class="inline-block absolute top-[25px] ltr:right-[25px] rtl:left-[25px] bg-primary-50 dark:bg-[#0c1427] text-primary-500 text-xs font-medium py-[2px] px-[8px] rounded-[4px] z-[1]">
+                    For Sale
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="xl:col-span-2">
+        <div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md lg:h-full">
+            <div class="trezo-card-content">
+                <div class="sm:flex items-center justify-between">
+                    <div>
+                        <span class="block text-xs">
+                            Code: TRZ-32
+                        </span>
+                        <h3 class="!text-[20px] md:!text-xl !mb-[10px] mt-[7px]">
+                            The Golden Haven
+                        </h3>
+                        <span class="block ltr:pl-[23px] rtl:pr-[23px] font-semibold relative">
+                            <i class="ri-map-pin-line absolute ltr:left-0 rtl:right-0 text-primary-500 top-1/2 -translate-y-1/2 text-[17px] font-normal mt-px"></i>
+                            123 Sunshine Boulevard, Vancouver, BC
+                        </span>
+                    </div>
+                    <div class="mt-[12px] sm:mt-0 flex items-center leading-none gap-[2px]">
+                        <i class="ri-star-fill text-orange-500"></i>
+                        <i class="ri-star-fill text-orange-500"></i>
+                        <i class="ri-star-fill text-orange-500"></i>
+                        <i class="ri-star-fill text-orange-500"></i>
+                        <i class="ri-star-fill text-orange-500"></i>
+                        <span class="block relative top-px text-xs text-gray-500 dark:text-gray-400 ltr:ml-[2px] rtl:mr-[2px]">
+                            5.0
+                        </span>
+                    </div>
+                </div>
+                <div class="sm:flex items-center justify-between border-t border-b border-gray-100 dark:border-[#172036] my-[20px] md:my-[25px] py-[12px]">
+                    <ul class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px]">
+                        <li class="inline-block relative ltr:pl-[24px] rtl:pr-[24px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-lg">
+                                open_run
+                            </i>
+                            425 sft
+                        </li>
+                        <li class="inline-block relative ltr:pl-[24px] rtl:pr-[24px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-lg">
+                                bed
+                            </i>
+                            3 Beds
+                        </li>
+                        <li class="inline-block relative ltr:pl-[24px] rtl:pr-[24px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-lg">
+                                bathtub
+                            </i>
+                            2 Baths
+                        </li>
+                    </ul>
+                    <div class="mt-[10px] sm:mt-0 font-bold text-black dark:text-white text-lg">
+                        $4,274/m
+                    </div>
+                </div>
+                <h4 class="!text-lg !mb-[13px]">
+                    Property Description
+                </h4>
+                <p>
+                    Nestled in a serene neighborhood, this modern 3-bedroom home boasts an open-concept layout with abundant natural light. The chef’s kitchen features state-of-the-art appliances and a spacious island for entertaining.
+                </p>
+                <p>
+                    Enjoy the tranquility of a private backyard oasis with a patio and lush landscaping. Located minutes from top-rated schools, shopping, and parks, it offers convenience and comfort. This home is the perfect blend of style and functionality.
+                </p>
+                <div class="mb-[20px] md:mb-[25px]"></div>
+                <h4 class="!text-lg !mb-[13px]">
+                    Property Details
+                </h4>
+                <ul class="mb-[20px] md:mb-[25px] grid grid-cols-1 sm:grid-cols-2">
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Beds
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">03</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Ceiling Height
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">3.20</span> m
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Baths
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">02</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Property Type
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Villa</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Floor
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Ground</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Year Built
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">2010</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Garage
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">Yes</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center justify-between py-[10px] px-[20px] border border-gray-100 dark:border-[#15203c]">
+                        <span class="block">
+                            Status
+                        </span>
+                        <span class="block">
+                            <span class="text-black dark:text-white">For Sale</span>
+                        </span>
+                    </li>
+                </ul>
+                <h4 class="!text-lg !mb-[13px]">
+                    Amenities
+                </h4>
+                <div class="mb-[20px] md:mb-[25px] grid grid-cols-1 sm:grid-cols-4 gap-[12px]">
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        A/C & Heating
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Parking
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        WiFi
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Pet Friendly
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Furniture
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Ceiling Height
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Play Ground
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Elevator
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Garage
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Fireplace
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Garden
+                    </div>
+                    <div class="relative ltr:pl-[22px] rtl:pr-[22px]">
+                        <i class="ri-check-line absolute top-1/2 -translate-y-1/2 ltr:-left-[3px] rtl:-right-[3px] text-primary-500 text-lg"></i>
+                        Disabled Access
+                    </div>
+                </div>
+                <h4 class="!text-lg !mb-[13px]">
+                    Location
+                </h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.94539481518!2d-74.26675559025065!3d40.69739290398433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1678355274384!5m2!1sen!2sbd" class="w-full rounded-md border-0 h-[250px]" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reviews -->
+<app-reviews />

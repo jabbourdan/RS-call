@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voicely CRM — Agent Console</title>
+    <script src="https://cdn.jsdelivr.net/npm/@twilio/voice-sdk@2.10.0/dist/twilio.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            width: 520px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .header { text-align: center; margin-bottom: 28px; }
+        .header h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; }
+        .header p  { font-size: 13px; color: #64748b; margin-top: 6px; }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #64748b;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+        .status-dot.connecting { background: #f59e0b; animation: pulse 1s infinite; }
+        .status-dot.ready      { background: #22c55e; }
+        .status-dot.on-call    { background: #ef4444; animation: pulse 1s infinite; }
+        .status-dot.stopped    { background: #64748b; }
+        .status-dot.error      { background: #ef4444; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+
+        #status-text { font-size: 13px; color: #94a3b8; }
+
+        .section { margin-bottom: 16px; }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #e2e8f0;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus { border-color: #6366f1; }
+        input::placeholder { color: #475569; }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-primary  { background: #6366f1; color: white; }
+        .btn-primary:hover:not(:disabled) { background: #4f46e5; }
+        .btn-success  { background: #22c55e; color: white; }
+        .btn-success:hover:not(:disabled) { background: #16a34a; }
+        .btn-danger   { background: #ef4444; color: white; }
+        .btn-danger:hover:not(:disabled) { background: #dc2626; }
+        .btn-info     { background: #0ea5e9; color: white; }
+        .btn-info:hover:not(:disabled) { background: #0284c7; }
+        .btn-secondary {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+        }
+        .btn-secondary:hover:not(:disabled) { background: #334155; color: #e2e8f0; }
+
+        .divider { border: none; border-top: 1px solid #1e293b; margin: 20px 0; }
+
+        .section-title {
+            font-size: 11px;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-number { font-size: 26px; font-weight: 700; color: #f1f5f9; }
+        .stat-label  { font-size: 11px; color: #64748b; margin-top: 4px; text-transform: uppercase; }
+
+        .current-lead-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .current-lead-box.visible { display: block; }
+        .current-lead-label { font-size: 11px; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
+        .current-lead-name  { font-size: 17px; font-weight: 600; color: #f1f5f9; }
+        .current-lead-phone { font-size: 13px; color: #94a3b8; margin-top: 3px; }
+
+        .badge {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .badge.ringing   { background: #f59e0b; color: white; }
+        .badge.connected { background: #22c55e; color: white; }
+        .badge.waiting   { background: #6366f1; color: white; }
+
+        /* Audio active bar */
+        .audio-bar {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: #052e16;
+            border: 1px solid #16a34a;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+        }
+        .audio-bar.visible { display: flex; }
+        .audio-text { font-size: 13px; color: #22c55e; font-weight: 500; }
+        .audio-wave { display: flex; gap: 2px; align-items: center; margin-left: auto; }
+        .audio-wave span {
+            width: 3px;
+            background: #22c55e;
+            border-radius: 2px;
+            animation: wave 0.8s infinite ease-in-out;
+        }
+        .audio-wave span:nth-child(1) { height: 8px;  animation-delay: 0.0s; }
+        .audio-wave span:nth-child(2) { height: 14px; animation-delay: 0.1s; }
+        .audio-wave span:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+        .audio-wave span:nth-child(4) { height: 14px; animation-delay: 0.3s; }
+        .audio-wave span:nth-child(5) { height: 8px;  animation-delay: 0.4s; }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50%       { transform: scaleY(0.4); }
+        }
+
+        .notice {
+            background: #1e3a5f;
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #93c5fd;
+            margin-bottom: 16px;
+        }
+
+        .row { display: flex; gap: 10px; }
+        .row .btn { flex: 1; }
+
+        .log-box {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 12px;
+            height: 160px;
+            overflow-y: auto;
+            font-family: "SF Mono", Monaco, monospace;
+            font-size: 11px;
+        }
+        .log-entry { margin-bottom: 4px; line-height: 1.5; }
+        .log-entry.info    { color: #94a3b8; }
+        .log-entry.success { color: #22c55e; }
+        .log-entry.warning { color: #f59e0b; }
+        .log-entry.error   { color: #ef4444; }
+
+        .auth-row { display: flex; gap: 10px; }
+        .auth-row input { flex: 1; }
+        .auth-row .btn  { width: auto; padding: 10px 16px; margin: 0; font-size: 13px; white-space: nowrap; }
+
+        .btn-orange  { background: #f97316; color: white; }
+        .btn-orange:hover:not(:disabled) { background: #ea580c; }
+
+        .call-result-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #94a3b8;
+            display: none;
+        }
+        .call-result-box.visible { display: block; }
+        .call-result-box .cr-name { font-size: 15px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; }
+        .call-result-box .cr-id   { font-size: 11px; color: #475569; }
+    </style>
+</head>
+<body>
+<div class="card">
+
+    <div class="header">
+        <h1>🎙 Voicely CRM</h1>
+        <p>Agent Console</p>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+        <div class="status-dot stopped" id="status-dot"></div>
+        <span id="status-text">Not connected</span>
+    </div>
+
+    <!-- Mic notice -->
+    <div class="notice">
+        🎤 Your browser microphone and speakers are used for calls.
+        Allow microphone access when prompted by the browser.
+    </div>
+
+    <!-- Audio active indicator — shown when on a conference call -->
+    <div class="audio-bar" id="audio-bar">
+        <span style="font-size:18px">🔊</span>
+        <span class="audio-text">Conference active — speak normally</span>
+        <div class="audio-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- ── STEP 1: Connect ──────────────────────────────────────── -->
+    <div class="section-title">Step 1 — Connect Browser Audio</div>
+
+    <div class="section">
+        <label>Backend URL</label>
+        <input type="text" id="backend-url" value="http://127.0.0.1:8000" />
+    </div>
+
+    <div class="section">
+        <label>JWT Token (from sign-in)</label>
+        <div class="auth-row">
+            <input type="text" id="jwt-token" placeholder="eyJhbGci..." />
+            <button class="btn btn-primary" id="btn-connect" onclick="connect()">Connect</button>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ── STEP 2: Manual Single Call ────────────────────────────── -->
+    <div class="section-title">Step 2 — Call a Specific Lead</div>
+
+    <div class="section">
+        <label>Campaign ID</label>
+        <input type="text" id="manual-campaign-id" placeholder="paste-campaign-uuid-here" />
+    </div>
+
+    <div class="section">
+        <label>Lead ID</label>
+        <input type="text" id="manual-lead-id" placeholder="paste-lead-uuid-here" />
+    </div>
+
+    <button class="btn btn-orange" id="btn-manual-call" onclick="startManualCall()" disabled>
+        📞 Call This Lead
+    </button>
+
+    <div class="call-result-box" id="call-result-box">
+        <div class="cr-name" id="cr-lead-name">—</div>
+        <div class="cr-id">Call ID: <span id="cr-call-id">—</span></div>
+        <div style="margin-top:6px">Status: <span id="cr-status" style="color:#22c55e">ringing</span></div>
+    </div>
+
+    <button class="btn btn-danger" id="btn-end-call" onclick="endManualCall()" style="display:none;margin-top:8px">
+        📵 End Call
+    </button>
+
+    <hr class="divider">
+
+    <!-- ── STEP 3: Roll ─────────────────────────────────────────── -->
+    <div class="section-title">Step 3 — Start Roll</div>
+
+    <div class="section">
+        <label>Campaign ID</label>
+        <input type="text" id="campaign-id" placeholder="paste-campaign-uuid-here" />
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="stat-number" id="stat-calls">0</div>
+            <div class="stat-label">Calls Made</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number" id="stat-answered" style="color:#22c55e">0</div>
+            <div class="stat-label">Answered</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number" id="stat-remaining" style="color:#f59e0b">0</div>
+            <div class="stat-label">Remaining</div>
+        </div>
+    </div>
+
+    <!-- Current lead box -->
+    <div class="current-lead-box" id="current-lead-box">
+        <div class="current-lead-label">📞 Currently Calling</div>
+        <div class="current-lead-name"  id="current-name">—</div>
+        <div class="current-lead-phone" id="current-phone">—</div>
+        <span class="badge ringing" id="call-badge">Ringing</span>
+    </div>
+
+    <!-- Roll buttons -->
+    <div class="row" style="margin-bottom:10px">
+        <button class="btn btn-success" id="btn-start-roll" onclick="startRoll()" disabled>
+            ▶ Start Roll
+        </button>
+        <button class="btn btn-danger" id="btn-stop-roll" onclick="stopRoll()" disabled>
+            ■ Stop Roll
+        </button>
+    </div>
+
+    <div class="row" style="margin-bottom:10px">
+        <button class="btn btn-info" onclick="refreshStatus()">
+            🔄 Refresh Status
+        </button>
+        <button class="btn btn-secondary" id="btn-hangup" onclick="hangup()" disabled>
+            📵 Hang Up
+        </button>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Log -->
+    <label>Event Log</label>
+    <div class="log-box" id="log-box">
+        <div class="log-entry info">Connect browser audio first (Step 1)...</div>
+    </div>
+
+</div>
+
+<script>
+    let device       = null;
+    let activeCall   = null;
+    let pollInterval = null;
+
+    // ── Helpers ───────────────────────────────────────────────────
+    function log(message, type = "info") {
+        const box   = document.getElementById("log-box");
+        const time  = new Date().toLocaleTimeString();
+        const entry = document.createElement("div");
+        entry.className   = `log-entry ${type}`;
+        entry.textContent = `[${time}] ${message}`;
+        box.appendChild(entry);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function setStatus(text, state) {
+        document.getElementById("status-text").textContent = text;
+        document.getElementById("status-dot").className    = `status-dot ${state}`;
+    }
+
+    function getConfig() {
+        return {
+            backendUrl: document.getElementById("backend-url").value.trim(),
+            jwtToken:   document.getElementById("jwt-token").value.trim(),
+            campaignId: document.getElementById("campaign-id").value.trim(),
+        };
+    }
+
+    function h(token) {
+        return { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" };
+    }
+
+    function showAudio(on) {
+        const el = document.getElementById("audio-bar");
+        on ? el.classList.add("visible") : el.classList.remove("visible");
+    }
+
+    function setBadge(text, cls) {
+        const b = document.getElementById("call-badge");
+        b.textContent = text;
+        b.className   = `badge ${cls}`;
+    }
+
+    function showCurrentLead(lead) {
+        document.getElementById("current-lead-box").classList.add("visible");
+        document.getElementById("current-name").textContent  = lead.name         || "Unknown";
+        document.getElementById("current-phone").textContent = lead.phone_number || "—";
+    }
+
+    // ── STEP 1: Connect to Twilio SDK ─────────────────────────────
+    async function connect() {
+        const { backendUrl, jwtToken } = getConfig();
+
+        if (!jwtToken) { log("Please enter your JWT token.", "error"); return; }
+
+        setStatus("Connecting...", "connecting");
+        log("Fetching Twilio access token...", "info");
+        document.getElementById("btn-connect").disabled = true;
+
+        try {
+            const res  = await fetch(`${backendUrl}/api/v1/calls/token`, {
+                method: "POST", headers: h(jwtToken),
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.detail || "Token fetch failed");
+            }
+
+            const data = await res.json();
+            log(`Token received. Identity: ${data.identity}`, "success");
+
+            device = new Twilio.Device(data.token, {
+                logLevel: 1,
+                codecPreferences: ["opus", "pcmu"],
+            });
+
+            // ── Device ready ──────────────────────────────────────
+            device.on("registered", () => {
+                log("✅ Browser audio connected!", "success");
+                log("💡 Your speakers will play the lead's voice during calls", "info");
+                setStatus("Ready — browser connected", "ready");
+                document.getElementById("btn-start-roll").disabled  = false;
+                document.getElementById("btn-manual-call").disabled = false;
+            });
+
+            device.on("error", (err) => {
+                log(`Device error: ${err.message}`, "error");
+                setStatus("Device error", "error");
+                document.getElementById("btn-connect").disabled = false;
+            });
+
+            // ── Incoming conference call ──────────────────────────
+            // Roll fires → Twilio calls client:{user_id}
+            // → this fires here → agent auto-accepts → joins conference
+            // → lead is connected to same conference
+            // → both sides hear each other through conference room
+            device.on("incoming", (call) => {
+                log("📞 Conference call incoming — joining...", "info");
+                activeCall = call;
+
+                // Auto-accept — agent is at their desk waiting
+                call.accept();
+
+                call.on("accept", () => {
+                    log("🎙 You are in the conference room", "success");
+                    log("🔊 Lead's voice comes through your browser speakers", "success");
+                    log("🎤 Your microphone is live — speak normally", "success");
+                    setStatus("On call — conference active", "on-call");
+                    showAudio(true);
+                    setBadge("Connected", "connected");
+                    document.getElementById("btn-hangup").disabled = false;
+                });
+
+                call.on("disconnect", () => {
+                    log("Call ended — waiting for next lead...", "info");
+                    activeCall = null;
+                    showAudio(false);
+                    setBadge("Ringing", "ringing");
+                    document.getElementById("btn-hangup").disabled = true;
+                    setStatus("Roll active — waiting for next lead", "ready");
+                });
+
+                call.on("error", (err) => {
+                    log(`Call error: ${err.message}`, "error");
+                    showAudio(false);
+                });
+            });
+
+            await device.register();
+            log("Registering with Twilio...", "info");
+
+        } catch (err) {
+            log(`Connection failed: ${err.message}`, "error");
+            setStatus("Connection failed", "error");
+            document.getElementById("btn-connect").disabled = false;
+        }
+    }
+
+    // ── STEP 2: Manual Single Call ──────────────────────────────────
+    async function startManualCall() {
+        const backendUrl = document.getElementById("backend-url").value.trim();
+        const jwtToken   = document.getElementById("jwt-token").value.trim();
+        const campaignId = document.getElementById("manual-campaign-id").value.trim();
+        const leadId     = document.getElementById("manual-lead-id").value.trim();
+
+        if (!campaignId) { log("Enter a Campaign ID for the manual call.", "error"); return; }
+        if (!leadId)     { log("Enter a Lead ID for the manual call.", "error"); return; }
+
+        log(`📞 Calling lead ${leadId}...`, "info");
+        document.getElementById("btn-manual-call").disabled = true;
+
+        try {
+            const res  = await fetch(`${backendUrl}/api/v1/calls/start`, {
+                method: "POST",
+                headers: h(jwtToken),
+                body: JSON.stringify({ lead_id: leadId, campaign_id: campaignId }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                log(`Error: ${data.detail || "Failed to start call"}`, "error");
+                document.getElementById("btn-manual-call").disabled = false;
+                return;
+            }
+
+            log(`✅ Call started → ${data.lead_name} (${data.to})`, "success");
+            log(`📋 Call ID: ${data.call_id}`, "info");
+
+            // Show result box
+            const box = document.getElementById("call-result-box");
+            box.classList.add("visible");
+            document.getElementById("cr-lead-name").textContent = data.lead_name || "Unknown";
+            document.getElementById("cr-call-id").textContent   = data.call_id  || "—";
+            document.getElementById("cr-status").textContent    = data.status   || "ringing";
+
+            // Store call_id for hang-up and show End Call button
+            document.getElementById("btn-end-call").style.display = "block";
+            document.getElementById("btn-end-call").dataset.callId = data.call_id;
+
+            setStatus(`Calling ${data.lead_name}...`, "on-call");
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+        } finally {
+            document.getElementById("btn-manual-call").disabled = false;
+        }
+    }
+
+    // ── End Manual Call ───────────────────────────────────────────
+    async function endManualCall() {
+        const backendUrl = document.getElementById("backend-url").value.trim();
+        const jwtToken   = document.getElementById("jwt-token").value.trim();
+        const callId     = document.getElementById("btn-end-call").dataset.callId;
+
+        if (!callId) { log("No active call to end.", "error"); return; }
+
+        log("📵 Ending call...", "warning");
+        document.getElementById("btn-end-call").disabled = true;
+
+        // Disconnect browser leg immediately
+        if (activeCall) { activeCall.disconnect(); activeCall = null; }
+
+        try {
+            const res  = await fetch(`${backendUrl}/api/v1/calls/${callId}/hangup`, {
+                method: "POST",
+                headers: h(jwtToken),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                log(`Error: ${data.detail || "Failed to end call"}`, "error");
+                document.getElementById("btn-end-call").disabled = false;
+                return;
+            }
+
+            log("✅ Call ended.", "success");
+            document.getElementById("cr-status").textContent    = "completed";
+            document.getElementById("cr-status").style.color   = "#94a3b8";
+            document.getElementById("btn-end-call").style.display = "none";
+            showAudio(false);
+            setStatus("Ready — browser connected", "ready");
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+            document.getElementById("btn-end-call").disabled = false;
+        }
+    }
+
+    // ── STEP 3: Start Roll ────────────────────────────────────────
+    async function startRoll() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+
+        if (!campaignId) { log("Please enter Campaign ID.", "error"); return; }
+        if (!device)     { log("Connect browser audio first.", "error"); return; }
+
+        log("Starting roll...", "info");
+
+        try {
+            const res  = await fetch(`${backendUrl}/api/v1/calls/start-roll`, {
+                method: "POST",
+                headers: h(jwtToken),
+                body: JSON.stringify({ campaign_id: campaignId }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                log(`Error: ${data.detail || "Failed to start roll"}`, "error");
+                return;
+            }
+
+            if (data.status === "stopped") {
+                log(`⚠️ No leads available: ${data.reason}`, "warning");
+                setStatus("No leads available", "stopped");
+                return;
+            }
+
+            log("✅ Roll started!", "success");
+
+            if (data.current_lead) {
+                log(`📞 Calling: ${data.current_lead.name} (${data.current_lead.phone_number})`, "info");
+                log("🎧 Your browser will auto-accept when lead answers", "warning");
+                showCurrentLead(data.current_lead);
+                setBadge("Ringing", "ringing");
+            }
+
+            setStatus("Roll active — calling first lead", "on-call");
+            document.getElementById("btn-start-roll").disabled = true;
+            document.getElementById("btn-stop-roll").disabled  = false;
+
+            startPolling();
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+        }
+    }
+
+    // ── Stop Roll ─────────────────────────────────────────────────
+    async function stopRoll() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+
+        log("Stopping roll...", "warning");
+
+        try {
+            const res  = await fetch(`${backendUrl}/api/v1/calls/stop-roll`, {
+                method: "POST",
+                headers: h(jwtToken),
+                body: JSON.stringify({ campaign_id: campaignId }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) { log(`Error: ${data.detail}`, "error"); return; }
+
+            log("🛑 Roll stopped. Current call finishes naturally.", "warning");
+            setStatus("Stopped — browser still connected", "ready");
+            document.getElementById("btn-start-roll").disabled = false;
+            document.getElementById("btn-stop-roll").disabled  = true;
+            document.getElementById("current-lead-box").classList.remove("visible");
+            showAudio(false);
+            stopPolling();
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+        }
+    }
+
+    // ── Hang Up ───────────────────────────────────────────────────
+    function hangup() {
+        if (activeCall) {
+            activeCall.disconnect();
+            log("Call disconnected by agent", "warning");
+        }
+        showAudio(false);
+        document.getElementById("btn-hangup").disabled = true;
+        setStatus("Roll active — waiting for next lead", "ready");
+    }
+
+    // ── Refresh Status ────────────────────────────────────────────
+    async function refreshStatus() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+        if (!jwtToken || !campaignId) return;
+
+        try {
+            const res = await fetch(
+                `${backendUrl}/api/v1/calls/roll-status/${campaignId}`,
+                { headers: h(jwtToken) }
+            );
+
+            if (!res.ok) return;
+            const data = await res.json();
+
+            document.getElementById("stat-calls").textContent     = data.calls_made      || 0;
+            document.getElementById("stat-answered").textContent  = data.calls_answered  || 0;
+            document.getElementById("stat-remaining").textContent = data.leads_remaining || 0;
+
+            if (data.current_lead) {
+                showCurrentLead(data.current_lead);
+            } else {
+                document.getElementById("current-lead-box").classList.remove("visible");
+            }
+
+            if (!data.roll_active) {
+                setStatus("Roll completed — browser still connected", "ready");
+                document.getElementById("btn-start-roll").disabled = false;
+                document.getElementById("btn-stop-roll").disabled  = true;
+                showAudio(false);
+                stopPolling();
+                if (data.calls_made > 0) {
+                    log(`✅ Roll complete! Calls: ${data.calls_made} | Answered: ${data.calls_answered}`, "success");
+                }
+            }
+
+        } catch { /* silent */ }
+    }
+
+    function startPolling() {
+        stopPolling();
+        pollInterval = setInterval(refreshStatus, 5000);
+        log("Auto-refreshing every 5 seconds...", "info");
+    }
+
+    function stopPolling() {
+        if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+    }
+</script>
+</body>
+</html>

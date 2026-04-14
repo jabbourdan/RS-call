@@ -1,0 +1,51 @@
+<!-- Welcome -->
+<app-welcome />
+
+<div class="lg:px-[30px] 2xl:px-[80px] mt-[25px] lg:-mt-[25px] relative z-[1]">
+
+    <!-- Stats -->
+    <app-stats />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+        <div class="lg:col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-[25px] mb-[25px]">
+
+                <!-- Patient Retention -->
+                <app-patient-retention />
+                
+                <!-- Patient Distribution -->
+                <app-patient-distribution />
+
+            </div>
+                
+            <!-- Upgrade Plan -->
+            <app-upgrade-plan />
+            
+            <!-- Income Vs Expense -->
+            <app-income-vs-expense />
+
+        </div>
+        <div class="lg:col-span-1">
+
+            <!-- Todays Schedule -->
+            <app-todays-schedule />
+
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-[25px] mb-[25px]">
+        <div class="lg:col-span-3">
+                
+            <!-- My Recent Patients -->
+            <app-my-recent-patients />
+
+        </div>
+        <div class="lg:col-span-1">
+
+            <!-- Recent Lab Reports -->
+            <app-recent-lab-reports />
+
+        </div>
+    </div>
+
+</div>

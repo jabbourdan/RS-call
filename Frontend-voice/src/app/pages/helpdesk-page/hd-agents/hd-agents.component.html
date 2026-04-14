@@ -1,0 +1,894 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Agents
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            HelpDesk
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Agents
+        </li>
+    </ol>
+</div>
+
+<!-- Agents -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Performance of Agents
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        Last 30 Days
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <thead class="text-black dark:text-white">
+                    <tr>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            ID
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Agent Name
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Total Tickets
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Open Tickets
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Resolved Tickets
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Avg. Resolution Time
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Satisfaction Rate
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Availability
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #JAN-854
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user6.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Oliver Khan
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                230
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                20
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                75
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                2.5 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <!-- Create Here: https://nikitahl.github.io/svg-circle-progress-generator/ -->
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#605DFF" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="113px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    80%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #FEB-853
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user13.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Ava Cooper
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                180
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                16
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                35
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                1.4 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#AD63F6" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="141px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    75%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #MAR-852
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user14.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Isabella Evans
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                150
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                35
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                45
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                3.2 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#25B003" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="113px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    80%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #APR-851
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user15.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Mia Hughes
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                75
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                86
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                25
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                4.5 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#3584FC" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="0px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    100%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #MAY-850
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user16.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Noah Mitchell
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                320
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                90
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                10
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                3.8 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#FD5812" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="0px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    100%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-danger-50 dark:bg-[#15203c] text-danger-500 rounded-sm font-medium text-xs">
+                                Not Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #JUN-849
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user17.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Sophia Carter
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                120
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                55
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                20
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                5.3 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#605DFF" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="226px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    60%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #JUL-852
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user14.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Isabella Evans
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                150
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                35
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                45
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                3.2 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#25B003" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="113px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    80%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #AUG-851
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user15.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Mia Hughes
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                75
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                86
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                25
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                4.5 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#3584FC" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="0px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    100%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #SEP-850
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user16.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Noah Mitchell
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                320
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                90
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                10
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                3.8 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#FD5812" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="0px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    100%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-danger-50 dark:bg-[#15203c] text-danger-500 rounded-sm font-medium text-xs">
+                                Not Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #OCT-849
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-full w-[40px]">
+                                    <img src="images/users/user17.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Sophia Carter
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                120
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                55
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                20
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                5.3 hours
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="rounded-full relative w-[40px] h-[40px]">
+                                <svg width="50" height="50" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" class="relative -top-[5px] ltr:-left-[5px] rtl:-right-[5px]" style="transform:rotate(-90deg)">
+                                    <circle r="90" cx="100" cy="100" fill="transparent" stroke="transparent" stroke-width="16px" stroke-dasharray="565.48px" stroke-dashoffset="0"></circle>
+                                    <circle r="90" cx="100" cy="100" stroke="#605DFF" stroke-width="16px" stroke-linecap="round" stroke-dashoffset="226px" fill="transparent" stroke-dasharray="565.48px"></circle>
+                                </svg>
+                                <span class="block text-gray-500 dark:text-gray-400 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] absolute">
+                                    60%
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Available
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="px-[25px] pt-[12px] md:pt-[14px] sm:flex sm:items-center justify-between">
+            <p class="!mb-0 text-sm">
+                Showing 10 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

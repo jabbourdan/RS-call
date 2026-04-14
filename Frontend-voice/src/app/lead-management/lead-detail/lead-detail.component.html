@@ -1,0 +1,311 @@
+@if (lead) {
+    <!-- Tabs at the very top -->
+    <div class="flex border-b border-gray-100 dark:border-[#172036] mb-[16px]">
+        <button
+            type="button"
+            (click)="switchTab('actions')"
+            class="flex-1 text-center pb-[8px] text-sm font-medium transition-all"
+            [class.text-primary-500]="currentTab === 'actions'"
+            [class.border-b-2]="currentTab === 'actions'"
+            [class.border-primary-500]="currentTab === 'actions'"
+        >
+            {{ 'LEAD_MANAGEMENT.TAB_ACTIONS' | translate }}
+        </button>
+        <button
+            type="button"
+            (click)="switchTab('performance')"
+            class="flex-1 text-center pb-[8px] text-sm font-medium transition-all"
+            [class.text-primary-500]="currentTab === 'performance'"
+            [class.border-b-2]="currentTab === 'performance'"
+            [class.border-primary-500]="currentTab === 'performance'"
+        >
+            {{ 'LEAD_MANAGEMENT.TAB_MY_PERFORMANCE' | translate }}
+        </button>
+    </div>
+
+    <!-- MY PERFORMANCE TAB -->
+    @if (currentTab === 'performance') {
+        @if (performance) {
+            <div class="grid grid-cols-2 gap-[8px]">
+                <!-- Today's Follow-up Calls -->
+                <div class="flex items-center gap-[8px] p-[10px] bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                    <div class="w-[32px] h-[32px] rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center shrink-0">
+                        <i class="material-symbols-outlined !text-[16px] text-orange-600 dark:text-orange-300">schedule</i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{{ 'LEAD_MANAGEMENT.PERF_FOLLOW_UP_CALLS' | translate }}</p>
+                        <p class="text-base font-bold text-black dark:text-white">{{ performance.todays_follow_up_calls }}</p>
+                    </div>
+                </div>
+                <!-- Closed Deals -->
+                <div class="flex items-center gap-[8px] p-[10px] bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <div class="w-[32px] h-[32px] rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center shrink-0">
+                        <i class="material-symbols-outlined !text-[16px] text-green-600 dark:text-green-300">handshake</i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{{ 'LEAD_MANAGEMENT.PERF_CLOSED_DEALS' | translate }}</p>
+                        <p class="text-base font-bold text-black dark:text-white">{{ performance.closed_deals }}</p>
+                    </div>
+                </div>
+                <!-- Calls with New Customers -->
+                <div class="flex items-center gap-[8px] p-[10px] bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                    <div class="w-[32px] h-[32px] rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center shrink-0">
+                        <i class="material-symbols-outlined !text-[16px] text-blue-600 dark:text-blue-300">person_add</i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{{ 'LEAD_MANAGEMENT.PERF_NEW_CUSTOMER_CALLS' | translate }}</p>
+                        <p class="text-base font-bold text-black dark:text-white">{{ performance.calls_with_new_customers }}</p>
+                    </div>
+                </div>
+                <!-- Total Managed Calls -->
+                <div class="flex items-center gap-[8px] p-[10px] bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                    <div class="w-[32px] h-[32px] rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center shrink-0">
+                        <i class="material-symbols-outlined !text-[16px] text-purple-600 dark:text-purple-300">call</i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{{ 'LEAD_MANAGEMENT.PERF_TOTAL_CALLS' | translate }}</p>
+                        <p class="text-base font-bold text-black dark:text-white">{{ performance.total_managed_calls }}</p>
+                    </div>
+                </div>
+            </div>
+        } @else {
+            <div class="text-center text-sm text-gray-400 py-[40px]">—</div>
+        }
+    }
+
+    <!-- ACTIONS TAB -->
+    @if (currentTab === 'actions') {
+        <div class="detail-scroll overflow-y-auto ltr:pr-[4px] rtl:pl-[4px]">
+            <!-- Lead Header (shown only in Actions tab) -->
+            <div class="flex items-start justify-between mb-[16px]">
+                <div>
+                    <h5 class="text-lg font-semibold text-black dark:text-white !mb-[4px]">
+                        {{ lead.name || lead.phone_number }}
+                    </h5>
+                    <div class="flex items-center gap-[8px] text-sm text-gray-500">
+                        <i class="material-symbols-outlined !text-[16px]">call</i>
+                        <span>{{ lead.phone_number }}</span>
+                        <button type="button" class="text-green-500 hover:text-green-600 transition-all" title="WhatsApp">
+                            <i class="ri-whatsapp-line text-[16px]"></i>
+                        </button>
+                        <button type="button" class="text-gray-400 hover:text-gray-600 transition-all" title="Copy">
+                            <i class="material-symbols-outlined !text-[16px]">content_copy</i>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="text-gray-400 hover:text-primary-500 transition-all">
+                    <i class="material-symbols-outlined !text-[20px]">edit</i>
+                </button>
+            </div>
+
+            <!-- Status line -->
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-[16px] flex items-center gap-[6px]">
+                <span>{{ 'LEAD_MANAGEMENT.STATUS_LABEL' | translate }}:</span>
+                <span class="font-medium text-black dark:text-white">{{ lead.status.current }}</span>
+                <span class="text-gray-300 ltr:ml-auto rtl:mr-auto">—/—</span>
+            </div>
+
+            <!-- Auto Dialer Active Badge -->
+            @if (isRollActive) {
+                <div class="flex items-center gap-[6px] bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-md px-[12px] py-[8px] mb-[12px]">
+                    <span class="material-symbols-outlined !text-[16px] text-blue-600 dark:text-blue-300 animate-spin">autorenew</span>
+                    <span class="text-xs font-medium text-blue-700 dark:text-blue-300">{{ 'LEAD_MANAGEMENT.ROLL_ACTIVE_BADGE' | translate }}</span>
+                </div>
+            }
+
+            <!-- Call Button Bar -->
+            <div class="mb-[20px]">
+                <div class="flex items-center gap-[8px]">
+                    @if (!isCallActive) {
+                        <!-- Call Button -->
+                        <button
+                            type="button"
+                            (click)="startCall()"
+                            [disabled]="isRollActive"
+                            class="flex-1 h-[44px] rounded-md font-medium text-sm flex items-center justify-center gap-[6px] transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-green-500 hover:bg-green-600 text-white"
+                        >
+                            <i class="material-symbols-outlined !text-[20px]">call</i>
+                            {{ 'LEAD_MANAGEMENT.BTN_CALL' | translate }}
+                        </button>
+                    } @else {
+                        <!-- Hang Up Button -->
+                        <button
+                            type="button"
+                            (click)="hangUp()"
+                            class="flex-1 h-[44px] rounded-md font-medium text-sm flex items-center justify-center gap-[6px] transition-all bg-red-500 hover:bg-red-600 text-white animate-pulse"
+                        >
+                            <i class="material-symbols-outlined !text-[20px]">call_end</i>
+                            {{ 'LEAD_MANAGEMENT.BTN_HANGUP' | translate }}
+                        </button>
+                    }
+                    <!-- Mute -->
+                    <button
+                        type="button"
+                        (click)="toggleMute()"
+                        class="w-[44px] h-[44px] rounded-md flex items-center justify-center transition-all border"
+                        [class.border-red-300]="isMuted"
+                        [class.bg-red-50]="isMuted"
+                        [class.text-red-500]="isMuted"
+                        [class.border-gray-200]="!isMuted"
+                        [class.text-gray-500]="!isMuted"
+                        [class.hover:bg-gray-50]="!isMuted"
+                        [class.dark:border-gray-600]="!isMuted"
+                        [class.dark:hover:bg-gray-800]="!isMuted"
+                    >
+                        <i class="material-symbols-outlined !text-[20px]">{{ isMuted ? 'mic_off' : 'mic' }}</i>
+                    </button>
+                    <!-- Pause -->
+                    <button
+                        type="button"
+                        (click)="togglePause()"
+                        class="w-[44px] h-[44px] rounded-md flex items-center justify-center transition-all border"
+                        [class.border-amber-300]="isPaused"
+                        [class.bg-amber-50]="isPaused"
+                        [class.text-amber-600]="isPaused"
+                        [class.border-gray-200]="!isPaused"
+                        [class.text-gray-500]="!isPaused"
+                        [class.hover:bg-gray-50]="!isPaused"
+                        [class.dark:border-gray-600]="!isPaused"
+                        [class.dark:hover:bg-gray-800]="!isPaused"
+                    >
+                        <i class="material-symbols-outlined !text-[20px]">{{ isPaused ? 'play_arrow' : 'pause' }}</i>
+                    </button>
+                    <!-- Keypad -->
+                    <div class="relative">
+                        <button
+                            type="button"
+                            (click)="toggleKeypad()"
+                            class="w-[44px] h-[44px] rounded-md flex items-center justify-center transition-all border border-gray-200 text-gray-500 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800"
+                        >
+                            <i class="material-symbols-outlined !text-[20px]">dialpad</i>
+                        </button>
+                        @if (showKeypad) {
+                            <div class="absolute top-[50px] ltr:right-0 rtl:left-0 z-10 bg-white dark:bg-[#0c1427] border border-gray-200 dark:border-[#172036] rounded-lg shadow-lg p-[12px] w-[180px]">
+                                <div class="grid grid-cols-3 gap-[6px]">
+                                    @for (key of keypadKeys; track key) {
+                                        <button
+                                            type="button"
+                                            (click)="pressKey(key)"
+                                            class="h-[40px] rounded-md bg-gray-50 dark:bg-[#15203c] text-black dark:text-white font-semibold text-lg hover:bg-gray-100 dark:hover:bg-[#1a2847] transition-all"
+                                        >
+                                            {{ key }}
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Status Dropdown -->
+            <div class="mb-[16px]">
+                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-[6px]">
+                    {{ 'LEAD_MANAGEMENT.LEAD_STATUS' | translate }}
+                </label>
+                <select
+                    [(ngModel)]="selectedStatus"
+                    (ngModelChange)="markDirty()"
+                    name="leadStatus"
+                    class="w-full h-[44px] rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#15203c] px-[12px] outline-0 cursor-pointer transition-all focus:border-primary-500 font-medium"
+                >
+                    @for (opt of lead.status.options; track opt) {
+                        <option [value]="opt">{{ getStatusI18n(opt) | translate }}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Status Details section -->
+            <div class="mb-[16px]">
+                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-[6px]">
+                    {{ 'LEAD_MANAGEMENT.STATUS_DETAILS' | translate }}
+                </label>
+                @if (isFollowUp) {
+                    <div class="flex gap-[8px] mb-[10px]">
+                        <div class="flex-1 relative group">
+                            <i class="material-symbols-outlined !text-[16px] absolute ltr:left-[10px] rtl:right-[10px] top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-[1]">schedule</i>
+                            <input
+                                type="time"
+                                [(ngModel)]="followUpTime"
+                                (ngModelChange)="markDirty()"
+                                name="followUpTime"
+                                class="w-full h-[44px] rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#15203c] ltr:pl-[32px] rtl:pr-[32px] ltr:pr-[10px] rtl:pl-[10px] outline-0 transition-all focus:border-primary-500 cursor-pointer hover:border-primary-300 dark:hover:border-primary-600 appearance-none"
+                            >
+                        </div>
+                        <div class="flex-1 relative group">
+                            <i class="material-symbols-outlined !text-[16px] absolute ltr:left-[10px] rtl:right-[10px] top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none z-[1]">calendar_today</i>
+                            <input
+                                type="date"
+                                [(ngModel)]="followUpDate"
+                                (ngModelChange)="markDirty()"
+                                name="followUpDate"
+                                class="w-full h-[44px] rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#15203c] ltr:pl-[32px] rtl:pr-[32px] ltr:pr-[10px] rtl:pl-[10px] outline-0 transition-all focus:border-primary-500 cursor-pointer hover:border-primary-300 dark:hover:border-primary-600 appearance-none"
+                            >
+                        </div>
+                    </div>
+                }
+
+                <!-- Representative -->
+                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-[6px]">
+                    {{ 'LEAD_MANAGEMENT.REPRESENTATIVE' | translate }}
+                </label>
+                <select
+                    [(ngModel)]="selectedRepresentativeId"
+                    (ngModelChange)="markDirty()"
+                    name="representative"
+                    class="w-full h-[40px] rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#15203c] px-[12px] outline-0 cursor-pointer transition-all focus:border-primary-500 mb-[12px]"
+                >
+                    @for (rep of representatives; track rep.user_id) {
+                        <option [value]="rep.user_id">
+                            @if (rep.is_me) { Me - } {{ rep.name }}
+                        </option>
+                    }
+                </select>
+
+                <!-- Comment -->
+                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-[6px]">
+                    {{ 'LEAD_MANAGEMENT.COMMENT' | translate }}
+                </label>
+                <textarea
+                    [(ngModel)]="commentText"
+                    (ngModelChange)="markDirty()"
+                    name="commentText"
+                    rows="3"
+                    class="w-full rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#15203c] p-[10px] outline-0 resize-none transition-all focus:border-primary-500"
+                    [placeholder]="'LEAD_MANAGEMENT.COMMENT_PLACEHOLDER' | translate"
+                ></textarea>
+            </div>
+
+            <!-- Save Settings Button -->
+            <div class="mt-[8px]">
+                <button
+                    type="button"
+                    (click)="saveSettings()"
+                    [disabled]="!hasUnsavedChanges || isSaving"
+                    class="w-full h-[44px] rounded-md font-medium text-sm flex items-center justify-center gap-[6px] transition-all"
+                    [class.bg-primary-500]="hasUnsavedChanges && !isSaving"
+                    [class.hover:bg-primary-600]="hasUnsavedChanges && !isSaving"
+                    [class.text-white]="hasUnsavedChanges && !isSaving"
+                    [class.bg-gray-100]="!hasUnsavedChanges || isSaving"
+                    [class.dark:bg-gray-800]="!hasUnsavedChanges || isSaving"
+                    [class.text-gray-400]="!hasUnsavedChanges || isSaving"
+                    [class.cursor-not-allowed]="!hasUnsavedChanges || isSaving"
+                >
+                    @if (isSaving) {
+                        <i class="material-symbols-outlined !text-[18px] animate-spin">autorenew</i>
+                    } @else {
+                        <i class="material-symbols-outlined !text-[18px]">save</i>
+                    }
+                    {{ 'LEAD_MANAGEMENT.BTN_SAVE_SETTINGS' | translate }}
+                </button>
+            </div>
+        </div>
+    }
+
+} @else {
+    <!-- Empty state -->
+    <div class="flex flex-col items-center justify-center h-full py-[80px] text-gray-400">
+        <i class="material-symbols-outlined !text-[64px] mb-[12px]">person</i>
+        <p class="text-sm">{{ 'LEAD_MANAGEMENT.SELECT_LEAD_DETAIL' | translate }}</p>
+    </div>
+}

@@ -1,0 +1,1007 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Leads
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            CRM
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Leads
+        </li>
+    </ol>
+</div>
+
+<!-- Stats -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[25px] mb-[25px]">
+
+    <!-- Revenue Growth -->
+    <app-revenue-growth />
+
+    <!-- Lead Conversion -->
+    <app-lead-conversion />
+
+    <!-- Total Orders -->
+    <app-total-orders />
+
+    <!-- Annual Profit -->
+    <app-annual-profit />
+
+</div>
+
+<!-- Leads -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+        <div class="trezo-card-title">
+            <form class="relative sm:w-[265px]">
+                <label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        search
+                    </i>
+                </label>
+                <input type="text" placeholder="Search lead here....." class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400">
+            </form>
+        </div>
+        <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
+            <button type="button" class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white" (click)="toggleClass()">
+                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
+                    <i class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add New Lead
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <thead class="text-black dark:text-white">
+                    <tr>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            ID
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Customer
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Email
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Phone
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Created Date
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Company
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Lead Source
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Status
+                        </th>
+                        <th class="font-medium ltr:text-left rtl:text-right px-[20px] py-[11px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 bg-primary-50 dark:bg-[#15203c] whitespace-nowrap">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #854
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user6.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Oliver Khan
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            oliver&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-123-4567
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                19 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                ABC Corporation
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Organic
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Confirmed
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #853
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user7.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Carolyn Barnes
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            carolyn&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-987-6543
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                18 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                XYZ Ltd
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Social
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-success-50 dark:bg-[#15203c] text-success-500 rounded-sm font-medium text-xs">
+                                In Progress
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #852
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user8.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Donna Miller
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            donna&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-456-7890
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                17 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Tech Solutions
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Website
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-warning-50 dark:bg-[#15203c] text-warning-500 rounded-sm font-medium text-xs">
+                                Pending
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #851
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user9.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Barbara Cross
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            barbara&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-369-7878
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                16 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Global Solutions
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Paid
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-danger-50 dark:bg-[#15203c] text-danger-500 rounded-sm font-medium text-xs">
+                                Rejected
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #850
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user10.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Rebecca Block
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            rebecca&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-658-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                15 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Acma Industries
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Others
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Confirmed
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #849
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user11.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Ramiro McCarty
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            ramiro&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-558-9966
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                14 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Synergy Ltd
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Facebook
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-success-50 dark:bg-[#15203c] text-success-500 rounded-sm font-medium text-xs">
+                                In Progress
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #848
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user12.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Robert Fairweather
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            robert&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-357-5888
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                13 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Summit Solutions
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Instagram
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-warning-50 dark:bg-[#15203c] text-warning-500 rounded-sm font-medium text-xs">
+                                Pending
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #847
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user13.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Marcelino Haddock
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            marcelino&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-456-8877
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                12 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Strategies Ltd
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                X
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-danger-50 dark:bg-[#15203c] text-danger-500 rounded-sm font-medium text-xs">
+                                Rejected
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #846
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user14.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Thomas Wilson
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            thomas&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-622-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                11 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Tech Enterprises
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                LinkedIn
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-primary-50 dark:bg-[#15203c] text-primary-500 rounded-sm font-medium text-xs">
+                                Confirmed
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="form-check relative top-[2px]">
+                                <input type="checkbox" class="cursor-pointer">
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                #845
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center">
+                                <div class="rounded-md w-[40px] rounded-full">
+                                    <img src="images/users/user15.jpg" class="inline-block rounded-full" alt="product-image">
+                                </div>
+                                <div class="ltr:ml-[12px] rtl:mr-[12px]">
+                                    <span class="block font-medium">
+                                        Nathaniel Hulsey
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            nathaniel&#64;trezo.com
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                +1 555-225-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                10 Jun 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Synetic Solutions
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="text-gray-500 dark:text-gray-400">
+                                Pinterest
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <span class="px-[8px] py-[3px] inline-block bg-success-50 dark:bg-[#15203c] text-success-500 rounded-sm font-medium text-xs">
+                                In Progress
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] md:ltr:first:pl-[25px] md:rtl:first:pr-[25px] ltr:first:pr-0 rtl:first:pl-0 border-b border-gray-100 dark:border-[#172036]">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="px-[25px] pt-[12px] md:pt-[14px] sm:flex sm:items-center justify-between">
+            <p class="!mb-0 text-sm">
+                Showing 10 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Popup -->
+<div
+    class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px]"
+    [class.active]="classApplied"
+>
+    <div class="popup-dialog flex transition-all max-w-[550px] min-h-full items-center mx-auto">
+        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+            <div class="trezo-card-header bg-gray-50 dark:bg-[#15203c] mb-[20px] md:mb-[25px] flex items-center justify-between -mx-[20px] md:-mx-[25px] -mt-[20px] md:-mt-[25px] p-[20px] md:p-[25px] rounded-t-md">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0">
+                        Add New Lead
+                    </h5>
+                </div>
+                <div class="trezo-card-subtitle">
+                    <button type="button" class="text-[23px] transition-all leading-none text-black dark:text-white hover:text-primary-500" (click)="toggleClass()">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="trezo-card-content">
+                <form>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Name
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. Olivia">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Email
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. olivia&#64;trezo.com">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Phone
+                            </label>
+                            <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="E.g. +023-244-1234">
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Company
+                            </label>
+                            <select class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[14px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option value="1">
+                                    ABC Corporation
+                                </option>
+                                <option value="2">
+                                    XYZ Ltd
+                                </option>
+                                <option value="3">
+                                    Tech Solutions
+                                </option>
+                                <option value="4">
+                                    Global Solutions
+                                </option>
+                                <option value="5">
+                                    Acma Industries
+                                </option>
+                                <option value="6">
+                                    Synergy Ltd
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Lead Source
+                            </label>
+                            <select class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[14px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option value="1">
+                                    Organic
+                                </option>
+                                <option value="2">
+                                    Social
+                                </option>
+                                <option value="3">
+                                    Website
+                                </option>
+                                <option value="4">
+                                    Paid
+                                </option>
+                                <option value="5">
+                                    Others
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Status
+                            </label>
+                            <select class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[14px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option value="1">
+                                    Confirmed
+                                </option>
+                                <option value="2">
+                                    In Progress
+                                </option>
+                                <option value="3">
+                                    Pending
+                                </option>
+                                <option value="4">
+                                    Rejected
+                                </option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="mb-[10px] text-black dark:text-white font-medium block">
+                                Image
+                            </label>
+                            <file-upload class="file-uploader"></file-upload>
+                        </div>
+                    </div>
+                    <div class="mt-[20px] md:mt-[25px] ltr:text-right rtl:text-left">
+                        <button type="button" class="rounded-md inline-block transition-all font-medium ltr:mr-[19px] rtl:ml-[19px] px-[26.5px] py-[12px] bg-danger-500 text-white hover:bg-danger-400" (click)="toggleClass()">
+                            Cancel
+                        </button>
+                        <button type="button" class="inline-block bg-primary-500 text-white py-[12px] px-[26.5px] transition-all rounded-md hover:bg-primary-400">
+                            <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px]">
+                                <i class="material-symbols-outlined !text-[20px] absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
+                                    add
+                                </i>
+                                Create
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

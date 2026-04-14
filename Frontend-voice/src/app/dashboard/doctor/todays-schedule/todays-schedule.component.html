@@ -1,0 +1,132 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[22px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Today's Schedule
+            </h5>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="calendar">
+            <div class="header flex items-center justify-between mb-[20px]">
+                <button (click)="previousMonth()" class="transition-all text-black bg-gray-100 dark:text-white dark:bg-[#172036] flex items-center justify-center rounded-full w-[30px] h-[30px] hover:bg-primary-500 hover:text-white">
+                    <i class="material-symbols-outlined rtl:-scale-x-[1]">
+                        chevron_left
+                    </i>
+                </button>
+                <span class="block font-medium text-black dark:text-white">
+                    {{ monthNames[currentMonth] }} {{ currentYear }}
+                </span>
+                <button (click)="nextMonth()" class="transition-all text-black bg-gray-100 dark:text-white dark:bg-[#172036] flex items-center justify-center rounded-full w-[30px] h-[30px] hover:bg-primary-500 hover:text-white">
+                    <i class="material-symbols-outlined rtl:-scale-x-[1]">
+                        chevron_right
+                    </i>
+                </button>
+            </div>
+            <div class="weekdays grid grid-cols-7 mb-[6px] text-center">
+                @for (day of weekdays; track $index) {
+                    <div class="text-black dark:text-white font-medium">
+                        {{ day }}
+                    </div>
+                }
+            </div>
+            <div class="days grid grid-cols-7 text-center">
+                @for (day of daysInMonth; track $index) {
+                    <div
+                        class="w-[32px] h-[32px] cursor-pointer leading-[31px] rounded-full my-[7px] mx-auto"
+                        [ngClass]="{ 'current-day': isToday(day) }"
+                    >
+                        @if (day !== null) {
+                            <span>
+                                {{ day }}
+                            </span>
+                        }
+                        @if (day === null) {
+                            <span>
+                                &nbsp;
+                            </span> <!-- Placeholder for empty days -->
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="border-top border-[1px] border-gray-100 dark:border-[#172036] border-dashed mt-[10px] mb-[20px]"></div>
+        <div class="schedule-list h-[545px] overflow-y-scroll ltr:-mr-[20px] ltr:md:-mr-[25px] rtl:-ml-[20px] rtl:md:-ml-[25px] ltr:pr-[20px] ltr:md:pr-[25px] rtl:pl-[20px] rtl:md:pl-[25px]">
+            <div class="p-[20px] md:p-[25px] rounded-md bg-primary-100 dark:bg-[#172036] relative z-[1] mt-[12px] first:mt-0">
+                <span class="block text-black dark:text-white font-semibold">
+                    10:00 AM
+                </span>
+                <p class="mt-[3px] !mb-[9px]">
+                    Appointment With Cardiac Patient
+                </p>
+                <div class="flex items-center gap-[5px]">
+                    <img src="images/users/user1.jpg" alt="user-image" class="rounded-full w-[24px] border-[1px] border-white dark:border-black">
+                    <span class="block font-medium">
+                        Jonathon Ronan
+                    </span>
+                </div>
+                <div class="mt-[15px] flex items-center justify-between">
+                    <button type="button" class="inline-block font-medium py-[5.5px] px-[16px] bg-white dark:bg-[#0C1427] rounded-md text-primary-500 transition-all hover:bg-primary-500 hover:text-white">
+                        View Details
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-full bg-white dark:bg-[#0C1427] text-primary-500 transition-all hover:bg-primary-500 hover:text-white w-[28px] h-[28px]">
+                        <i class="ri-notification-2-line"></i>
+                    </button>
+                </div>
+                <div class="absolute -z-[1] ltr:right-0 rtl:left-0 top-0 rtl:-scale-x-[1] dark:opacity-[0.2]">
+                    <img src="images/cut-circle.png" alt="cut-circle">
+                </div>
+            </div>
+            <div class="p-[20px] md:p-[25px] rounded-md bg-secondary-100 dark:bg-[#172036] relative z-[1] mt-[12px] first:mt-0">
+                <span class="block text-black dark:text-white font-semibold">
+                    12:00 PM
+                </span>
+                <p class="mt-[3px] !mb-[9px]">
+                    Major Cardiac Surgery of the patient
+                </p>
+                <div class="flex items-center gap-[5px]">
+                    <img src="images/users/user2.jpg" alt="user-image" class="rounded-full w-[24px] border-[1px] border-white dark:border-black">
+                    <span class="block font-medium">
+                        Walter White
+                    </span>
+                </div>
+                <div class="mt-[15px] flex items-center justify-between">
+                    <button type="button" class="inline-block font-medium py-[5.5px] px-[16px] bg-white dark:bg-[#0C1427] rounded-md text-secondary-500 transition-all hover:bg-secondary-500 hover:text-white">
+                        View Details
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-full bg-white dark:bg-[#0C1427] text-secondary-500 transition-all hover:bg-secondary-500 hover:text-white w-[28px] h-[28px]">
+                        <i class="ri-notification-2-line"></i>
+                    </button>
+                </div>
+                <div class="absolute -z-[1] ltr:right-0 rtl:left-0 top-0 rtl:-scale-x-[1] dark:opacity-[0.2]">
+                    <img src="images/cut-circle.png" alt="cut-circle">
+                </div>
+            </div>
+            <div class="p-[20px] md:p-[25px] rounded-md bg-purple-100 dark:bg-[#172036] relative z-[1] mt-[12px] first:mt-0">
+                <span class="block text-black dark:text-white font-semibold">
+                    02:00 PM
+                </span>
+                <p class="mt-[3px] !mb-[9px]">
+                    Board Meeting With
+                </p>
+                <div class="flex items-center gap-[5px]">
+                    <img src="images/users/user3.jpg" alt="user-image" class="rounded-full w-[24px] border-[1px] border-white dark:border-black">
+                    <span class="block font-medium">
+                        Jessy Pinkman
+                    </span>
+                </div>
+                <div class="mt-[15px] flex items-center justify-between">
+                    <button type="button" class="inline-block font-medium py-[5.5px] px-[16px] bg-white dark:bg-[#0C1427] rounded-md text-purple-500 transition-all hover:bg-purple-500 hover:text-white">
+                        View Details
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-full bg-white dark:bg-[#0C1427] text-purple-500 transition-all hover:bg-purple-500 hover:text-white w-[28px] h-[28px]">
+                        <i class="ri-notification-2-line"></i>
+                    </button>
+                </div>
+                <div class="absolute -z-[1] ltr:right-0 rtl:left-0 top-0 rtl:-scale-x-[1] dark:opacity-[0.2]">
+                    <img src="images/cut-circle.png" alt="cut-circle">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

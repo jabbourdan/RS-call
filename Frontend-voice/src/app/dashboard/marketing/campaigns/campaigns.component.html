@@ -1,0 +1,1388 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Campaigns
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <button type="button" class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white" (click)="toggleClass()">
+                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
+                    <i class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add Campaign
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="trezo-card-content min-h-[377px]">
+        <ul class="campaigns-navs mb-[15px]">
+            <li class="nav-item inline-block ltr:mr-[40px] rtl:ml-[40px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" id="tab1" (click)="switchTab($event, 'tab1')" [ngClass]="{'active': currentTab === 'tab1'}" class="nav-link text-xs block font-semibold text-gray-500 dark:text-gray-400 uppercase transition-all tracking-[2px]">
+                    All (05)
+                </button>
+            </li>
+            <li class="nav-item inline-block ltr:mr-[40px] rtl:ml-[40px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" id="tab2" (click)="switchTab($event, 'tab2')" [ngClass]="{'active': currentTab === 'tab2'}" class="nav-link text-xs block font-semibold text-gray-500 dark:text-gray-400 uppercase transition-all tracking-[2px]">
+                    Pending (03)
+                </button>
+            </li>
+            <li class="nav-item inline-block ltr:mr-[40px] rtl:ml-[40px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" id="tab3" (click)="switchTab($event, 'tab3')" [ngClass]="{'active': currentTab === 'tab3'}" class="nav-link text-xs block font-semibold text-gray-500 dark:text-gray-400 uppercase transition-all tracking-[2px]">
+                    Completed (02)
+                </button>
+            </li>
+        </ul>
+        @if (currentTab === 'tab1') {
+            <div class="table-responsive overflow-x-auto">
+                <table class="w-full">
+                    <tbody class="text-black dark:text-white">
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Christmas Eve
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 10 Oct - 15 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-orange-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-orange-100 dark:bg-[#15203c] text-orange-600 rounded-sm font-medium text-xs">
+                                    Live Now
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user53.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user54.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user56.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user57.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] text-xs rounded-full border border-white bg-gray-700 text-white font-medium flex items-center justify-center dark:border-dark">
+                                        +3
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Teacher’s Day
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 08 Oct - 12 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-primary-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-success-100 dark:bg-[#15203c] text-success-700 rounded-sm font-medium text-xs">
+                                    Reviewing
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user52.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user51.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user50.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        ThanksGiving
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 01 Oct - 05 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-purple-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-secondary-100 dark:bg-[#15203c] text-secondary-500 rounded-sm font-medium text-xs">
+                                    Paused
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user1.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user2.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Team Gateway
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 05 Oct - 17 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-secondary-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-orange-100 dark:bg-[#15203c] text-orange-600 rounded-sm font-medium text-xs">
+                                    Live Now
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user3.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user4.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user5.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Halloween
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 20 Oct - 31 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-success-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-success-100 dark:bg-[#15203c] text-success-700 rounded-sm font-medium text-xs">
+                                    Reviewing
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user45.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user46.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user47.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (currentTab === 'tab2') {
+            <div class="table-responsive overflow-x-auto">
+                <table class="w-full">
+                    <tbody class="text-black dark:text-white">
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Teacher’s Day
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 08 Oct - 12 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-primary-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-success-100 dark:bg-[#15203c] text-success-700 rounded-sm font-medium text-xs">
+                                    Reviewing
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user52.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user51.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user50.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        ThanksGiving
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 01 Oct - 05 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-purple-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-secondary-100 dark:bg-[#15203c] text-secondary-500 rounded-sm font-medium text-xs">
+                                    Paused
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user1.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user2.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Halloween
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 20 Oct - 31 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-success-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-success-100 dark:bg-[#15203c] text-success-700 rounded-sm font-medium text-xs">
+                                    Reviewing
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user45.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user46.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user47.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (currentTab === 'tab3') {
+            <div class="table-responsive overflow-x-auto">
+                <table class="w-full">
+                    <tbody class="text-black dark:text-white">
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Christmas Eve
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 10 Oct - 15 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-orange-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/facebook3.svg" class="w-[18px]" alt="facebook">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/instagram2.svg" class="w-[18px]" alt="instagram">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/linkedin2.svg" class="w-[18px]" alt="linkedin">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-orange-100 dark:bg-[#15203c] text-orange-600 rounded-sm font-medium text-xs">
+                                    Live Now
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user53.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user54.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user56.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user57.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] text-xs rounded-full border border-white bg-gray-700 text-white font-medium flex items-center justify-center">
+                                        +3
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="relative py-[3.5px] ltr:pl-[13px] rtl:pr-[13px]">
+                                    <span class="block font-semibold mb-[5px]">
+                                        Team Gateway
+                                    </span>
+                                    <span class="block text-xs text-gray-500 dark:text-gray-400">
+                                        From 05 Oct - 17 Oct, 24
+                                    </span>
+                                    <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-[2px] bg-secondary-500"></div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center gap-[10px]">
+                                    <a href="#" target="_blank" class="inline-block">
+                                        <img src="images/icons/google3.svg" class="w-[18px]" alt="google">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <span class="px-[8px] py-[3px] inline-block bg-orange-100 dark:bg-[#15203c] text-orange-600 rounded-sm font-medium text-xs">
+                                    Live Now
+                                </span>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <div class="flex items-center">
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user3.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user4.jpg" />
+                                    </div>
+                                    <div class="w-[26px] h-[26px] rounded-full ltr:-mr-[7px] rtl:-ml-[7px] border border-white dark:border-dark">
+                                        <img alt="user-image" class="rounded-full" src="images/users/user5.jpg" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[9px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 ltr:last:text-right rtl:last:text-left">
+                                <button class="inline-block rounded-full w-[30px] h-[30px] bg-gray-100 dark:bg-[#172036] text-center leading-[30px] text-lg text-gray-400 transition-all hover:bg-primary-500 hover:text-white" type="button" (click)="toggleClass2()">
+                                    <i class="ri-arrow-right-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Create Campaign Modal -->
+<div
+    class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[25px] ltr:-mr-[15px] rtl:-ml-[15px]"
+    [class.active]="classApplied"
+>
+    <div class="popup-dialog flex transition-all sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1320px] min-h-full items-center mx-auto">
+        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] lg:p-[50px]">
+            <div class="trezo-card-header mb-[20px] md:mb-[25px] lg:mb-[56px] flex items-center justify-between">
+                <div class="trezo-card-title">
+                    <h5 class="!mb-0 lg:!text-xl">
+                        Create Campaign
+                    </h5>
+                </div>
+                <div class="trezo-card-subtitle">
+                    <button type="button" class="text-2xl transition-all leading-none text-black dark:text-white hover:text-primary-500" (click)="toggleClass()">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="trezo-card-content mx-auto lg:max-w-[835px]">
+                <ul class="create-campaign-navs mb-[20px] md:mb-[30px] lg:mb-[50px] text-center">
+                    <li class="nav-item inline-block mb-[10px] md:mb-0 mx-[10px] md:mx-[15px] lg:mx-[23px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                        <button type="button" id="campaignTab1" (click)="switchTab2($event, 'campaignTab1')" [ngClass]="{'active': currentTab2 === 'campaignTab1'}" class="nav-link block lg:tracking-[2px] text-xs uppercase font-medium pb-[5px] md:pb-[10px] transition-all relative font-medium">
+                            CAMPAIGN DETAILS
+                        </button>
+                    </li>
+                    <li class="nav-item inline-block mb-[10px] md:mb-0 mx-[10px] md:mx-[15px] lg:mx-[23px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                        <button type="button" id="campaignTab2" (click)="switchTab2($event, 'campaignTab2')" [ngClass]="{'active': currentTab2 === 'campaignTab2'}" class="nav-link block lg:tracking-[2px] text-xs uppercase font-medium pb-[5px] md:pb-[10px] transition-all relative font-medium">
+                            CREATIVE UPLOADS
+                        </button>
+                    </li>
+                    <li class="nav-item inline-block mb-[10px] md:mb-0 mx-[10px] md:mx-[15px] lg:mx-[23px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                        <button type="button" id="campaignTab3" (click)="switchTab2($event, 'campaignTab3')" [ngClass]="{'active': currentTab2 === 'campaignTab3'}" class="nav-link block lg:tracking-[2px] text-xs uppercase font-medium pb-[5px] md:pb-[10px] transition-all relative font-medium">
+                            AUDIENCES
+                        </button>
+                    </li>
+                    <li class="nav-item inline-block mb-[10px] md:mb-0 mx-[10px] md:mx-[15px] lg:mx-[23px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                        <button type="button" id="campaignTab4" (click)="switchTab2($event, 'campaignTab4')" [ngClass]="{'active': currentTab2 === 'campaignTab4'}" class="nav-link block lg:tracking-[2px] text-xs uppercase font-medium pb-[5px] md:pb-[10px] transition-all relative font-medium">
+                            BUDGET ESTIMATES
+                        </button>
+                    </li>
+                    <li class="nav-item inline-block mb-[10px] md:mb-0 mx-[10px] md:mx-[15px] lg:mx-[23px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                        <button type="button" id="campaignTab5" (click)="switchTab2($event, 'campaignTab5')" [ngClass]="{'active': currentTab2 === 'campaignTab5'}" class="nav-link block lg:tracking-[2px] text-xs uppercase font-medium pb-[5px] md:pb-[10px] transition-all relative font-medium">
+                            COMPLETED
+                        </button>
+                    </li>
+                </ul>
+                <div class="md:px-[16px] lg:px-[85px]">
+                    @if (currentTab2 === 'campaignTab1') {
+                        <h3 class="!mb-[20px] md:!mb-[25px] lg:!mb-[35px] !text-gray-900 dark:!text-gray-400 !text-lg">
+                            Campaign Details
+                        </h3>
+                        <form>
+                            <div class="mb-[20px] mb-[25px] lg:mb-[45px]">
+                                <label class="mb-[10px] text-gray-500 dark:text-white font-medium block">
+                                    Campaign Name <span class="text-orange-600">*</span>
+                                </label>
+                                <input type="text" class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400" value="Christmas Eve">
+                            </div>
+                            <div class="mb-[20px] mb-[25px] lg:mb-[45px]">
+                                <label class="mb-[10px] text-gray-500 dark:text-white font-medium block">
+                                    Company Logo <span class="text-orange-600">*</span>
+                                </label>
+                                <div class="relative inline-block pb-[15px] ltr:pr-[15px] rtl:pl-[15px]">
+                                    <div class="bg-gray-100 dark:bg-[#0a0e19] w-[134px] h-[134px] rounded-[4px] text-gray-400 flex items-center justify-center">
+                                        <i class="material-symbols-outlined !text-[42px]">
+                                            perm_media
+                                        </i>
+                                    </div>
+                                    <div class="absolute bottom-0 ltr:right-0 rtl:left-0 w-[49px] h-[49px] bg-white rounded-full flex items-center justify-center text-primary-500 shadow-xl dark:bg-[#0c1427]">
+                                        <i class="material-symbols-outlined">
+                                            add
+                                        </i>
+                                    </div>
+                                    <input type="file" class="absolute top-0 left-0 right-0 bottom-0 z-[1] opacity-0 cursor-pointer">
+                                </div>
+                                <span class="block mt-[10px] text-gray-400">
+                                    Allowed file types: png, jpg, jpeg. Max size: 1 MB
+                                </span>
+                            </div>
+                            <div class="mb-[20px] mb-[25px] lg:mb-[45px]">
+                                <label class="mb-[20px] text-gray-500 dark:text-white font-semibold block">
+                                    Campaign Goal <span class="text-orange-600">*</span>
+                                </label>
+                                <div class="form-radio border-b border-primary-50 dark:border-[#172036] pb-[12px] mb-[12px] last:mb-0">
+                                    <label for="getMoreVisitors" class="cursor-pointer relative block ltr:pl-[45px] rtl:pr-[45px]">
+                                        <input checked type="radio" name="campaignGoalRadio" class="absolute ltr:left-[2px] rtl:right-[2px] top-1/2 -translate-y-1/2 scale-[2] w-[26px]" id="getMoreVisitors">
+                                        <span class="block font-medium mb-[2px] text-gray-900 dark:text-gray-400">
+                                            Get more visitors
+                                        </span>
+                                        <span class="block text-gray-400">
+                                            Increase impression traffic onto the platform
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-b border-primary-50 dark:border-[#172036] pb-[12px] mb-[12px] last:mb-0">
+                                    <label for="getMoreMessagesOnChat" class="cursor-pointer relative block ltr:pl-[45px] rtl:pr-[45px]">
+                                        <input type="radio" name="campaignGoalRadio" class="absolute ltr:left-[2px] rtl:right-[2px] top-1/2 -translate-y-1/2 scale-[2] w-[26px]" id="getMoreMessagesOnChat">
+                                        <span class="block font-medium mb-[2px] text-gray-900 dark:text-gray-400">
+                                            Get more messages on chat
+                                        </span>
+                                        <span class="block text-gray-400">
+                                            Increase community interaction and communication
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-b border-primary-50 dark:border-[#172036] pb-[12px] mb-[12px] last:mb-0">
+                                    <label for="getMoreCalls" class="cursor-pointer relative block ltr:pl-[45px] rtl:pr-[45px]">
+                                        <input type="radio" name="campaignGoalRadio" class="absolute ltr:left-[2px] rtl:right-[2px] top-1/2 -translate-y-1/2 scale-[2] w-[26px]" id="getMoreCalls">
+                                        <span class="block font-medium mb-[2px] text-gray-900 dark:text-gray-400">
+                                            Get more calls
+                                        </span>
+                                        <span class="block text-gray-400">
+                                            Boost telecommunication feedback to provide precise and accurate information
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-b border-primary-50 dark:border-[#172036] pb-[12px] mb-[12px] last:mb-0">
+                                    <label for="getMoreLikes" class="cursor-pointer relative block ltr:pl-[45px] rtl:pr-[45px]">
+                                        <input type="radio" name="campaignGoalRadio" class="absolute ltr:left-[2px] rtl:right-[2px] top-1/2 -translate-y-1/2 scale-[2] w-[26px]" id="getMoreLikes">
+                                        <span class="block font-medium mb-[2px] text-gray-900 dark:text-gray-400">
+                                            Get more likes
+                                        </span>
+                                        <span class="block text-gray-400">
+                                            Increase positive interactivity on social media platforms
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-b border-primary-50 dark:border-[#172036] pb-[12px] mb-[12px] last:mb-0">
+                                    <label for="leadGeneration" class="cursor-pointer relative block ltr:pl-[45px] rtl:pr-[45px]">
+                                        <input type="radio" name="campaignGoalRadio" class="absolute ltr:left-[2px] rtl:right-[2px] top-1/2 -translate-y-1/2 scale-[2] w-[26px]" id="leadGeneration">
+                                        <span class="block font-medium mb-[2px] text-gray-900 dark:text-gray-400">
+                                            Lead generation
+                                        </span>
+                                        <span class="block text-gray-400">
+                                            Collect contact information for potential customers
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="ltr:text-right rtl:text-left">
+                                <button type="button" class="inline-block md:text-md font-medium bg-primary-500 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-primary-400">
+                                    <span class="flex items-center gap-[5px]">
+                                        Continue
+                                        <i class="ri-arrow-right-line"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    }
+                    @if (currentTab2 === 'campaignTab2') {
+                        <form>
+                            <div class="mb-[20px] mb-[25px] lg:mb-[40px]">
+                                <label class="mb-[17px] text-black dark:text-white text-lg font-bold block">
+                                    Upload Files
+                                </label>
+                                <file-upload class="file-uploader"></file-upload>
+                            </div>
+                            <div class="mb-[20px] mb-[25px] lg:mb-[40px]">
+                                <label class="mb-[22px] text-black dark:text-white text-lg font-bold block">
+                                    Uploaded Files
+                                </label>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[15px] mb-[15px] last:mb-0 flex items-center justify-between">
+                                    <div class="flex items-center gap-[15px]">
+                                        <img src="images/icons/pdf.png" class="w-[36px]" alt="pdf">
+                                        <div>
+                                            <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                                Campaign Requirements
+                                            </span>
+                                            <span class="block mt-[2px] text-gray-400">
+                                                Increase impression traffic onto the platform
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="inline-block bg-gray-100 dark:bg-dark rounded-[7px] text-gray-500 dark:text-gray-400 transition-all hover:bg-primary-500 hover:text-white py-[7px] px-[15px]">
+                                        <span class="flex items-center gap-[5px]">
+                                            Edit
+                                            <i class="ri-pencil-line"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[15px] mb-[15px] last:mb-0 flex items-center justify-between">
+                                    <div class="flex items-center gap-[15px]">
+                                        <img src="images/icons/doc.png" class="w-[36px]" alt="doc">
+                                        <div>
+                                            <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                                Campaign’s mission and vision
+                                            </span>
+                                            <span class="block mt-[2px] text-gray-400">
+                                                Increase impression traffic onto the platform
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="inline-block bg-gray-100 dark:bg-dark rounded-[7px] text-gray-500 dark:text-gray-400 transition-all hover:bg-primary-500 hover:text-white py-[7px] px-[15px]">
+                                        <span class="flex items-center gap-[5px]">
+                                            Edit
+                                            <i class="ri-pencil-line"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[15px] mb-[15px] last:mb-0 flex items-center justify-between">
+                                    <div class="flex items-center gap-[15px]">
+                                        <img src="images/icons/gif.svg" class="w-[36px]" alt="gif">
+                                        <div>
+                                            <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                                Campaign Banner
+                                            </span>
+                                            <span class="block mt-[2px] text-gray-400">
+                                                Increase impression traffic onto the platform
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="inline-block bg-gray-100 dark:bg-dark rounded-[7px] text-gray-500 dark:text-gray-400 transition-all hover:bg-primary-500 hover:text-white py-[7px] px-[15px]">
+                                        <span class="flex items-center gap-[5px]">
+                                            Edit
+                                            <i class="ri-pencil-line"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[15px] mb-[15px] last:mb-0 flex items-center justify-between">
+                                    <div class="flex items-center gap-[15px]">
+                                        <img src="images/icons/jpg.png" class="w-[36px]" alt="jpg">
+                                        <div>
+                                            <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                                Campaign Image
+                                            </span>
+                                            <span class="block mt-[2px] text-gray-400">
+                                                Increase impression traffic onto the platform
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="inline-block bg-gray-100 dark:bg-dark rounded-[7px] text-gray-500 dark:text-gray-400 transition-all hover:bg-primary-500 hover:text-white py-[7px] px-[15px]">
+                                        <span class="flex items-center gap-[5px]">
+                                            Edit
+                                            <i class="ri-pencil-line"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <button type="button" class="inline-block md:text-md font-medium bg-gray-600 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-gray-500">
+                                    <span class="flex items-center gap-[5px]">
+                                        <i class="ri-arrow-left-line"></i>
+                                        Back
+                                    </span>
+                                </button>
+                                <button type="button" class="inline-block md:text-md font-medium bg-primary-500 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-primary-400">
+                                    <span class="flex items-center gap-[5px]">
+                                        Continue
+                                        <i class="ri-arrow-right-line"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    }
+                    @if (currentTab2 === 'campaignTab3') {
+                        <h3 class="!mb-[20px] md:!mb-[25px] lg:!mb-[33px] !text-gray-900 dark:!text-gray-400 !text-lg">
+                            Configure Audiences
+                        </h3>
+                        <div class="mb-[20px] mb-[25px] lg:mb-[35px]">
+                            <label class="mb-[15px] text-gray-500 dark:text-white font-medium block">
+                                Gender
+                            </label>
+                            <div class="grid grid-cols-3 gap-[25px]">
+                                <div class="form-radio border-[2px] rounded-[4px] border-dashed border-gray-100 dark:border-[#172036]">
+                                    <label for="genderAll" class="cursor-pointer relative block py-[18px] ltr:pl-[48px] rtl:pr-[48px] ltr:pr-[20px] rtl:pl-[20px]">
+                                        <input checked type="radio" name="genderRadio" class="absolute ltr:left-[20px] rtl:right-[20px] top-1/2 -translate-y-1/2 scale-[1.5] w-[15px]" id="genderAll">
+                                        <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                            All
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-[2px] rounded-[4px] border-dashed border-gray-100 dark:border-[#172036]">
+                                    <label for="genderMale" class="cursor-pointer relative block py-[18px] ltr:pl-[48px] rtl:pr-[48px] ltr:pr-[20px] rtl:pl-[20px]">
+                                        <input type="radio" name="genderRadio" class="absolute ltr:left-[20px] rtl:right-[20px] top-1/2 -translate-y-1/2 scale-[1.5] w-[15px]" id="genderMale">
+                                        <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                            Male
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="form-radio border-[2px] rounded-[4px] border-dashed border-gray-100 dark:border-[#172036]">
+                                    <label for="genderFemale" class="cursor-pointer relative block py-[18px] ltr:pl-[48px] rtl:pr-[48px] ltr:pr-[20px] rtl:pl-[20px]">
+                                        <input type="radio" name="genderRadio" class="absolute ltr:left-[20px] rtl:right-[20px] top-1/2 -translate-y-1/2 scale-[1.5] w-[15px]" id="genderFemale">
+                                        <span class="block font-medium text-gray-900 dark:text-gray-400">
+                                            Female
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-[20px] mb-[25px] lg:mb-[35px]">
+                            <label class="mb-[18px] text-gray-500 dark:text-white font-medium block">
+                                Age
+                            </label>
+                            <div class="range-slider">
+                                <div class="number-group flex items-center justify-between">
+                                    <input
+                                        [(ngModel)]="rangeValues[0]"
+                                        class="number-input md:text-md font-semibold text-gray-900 dark:text-gray-400 !outline-0 dark:bg-[#0c1427]"
+                                        type="number"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        (input)="onNumberInput()"
+                                    />
+                                    <input
+                                        [(ngModel)]="rangeValues[1]"
+                                        class="number-input md:text-md font-semibold text-gray-900 dark:text-gray-400 !outline-0 dark:bg-[#0c1427]"
+                                        type="number"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        (input)="onNumberInput()"
+                                    />
+                                </div>
+                                <div class="range-group relative -mt-[10px] ltr:ml-[32px] rtl:mr-[32px] ltr:mr-[40px] rtl:ml-[40px]">
+                                    <input
+                                        [(ngModel)]="rangeValues[0]"
+                                        class="range-input"
+                                        type="range"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        [step]="stepValue"
+                                        (input)="onRangeInput()"
+                                    />
+                                    <input
+                                        [(ngModel)]="rangeValues[1]"
+                                        class="range-input"
+                                        type="range"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        [step]="stepValue"
+                                        (input)="onRangeInput()"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-[20px] mb-[25px] lg:mb-[35px]">
+                            <label class="mb-[15px] text-gray-500 dark:text-white font-medium block">
+                                Location
+                            </label>
+                            <select class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option>
+                                    United States
+                                </option>
+                                <option>
+                                    Switzerland
+                                </option>
+                                <option>
+                                    Germany
+                                </option>
+                                <option>
+                                    Sweden
+                                </option>
+                                <option>
+                                    Denmark
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-[20px] mb-[25px] lg:mb-[35px]">
+                            <label class="mb-[15px] text-gray-500 dark:text-white font-medium block">
+                                Media
+                            </label>
+                            <select class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option>
+                                    Facebook
+                                </option>
+                                <option>
+                                    Instagram
+                                </option>
+                                <option>
+                                    LinkedIn
+                                </option>
+                                <option>
+                                    Twitter
+                                </option>
+                                <option>
+                                    Threads
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-[20px] mb-[25px] lg:mb-[35px]">
+                            <label class="mb-[15px] text-gray-500 dark:text-white font-medium block">
+                                Team Member
+                            </label>
+                            <select class="h-[55px] font-medium md:text-md rounded-[4px] text-gray-900 dark:text-white border border-gray-100 dark:border-[#0a0e19] bg-gray-100 dark:bg-[#0a0e19] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400">
+                                <option selected>
+                                    Select
+                                </option>
+                                <option>
+                                    Olivia Smith
+                                </option>
+                                <option>
+                                    Jason Smith
+                                </option>
+                                <option>
+                                    Alina Lyes
+                                </option>
+                                <option>
+                                    Jonathon Ronan
+                                </option>
+                                <option>
+                                    Walter White
+                                </option>
+                            </select>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button type="button" class="inline-block md:text-md font-medium bg-gray-600 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-gray-500">
+                                <span class="flex items-center gap-[5px]">
+                                    <i class="ri-arrow-left-line"></i>
+                                    Back
+                                </span>
+                            </button>
+                            <button type="button" class="inline-block md:text-md font-medium bg-primary-500 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-primary-400">
+                                <span class="flex items-center gap-[5px]">
+                                    Continue
+                                    <i class="ri-arrow-right-line"></i>
+                                </span>
+                            </button>
+                        </div>
+                    }
+                    @if (currentTab2 === 'campaignTab4') {
+                        <h3 class="!mb-[20px] md:!mb-[25px] !text-gray-900 dark:!text-gray-400 !text-lg">
+                            Budgets Estimates
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[25px]">
+                            <div class="form-radio border-[2px] rounded-[4px] border-dashed border-gray-100 dark:border-[#172036]">
+                                <label for="continuousDuration" class="cursor-pointer relative block py-[18px] ltr:pl-[52px] rtl:pr-[52px] ltr:pr-[20px] rtl:pl-[20px]">
+                                    <input checked type="radio" name="budgetEstimatesRatio" class="absolute ltr:left-[20px] rtl:right-[20px] top-1/2 -translate-y-1/2 scale-[1.5] w-[15px]" id="continuousDuration">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Continuous Duration
+                                    </span>
+                                    <span class="block text-gray-400">
+                                        Your Ad will run continuously for a daily budget.
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="form-radio border-[2px] rounded-[4px] border-dashed border-gray-100 dark:border-[#172036]">
+                                <label for="fixedDuration" class="cursor-pointer relative block py-[18px] ltr:pl-[52px] rtl:pr-[52px] ltr:pr-[20px] rtl:pl-[20px]">
+                                    <input type="radio" name="budgetEstimatesRatio" class="absolute ltr:left-[20px] rtl:right-[20px] top-1/2 -translate-y-1/2 scale-[1.5] w-[15px]" id="fixedDuration">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Fixed Duration
+                                    </span>
+                                    <span class="block text-gray-400">
+                                        Your Ad will run only specified dates only.
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="my-[20px] my-[25px] lg:my-[35px]">
+                            <label class="mb-[15px] text-gray-500 dark:text-white font-medium block">
+                                Daily Budget
+                            </label>
+                            <div class="range-slider">
+                                <div class="number-group flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="md:text-md font-semibold text-gray-900 dark:text-gray-400">
+                                            $
+                                        </span>
+                                        <input
+                                            [(ngModel)]="rangeValues[0]"
+                                            class="number-input md:text-md font-semibold text-gray-900 dark:text-gray-400 !outline-0 dark:bg-[#0c1427]"
+                                            type="number"
+                                            [min]="minValue"
+                                            [max]="maxValue"
+                                            (input)="onNumberInput()"
+                                        />
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="md:text-md font-semibold text-gray-900 dark:text-gray-400">
+                                            $
+                                        </span>
+                                        <input
+                                            [(ngModel)]="rangeValues[1]"
+                                            class="number-input md:text-md font-semibold text-gray-900 dark:text-gray-400 !outline-0 dark:bg-[#0c1427]"
+                                            type="number"
+                                            [min]="minValue"
+                                            [max]="maxValue"
+                                            (input)="onNumberInput()"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="range-group relative -mt-[10px] ltr:ml-[43px] rtl:mr-[43px] ltr:mr-[50px] rtl:ml-[50px]">
+                                    <input
+                                        [(ngModel)]="rangeValues[0]"
+                                        class="range-input"
+                                        type="range"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        [step]="stepValue"
+                                        (input)="onRangeInput()"
+                                    />
+                                    <input
+                                        [(ngModel)]="rangeValues[1]"
+                                        class="range-input"
+                                        type="range"
+                                        [min]="minValue"
+                                        [max]="maxValue"
+                                        [step]="stepValue"
+                                        (input)="onRangeInput()"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-[15px]"></div>
+                        <div class="flex items-center justify-between">
+                            <button type="button" class="inline-block md:text-md font-medium bg-gray-600 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-gray-500">
+                                <span class="flex items-center gap-[5px]">
+                                    <i class="ri-arrow-left-line"></i>
+                                    Back
+                                </span>
+                            </button>
+                            <button type="button" class="inline-block md:text-md font-medium bg-primary-500 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-primary-400">
+                                <span class="flex items-center gap-[5px]">
+                                    Create Campaign
+                                    <i class="ri-arrow-right-line"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="md:pb-[20px]"></div>
+                    }
+                    @if (currentTab2 === 'campaignTab5') {
+                        <div class="text-center pb-[20px]">
+                            <img src="images/created.png" class="inline-block" alt="created-image">
+                            <h3 class="!text-gray-900 dark:!text-gray-400 !text-xl mt-[25px] !mb-[12px]">
+                                Campaign Created!
+                            </h3>
+                            <p class="mx-auto max-w-[455px]">
+                                You will receive an email with with the summary of your newly created campaign!
+                            </p>
+                            <div class="mt-[28px] flex items-center justify-center gap-[20px]">
+                                <button type="button" class="inline-block md:text-md font-medium bg-gray-600 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-gray-500">
+                                    <span class="flex items-center gap-[5px]">
+                                        <i class="ri-arrow-left-line"></i>
+                                        Create New Campaign
+                                    </span>
+                                </button>
+                                <button type="button" class="inline-block md:text-md font-medium bg-primary-500 text-white rounded-[7px] py-[8px] px-[19px] transition-all hover:bg-primary-400">
+                                    <span class="flex items-center gap-[5px]">
+                                        View Campaign
+                                        <i class="ri-arrow-right-line"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Campaign Modal -->
+<div
+    class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px] ltr:-mr-[15px] rtl:-ml-[15px]"
+    [class.active]="classApplied2"
+>
+    <div class="popup-dialog flex transition-all sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1320px] min-h-full items-center mx-auto">
+        <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] lg:p-[50px]">
+            <div class="trezo-card-header mb-[20px] md:mb-[25px] pb-[20px] md:pb-[25px] border-b border-primary-50 dark:border-[#172036] flex items-center justify-between">
+                <div class="trezo-card-title flex items-center gap-[18px] ltr:lg:pl-[45px] rtl:lg:pr-[45px]">
+                    <div class="bg-[#E8EDE7] rounded-[8px] w-[64px] h-[64px] flex items-center justify-center">
+                        <img src="images/icons/supabase.svg" alt="supabase">
+                    </div>
+                    <div>
+                        <span class="block text-gray-900 dark:text-gray-400 font-bold text-lg md:text-xl mb-[3px] md:mb-0">
+                            Christmas Eve
+                        </span>
+                        <span class="block font-medium md:text-md">
+                            From 10 Oct - 15 Oct, 24
+                        </span>
+                    </div>
+                </div>
+                <div class="trezo-card-subtitle">
+                    <button type="button" class="text-2xl transition-all leading-none text-black dark:text-white hover:text-primary-500" (click)="toggleClass2()">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="trezo-card-content ltr:lg:pl-[45px] rtl:lg:pr-[45px]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                    <div>
+                        <div class="trezo-card bg-gray-50 dark:bg-[#0a0e19] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+                            <div class="trezo-card-header mb-[14px] pb-[17px] border-b border-primary-50 dark:border-[#172036] flex items-center justify-between">
+                                <div class="trezo-card-title">
+                                    <h5 class="!mb-0">
+                                        Campaign Goal:
+                                    </h5>
+                                </div>
+                                <div class="trezo-card-subtitle">
+                                    <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                                            <i class="ri-more-2-fill"></i>
+                                        </button>
+                                        @if (isCardHeaderOpen) {
+                                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Update
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Cancel
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Delete
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trezo-card-content md:pb-[12px]">
+                                <span class="block font-medium text-gray-900 dark:text-gray-400 mb-[6px]">
+                                    Get more visitors
+                                </span>
+                                <p>
+                                    Increase impression traffic onto the platform
+                                </p>
+                            </div>
+                        </div>
+                        <div class="trezo-card bg-gray-50 dark:bg-[#0a0e19] p-[20px] md:p-[25px] rounded-md">
+                            <div class="trezo-card-header mb-[20px] pb-[17px] border-b border-primary-50 dark:border-[#172036] flex items-center justify-between">
+                                <div class="trezo-card-title">
+                                    <h5 class="!mb-0">
+                                        Team Members:
+                                    </h5>
+                                </div>
+                                <div class="trezo-card-subtitle">
+                                    <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu2()">
+                                            <i class="ri-more-2-fill"></i>
+                                        </button>
+                                        @if (isCardHeaderOpen2) {
+                                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Update
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Cancel
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Delete
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trezo-card-content md:pb-[45px]">
+                                <div class="inline-block py-[4px] ltr:pl-[7px] rtl:pr-[7px] ltr:pr-[20px] rtl:pl-[20px] bg-gray-100 dark:bg-[#0c1427] rounded-[3px] ltr:mr-[8px] mb-[10px] last:mr-0">
+                                    <div class="flex items-center font-medium text-gray-900 dark:text-gray-400 gap-[7px]">
+                                        <img src="images/users/user1.jpg" class="w-[22px] rounded-full border border-white dark:border-black" alt="use-image">
+                                        Jonathon Ronan
+                                    </div>
+                                </div>
+                                <div class="inline-block py-[4px] ltr:pl-[7px] rtl:pr-[7px] ltr:pr-[20px] rtl:pl-[20px] bg-gray-100 dark:bg-[#0c1427] rounded-[3px] ltr:mr-[8px] mb-[10px] last:mr-0">
+                                    <div class="flex items-center font-medium text-gray-900 dark:text-gray-400 gap-[7px]">
+                                        <img src="images/users/user2.jpg" class="w-[22px] rounded-full border border-white dark:border-black" alt="use-image">
+                                        Walter White
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="trezo-card bg-gray-50 dark:bg-[#0a0e19] p-[20px] md:p-[25px] rounded-md">
+                            <div class="trezo-card-header mb-[10px] pb-[17px] border-b border-primary-50 dark:border-[#172036] flex items-center justify-between">
+                                <div class="trezo-card-title">
+                                    <h5 class="!mb-0">
+                                        Audiences:
+                                    </h5>
+                                </div>
+                                <div class="trezo-card-subtitle">
+                                    <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu3()">
+                                            <i class="ri-more-2-fill"></i>
+                                        </button>
+                                        @if (isCardHeaderOpen3) {
+                                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Update
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Cancel
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Delete
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trezo-card-content">
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[10px] mb-[10px]">
+                                    <span class="font-medium text-gray-900 dark:text-gray-400">
+                                        Gender:
+                                    </span>
+                                    All
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[10px] mb-[10px]">
+                                    <span class="font-medium text-gray-900 dark:text-gray-400">
+                                        Age Range:
+                                    </span>
+                                    18-60
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[10px] mb-[10px]">
+                                    <span class="font-medium text-gray-900 dark:text-gray-400">
+                                        Location:
+                                    </span>
+                                    Canada, USA
+                                </div>
+                                <div class="border-b border-primary-50 dark:border-[#172036] pb-[10px] mb-[10px]">
+                                    <span class="font-medium text-gray-900 dark:text-gray-400">
+                                        Media:
+                                    </span>
+                                    Facebook, Instagram
+                                </div>
+                                <div class="md:pt-[200px]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="trezo-card bg-gray-50 dark:bg-[#0a0e19] p-[20px] md:p-[25px] rounded-md">
+                            <div class="trezo-card-header mb-[14px] pb-[17px] border-b border-primary-50 dark:border-[#172036] flex items-center justify-between">
+                                <div class="trezo-card-title">
+                                    <h5 class="!mb-0">
+                                        Uploaded Files:
+                                    </h5>
+                                </div>
+                                <div class="trezo-card-subtitle">
+                                    <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                                        <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu4()">
+                                            <i class="ri-more-2-fill"></i>
+                                        </button>
+                                        @if (isCardHeaderOpen4) {
+                                            <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Update
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Cancel
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                                        Delete
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="trezo-card-content">
+                                <div class="relative ltr:pl-[39px] rtl:pr-[39px] ltr:pr-[39px] rtl:pl-[39px] border-b border-primary-50 dark:border-[#172036] pb-[13px] mb-[13px] last:pb-0 last:border-b-0 last:mb-0">
+                                    <img src="images/icons/pdf.png" class="w-[26px] absolute top-[5px] ltr:left-0 rtl:right-0" alt="pdf">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Campaign_Requirements.pdf
+                                    </span>
+                                    <p class="leading-[1.6] mb-0">
+                                        Increase impression traffic onto the platform.
+                                    </p>
+                                    <button type="button" class="inline-block w-[30px] transition-all h-[30px] rounded-full bg-white dark:bg-black text-primary-500 leading-[23px] text-md absolute ltr:right-0 top-[5px] hover:bg-primary-500 hover:text-white">
+                                        <i class="ri-download-2-line"></i>
+                                    </button>
+                                </div>
+                                <div class="relative ltr:pl-[39px] rtl:pr-[39px] ltr:pr-[39px] rtl:pl-[39px] border-b border-primary-50 dark:border-[#172036] pb-[13px] mb-[13px] last:pb-0 last:border-b-0 last:mb-0">
+                                    <img src="images/icons/doc.png" class="w-[26px] absolute top-[5px] ltr:left-0 rtl:right-0" alt="doc">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Campaigns_mission_and_vision.txt
+                                    </span>
+                                    <p class="leading-[1.6] mb-0">
+                                        Increase impression traffic onto the platform.
+                                    </p>
+                                    <button type="button" class="inline-block w-[30px] transition-all h-[30px] rounded-full bg-white dark:bg-black text-primary-500 leading-[23px] text-md absolute ltr:right-0 top-[5px] hover:bg-primary-500 hover:text-white">
+                                        <i class="ri-download-2-line"></i>
+                                    </button>
+                                </div>
+                                <div class="relative ltr:pl-[39px] rtl:pr-[39px] ltr:pr-[39px] rtl:pl-[39px] border-b border-primary-50 dark:border-[#172036] pb-[13px] mb-[13px] last:pb-0 last:border-b-0 last:mb-0">
+                                    <img src="images/icons/gif.svg" class="w-[26px] absolute top-[5px] ltr:left-0 rtl:right-0" alt="gif">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Campaign_Banner.gif
+                                    </span>
+                                    <p class="leading-[1.6] mb-0">
+                                        Increase impression traffic onto the platform.
+                                    </p>
+                                    <button type="button" class="inline-block w-[30px] transition-all h-[30px] rounded-full bg-white dark:bg-black text-primary-500 leading-[23px] text-md absolute ltr:right-0 top-[5px] hover:bg-primary-500 hover:text-white">
+                                        <i class="ri-download-2-line"></i>
+                                    </button>
+                                </div>
+                                <div class="relative ltr:pl-[39px] rtl:pr-[39px] ltr:pr-[39px] rtl:pl-[39px] border-b border-primary-50 dark:border-[#172036] pb-[13px] mb-[13px] last:pb-0 last:border-b-0 last:mb-0">
+                                    <img src="images/icons/jpg.png" class="w-[26px] absolute top-[5px] ltr:left-0 rtl:right-0" alt="jpg">
+                                    <span class="block mb-[5px] font-medium text-gray-900 dark:text-gray-400">
+                                        Campaign_Image.jpg
+                                    </span>
+                                    <p class="leading-[1.6] mb-0">
+                                        Increase impression traffic onto the platform.
+                                    </p>
+                                    <button type="button" class="inline-block w-[30px] transition-all h-[30px] rounded-full bg-white dark:bg-black text-primary-500 leading-[23px] text-md absolute ltr:right-0 top-[5px] hover:bg-primary-500 hover:text-white">
+                                        <i class="ri-download-2-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

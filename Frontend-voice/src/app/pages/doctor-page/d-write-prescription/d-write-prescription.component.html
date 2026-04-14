@@ -1,0 +1,172 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Write a Prescription
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Doctor
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Prescriptions
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Write a Prescription
+        </li>
+    </ol>
+</div>
+
+<!-- Write a Prescription -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-content">
+        <div class="sm:flex justify-between">
+            <div>
+                <h4 class="!mb-[7px] !text-[20px] !font-semibold">
+                    Dr. Walter White
+                </h4>
+                <span class="block md:text-md mt-[5px]">
+                    MBBS, MD, MS (Reg No: 321456)
+                </span>
+                <span class="block md:text-md mt-[5px] text-black dark:text-white">
+                    Mobile No: +321 4567 5643
+                </span>
+            </div>
+            <div class="mt-[20px] sm:mt-0">
+                <img src="images/logo.svg" alt="logo" class="mb-[10px] dark:hidden">
+                <img src="images/white-logo.svg" alt="logo" class="mb-[10px] hidden dark:block">
+                <span class="block md:text-md mt-[5px]">
+                    S. Arrowhead Court Branford9
+                </span>
+                <span class="block md:text-md mt-[5px]">
+                    +1 444 266 5599
+                </span>
+            </div>
+        </div>
+        <div class="h-[1px] bg-gray-100 dark:bg-[#172036] -mx-[20px] md:-mx-[25px] my-[20px] md:my-[23px]"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
+            <div class="sm:col-span-2">
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Select Date
+                </label>
+                <input type="date" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500">
+            </div>
+            <div class="sm:col-span-2">
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Patient ID
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Patient ID">
+            </div>
+            <div>
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Patient First Name
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter First Name">
+            </div>
+            <div>
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Patient Last Name
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Last Name">
+            </div>
+            <div class="sm:col-span-2">
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Patient Address
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Address">
+            </div>
+            <div>
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Temperature (Farenhite)
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Temperature">
+            </div>
+            <div>
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Blood Pressure
+                </label>
+                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Blood Pressure">
+            </div>
+        </div>
+        <div class="my-[20px] md:my-[25px] -mx-[20px] md:-mx-[25px]">
+            <div class="table-responsive overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="text-gray-500 dark:text-gray-400 whitespace-nowrap relative z-[1] align-middle text-base font-normal ltr:text-left rtl:text-right py-[14px] px-[20px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-t border-b border-gray-100 dark:border-[#15203c]">
+                                Medicine Name
+                                <div class="absolute top-0 left-0 right-0 bottom-0 -z-[1] bg-gray-50 dark:bg-[#15203c] my-[4px]"></div>
+                            </th>
+                            <th class="text-gray-500 dark:text-gray-400 whitespace-nowrap relative z-[1] align-middle text-base font-normal ltr:text-left rtl:text-right py-[14px] px-[20px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-t border-b border-gray-100 dark:border-[#15203c]">
+                                Dosage
+                                <div class="absolute top-0 left-0 right-0 bottom-0 -z-[1] bg-gray-50 dark:bg-[#15203c] my-[4px]"></div>
+                            </th>
+                            <th class="text-gray-500 dark:text-gray-400 whitespace-nowrap relative z-[1] align-middle text-base font-normal ltr:text-left rtl:text-right py-[14px] px-[20px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-t border-b border-gray-100 dark:border-[#15203c]">
+                                Duration
+                                <div class="absolute top-0 left-0 right-0 bottom-0 -z-[1] bg-gray-50 dark:bg-[#15203c] my-[4px]"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-black dark:text-white">
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]">
+                                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-[200px] md:w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="Enter Medicine Name">
+                            </td>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]">
+                                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-[200px] md:w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500 mb-[10px] last:mb-0" placeholder="Morning: 01 Tablet">
+                                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-[200px] md:w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500 mb-[10px] last:mb-0" placeholder="Night: 01 Tablet">
+                            </td>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]">
+                                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-[200px] md:w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500 mb-[10px] last:mb-0" placeholder="Enter Total Days">
+                                <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-[200px] md:w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500 mb-[10px] last:mb-0" placeholder="Enter Total Tablets">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]">
+                                <button class="inline-block py-[10px] px-[30px] bg-primary-500 text-white transition-all hover:bg-primary-400 rounded-md border border-primary-500 hover:border-primary-400" type="button">
+                                    + Add More Medicine
+                                </button>
+                            </td>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]"></td>
+                            <td class="ltr:text-left rtl:text-right align-top whitespace-nowrap px-[20px] py-[18px] ltr:first:pl-[20px] rtl:first:pr-[20px] ltr:md:first:pl-[25px] rtl:md:first:pr-[25px] border-b border-gray-100 dark:border-[#15203c]"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
+            <div class="sm:col-span-2">
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Advice
+                </label>
+                <textarea class="h-[140px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] p-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" placeholder="It makes me feel..."></textarea>
+            </div>
+            <div class="sm:col-span-2">
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    Upload Signature
+                </label>
+                <file-upload class="file-uploader"></file-upload>
+            </div>
+        </div>
+        <div class="mt-[20px] md:mt-[25px] text-center md:text-right">
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400 mx-[8px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                Cancel
+            </button>
+            <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400 mx-[8px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+                <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                    <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Create Prescription
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

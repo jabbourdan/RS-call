@@ -1,0 +1,147 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Top Products by Sales
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        This Week
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <ul>
+            <li class="flex items-center justify-between border-b border-gray-100 dark:border-[#172036] pb-[14px] mb-[15px] last:mb-0 last:pb-0 last:border-0">
+                <div class="flex items-center">
+                    <div class="text-primary-500 bg-primary-100 dark:bg-[#15203c] flex items-center justify-center w-[48px] h-[48px] ltr:mr-[15px] rtl:ml-[15px] rounded-sm">
+                        <i class="material-symbols-outlined">
+                            smartphone
+                        </i>
+                    </div>
+                    <div>
+                        <a routerLink="/dashboard/ecommerce-page/product-details" class="block mb-[2px] text-black dark:text-white font-medium transition-all hover:text-primary-500">
+                            Samsung Galaxy
+                        </a>
+                        <span class="block">
+                            Samsung
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-black dark:text-white font-medium">
+                    $96,455
+                </span>
+            </li>
+            <li class="flex items-center justify-between border-b border-gray-100 dark:border-[#172036] pb-[14px] mb-[15px] last:mb-0 last:pb-0 last:border-0">
+                <div class="flex items-center">
+                    <div class="text-purple-500 bg-purple-100 dark:bg-[#15203c] flex items-center justify-center w-[48px] h-[48px] ltr:mr-[15px] rtl:ml-[15px] rounded-sm">
+                        <i class="material-symbols-outlined">
+                            tap_and_play
+                        </i>
+                    </div>
+                    <div>
+                        <a routerLink="/dashboard/ecommerce-page/product-details" class="block mb-[2px] text-black dark:text-white font-medium transition-all hvoer:text-primary-500">
+                            iPhone 15 Plus
+                        </a>
+                        <span class="block">
+                            Apple inc.
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-black dark:text-white font-medium">
+                    $89,670
+                </span>
+            </li>
+            <li class="flex items-center justify-between border-b border-gray-100 dark:border-[#172036] pb-[14px] mb-[15px] last:mb-0 last:pb-0 last:border-0">
+                <div class="flex items-center">
+                    <div class="text-danger-500 bg-danger-100 dark:bg-[#15203c] flex items-center justify-center w-[48px] h-[48px] ltr:mr-[15px] rtl:ml-[15px] rounded-sm">
+                        <i class="material-symbols-outlined">
+                            edgesensor_low
+                        </i>
+                    </div>
+                    <div>
+                        <a routerLink="/dashboard/ecommerce-page/product-details" class="block mb-[2px] text-black dark:text-white font-medium transition-all hover:text-primary-500">
+                            Vivo V30
+                        </a>
+                        <span class="block">
+                            Vivo Ltd.
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-black dark:text-white font-medium">
+                    $75,329
+                </span>
+            </li>
+            <li class="flex items-center justify-between border-b border-gray-100 dark:border-[#172036] pb-[14px] mb-[15px] last:mb-0 last:pb-0 last:border-0">
+                <div class="flex items-center">
+                    <div class="text-success-500 bg-success-100 dark:bg-[#15203c] flex items-center justify-center w-[48px] h-[48px] ltr:mr-[15px] rtl:ml-[15px] rounded-sm">
+                        <i class="material-symbols-outlined">
+                            watch
+                        </i>
+                    </div>
+                    <div>
+                        <a routerLink="/dashboard/ecommerce-page/product-details" class="block mb-[2px] text-black dark:text-white font-medium transition-all hover:text-primary-500">
+                            Watch Series 7
+                        </a>
+                        <span class="block">
+                            Apple
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-black dark:text-white font-medium">
+                    $98,256
+                </span>
+            </li>
+            <li class="flex items-center justify-between border-b border-gray-100 dark:border-[#172036] pb-[14px] mb-[15px] last:mb-0 last:pb-0 last:border-0">
+                <div class="flex items-center">
+                    <div class="text-secondary-500 bg-secondary-100 dark:bg-[#15203c] flex items-center justify-center w-[48px] h-[48px] ltr:mr-[15px] rtl:ml-[15px] rounded-sm">
+                        <i class="material-symbols-outlined">
+                            headphones
+                        </i>
+                    </div>
+                    <div>
+                        <a routerLink="/dashboard/ecommerce-page/product-details" class="block mb-[2px] text-black dark:text-white font-medium transition-all hover:text-primary-500">
+                            Sony WF-SP800N
+                        </a>
+                        <span class="block">
+                            Sony
+                        </span>
+                    </div>
+                </div>
+                <span class="block text-black dark:text-white font-medium">
+                    $65,987
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

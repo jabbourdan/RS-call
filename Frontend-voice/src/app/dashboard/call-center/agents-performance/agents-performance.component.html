@@ -1,0 +1,263 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0 !font-semibold">
+                Agents Performance Overview
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        Last Month
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Last Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <span class="block mb-[10px]">
+            Top Performing Agent
+        </span>
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user61.jpg" class="w-[40px] rounded-[4px]" alt="user-image">
+                    <div class="relative">
+                        <span class="font-semibold text-gray-700 dark:text-white block">
+                            John Smith
+                        </span>
+                        <span class="block -mt-px text-gray-700 dark:text-gray-400">
+                            380 Calls
+                        </span>
+                        <div class="absolute top-1/2 -translate-y-1/2 ltr:-left-[14px] rtl:-right-[14px] w-[8px] h-[8px] rounded-full bg-success-500"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-2">
+                <div class="ltr:md:pl-[45px] rtl:md:pr-[45px] mt-[10px] md:mt-0">
+                    <div class="flex items-center justify-between mb-[5px]">
+                        <span class="block">
+                            Customer Satisfaction (CSAT)
+                        </span>
+                        <span class="block">
+                            92%
+                        </span>
+                    </div>
+                    <div class="flex w-full h-[6px] overflow-hidden rounded-md bg-gray-100 dark:bg-[#172036]">
+                        <div class="flex flex-col justify-center overflow-hidden bg-success-600 rounded-md" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive overflow-x-auto mt-[15px] md:mt-[20px]">
+            <table class="w-full">
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <div class="flex items-center gap-[10px]">
+                                <img src="images/users/user62.jpg" class="w-[36px] rounded-[4px]" alt="user-image">
+                                <div class="relative">
+                                    <span class="font-medium text-gray-700 dark:text-white block">
+                                        Sarah Davis
+                                    </span>
+                                    <span class="block -mt-px text-gray-700 dark:text-gray-400">
+                                        65 Calls
+                                    </span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 ltr:-left-[14px] rtl:-right-[14px] w-[8px] h-[8px] rounded-full bg-success-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                Avg. Call Duration
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                4 mins 10 secs
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                FCR
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                85%
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                CSAT
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                90%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <div class="flex items-center gap-[10px]">
+                                <img src="images/users/user63.jpg" class="w-[36px] rounded-[4px]" alt="user-image">
+                                <div class="relative">
+                                    <span class="font-medium text-gray-700 dark:text-white block">
+                                        Michael Brown
+                                    </span>
+                                    <span class="block -mt-px text-gray-700 dark:text-gray-400">
+                                        58 Calls
+                                    </span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 ltr:-left-[14px] rtl:-right-[14px] w-[8px] h-[8px] rounded-full bg-orange-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                Avg. Call Duration
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                5 mins 20 secs
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                FCR
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                82%
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                CSAT
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                87%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <div class="flex items-center gap-[10px]">
+                                <img src="images/users/user64.jpg" class="w-[36px] rounded-[4px]" alt="user-image">
+                                <div class="relative">
+                                    <span class="font-medium text-gray-700 dark:text-white block">
+                                        Emily Johnson
+                                    </span>
+                                    <span class="block -mt-px text-gray-700 dark:text-gray-400">
+                                        72 Calls
+                                    </span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 ltr:-left-[14px] rtl:-right-[14px] w-[8px] h-[8px] rounded-full bg-success-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                Avg. Call Duration
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                4 mins 30 secs
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                FCR
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                88%
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                CSAT
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                90%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                        <td class="p-[5px]"></td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <div class="flex items-center gap-[10px]">
+                                <img src="images/users/user65.jpg" class="w-[36px] rounded-[4px]" alt="user-image">
+                                <div class="relative">
+                                    <span class="font-medium text-gray-700 dark:text-white block">
+                                        David Lee
+                                    </span>
+                                    <span class="block -mt-px text-gray-700 dark:text-gray-400">
+                                        53 Calls
+                                    </span>
+                                    <div class="absolute top-1/2 -translate-y-1/2 ltr:-left-[14px] rtl:-right-[14px] w-[8px] h-[8px] rounded-full bg-orange-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                Avg. Call Duration
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                3 mins 50 secs
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                FCR
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                80%
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap py-[8px] px-[9px] bg-gray-50 dark:bg-[#0a0e19] border-none ltr:first:rounded-l-md rtl:first:rounded-r-md ltr:last:rounded-r-md rtl:last:rounded-l-md">
+                            <span class="block text-gray-500 dark:text-gray-400">
+                                CSAT
+                            </span>
+                            <span class="font-medium text-gray-700 dark:text-white">
+                                85%
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

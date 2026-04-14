@@ -1,0 +1,12 @@
+.lead-list-scroll {
+    max-height: calc(100vh - 340px);
+
+    @media (min-width: 1024px) {
+        max-height: calc(100vh - 320px);
+    }
+}
+
+/* Selected lead left border */
+.border-l-3 {
+    border-inline-start-width: 3px;
+}

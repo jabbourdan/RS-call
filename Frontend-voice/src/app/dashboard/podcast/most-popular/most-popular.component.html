@@ -1,0 +1,996 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[23px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0 !font-semibold">
+                Most Popular
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <a routerLink="." class="inline-block relative ltr:pr-[13px] rtl:pl-[13px] leading-none transition-all hover:text-primary-500">
+                View All <i class="ri-arrow-right-s-line absolute top-1/2 -translate-y-1/2 ltr:-right-[8px] rtl:-left-[8px] text-[23px] -mt-px"></i>
+            </a>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <ul class="most-popular-navs mb-[18px]">
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab1'}" (click)="switchTab($event, 'tab1')">
+                    Marketing
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab2'}" (click)="switchTab($event, 'tab2')">
+                    Content
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab3'}" (click)="switchTab($event, 'tab3')">
+                    Social
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab4'}" (click)="switchTab($event, 'tab4')">
+                    Analytics
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab5'}" (click)="switchTab($event, 'tab5')">
+                    Customer
+                </button>
+            </li>
+            <li class="nav-item inline-block mb-[7px] ltr:mr-[8px] rtl:ml-[8px] ltr:last:mr-0 rtl:last:ml-0">
+                <button type="button" class="nav-link inline-block font-medium text-xs rounded-[30px] py-[4px] px-[12px] text-gray-500 dark:text-gray-400 transition-all bg-gray-100 dark:bg-dark" [ngClass]="{'active': currentTab === 'tab6'}" (click)="switchTab($event, 'tab6')">
+                    Trends
+                </button>
+            </li>
+        </ul>
+        @if (currentTab === 'tab1') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast1.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Influencer Marketing
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda Garcia
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast3.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Boosting Engagement
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Lisa Kim
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast4.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Real Engagement Metrics
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Sarah Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,700
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab2') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast4.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Real Engagement Metrics
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Sarah Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,700
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast3.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Boosting Engagement
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Lisa Kim
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast1.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Influencer Marketing
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda Garcia
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab3') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast4.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Real Engagement Metrics
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Sarah Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,700
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast3.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Boosting Engagement
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Lisa Kim
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab4') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast1.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Influencer Marketing
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda Garcia
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab5') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast4.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Real Engagement Metrics
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Sarah Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,700
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast3.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Boosting Engagement
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Lisa Kim
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast1.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Influencer Marketing
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda Garcia
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (currentTab === 'tab6') {
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast2.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Data for Better Ads
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: David Chen
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,500
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast3.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Boosting Engagement
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Lisa Kim
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast6.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Podcast Marketing 101
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                9,400
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast1.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Influencer Marketing
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Amanda Garcia
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                6,300
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast4.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                Real Engagement Metrics
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Sarah Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,700
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div
+                        class="relative rounded-md h-[185.06px] bg-cover bg-center bg-no-repeat"
+                        style="background-image: url(images/podcasts/podcast5.jpg);"
+                    >
+                        <a href="#" target="_blank" class="bg-primary-500 text-white rounded-full flex items-center justify-center w-[44px] h-[44px] absolute ltr:left-[15px] rtl:right-[15px] bottom-[15px] text-[22px] transition-all hover:bg-primary-600 opacity-0 group-hover:opacity-100">
+                            <i class="ri-play-large-fill"></i>
+                        </a>
+                    </div>
+                    <div class="mt-[16px]">
+                        <h4 class="!font-medium !text-base !mb-[11px]">
+                            <a href="#" target="_blank" class="transition-all hover:text-primary-500">
+                                SEO for E-Commerce
+                            </a>
+                        </h4>
+                        <div class="flex items-center gap-[15px] md:gap-[20px] lg:gap-[25px] text-xs">
+                            <span class="block">
+                                By: Johnson
+                            </span>
+                            <span class="relative block ltr:pl-[20px] rtl:pr-[20px]">
+                                <i class="material-symbols-outlined !text-base text-primary-500 absolute top-1/2 -translate-y-1/2 ltr:left-0 rtl:right-0 -mt-px">
+                                    headset_mic
+                                </i>
+                                8,900
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

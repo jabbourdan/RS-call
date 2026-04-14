@@ -1,0 +1,203 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Top Performers
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        This Week
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center">
+                                <div class="w-[44px] h-[44px] ltr:mr-[12px] rtl:ml-[12px]">
+                                    <img src="images/users/user6.jpg" class="rounded-full inline-block" alt="user-image">
+                                </div>
+                                <div>
+                                    <span class="block font-medium">
+                                        Alex Davis
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 block mt-px">
+                                        alex&#64;trezo.com
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <a routerLink="." class="inline-block relative w-[36px] h-[36px] text-center text-gray-500 dark:text-gray-400 transition-all border border-gray-100 dark:border-[#172036] rounded-full hover:bg-primary-500 hover:border-primary-500 hover:text-white">
+                                <i class="material-symbols-outlined absolute left-0 right-0 !text-lg top-1/2 -translate-y-1/2">
+                                    arrow_outward
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center">
+                                <div class="w-[44px] h-[44px] ltr:mr-[12px] rtl:ml-[12px]">
+                                    <img src="images/users/user7.jpg" class="rounded-full inline-block" alt="user-image">
+                                </div>
+                                <div>
+                                    <span class="block font-medium">
+                                        Laura Martinez
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 block mt-px">
+                                        laura&#64;trezo.com
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <a routerLink="." class="inline-block relative w-[36px] h-[36px] text-center text-gray-500 dark:text-gray-400 transition-all border border-gray-100 dark:border-[#172036] rounded-full hover:bg-primary-500 hover:border-primary-500 hover:text-white">
+                                <i class="material-symbols-outlined absolute left-0 right-0 !text-lg top-1/2 -translate-y-1/2">
+                                    arrow_outward
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center">
+                                <div class="w-[44px] h-[44px] ltr:mr-[12px] rtl:ml-[12px]">
+                                    <img src="images/users/user8.jpg" class="rounded-full inline-block" alt="user-image">
+                                </div>
+                                <div>
+                                    <span class="block font-medium">
+                                        Mark Thompson
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 block mt-px">
+                                        mark&#64;trezo.com
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <a routerLink="." class="inline-block relative w-[36px] h-[36px] text-center text-gray-500 dark:text-gray-400 transition-all border border-gray-100 dark:border-[#172036] rounded-full hover:bg-primary-500 hover:border-primary-500 hover:text-white">
+                                <i class="material-symbols-outlined absolute left-0 right-0 !text-lg top-1/2 -translate-y-1/2">
+                                    arrow_outward
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center">
+                                <div class="w-[44px] h-[44px] ltr:mr-[12px] rtl:ml-[12px]">
+                                    <img src="images/users/user9.jpg" class="rounded-full inline-block" alt="user-image">
+                                </div>
+                                <div>
+                                    <span class="block font-medium">
+                                        Rachel White
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 block mt-px">
+                                        rachel&#64;trezo.com
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <a routerLink="." class="inline-block relative w-[36px] h-[36px] text-center text-gray-500 dark:text-gray-400 transition-all border border-gray-100 dark:border-[#172036] rounded-full hover:bg-primary-500 hover:border-primary-500 hover:text-white">
+                                <i class="material-symbols-outlined absolute left-0 right-0 !text-lg top-1/2 -translate-y-1/2">
+                                    arrow_outward
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center">
+                                <div class="w-[44px] h-[44px] ltr:mr-[12px] rtl:ml-[12px]">
+                                    <img src="images/users/user10.jpg" class="rounded-full inline-block" alt="user-image">
+                                </div>
+                                <div>
+                                    <span class="block font-medium">
+                                        Kevin Lee
+                                    </span>
+                                    <span class="text-gray-500 dark:text-gray-400 block mt-px">
+                                        kevin&#64;trezo.com
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="ltr:text-right rtl:text-left whitespace-nowrap px-[20px] py-[17px] border-b border-gray-100 dark:border-[#172036] ltr:first:pl-0 ltr:last:pr-0 rtl:first:pr-0 rtl:last:pl-0">
+                            <a routerLink="." class="inline-block relative w-[36px] h-[36px] text-center text-gray-500 dark:text-gray-400 transition-all border border-gray-100 dark:border-[#172036] rounded-full hover:bg-primary-500 hover:border-primary-500 hover:text-white">
+                                <i class="material-symbols-outlined absolute left-0 right-0 !text-lg top-1/2 -translate-y-1/2">
+                                    arrow_outward
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex items-center justify-between mt-[17px]">
+            <p class="!mb-0 text-sm">
+                Items per pages: <strong>5</strong>
+            </p>
+            <div class="flex items-center">
+                <p class="!mb-0 text-sm">
+                    1 – 5 of 10
+                </p>
+                <ol class="ltr:ml-[10px] rtl:mr-[10px] mt-[10px] sm:mt-0">
+                    <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            <span class="opacity-0">
+                                0
+                            </span>
+                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                                chevron_left
+                            </i>
+                        </a>
+                    </li>
+                    <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                        <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                            <span class="opacity-0">
+                                0
+                            </span>
+                            <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                                chevron_right
+                            </i>
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

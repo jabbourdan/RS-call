@@ -1,0 +1,229 @@
+@if (lead) {
+    <!-- Top Info Bar -->
+    <div class="grid grid-cols-3 gap-[1px] bg-gray-100 dark:bg-[#172036] rounded-lg overflow-hidden mb-[20px]">
+        <!-- Creation Note -->
+        <div class="bg-white dark:bg-[#0c1427] p-[14px]">
+            <div class="flex items-center justify-between mb-[8px]">
+                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ 'LEAD_MANAGEMENT.CREATION_NOTE' | translate }}</span>
+                @if (lead.creation_note && lead.creation_note.length > 60) {
+                    <button type="button" class="text-primary-500 text-xs hover:underline" (click)="toggleCreationNote()">
+                        {{ 'LEAD_MANAGEMENT.READ_MORE' | translate }}
+                    </button>
+                }
+            </div>
+            <div class="flex items-start gap-[8px]">
+                <i class="material-symbols-outlined !text-[18px] text-gray-400 mt-[2px]">description</i>
+                <p class="text-sm text-black dark:text-white leading-relaxed" [class.line-clamp-2]="!creationNoteExpanded">
+                    {{ lead.creation_note || ('LEAD_MANAGEMENT.NO_NOTE' | translate) }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Call Status -->
+        <div class="bg-white dark:bg-[#0c1427] p-[14px]">
+            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-[8px]">{{ 'LEAD_MANAGEMENT.CALL_STATUS' | translate }}</span>
+            <div class="flex items-center gap-[8px]">
+                <i class="material-symbols-outlined !text-[20px] text-green-500">autorenew</i>
+                @if (callStatus) {
+                    <span class="text-sm font-medium text-primary-500">
+                        {{ callStatus.status_label }}
+                    </span>
+                    @if (callStatus.follow_up_date) {
+                        <span class="text-xs text-gray-500">({{ callStatus.follow_up_date }}, {{ callStatus.follow_up_time }})</span>
+                    }
+                } @else {
+                    <span class="text-sm text-gray-400">—</span>
+                }
+            </div>
+        </div>
+
+        <!-- Campaign Selector -->
+        <div class="bg-white dark:bg-[#0c1427] p-[14px]">
+            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-[8px]">{{ 'LEAD_MANAGEMENT.CAMPAIGN' | translate }}</span>
+            <div class="flex items-center gap-[8px]">
+                <i class="material-symbols-outlined !text-[20px] text-gray-400">campaign</i>
+                <select
+                    [(ngModel)]="selectedCampaignId"
+                    (ngModelChange)="onCampaignChange()"
+                    name="timelineCampaign"
+                    class="h-[30px] rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-transparent outline-0 cursor-pointer transition-all focus:border-primary-500 flex-1 min-w-0"
+                >
+                    @for (c of campaigns; track c.campaign_id) {
+                        <option [value]="c.campaign_id">{{ c.name }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- History header -->
+    <div class="flex items-center justify-between mb-[16px]">
+        <h6 class="text-md font-semibold text-black dark:text-white flex items-center gap-[6px]">
+            <i class="material-symbols-outlined !text-[20px]">history</i>
+            {{ 'LEAD_MANAGEMENT.HISTORY' | translate }}
+        </h6>
+        <div class="flex items-center gap-[8px]">
+            <button type="button" class="text-gray-400 hover:text-primary-500 transition-all">
+                <i class="material-symbols-outlined !text-[20px]">chat_bubble_outline</i>
+            </button>
+            <button type="button" class="text-gray-400 hover:text-primary-500 transition-all">
+                <i class="material-symbols-outlined !text-[20px]">code</i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-scroll overflow-y-auto ltr:pr-[8px] rtl:pl-[8px]">
+        @for (event of events; track trackByEvent($index, event)) {
+            <div class="flex gap-[12px] mb-[4px] relative timeline-item">
+                <!-- Date/Time column -->
+                <div class="w-[52px] min-w-[52px] text-right rtl:text-left pt-[2px]">
+                    <span class="text-[11px] text-gray-400 leading-tight whitespace-pre-line">{{ formatDateTime(event.timestamp) }}</span>
+                </div>
+
+                <!-- Icon -->
+                <div class="flex flex-col items-center">
+                    <div class="w-[32px] h-[32px] min-w-[32px] rounded-full flex items-center justify-center {{ getEventColor(event.type) }}">
+                        <i class="material-symbols-outlined !text-[16px]">{{ getEventIcon(event.type) }}</i>
+                    </div>
+                    <div class="timeline-line w-[2px] flex-1 bg-gray-100 dark:bg-[#172036] my-[4px]"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 pb-[16px] min-w-0">
+                    <!-- Event title -->
+                    <div class="flex items-center gap-[6px] mb-[4px]">
+                        <span class="font-semibold text-sm text-black dark:text-white">
+                            {{ getEventI18nKey(event.type) | translate }}
+                        </span>
+                        @if (event.agent_name) {
+                            <span class="text-xs text-gray-500">- {{ event.agent_name }}</span>
+                        }
+                    </div>
+
+                    <!-- Follow-up scheduled -->
+                    @if (event.type === 'follow_up_scheduled' && event.follow_up_date) {
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-[4px]">
+                            {{ formatDateOnly(event.follow_up_date) }} | {{ formatTimeOnly(event.follow_up_date) }}
+                            @if (event.agent_name) {
+                                - {{ event.agent_name }}
+                            }
+                        </p>
+                        @if (event.follow_up_comment) {
+                            <div class="bg-gray-50 dark:bg-[#15203c] rounded-md p-[10px] text-sm text-gray-700 dark:text-gray-300 mt-[6px]">
+                                {{ event.follow_up_comment }}
+                            </div>
+                        }
+                    }
+
+                    <!-- Outgoing / Incoming call -->
+                    @if (event.type === 'outgoing_call' || event.type === 'incoming_call') {
+                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                            @if (event.type === 'outgoing_call') {
+                                {{ 'LEAD_MANAGEMENT.EVENT_OUTGOING_CALL' | translate }}
+                            } @else {
+                                {{ 'LEAD_MANAGEMENT.EVENT_INCOMING_CALL' | translate }}
+                            }
+                            @if (event.call_attempt) {
+                                ({{ event.call_attempt }})
+                            }
+                            - ({{ event.phone_number }})
+                            @if (event.is_auto_dialer) {
+                                <span class="text-xs text-gray-400 ltr:ml-[4px] rtl:mr-[4px]">- {{ 'LEAD_MANAGEMENT.AUTO_DIALER' | translate }}</span>
+                            }
+                        </p>
+                        @if (event.call_duration) {
+                            <p class="text-xs text-gray-400 mt-[2px]">
+                                {{ 'LEAD_MANAGEMENT.DURATION' | translate }}: {{ formatDuration(event.call_duration) }}
+                            </p>
+                        }
+                    }
+
+                    <!-- Call ended -->
+                    @if (event.type === 'call_ended') {
+                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                            {{ 'LEAD_MANAGEMENT.EVENT_CALL_ENDED' | translate }} ({{ formatDuration(event.duration_seconds) }})
+                            @if (event.agent_name) {
+                                - {{ event.agent_name }}
+                            }
+                        </p>
+                    }
+
+                    <!-- AI Summary -->
+                    @if (event.type === 'ai_summary') {
+                        <div class="bg-gray-50 dark:bg-[#15203c] rounded-md p-[12px] mt-[4px]">
+                            @if (event.ai_disclaimer) {
+                                <div class="flex items-start gap-[6px] mb-[8px] text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 rounded-md p-[8px]">
+                                    <i class="material-symbols-outlined !text-[14px] mt-[1px]">info</i>
+                                    <span>{{ 'LEAD_MANAGEMENT.AI_DISCLAIMER' | translate }}</span>
+                                </div>
+                            }
+                            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {{ event.ai_summary_text }}
+                            </p>
+                        </div>
+                    }
+
+                    <!-- Comment -->
+                    @if (event.type === 'comment' && event.comment_text) {
+                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-md p-[10px] text-sm text-gray-700 dark:text-gray-300">
+                            {{ event.comment_text }}
+                        </div>
+                    }
+
+                    <!-- Status change -->
+                    @if (event.type === 'status_change') {
+                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                            <span class="text-gray-400">{{ event.old_status }}</span>
+                            <i class="material-symbols-outlined !text-[14px] mx-[4px] align-middle">arrow_forward</i>
+                            <span class="font-medium">{{ event.new_status }}</span>
+                        </p>
+                    }
+
+                    <!-- Lead created -->
+                    @if (event.type === 'lead_created') {
+                        <p class="text-sm text-gray-500">
+                            {{ 'LEAD_MANAGEMENT.EVENT_LEAD_CREATED' | translate }}
+                        </p>
+                    }
+                </div>
+            </div>
+        } @empty {
+            <div class="text-center py-[60px] text-gray-400">
+                <i class="material-symbols-outlined !text-[48px] mb-[8px]">timeline</i>
+                <p class="text-sm">{{ 'LEAD_MANAGEMENT.NO_HISTORY' | translate }}</p>
+            </div>
+        }
+    </div>
+
+    <!-- Add comment input (sticky bottom) -->
+    <div class="sticky bottom-0 bg-white dark:bg-[#0c1427] pt-[12px] border-t border-gray-100 dark:border-[#172036]">
+        <form class="flex items-center gap-[8px]" (ngSubmit)="submitComment()">
+            <input
+                type="text"
+                [(ngModel)]="newComment"
+                name="commentInput"
+                [placeholder]="'LEAD_MANAGEMENT.ADD_COMMENT_PLACEHOLDER' | translate"
+                class="flex-1 bg-gray-50 border border-gray-200 dark:border-[#172036] dark:bg-[#15203c] h-[40px] rounded-md text-sm text-black dark:text-white px-[14px] outline-0 transition-all focus:border-primary-500 placeholder:text-gray-400"
+            >
+            <button
+                type="submit"
+                [disabled]="!newComment.trim()"
+                class="w-[40px] h-[40px] rounded-md flex items-center justify-center transition-all"
+                [class.bg-primary-500]="newComment.trim()"
+                [class.text-white]="newComment.trim()"
+                [class.bg-gray-100]="!newComment.trim()"
+                [class.text-gray-400]="!newComment.trim()"
+                [class.dark:bg-gray-700]="!newComment.trim()"
+            >
+                <i class="material-symbols-outlined !text-[20px]">send</i>
+            </button>
+        </form>
+    </div>
+} @else {
+    <!-- Empty state: no lead selected -->
+    <div class="flex flex-col items-center justify-center h-full py-[80px] text-gray-400">
+        <i class="material-symbols-outlined !text-[64px] mb-[12px]">forum</i>
+        <p class="text-sm">{{ 'LEAD_MANAGEMENT.SELECT_LEAD' | translate }}</p>
+    </div>
+}

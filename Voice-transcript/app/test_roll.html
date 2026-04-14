@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voicely CRM — Roll Test</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            width: 500px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; }
+        .header p  { font-size: 13px; color: #64748b; margin-top: 6px; }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: #64748b;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+        .status-dot.active  { background: #22c55e; animation: pulse 1s infinite; }
+        .status-dot.stopped { background: #64748b; }
+        .status-dot.error   { background: #ef4444; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+
+        #status-text { font-size: 13px; color: #94a3b8; }
+
+        .section { margin-bottom: 20px; }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #e2e8f0;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus { border-color: #6366f1; }
+        input::placeholder { color: #475569; }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-success  { background: #22c55e; color: white; }
+        .btn-success:hover:not(:disabled) { background: #16a34a; }
+        .btn-danger   { background: #ef4444; color: white; }
+        .btn-danger:hover:not(:disabled) { background: #dc2626; }
+        .btn-secondary {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+        }
+        .btn-secondary:hover:not(:disabled) { background: #334155; color: #e2e8f0; }
+        .btn-info { background: #6366f1; color: white; }
+        .btn-info:hover:not(:disabled) { background: #4f46e5; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .current-lead-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .current-lead-box.visible { display: block; }
+
+        .current-lead-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .current-lead-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .current-lead-phone {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .current-lead-status {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #ef4444;
+            color: white;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #1e293b;
+            margin: 24px 0;
+        }
+
+        .log-box {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 14px;
+            height: 180px;
+            overflow-y: auto;
+            font-family: "SF Mono", Monaco, monospace;
+            font-size: 12px;
+        }
+
+        .log-entry { margin-bottom: 4px; line-height: 1.5; }
+        .log-entry.info    { color: #94a3b8; }
+        .log-entry.success { color: #22c55e; }
+        .log-entry.warning { color: #f59e0b; }
+        .log-entry.error   { color: #ef4444; }
+
+        .row { display: flex; gap: 10px; }
+        .row .btn { flex: 1; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="header">
+        <h1>🎯 Voicely CRM</h1>
+        <p>Roll Calling Test</p>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar">
+        <div class="status-dot stopped" id="status-dot"></div>
+        <span id="status-text">Roll not active</span>
+    </div>
+
+    <!-- Config -->
+    <div class="section">
+        <label>Backend URL</label>
+        <input type="text" id="backend-url" value="http://127.0.0.1:8000" />
+    </div>
+
+    <div class="section">
+        <label>JWT Token (from sign-in)</label>
+        <input type="text" id="jwt-token" placeholder="eyJhbGci..." />
+    </div>
+
+    <div class="section">
+        <label>Campaign ID</label>
+        <input type="text" id="campaign-id" placeholder="paste-campaign-uuid-here" />
+    </div>
+
+    <hr class="divider">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="stat-number" id="stat-calls">0</div>
+            <div class="stat-label">Calls Made</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number" id="stat-answered" style="color:#22c55e">0</div>
+            <div class="stat-label">Answered</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number" id="stat-remaining" style="color:#f59e0b">0</div>
+            <div class="stat-label">Remaining</div>
+        </div>
+    </div>
+
+    <!-- Current Lead -->
+    <div class="current-lead-box" id="current-lead-box">
+        <div class="current-lead-label">📞 Currently Calling</div>
+        <div class="current-lead-name" id="current-name">—</div>
+        <div class="current-lead-phone" id="current-phone">—</div>
+        <span class="current-lead-status">Ringing</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="row">
+        <button class="btn btn-success" id="btn-start" onclick="startRoll()">
+            ▶ Start Roll
+        </button>
+        <button class="btn btn-danger" id="btn-stop" onclick="stopRoll()" disabled>
+            ■ Stop Roll
+        </button>
+    </div>
+
+    <button class="btn btn-info" onclick="refreshStatus()">
+        🔄 Refresh Status
+    </button>
+
+    <hr class="divider">
+
+    <!-- Log -->
+    <label>Event Log</label>
+    <div class="log-box" id="log-box">
+        <div class="log-entry info">Waiting to start...</div>
+    </div>
+</div>
+
+<script>
+    let pollInterval = null;
+
+    // ── Helpers ───────────────────────────────────────────────────
+    function log(message, type = "info") {
+        const box = document.getElementById("log-box");
+        const time = new Date().toLocaleTimeString();
+        const entry = document.createElement("div");
+        entry.className = `log-entry ${type}`;
+        entry.textContent = `[${time}] ${message}`;
+        box.appendChild(entry);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function setStatus(text, state) {
+        document.getElementById("status-text").textContent = text;
+        document.getElementById("status-dot").className = `status-dot ${state}`;
+    }
+
+    function getConfig() {
+        return {
+            backendUrl: document.getElementById("backend-url").value.trim(),
+            jwtToken:   document.getElementById("jwt-token").value.trim(),
+            campaignId: document.getElementById("campaign-id").value.trim(),
+        };
+    }
+
+    function headers(token) {
+        return {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        };
+    }
+
+    // ── Start Roll ────────────────────────────────────────────────
+    async function startRoll() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+
+        if (!jwtToken || !campaignId) {
+            log("Please fill in JWT Token and Campaign ID.", "error");
+            return;
+        }
+
+        log("Starting roll...", "info");
+
+        try {
+            const res = await fetch(`${backendUrl}/api/v1/calls/start-roll`, {
+                method: "POST",
+                headers: headers(jwtToken),
+                body: JSON.stringify({ campaign_id: campaignId })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                log(`Error: ${data.detail || "Failed to start roll"}`, "error");
+                return;
+            }
+
+            if (data.status === "stopped") {
+                log(`No leads available: ${data.reason}`, "warning");
+                setStatus("No leads available", "stopped");
+                return;
+            }
+
+            log(`✅ Roll started!`, "success");
+
+            if (data.current_lead) {
+                log(`📞 First call: ${data.current_lead.name} (${data.current_lead.phone_number})`, "info");
+                showCurrentLead(data.current_lead);
+            }
+
+            setStatus("Roll active — calling leads", "active");
+            document.getElementById("btn-start").disabled = true;
+            document.getElementById("btn-stop").disabled = false;
+
+            // Start polling for status every 5 seconds
+            startPolling();
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+        }
+    }
+
+    // ── Stop Roll ─────────────────────────────────────────────────
+    async function stopRoll() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+
+        log("Stopping roll...", "warning");
+
+        try {
+            const res = await fetch(`${backendUrl}/api/v1/calls/stop-roll`, {
+                method: "POST",
+                headers: headers(jwtToken),
+                body: JSON.stringify({ campaign_id: campaignId })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                log(`Error: ${data.detail || "Failed to stop roll"}`, "error");
+                return;
+            }
+
+            log(`🛑 Roll stopped. Current call will finish naturally.`, "warning");
+            setStatus("Roll stopped", "stopped");
+            document.getElementById("btn-start").disabled = false;
+            document.getElementById("btn-stop").disabled = true;
+            document.getElementById("current-lead-box").classList.remove("visible");
+
+            stopPolling();
+
+        } catch (err) {
+            log(`Request failed: ${err.message}`, "error");
+        }
+    }
+
+    // ── Refresh Status ────────────────────────────────────────────
+    async function refreshStatus() {
+        const { backendUrl, jwtToken, campaignId } = getConfig();
+
+        if (!jwtToken || !campaignId) return;
+
+        try {
+            const res = await fetch(`${backendUrl}/api/v1/calls/roll-status/${campaignId}`, {
+                headers: headers(jwtToken),
+            });
+
+            if (!res.ok) return;
+
+            const data = await res.json();
+
+            // Update stats
+            document.getElementById("stat-calls").textContent     = data.calls_made || 0;
+            document.getElementById("stat-answered").textContent  = data.calls_answered || 0;
+            document.getElementById("stat-remaining").textContent = data.leads_remaining || 0;
+
+            // Update current lead
+            if (data.current_lead) {
+                showCurrentLead(data.current_lead);
+            } else {
+                document.getElementById("current-lead-box").classList.remove("visible");
+            }
+
+            // Update roll state
+            if (data.roll_active) {
+                setStatus("Roll active — calling leads", "active");
+                document.getElementById("btn-start").disabled = true;
+                document.getElementById("btn-stop").disabled = false;
+            } else {
+                setStatus("Roll not active", "stopped");
+                document.getElementById("btn-start").disabled = false;
+                document.getElementById("btn-stop").disabled = true;
+                stopPolling();
+            }
+
+            // Auto-stop polling if no leads remaining and roll done
+            if (!data.roll_active && data.leads_remaining === 0 && data.calls_made > 0) {
+                log(`✅ Roll completed! Called ${data.calls_made} leads.`, "success");
+            }
+
+        } catch (err) {
+            // Silent fail on poll
+        }
+    }
+
+    // ── Current Lead Display ──────────────────────────────────────
+    function showCurrentLead(lead) {
+        document.getElementById("current-lead-box").classList.add("visible");
+        document.getElementById("current-name").textContent  = lead.name || "Unknown";
+        document.getElementById("current-phone").textContent = lead.phone_number || lead.phone || "—";
+    }
+
+    // ── Polling ───────────────────────────────────────────────────
+    function startPolling() {
+        stopPolling();
+        pollInterval = setInterval(refreshStatus, 5000);   // every 5 seconds
+        log("Auto-refreshing status every 5 seconds...", "info");
+    }
+
+    function stopPolling() {
+        if (pollInterval) {
+            clearInterval(pollInterval);
+            pollInterval = null;
+        }
+    }
+</script>
+</body>
+</html>

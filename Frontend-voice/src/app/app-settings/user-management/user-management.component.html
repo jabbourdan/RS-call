@@ -1,0 +1,77 @@
+<!-- Header row with Add User button -->
+<div class="flex items-center justify-between mb-[20px] md:mb-[25px]">
+    <h5 class="!text-lg !mb-0">
+        {{ 'APP_SETTINGS.TAB_USERS' | translate }}
+    </h5>
+    <button
+        type="button"
+        (click)="onAddUser()"
+        class="flex items-center gap-[6px] font-medium transition-all rounded-md py-[9px] px-[18px] bg-primary-500 text-white hover:bg-primary-400 text-sm"
+    >
+        <i class="material-symbols-outlined !text-[18px] leading-none">
+            person_add
+        </i>
+        {{ 'APP_SETTINGS.USERS_BTN_ADD' | translate }}
+    </button>
+</div>
+
+<!-- User Card Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[20px] md:gap-[25px]">
+    @for (user of users; track user.id) {
+        <div class="rounded-md border border-gray-100 dark:border-[#172036] p-[20px] flex flex-col items-center text-center">
+
+            <!-- Avatar circle with initials -->
+            <div
+                class="w-[56px] h-[56px] rounded-full flex items-center justify-center text-white font-bold text-lg mb-[12px]"
+                [ngClass]="user.avatarBg"
+            >
+                {{ user.initials }}
+            </div>
+
+            <!-- Name & Email -->
+            <h6 class="!mb-[2px] font-semibold text-black dark:text-white text-[15px]">
+                {{ user.name }}
+            </h6>
+            <p class="text-gray-500 dark:text-gray-400 text-sm !mb-[12px]">
+                {{ user.email }}
+            </p>
+
+            <!-- Role Badge -->
+            <span
+                class="inline-block rounded-full font-medium text-xs py-[3px] px-[10px] mb-[6px]"
+                [ngClass]="roleBadgeClass[user.role]"
+            >
+                {{ user.role }}
+            </span>
+
+            <!-- Status Badge -->
+            <span
+                class="inline-block rounded-full font-medium text-xs py-[3px] px-[10px] mb-[16px]"
+                [ngClass]="statusBadgeClass[user.status]"
+            >
+                {{ user.status }}
+            </span>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-[8px]">
+                <button
+                    type="button"
+                    (click)="onEditUser(user)"
+                    class="flex items-center gap-[4px] text-xs font-medium py-[6px] px-[12px] rounded-md border border-gray-200 dark:border-[#172036] text-gray-600 dark:text-gray-400 hover:border-primary-500 hover:text-primary-500 transition-all"
+                >
+                    <i class="material-symbols-outlined !text-[14px] leading-none">edit</i>
+                    {{ 'APP_SETTINGS.USERS_BTN_EDIT' | translate }}
+                </button>
+                <button
+                    type="button"
+                    (click)="onDeleteUser(user)"
+                    class="flex items-center gap-[4px] text-xs font-medium py-[6px] px-[12px] rounded-md border border-gray-200 dark:border-[#172036] text-gray-600 dark:text-gray-400 hover:border-danger-500 hover:text-danger-500 transition-all"
+                >
+                    <i class="material-symbols-outlined !text-[14px] leading-none">delete</i>
+                    {{ 'APP_SETTINGS.USERS_BTN_DELETE' | translate }}
+                </button>
+            </div>
+
+        </div>
+    }
+</div>

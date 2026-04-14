@@ -1,0 +1,73 @@
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-[25px] mb-[25px]">
+    <div>
+
+        <!-- Welcome -->
+        <app-welcome />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px]">
+
+            <!-- Total Orders -->
+            <app-total-orders />
+
+            <!-- Pending Orders -->
+            <app-pending-orders />
+
+        </div>
+
+    </div>
+    <div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px] mb-[25px]">
+
+            <!-- Revenue -->
+            <app-revenue />
+
+            <!-- Expense -->
+            <app-expense />
+
+        </div>
+
+        <!-- Top Selling Items -->
+        <app-top-selling-items />
+
+    </div>
+</div>
+
+<!-- Recent Orders List -->
+<app-recent-orders-list />
+
+<div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-[25px] mb-[25px]">
+    <div class="2xl:col-span-1 md:order-1 2xl:order-1">
+
+        <!-- Order Summary -->
+        <app-order-summary />
+
+    </div>
+    <div class="md:col-span-2 2xl:col-span-2 md:order-3 2xl:order-2">
+
+        <!-- Revenue vs Expense -->
+        <app-revenue-vs-expense />
+
+    </div>
+    <div class="2xl:col-span-1 md:order-2 2xl:order-2">
+
+        <!-- Low Stock Alerts -->
+        <app-low-stock-alerts />
+
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px] mb-[25px]">
+
+    <!-- Staff Performance Scores -->
+    <app-staff-performance-scores />
+
+    <!-- Revenue by Branches -->
+    <app-revenue-by-branches />
+
+    <!-- Tickets -->
+    <app-tickets />
+
+</div>
+    
+<!-- Customer Ratings -->
+<app-customer-ratings />

@@ -1,0 +1,738 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Patients List
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Doctor
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Patients List
+        </li>
+    </ol>
+</div>
+
+<!-- Patients List -->
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] sm:flex items-center justify-between">
+        <div class="trezo-card-title">
+            <form class="relative sm:w-[265px]">
+                <label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
+                    <i class="material-symbols-outlined !text-[20px]">
+                        search
+                    </i>
+                </label>
+                <input type="text" placeholder="Search here....." class="bg-gray-50 border border-gray-50 h-[36px] text-xs rounded-md w-full block text-black pt-[11px] pb-[12px] ltr:pl-[38px] rtl:pr-[38px] ltr:pr-[13px] ltr:md:pr-[16px] rtl:pl-[13px] rtl:md:pl-[16px] placeholder:text-gray-500 outline-0 dark:bg-[#15203c] dark:text-white dark:border-[#15203c] dark:placeholder:text-gray-400">
+            </form>
+        </div>
+        <div class="trezo-card-subtitle mt-[15px] sm:mt-0">
+            <a routerLink="/dashboard/doctor-page/add-patient" class="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white">
+                <span class="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
+                    <i class="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
+                        add
+                    </i>
+                    Add New Patient
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="table-responsive overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Code
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Patient
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Email
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Phone No.
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Disease
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Appoint. Date
+                        </th>
+                        <th class="whitespace-nowrap uppercase text-[10px] font-bold tracking-[1px] ltr:text-left rtl:text-right pt-0 pb-[12.5px] px-[20px] text-gray-500 dark:text-gray-400 ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:first:pl-0">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-black dark:text-white">
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #001
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user33.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Johhna Loren
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                lorenjohna&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-225-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Heart Attack
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                05 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #002
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user34.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Skyler White
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                skylerwhite&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-123-4567
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                HBP
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                04 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #003
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user35.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Jonathon Watson
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                jonathonwatson&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-987-6543
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Chest Pain
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                03 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #004
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user36.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Walter White
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                walterwhite&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-456-7890
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Breathing Problem
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                03 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #005
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user37.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    David Carlen
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                davidcarlen&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-369-7878
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Minor Heart Attack
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                02 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #006
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user36.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Jenny Loren
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                jennyloren&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-658-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Artery Blockage
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                02 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #007
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user32.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Bradly Smith
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                bradlysmith&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-558-9966
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Chest Pain
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                01 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #008
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user31.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Victor James
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                victorjames&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-357-5888
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Heart Attack
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                01 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #009
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user30.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Jenny Carla
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                jennycarla&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-456-8877
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                Breathing Problem
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                01 Nov, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="form-check relative top-[1.2px]">
+                                    <input type="checkbox" class="cursor-pointer">
+                                </div>
+                                <span class="block text-xs font-semibold text-gray-600 dark:text-gray-400">
+                                    #010
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[10px]">
+                                <div class="rounded-full w-[35px]">
+                                    <img src="images/users/user29.jpg" class="inline-block rounded-full" alt="user-image">
+                                </div>
+                                <span class="font-semibold inline-block">
+                                    Jane Ronan
+                                </span>
+                            </div>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-primary-500">
+                                janeronan&#64;gmail.com
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                +1 555-622-4488
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                HBP
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400">
+                                30 Oct, 2025
+                            </span>
+                        </td>
+                        <td class="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[12.5px] ltr:first:pl-0 rtl:first:pr-0 border-b border-primary-50 dark:border-[#172036] ltr:last:pr-0 rtl:last:pl-0">
+                            <div class="flex items-center gap-[9px]">
+                                <button type="button" class="text-primary-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        visibility
+                                    </i>
+                                </button>
+                                <button type="button" class="text-gray-500 dark:text-gray-400 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        edit
+                                    </i>
+                                </button>
+                                <button type="button" class="text-danger-500 leading-none">
+                                    <i class="material-symbols-outlined !text-md">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pt-[12.5px] sm:flex sm:items-center justify-between">
+            <p class="!mb-0 text-xs">
+                Showing 10 of 36 results
+            </p>
+            <ol class="mt-[10px] sm:mt-0">
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_left
+                        </i>
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-primary-500 bg-primary-500 text-white">
+                        1
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        2
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        3
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        4
+                    </a>
+                </li>
+                <li class="inline-block mx-[3px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
+                    <a routerLink="." class="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500">
+                        <span class="opacity-0">
+                            0
+                        </span>
+                        <i class="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
+                            chevron_right
+                        </i>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

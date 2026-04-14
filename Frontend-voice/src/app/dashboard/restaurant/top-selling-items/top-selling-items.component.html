@@ -1,0 +1,126 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0">
+                Top Selling Items
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block rounded-md bg-[#f5f7f8] dark:bg-[#0a0e19] py-[5px] md:py-[6.5px] px-[12px] md:px-[19px] transition-all hover:bg-gray-50 dark:hover:bg-[#0a0e19]" (click)="toggleCardHeaderMenu()">
+                    <span class="inline-block relative ltr:pr-[17px] ltr:md:pr-[20px] rtl:pl-[17px] rtl:ml:pr-[20px]">
+                        Weekly
+                        <i class="ri-arrow-down-s-line text-lg absolute ltr:-right-[3px] rtl:-left-[3px] top-1/2 -translate-y-1/2 mt-px"></i>
+                    </span>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Weekly
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Monthly
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                Yearly
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[25px]">
+            <div class="relative">
+                <div class="bg-[#212529] rounded-[30px] absolute top-[3px] ltr:right-[3px] rtl:left-[3px] py-[5px] px-[5px] flex items-center leading-none gap-[2px] text-white gap-[3px]">
+                    <i class="ri-star-fill text-orange-500"></i>
+                    <span class="block relative top-px text-xs font-semibold">
+                        5.0
+                    </span>
+                </div>
+                <a
+                    routerLink="."
+                    class="block rounded-md mb-[15px] h-[139px] bg-cover bg-center bg-no-repeat"
+                    style="background-image: url(images/products/product28.jpg);"
+                ></a>
+                <h6 class="!mb-[4px] !font-semibold !text-base">
+                    <a routerLink="." class="transition-all hover:text-primary-500">
+                        Thai Bean Soup
+                    </a>
+                </h6>
+                <span class="block text-xs">
+                    1235 sold
+                </span>
+            </div>
+            <div class="relative">
+                <div class="bg-[#212529] rounded-[30px] absolute top-[3px] ltr:right-[3px] rtl:left-[3px] py-[5px] px-[5px] flex items-center leading-none gap-[2px] text-white gap-[3px]">
+                    <i class="ri-star-fill text-orange-500"></i>
+                    <span class="block relative top-px text-xs font-semibold">
+                        4.8
+                    </span>
+                </div>
+                <a
+                    routerLink="."
+                    class="block rounded-md mb-[15px] h-[139px] bg-cover bg-center bg-no-repeat"
+                    style="background-image: url(images/products/product29.jpg);"
+                ></a>
+                <h6 class="!mb-[4px] !font-semibold !text-base">
+                    <a routerLink="." class="transition-all hover:text-primary-500">
+                        Meat Lasagnia
+                    </a>
+                </h6>
+                <span class="block text-xs">
+                    1045 sold
+                </span>
+            </div>
+            <div class="relative">
+                <div class="bg-[#212529] rounded-[30px] absolute top-[3px] ltr:right-[3px] rtl:left-[3px] py-[5px] px-[5px] flex items-center leading-none gap-[2px] text-white gap-[3px]">
+                    <i class="ri-star-fill text-orange-500"></i>
+                    <span class="block relative top-px text-xs font-semibold">
+                        4.9
+                    </span>
+                </div>
+                <a
+                    routerLink="."
+                    class="block rounded-md mb-[15px] h-[139px] bg-cover bg-center bg-no-repeat"
+                    style="background-image: url(images/products/product30.jpg);"
+                ></a>
+                <h6 class="!mb-[4px] !font-semibold !text-base">
+                    <a routerLink="." class="transition-all hover:text-primary-500">
+                        Veg Sandwich
+                    </a>
+                </h6>
+                <span class="block text-xs">
+                    1015 sold
+                </span>
+            </div>
+            <div class="relative">
+                <div class="bg-[#212529] rounded-[30px] absolute top-[3px] ltr:right-[3px] rtl:left-[3px] py-[5px] px-[5px] flex items-center leading-none gap-[2px] text-white gap-[3px]">
+                    <i class="ri-star-fill text-orange-500"></i>
+                    <span class="block relative top-px text-xs font-semibold">
+                        4.7
+                    </span>
+                </div>
+                <a
+                    routerLink="."
+                    class="block rounded-md mb-[15px] h-[139px] bg-cover bg-center bg-no-repeat"
+                    style="background-image: url(images/products/product31.jpg);"
+                ></a>
+                <h6 class="!mb-[4px] !font-semibold !text-base">
+                    <a routerLink="." class="transition-all hover:text-primary-500">
+                        Creamy Fish
+                    </a>
+                </h6>
+                <span class="block text-xs">
+                    996 sold
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-content">
+
+        <!-- Cryptocurrency Watchlist -->
+        <app-watchlist />
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-[25px]">
+            <div class="lg:col-span-2">
+
+                <!-- Market Price Statistics -->
+                <app-price-statistics />
+
+            </div>
+            <div class="lg:col-span-1">
+
+                <!-- Exchange -->
+                <app-exchange />
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-[25px] mb-[25px]">
+    <div class="lg:col-span-3">
+
+        <!-- Transactions History -->
+        <app-transactions-history />
+        
+    </div>
+    <div class="lg:col-span-2">
+
+        <!-- Portfolio -->
+        <app-portfolio />
+
+    </div>
+</div>
+    
+<!-- Crypto Rankings -->
+<app-rankings />

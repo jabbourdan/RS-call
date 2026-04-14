@@ -1,0 +1,37 @@
+<div class="mt-[15px]">
+    <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+        @if (duration > 0) {
+            <span>
+                {{ formatTime(currentTime) }}
+            </span>
+        }
+        @if (duration > 0) {
+            <span>
+                {{ formatTime(duration) }}
+            </span>
+        }
+    </div>
+    <div class="mt-[6px] h-[4px] w-full relative rounded-[30px] bg-gray-200 dark:bg-dark">
+        <div class="bg-primary-500 w-0 h-full rounded-[30px]" [style.width]="progress + '%'"></div>
+    </div>
+    <audio #audioElement (timeupdate)="updateProgressBar()" (canplay)="updateDuration()" (loadedmetadata)="updateDuration()">
+        <source src="https://cldup.com/qR72ozoaiQ.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+    <div class="flex items-center justify-between mt-[15px]">
+        <div class="flex items-center ltr:-ml-[5px] rtl:-mr-[5px]">
+            <button class="leading-none text-[21px] transition-all text-primary-300 dark:text-gray-400 hover:text-primary-500" type="button" (click)="rewind()">
+                <i class="ri-skip-left-fill"></i>
+            </button>
+            <button class="leading-none text-[21px] transition-all text-primary-300 dark:text-gray-400 hover:text-primary-500" type="button" (click)="fastForward()">
+                <i class="ri-skip-right-fill"></i>
+            </button>
+        </div>
+        <button type="button" class="flex items-center justify-center w-[44px] h-[44px] text-[20px] transition-all text-primary-500 bg-primary-50 rounded-full hover:bg-primary-500 hover:text-white dark:bg-dark" (click)="togglePlayPause()">
+            {{ isPlaying ? '⏸' : '▶' }}
+        </button>
+        <button class="leading-none text-lg transition-all text-primary-300 dark:text-gray-400 hover:text-primary-500" type="button" (click)="restart()">
+            <i class="ri-reset-right-line"></i>
+        </button>
+    </div>
+</div>

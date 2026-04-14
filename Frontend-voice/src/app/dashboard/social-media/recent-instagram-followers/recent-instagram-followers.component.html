@@ -1,0 +1,143 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-[3px] md:!mb-0 !text-lg md:!text-[20px]">
+                Recent Instagram Followers
+            </h5>
+            <p>
+                Check out your latest followers
+            </p>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content -mx-[20px] md:-mx-[25px]">
+        <ul>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user69.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        Mason Lee
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user70.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        Mia Patel
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user71.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        James Nguyen
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user72.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        Benjamin Kim
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user73.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        Elijah Watson
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+            <li class="flex items-center justify-between mb-[10px] pb-[10px] border-b border-gray-50 dark:border-[#172036] px-[20px] md:px-[25px] last:border-b-[0] last:pb-0 last:mb-0">
+                <div class="flex items-center gap-[10px]">
+                    <img src="images/users/user74.jpg" class="rounded-full w-[34px]" alt="user-image">
+                    <span class="block text-black dark:text-white font-medium">
+                        Daniel Flores
+                    </span>
+                </div>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="inline-block text-xs text-primary-600 bg-primary-50 dark:bg-[#15203c] rounded-[4px] py-[3.5px] px-[10px] transition-all hover:bg-primary-600 hover:text-white">
+                        Follow Back
+                    </button>
+                    <button type="button" class="flex items-center justify-center rounded-[4px] w-[25px] h-[25px] bg-purple-100 dark:bg-[#15203c] text-purple-600 transition-all hover:bg-purple-600 hover:text-white">
+                        <i class="ri-message-2-line"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

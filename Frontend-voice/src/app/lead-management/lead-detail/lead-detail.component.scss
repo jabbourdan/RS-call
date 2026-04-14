@@ -1,0 +1,37 @@
+.detail-scroll {
+    max-height: calc(100vh - 320px);
+
+    @media (min-width: 1024px) {
+        max-height: calc(100vh - 300px);
+    }
+}
+
+/* Make native date/time inputs fully clickable and well-styled */
+input[type="date"],
+input[type="time"] {
+    position: relative;
+    color-scheme: light;
+
+    &::-webkit-calendar-picker-indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    &::-webkit-inner-spin-button {
+        display: none;
+    }
+}
+
+:host-context(.dark) {
+    input[type="date"],
+    input[type="time"] {
+        color-scheme: dark;
+    }
+}

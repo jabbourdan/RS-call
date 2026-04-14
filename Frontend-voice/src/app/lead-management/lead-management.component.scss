@@ -1,0 +1,74 @@
+/* ── 3-Panel Layout ───────────────────────────────────────────────────────── */
+
+.lead-panel-left {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+
+    /* Mobile: hidden by default, shown as drawer */
+    @media (max-width: 1023px) {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 11;
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+        overflow-y: auto;
+        transform: translateX(-110%);
+        transition: transform 0.3s ease;
+        border-radius: 0;
+
+        [dir="rtl"] & {
+            transform: translateX(110%);
+        }
+
+        &.mobile-drawer-open {
+            transform: translateX(0);
+
+            [dir="rtl"] & {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+.lead-panel-center {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.lead-panel-right {
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+
+    @media (max-width: 1279px) {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+    }
+
+    /* On small screens, stack below center */
+    @media (max-width: 767px) {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Responsive: stack center + right on medium screens */
+:host {
+    display: block;
+}
+
+.panels-wrapper {
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+}

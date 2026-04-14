@@ -1,0 +1,283 @@
+<!-- Breadcrumb -->
+<div class="mb-[25px] md:flex items-center justify-between">
+    <h5 class="!mb-0">
+        Edit An Event
+    </h5>
+    <ol class="breadcrumb mt-[12px] md:mt-0">
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            <a routerLink="/dashboard" class="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
+                    home
+                </i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Events
+        </li>
+        <li class="breadcrumb-item inline-block relative text-sm mx-[13px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+            Edit An Event
+        </li>
+    </ol>
+</div>
+
+<!-- Edit An Event -->
+<form>
+    <div class="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
+        <div class="trezo-card-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] md:gap-[25px]">
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Name
+                    </label>
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" Value="Annual Conference 2025">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Ticket Type
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1" selected>
+                            Free
+                        </option>
+                        <option value="2">
+                            Paid
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Ticket Price
+                    </label>
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="$20.00">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Type
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1">
+                            Online
+                        </option>
+                        <option value="2" selected>
+                            Offline
+                        </option>
+                        <option value="3">
+                            Both
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Select Topic
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1" selected>
+                            Pepper Festival
+                        </option>
+                        <option value="2">
+                            A Day of Comedy
+                        </option>
+                        <option value="3">
+                            Replicate Oktoberfest
+                        </option>
+                        <option value="4">
+                            Kite Flying Festival
+                        </option>
+                        <option value="5">
+                            Music Concert
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Vanue
+                    </label>
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="2750 Quadra Street Victoria Road">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Country
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1">
+                            Switzerland
+                        </option>
+                        <option value="2">
+                            New Zealand
+                        </option>
+                        <option value="3">
+                            Germany
+                        </option>
+                        <option value="4" selected>
+                            United States
+                        </option>
+                        <option value="5">
+                            Japan
+                        </option>
+                        <option value="6">
+                            Netherlands
+                        </option>
+                        <option value="7">
+                            Sweden
+                        </option>
+                        <option value="8">
+                            Canada
+                        </option>
+                        <option value="9">
+                            United Kingdom
+                        </option>
+                        <option value="10">
+                            Australia
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event State
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1">
+                            Florida
+                        </option>
+                        <option value="2" selected>
+                            Wisconsin
+                        </option>
+                        <option value="3">
+                            Washington
+                        </option>
+                        <option value="4">
+                            Nebraska
+                        </option>
+                        <option value="5">
+                            Minnesota
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event City
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1">
+                            New York
+                        </option>
+                        <option value="2" selected>
+                            Tokyo
+                        </option>
+                        <option value="3">
+                            London
+                        </option>
+                        <option value="4">
+                            Amsterdam
+                        </option>
+                        <option value="5">
+                            Paris
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Start Date
+                    </label>
+                    <input type="date" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="2025-01-08">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event End Date
+                    </label>
+                    <input type="date" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="2025-01-08">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Time
+                    </label>
+                    <select class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500">
+                        <option>
+                            Select
+                        </option>
+                        <option value="1" selected>
+                            9AM - 10AM
+                        </option>
+                        <option value="2">
+                            11AM - 12PM
+                        </option>
+                        <option value="3">
+                            2PM - 4PM
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Registration Deadline
+                    </label>
+                    <input type="date" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="2025-01-08">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Organizers
+                    </label>
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="Hand Watch">
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Sponsors
+                    </label>
+                    <input type="text" class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500" value="Hand Watch">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] mt-[20px] md:mt-[25px]">
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Details
+                    </label>
+                    <div class="NgxEditor__Wrapper">
+                        @if (editor) {
+                            <ng-container>
+                                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+                                <ngx-editor [editor]="editor"></ngx-editor>
+                            </ng-container>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <label class="mb-[10px] text-black dark:text-white font-medium block">
+                        Event Image
+                    </label>
+                    <file-upload class="file-uploader"></file-upload>
+                </div>
+            </div>
+            <div class="mt-[20px] md:mt-[25px]">
+                <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md ltr:mr-[19px] rtl:ml-[19px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400">
+                    Cancel
+                </button>
+                <button type="button" class="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400">
+                    <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
+                        <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
+                            add
+                        </i>
+                        Update/Publish
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,80 @@
+<div class="trezo-card bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
+    <div class="trezo-card-header mb-[20px] md:mb-[25px] flex items-center justify-between">
+        <div class="trezo-card-title">
+            <h5 class="!mb-0 !font-semibold">
+                Agent Avg. Earnings
+            </h5>
+        </div>
+        <div class="trezo-card-subtitle">
+            <div class="trezo-card-dropdown relative ltr:-mr-[7px] rtl:-ml-[7px]">
+                <button type="button" class="trezo-card-dropdown-btn inline-block transition-all text-[22px] text-gray-500 dark:text-gray-400 leading-none hover:text-primary-500" (click)="toggleCardHeaderMenu()">
+                    <i class="ri-more-2-fill"></i>
+                </button>
+                @if (isCardHeaderOpen) {
+                    <ul class="trezo-card-dropdown-menu transition-all bg-white shadow-3xl rounded-md top-full py-[15px] absolute ltr:right-0 rtl:left-0 w-[195px] z-[5] dark:bg-dark dark:shadow-none">
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('This Day')">
+                                This Day
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('This Week')">
+                                This Week
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('This Month')">
+                                This Month
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="block w-full transition-all text-black ltr:text-left rtl:text-right relative py-[8px] px-[20px] hover:bg-gray-50 dark:text-white dark:hover:bg-black" (click)="onTimeframeChange('This Year')">
+                                This Year
+                            </button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="trezo-card-content">
+        <div class="agent-avg-earnings-buttons flex items-center gap-[30px]">
+            <button type="button" class="inline-block rounded-[4px] transition-all hover:bg-primary-500 hover:text-white w-[34px] h-[28px]" (click)="onTimeframeChange('This Day')" [ngClass]="{'active': activeTimeframe === 'This Day'}">
+                1d
+            </button>
+            <button type="button" class="inline-block rounded-[4px] transition-all hover:bg-primary-500 hover:text-white w-[34px] h-[28px]" (click)="onTimeframeChange('This Week')" [ngClass]="{'active': activeTimeframe === 'This Week'}">
+                1w
+            </button>
+            <button type="button" class="inline-block rounded-[4px] transition-all hover:bg-primary-500 hover:text-white w-[34px] h-[28px]" (click)="onTimeframeChange('This Month')" [ngClass]="{'active': activeTimeframe === 'This Month'}">
+                1m
+            </button>
+            <button type="button" class="inline-block rounded-[4px] transition-all hover:bg-primary-500 hover:text-white w-[34px] h-[28px]" (click)="onTimeframeChange('This Year')" [ngClass]="{'active': activeTimeframe === 'This Year'}">
+                1y
+            </button>
+        </div>
+        <div class="-mb-[3px]">
+            <div id="agent_avg_earnings_chart"></div>
+        </div>
+        <div class="flex items-center gap-[30px]">
+            <div class="flex items-center gap-[15px]">
+                <div class="border border-gray-100 bg-gray-50 w-[48px] h-[48px] rounded-[5px] flex items-center justify-center dark:bg-[#0a0e19] dark:border-[#172036]">
+                    <img src="images/icons/money.svg" alt="money">
+                </div>
+                <div>
+                    <h5 class="!mb-px !text-2xl !leading-none !font-semibold">
+                        $2,534
+                    </h5>
+                    <span class="block">
+                        Last month earning
+                    </span>
+                </div>
+            </div>
+            <span class="inline-block font-medium text-black dark:text-white relative ltr:pl-[27px] rtl:pr-[27px]">
+                <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 text-success-600 !text-[20px]">
+                    trending_up
+                </i>
+                +8.7%
+            </span>
+        </div>
+    </div>
+</div>

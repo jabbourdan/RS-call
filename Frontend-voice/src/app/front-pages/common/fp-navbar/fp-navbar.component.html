@@ -1,0 +1,133 @@
+<div
+    class="fixed top-0 right-0 left-0 transition-all h-auto z-[5] py-[20px]"
+    id="navbar"
+    [ngClass]="{'is-sticky': isSticky}"
+>
+    <div class="container 2xl:max-w-[1320px] mx-auto px-[12px]">
+        <div class="flex items-center relative flex-wrap lg:flex-nowrap justify-between lg:justify-start">
+            <a routerLink="/" class="inline-block max-w-[130px] ltr:mr-[15px] rtl:ml-[15px]">
+                <img src="images/logo-big.svg" alt="logo" class="inline-block dark:hidden">
+                <img src="images/white-logo-big.svg" alt="logo" class="hidden dark:inline-block">
+            </a>
+            <button
+                type="button"
+                id="navbar-burger-menu"
+                (click)="toggleClass()"
+                [class.active]="classApplied"
+                class="inline-block relative leading-none lg:hidden"
+            >
+                <span class="h-[3px] w-[30px] my-[5px] block bg-black dark:bg-white"></span>
+                <span class="h-[3px] w-[30px] my-[5px] block bg-black dark:bg-white"></span>
+                <span class="h-[3px] w-[30px] my-[5px] block bg-black dark:bg-white"></span>
+            </button>
+            <div class="hidden lg:flex items-center grow basis-full basis-auto"><!-- For Big Devices -->
+                <ul class="navbar-nav flex ltr:ml-[30px] rtl:mr-[30px] ltr:xl:ml-[55px] rtl:xl:mr-[55px] flex-row gap-[30px] xl:gap-[50px]">
+                    <li>
+                        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/features" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            Features
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/team" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            Our Team
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            FAQ's
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600 text-[15px] xl:text-md">
+                            Admin
+                        </a>
+                    </li>
+                </ul>
+                <div class="flex items-center ltr:ml-auto rtl:mr-auto gap-[15px]">
+                    <a routerLink="/authentication" class="inline-block text-purple-600 lg:text-[15px] xl:text-md py-[11px] px-[17px] rounded-md transition-all font-medium border border-purple-600 hover:text-white hover:bg-purple-500 hover:border-purple-500">
+                        <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px] ltr:md:pl-[29px] rtl:md:pr-[29px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-xl">
+                                login
+                            </i>
+                            Login
+                        </span>
+                    </a>
+                    <a routerLink="/authentication/sign-up" class="inline-block lg:text-[15px] xl:text-md py-[11px] px-[17px] bg-purple-600 text-white rounded-md transition-all font-medium border border-purple-600 hover:bg-purple-500 hover:border-purple-500">
+                        <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px] ltr:md:pl-[29px] rtl:md:pr-[29px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-xl">
+                                person
+                            </i>
+                            Register
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div
+                id="navbar-collapse"
+                [class.active]="classApplied"
+                class="bg-white dark:bg-black mt-[20px] p-[20px] md:p-[30px] w-full hidden lg:!hidden"
+            ><!-- For Resposive -->
+                <ul class="navbar-nav">
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            Home
+                        </a>
+                    </li>
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/features" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            Features
+                        </a>
+                    </li>
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/team" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            Our Team
+                        </a>
+                    </li>
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            FAQ's
+                        </a>
+                    </li>
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            Contact
+                        </a>
+                    </li>
+                    <li class="my-[14px] md:my-[16px] first:mt-0 last:mb-0">
+                        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="font-medium text-gray-500 dark:text-gray-400 transition-all hover:text-primary-600">
+                            Admin
+                        </a>
+                    </li>
+                </ul>
+                <div class="flex items-center gap-[15px] mt-[14px] md:mt-[16px]">
+                    <a routerLink="/authentication" class="inline-block text-purple-600 lg:text-[15px] xl:text-md py-[11px] px-[17px] rounded-md transition-all font-medium border border-purple-600 hover:text-white hover:bg-purple-500 hover:border-purple-500">
+                        <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px] ltr:md:pl-[29px] rtl:md:pr-[29px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-xl">
+                                login
+                            </i>
+                            Login
+                        </span>
+                    </a>
+                    <a routerLink="/authentication/sign-up" class="inline-block lg:text-[15px] xl:text-md py-[11px] px-[17px] bg-purple-600 text-white rounded-md transition-all font-medium border border-purple-600 hover:bg-purple-500 hover:border-purple-500">
+                        <span class="inline-block relative ltr:pl-[25px] rtl:pr-[25px] ltr:md:pl-[29px] rtl:md:pr-[29px]">
+                            <i class="material-symbols-outlined absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2 !text-[20px] md:!text-xl">
+                                person
+                            </i>
+                            Register
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
