@@ -376,4 +376,16 @@ async def get_roll_status(
         campaign_id=campaign_id,
         current_user=current_user,
     )
-    
+
+
+@router.post("/roll/proceed", summary="Agent confirmed status — proceed to next lead")
+async def proceed_roll(
+    payload: RollRequest,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    return await RollService.proceed_roll(
+        db=db,
+        campaign_id=payload.campaign_id,
+        current_user=current_user,
+    )

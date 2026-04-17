@@ -2,7 +2,7 @@ from typing import Optional, List, Dict, Any
 from uuid import UUID, uuid4
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship, Column, JSON
-from sqlalchemy import types
+from sqlalchemy import types, UniqueConstraint
 import json
 
 # =========================
@@ -33,6 +33,7 @@ class Organization(SQLModel, table=True):
     calls_destination: Optional[str] = None
     is_active: bool = Field(default=True)
     num_agents: int = Field(default=1)
+    max_phone_numbers: int = Field(default=2)
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Relationships
@@ -41,6 +42,23 @@ class Organization(SQLModel, table=True):
     calls: List["Call"] = Relationship(back_populates="organization")
     campaigns: List["Campaign"] = Relationship(back_populates="organization")
     leads: List["Lead"] = Relationship(back_populates="organization")
+    phone_numbers: List["OrgPhoneNumber"] = Relationship(back_populates="organization")
+
+# =========================
+# OrgPhoneNumber
+# =========================
+class OrgPhoneNumber(SQLModel, table=True):
+    __table_args__ = (UniqueConstraint("org_id", "phone_number"),)
+
+    phone_id: UUID = Field(default_factory=uuid4, primary_key=True)
+    org_id: UUID = Field(foreign_key="organization.org_id", index=True)
+    phone_number: str
+    label: Optional[str] = None
+    is_active: bool = Field(default=True)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    # Relationships
+    organization: Optional[Organization] = Relationship(back_populates="phone_numbers")
 
 # =========================
 # User
@@ -136,8 +154,8 @@ class CampaignSettings(SQLModel, table=True):
     settings_id: UUID = Field(default_factory=uuid4, primary_key=True)
     campaign_id: UUID = Field(foreign_key="campaign.campaign_id", unique=True)
 
-    phone_number_used1: Optional[str] = None
-    phone_number_used2: Optional[str] = None
+    primary_phone_id: Optional[UUID] = Field(default=None, foreign_key="orgphonenumber.phone_id")
+    secondary_phone_id: Optional[UUID] = Field(default=None, foreign_key="orgphonenumber.phone_id")
     change_number_after: Optional[int] = None
     max_calls_to_unanswered_lead: int = Field(default=3)
     calling_algorithm: str = Field(default="priority")
@@ -153,11 +171,19 @@ class CampaignSettings(SQLModel, table=True):
         sa_column=Column(HebrewJSON)
     )
     roll_active: bool = Field(default=False)
+    roll_paused: bool = Field(default=False)
+    roll_paused_at: Optional[datetime] = Field(default=None)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Relationships
     campaign: Optional[Campaign] = Relationship(back_populates="settings")
+    primary_phone: Optional["OrgPhoneNumber"] = Relationship(
+        sa_relationship_kwargs={"foreign_keys": "[CampaignSettings.primary_phone_id]"}
+    )
+    secondary_phone: Optional["OrgPhoneNumber"] = Relationship(
+        sa_relationship_kwargs={"foreign_keys": "[CampaignSettings.secondary_phone_id]"}
+    )
 
 # =========================
 # Lead
@@ -186,7 +212,7 @@ class Lead(SQLModel, table=True):
         default={
             "current": "ממתין",
             "options": [
-                "ממתין", "ענה", "לא רלוונטי",
+                "ממתין", "ענה", "לא ענה", "לא רלוונטי",
                 "עסקה נסגרה", "פולו אפ", "אל תתקשר"
             ]
         },

@@ -71,12 +71,44 @@
 
     <!-- RIGHT PANEL: Detail / Actions -->
     <div class="lead-panel-right trezo-card bg-white dark:bg-[#0c1427] rounded-md p-[16px] md:p-[20px]">
+
+        <!-- Roll status gate — shown when roll is paused awaiting agent confirmation -->
+        @if (statusGateActive) {
+            <div class="mb-[16px] rounded-md border border-orange-300 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-600 p-[14px]">
+                <div class="flex items-center gap-[8px] mb-[4px]">
+                    <span class="material-symbols-outlined text-orange-500 !text-[20px]">pause_circle</span>
+                    <span class="font-semibold text-orange-700 dark:text-orange-300 text-sm">
+                        {{ 'ROLL.PAUSED_TITLE' | translate }}
+                    </span>
+                    @if (rollStats?.currentLead?.callStatus === 'no_answer' || rollStats?.currentLead?.callStatus === 'failed') {
+                        <span class="ms-auto text-xs font-medium bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-200 rounded px-[6px] py-[2px]">
+                            {{ 'ROLL.AUTO_SET_STATUS' | translate }}
+                        </span>
+                    }
+                </div>
+                <p class="text-xs text-orange-600 dark:text-orange-400 mb-[12px]">
+                    {{ 'ROLL.PAUSED_SUBTITLE' | translate }}
+                </p>
+                @if (rollProceedError) {
+                    <p class="text-xs text-red-500 mb-[8px]">{{ rollProceedError | translate }}</p>
+                }
+                <button
+                    type="button"
+                    class="w-full rounded-md bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-[8px] transition-colors"
+                    (click)="onKeepAndContinue()"
+                >
+                    {{ 'ROLL.KEEP_AND_PROCEED' | translate }}
+                </button>
+            </div>
+        }
+
         <app-lead-detail
             [lead]="selectedLead"
             [representatives]="representatives"
             [performance]="performance"
             [isRollActive]="isRollActive"
             [activeCallId]="activeCallId"
+            [statusGateActive]="statusGateActive"
             (statusChanged)="onStatusChanged($event)"
             (callInitiated)="onCallInitiated($event)"
             (callEnded)="onCallEnded($event)"

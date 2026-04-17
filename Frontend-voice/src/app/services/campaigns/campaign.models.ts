@@ -13,8 +13,10 @@ export interface CampaignStatusConfig {
 export interface CampaignSettings {
     settings_id: string;
     campaign_id: string;
-    phone_number_used1: string | null;
-    phone_number_used2: string | null;
+    primary_phone_id: string | null;
+    secondary_phone_id: string | null;
+    primary_phone_number: string | null;
+    secondary_phone_number: string | null;
     change_number_after: number | null;
     max_calls_to_unanswered_lead: number;
     calling_algorithm: CallingAlgorithm;
@@ -94,8 +96,8 @@ export interface UpdateCampaignRequest {
 }
 
 export interface UpdateCampaignSettingsRequest {
-    phone_number_used1?: string | null;
-    phone_number_used2?: string | null;
+    primary_phone_id?: string | null;
+    secondary_phone_id?: string | null;
     change_number_after?: number | null;
     max_calls_to_unanswered_lead?: number;
     calling_algorithm?: CallingAlgorithm;

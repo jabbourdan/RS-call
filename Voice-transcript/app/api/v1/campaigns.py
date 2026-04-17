@@ -11,7 +11,7 @@ from app.services.campaign_service import CampaignService
 
 from app.database import get_session
 from app.core.dependencies import get_current_user, require_admin
-from app.models.base import Campaign, CampaignSettings, User
+from app.models.base import Campaign, CampaignSettings, User, OrgPhoneNumber
 
 router = APIRouter(prefix="/campaigns", tags=["Campaigns"])
 
@@ -27,8 +27,10 @@ class CampaignCreateRequest(BaseModel):
 class CampaignSettingsResponse(BaseModel):
     settings_id: UUID
     campaign_id: UUID
-    phone_number_used1: Optional[str]
-    phone_number_used2: Optional[str]
+    primary_phone_id: Optional[UUID]
+    secondary_phone_id: Optional[UUID]
+    primary_phone_number: Optional[str] = None
+    secondary_phone_number: Optional[str] = None
     change_number_after: Optional[int]
     max_calls_to_unanswered_lead: int
     calling_algorithm: str
@@ -53,8 +55,8 @@ class CampaignResponse(BaseModel):
 
 
 class CampaignSettingsUpdateRequest(BaseModel):
-    phone_number_used1: Optional[str] = None
-    phone_number_used2: Optional[str] = None
+    primary_phone_id: Optional[UUID] = None
+    secondary_phone_id: Optional[UUID] = None
     change_number_after: Optional[int] = None
     max_calls_to_unanswered_lead: Optional[int] = None
     calling_algorithm: Optional[str] = None
@@ -97,6 +99,38 @@ class CampaignOverviewResponse(BaseModel):
     settings: Optional[CampaignSettingsResponse]
     stats: CampaignStatsResponse
     model_config = {"from_attributes": True}
+
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+async def _enrich_settings_response(db: AsyncSession, settings: CampaignSettings) -> CampaignSettingsResponse:
+    primary_number = None
+    secondary_number = None
+    if settings.primary_phone_id:
+        result = await db.execute(select(OrgPhoneNumber).where(OrgPhoneNumber.phone_id == settings.primary_phone_id))
+        phone = result.scalars().first()
+        if phone:
+            primary_number = phone.phone_number
+    if settings.secondary_phone_id:
+        result = await db.execute(select(OrgPhoneNumber).where(OrgPhoneNumber.phone_id == settings.secondary_phone_id))
+        phone = result.scalars().first()
+        if phone:
+            secondary_number = phone.phone_number
+    return CampaignSettingsResponse(
+        settings_id=settings.settings_id,
+        campaign_id=settings.campaign_id,
+        primary_phone_id=settings.primary_phone_id,
+        secondary_phone_id=settings.secondary_phone_id,
+        primary_phone_number=primary_number,
+        secondary_phone_number=secondary_number,
+        change_number_after=settings.change_number_after,
+        max_calls_to_unanswered_lead=settings.max_calls_to_unanswered_lead,
+        calling_algorithm=settings.calling_algorithm,
+        cooldown_minutes=settings.cooldown_minutes,
+        campaign_status=settings.campaign_status,
+        created_at=settings.created_at,
+        updated_at=settings.updated_at,
+    )
 
 
 # ── Endpoints ─────────────────────────────────────────────────────────────────
@@ -163,7 +197,8 @@ async def update_campaign_settings(
     db: AsyncSession = Depends(get_session),
     current_user: User = Depends(get_current_user),    # 🔒 any logged in user
 ):
-    return await CampaignService.update_settings(db=db, campaign_id=campaign_id, payload=payload, current_user=current_user)
+    settings = await CampaignService.update_settings(db=db, campaign_id=campaign_id, payload=payload, current_user=current_user)
+    return await _enrich_settings_response(db, settings)
 
 
 @router.delete("/{campaign_id}", status_code=204)

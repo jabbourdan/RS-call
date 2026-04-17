@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
@@ -74,6 +74,10 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
     rollStats: RollStats | null = null;
     rollError = '';
 
+    // ── Status gate (server-driven via roll_paused) ──────────────────────────
+    statusGateActive = false;
+    rollProceedError = '';
+
     private readonly destroy$ = new Subject<void>();
 
     constructor(
@@ -100,7 +104,22 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
     private subscribeToRoll(): void {
         this.rollService.isActive$
             .pipe(takeUntil(this.destroy$))
-            .subscribe(active => this.isRollActive = active);
+            .subscribe(active => {
+                this.isRollActive = active;
+                if (!active) {
+                    this.statusGateActive = false;
+                    this.rollProceedError = '';
+                }
+            });
+
+        this.rollService.isPaused$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(paused => {
+                this.statusGateActive = paused;
+                if (!paused) {
+                    this.rollProceedError = '';
+                }
+            });
 
         this.rollService.rollStats$
             .pipe(takeUntil(this.destroy$))
@@ -110,12 +129,12 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe(err => this.rollError = err);
 
-        // Auto-select the lead when the roll moves to a new one
+        // Auto-select the paused lead so the agent can update its status
         this.rollService.currentLeadChanged$
             .pipe(takeUntil(this.destroy$))
             .subscribe(leadId => {
                 const lead = this.allLeads.find(l => l.lead_id === leadId);
-                if (lead && lead.lead_id !== this.selectedLead?.lead_id) {
+                if (lead) {
                     this.onLeadSelected(lead);
                 }
             });
@@ -156,6 +175,7 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
                     this.selectedCampaignId = this.campaigns[0].campaign_id;
                     this.loadLeads(this.selectedCampaignId);
                     this.loadPerformance(this.selectedCampaignId);
+                    this.rollService.syncState(this.selectedCampaignId);
                 }
             },
             error: () => {
@@ -260,8 +280,11 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
         this.selectedLead = null;
         this.timelineEvents = [];
         this.callStatus = null;
+        this.statusGateActive = false;
+        this.rollProceedError = '';
         this.loadLeads(campaignId);
         this.loadPerformance(campaignId);
+        this.rollService.syncState(campaignId);
     }
 
     // ── Lead selection ───────────────────────────────────────────────────────
@@ -347,11 +370,42 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
                     }
                     this.timelineEvents = [...this.timelineEvents, ...events];
                     this.isSubmittingStatus = false;
+
+                    // Proceed to next lead after status is confirmed
+                    if (this.statusGateActive) {
+                        this.onProceedRoll();
+                    }
                 },
                 error: () => {
                     this.isSubmittingStatus = false;
                 },
             });
+    }
+
+    // ── Status gate actions ───────────────────────────────────────────────────
+
+    onProceedRoll(): void {
+        if (!this.selectedCampaignId) return;
+        this.rollProceedError = '';
+        this.lmService.proceedRoll(this.selectedCampaignId)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+                error: () => {
+                    this.rollProceedError = 'ROLL.PROCEED_ERROR';
+                },
+            });
+    }
+
+    onKeepAndContinue(): void {
+        if (!this.statusGateActive) return;
+        this.onProceedRoll();
+    }
+
+    @HostListener('document:keydown.enter')
+    onEnterKey(): void {
+        if (this.statusGateActive) {
+            this.onKeepAndContinue();
+        }
     }
 
     // ── Call initiated ───────────────────────────────────────────────────────

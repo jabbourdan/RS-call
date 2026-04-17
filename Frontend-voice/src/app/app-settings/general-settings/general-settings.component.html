@@ -60,44 +60,34 @@
         {{ 'APP_SETTINGS.SECTION_PHONES' | translate }}
     </h5>
     <p class="!mb-[20px] md:!mb-[25px] text-gray-500 dark:text-gray-400 text-sm">
-        {{ 'APP_SETTINGS.FIELD_PHONE_LOCKED' | translate }}
+        {{ 'APP_SETTINGS.PHONE_OVERVIEW_DESC' | translate }}
+        <a routerLink="/dashboard/app-settings/phone-numbers" class="text-primary-500 hover:underline ltr:ml-1 rtl:mr-1">
+            {{ 'APP_SETTINGS.PHONE_MANAGE_LINK' | translate }}
+        </a>
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_PHONE_1' | translate }}
-            </label>
-            <div class="relative">
-                <input
-                    type="text"
-                    value="+1 (555) 123-4567"
-                    readonly
-                    class="h-[55px] rounded-md text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] ltr:pr-[46px] rtl:pl-[46px] block w-full outline-0 cursor-not-allowed"
-                >
-                <i class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 ltr:right-[14px] rtl:left-[14px] text-gray-400 !text-[20px]">
-                    lock
-                </i>
+        @if (phoneNumbers.length === 0) {
+            <div class="col-span-2 text-sm text-gray-400 dark:text-gray-500 italic">
+                {{ 'APP_SETTINGS.NO_PHONES' | translate }}
             </div>
-        </div>
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_PHONE_2' | translate }}
-            </label>
-            <div class="relative">
-                <input
-                    type="text"
-                    value="+1 (555) 987-6543"
-                    readonly
-                    class="h-[55px] rounded-md text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] ltr:pr-[46px] rtl:pl-[46px] block w-full outline-0 cursor-not-allowed"
-                >
-                <i class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 ltr:right-[14px] rtl:left-[14px] text-gray-400 !text-[20px]">
-                    lock
-                </i>
+        }
+        @for (phone of phoneNumbers; track phone.phone_id) {
+            <div>
+                <label class="mb-[10px] text-black dark:text-white font-medium block">
+                    {{ phone.label || ('PHONE_NUMBERS.NO_LABEL' | translate) }}
+                </label>
+                <div class="relative">
+                    <input
+                        type="text"
+                        [value]="phone.phone_number"
+                        readonly
+                        dir="ltr"
+                        class="h-[55px] rounded-md text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] ltr:pr-[46px] rtl:pl-[46px] block w-full outline-0 cursor-not-allowed"
+                    >
+                    <i class="ri-phone-line absolute top-1/2 -translate-y-1/2 ltr:right-[14px] rtl:left-[14px] text-gray-400 text-lg"></i>
+                </div>
             </div>
-        </div>
-
+        }
     </div>
 
     <!-- ── Call / Dialing Config ───────────────────────────────── -->

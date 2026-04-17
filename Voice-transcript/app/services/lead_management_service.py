@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func
 
-from app.models.base import Lead, Campaign, CampaignSettings, Call, User
+from app.models.base import Lead, Campaign, CampaignSettings, Call, User, OrgPhoneNumber
 
 # ── Statuses that are permanently out of queue ────────────────────────────────
 EXCLUDED_STATUSES = {"לא רלוונטי", "עסקה נסגרה", "אל תתקשר"}
@@ -217,9 +217,38 @@ class LeadManagementService:  # Fixed spelling: Managment -> Management
 
     @staticmethod
     async def _pick_phone_number(db, campaign_id, settings) -> Optional[str]:
-        if not settings.phone_number_used1: return None
-        if not settings.phone_number_used2 or not settings.change_number_after: return settings.phone_number_used1
+        if not settings.primary_phone_id:
+            return None
 
-        count_result = await db.execute(select(func.count(Lead.lead_id)).where(Lead.campaign_id == campaign_id, Lead.number_called_from == settings.phone_number_used1))
-        if (count_result.scalar() or 0) >= settings.change_number_after: return settings.phone_number_used2
-        return settings.phone_number_used1
+        primary_result = await db.execute(
+            select(OrgPhoneNumber).where(
+                OrgPhoneNumber.phone_id == settings.primary_phone_id,
+                OrgPhoneNumber.is_active == True,
+            )
+        )
+        primary_phone = primary_result.scalars().first()
+        if not primary_phone:
+            return None
+
+        if not settings.secondary_phone_id or not settings.change_number_after:
+            return primary_phone.phone_number
+
+        secondary_result = await db.execute(
+            select(OrgPhoneNumber).where(
+                OrgPhoneNumber.phone_id == settings.secondary_phone_id,
+                OrgPhoneNumber.is_active == True,
+            )
+        )
+        secondary_phone = secondary_result.scalars().first()
+        if not secondary_phone:
+            return primary_phone.phone_number
+
+        count_result = await db.execute(
+            select(func.count(Lead.lead_id)).where(
+                Lead.campaign_id == campaign_id,
+                Lead.number_called_from == primary_phone.phone_number,
+            )
+        )
+        if (count_result.scalar() or 0) >= settings.change_number_after:
+            return secondary_phone.phone_number
+        return primary_phone.phone_number

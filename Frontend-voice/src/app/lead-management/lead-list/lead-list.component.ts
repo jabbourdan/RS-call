@@ -43,9 +43,8 @@ export class LeadListComponent implements OnChanges {
     @Output() leadSelected = new EventEmitter<LeadManagementItem>();
     @Output() autoDialerClicked = new EventEmitter<void>();
 
-    currentTab: 'follow-ups' | 'search' = 'follow-ups';
+    currentTab: 'queue' | 'follow-ups' | 'search' = 'queue';
     searchQuery = '';
-    showUnansweredOnly = false;
 
     filteredLeads: LeadManagementItem[] = [];
 
@@ -59,20 +58,15 @@ export class LeadListComponent implements OnChanges {
         this.campaignChanged.emit(this.selectedCampaignId);
     }
 
-    switchTab(tab: 'follow-ups' | 'search'): void {
+    switchTab(tab: 'queue' | 'follow-ups' | 'search'): void {
         this.currentTab = tab;
-        if (tab === 'follow-ups') {
+        if (tab !== 'search') {
             this.searchQuery = '';
         }
         this.applyFilters();
     }
 
     onSearch(): void {
-        this.applyFilters();
-    }
-
-    toggleUnanswered(): void {
-        this.showUnansweredOnly = !this.showUnansweredOnly;
         this.applyFilters();
     }
 
@@ -83,15 +77,25 @@ export class LeadListComponent implements OnChanges {
     applyFilters(): void {
         let result = [...this.leads];
 
-        // Filter by follow-ups tab
-        if (this.currentTab === 'follow-ups') {
-            if (this.showUnansweredOnly) {
-                result = result.filter(l => l.status.current === 'פולו אפ' && l.sum_calls_performed === 0);
-            }
-        }
-
-        // Search tab filter
-        if (this.currentTab === 'search' && this.searchQuery.trim()) {
+        if (this.currentTab === 'queue') {
+            // Queue: only pending leads (ממתין), never-called first, then by last call date
+            result = result.filter(l => l.status.current === 'ממתין');
+            result.sort((a, b) => {
+                if (!a.last_call_at && !b.last_call_at) return 0;
+                if (!a.last_call_at) return -1;
+                if (!b.last_call_at) return 1;
+                return new Date(a.last_call_at).getTime() - new Date(b.last_call_at).getTime();
+            });
+        } else if (this.currentTab === 'follow-ups') {
+            // Follow-ups: only פולו אפ leads, sorted by follow_up_date ascending (soonest first)
+            result = result.filter(l => l.status.current === 'פולו אפ');
+            result.sort((a, b) => {
+                if (!a.follow_up_date && !b.follow_up_date) return 0;
+                if (!a.follow_up_date) return 1;
+                if (!b.follow_up_date) return -1;
+                return new Date(a.follow_up_date).getTime() - new Date(b.follow_up_date).getTime();
+            });
+        } else if (this.currentTab === 'search' && this.searchQuery.trim()) {
             const q = this.searchQuery.toLowerCase();
             result = result.filter(l =>
                 (l.name && l.name.toLowerCase().includes(q)) ||
@@ -101,6 +105,11 @@ export class LeadListComponent implements OnChanges {
         }
 
         this.filteredLeads = result;
+    }
+
+    isOverdue(follow_up_date: string | null): boolean {
+        if (!follow_up_date) return false;
+        return new Date(follow_up_date) < new Date();
     }
 
     getStatusBadge(status: string): string {

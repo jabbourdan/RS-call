@@ -33,6 +33,14 @@
                 </a>
             </li>
             <li class="inline-block mb-[15px] ltr:mr-[11px] rtl:ml-[11px] ltr:last:mr-0 rtl:last:ml-0">
+                <a routerLink="/dashboard/app-settings/phone-numbers"
+                   class="block rounded-md font-medium py-[8.5px] px-[15px] text-primary-500 border border-primary-500 transition-all hover:bg-primary-500 hover:text-white"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}">
+                    {{ 'APP_SETTINGS.TAB_PHONES' | translate }}
+                </a>
+            </li>
+            <li class="inline-block mb-[15px] ltr:mr-[11px] rtl:ml-[11px] ltr:last:mr-0 rtl:last:ml-0">
                 <a routerLink="/dashboard/app-settings/user-management"
                    class="block rounded-md font-medium py-[8.5px] px-[15px] text-primary-500 border border-primary-500 transition-all hover:bg-primary-500 hover:text-white"
                    routerLinkActive="active"
