@@ -235,8 +235,8 @@ export class RollService implements OnDestroy {
                     this._rollStats$.next(stats);
                     this._isPaused$.next(res.roll_paused);
 
-                    // Emit lead change when roll pauses on a new lead
-                    if (res.roll_paused && res.current_lead && res.current_lead.lead_id !== this.lastLeadId) {
+                    // Emit lead change whenever the roll moves to a new lead (paused or mid-call)
+                    if (res.current_lead && res.current_lead.lead_id !== this.lastLeadId) {
                         this.lastLeadId = res.current_lead.lead_id;
                         this._currentLeadChanged$.next(res.current_lead.lead_id);
                     }

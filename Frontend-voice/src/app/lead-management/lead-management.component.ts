@@ -347,7 +347,8 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
                     // Sync in allLeads list
                     const idx = this.allLeads.findIndex(l => l.lead_id === payload.leadId);
                     if (idx !== -1) {
-                        this.allLeads[idx] = { ...this.allLeads[idx], status: { ...this.allLeads[idx].status, current: res.new_status } };
+                        this.allLeads[idx] = { ...this.allLeads[idx], status: { ...this.allLeads[idx].status, current: res.new_status }, follow_up_date: res.follow_up_date };
+                        this.allLeads = [...this.allLeads];
                         this.filterLeadsByCampaign();
                     }
                     // Prepend event to timeline

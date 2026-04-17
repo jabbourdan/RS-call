@@ -47,6 +47,7 @@ export class LeadListComponent implements OnChanges {
     searchQuery = '';
 
     filteredLeads: LeadManagementItem[] = [];
+    overdueFollowUps: LeadManagementItem[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['leads'] || changes['selectedCampaignId']) {
@@ -78,7 +79,14 @@ export class LeadListComponent implements OnChanges {
         let result = [...this.leads];
 
         if (this.currentTab === 'queue') {
-            // Queue: only pending leads (ממתין), never-called first, then by last call date
+            const now = new Date();
+
+            // Overdue follow-ups: פולו אפ leads whose scheduled time has passed
+            this.overdueFollowUps = result
+                .filter(l => l.status.current === 'פולו אפ' && l.follow_up_date && new Date(l.follow_up_date) < now)
+                .sort((a, b) => new Date(a.follow_up_date!).getTime() - new Date(b.follow_up_date!).getTime());
+
+            // Regular queue: pending leads, never-called first, then by last call date
             result = result.filter(l => l.status.current === 'ממתין');
             result.sort((a, b) => {
                 if (!a.last_call_at && !b.last_call_at) return 0;
@@ -86,7 +94,11 @@ export class LeadListComponent implements OnChanges {
                 if (!b.last_call_at) return 1;
                 return new Date(a.last_call_at).getTime() - new Date(b.last_call_at).getTime();
             });
-        } else if (this.currentTab === 'follow-ups') {
+        } else {
+            this.overdueFollowUps = [];
+        }
+
+        if (this.currentTab === 'follow-ups') {
             // Follow-ups: only פולו אפ leads, sorted by follow_up_date ascending (soonest first)
             result = result.filter(l => l.status.current === 'פולו אפ');
             result.sort((a, b) => {

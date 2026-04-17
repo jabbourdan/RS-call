@@ -14,7 +14,6 @@ specs/
 
 # Editor
 .vscode/
-.specify/
 
 # macOS
 .DS_Store

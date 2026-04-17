@@ -121,49 +121,93 @@
 
     <!-- ── QUEUE TAB ─────────────────────────────────────────────────────── -->
     @if (currentTab === 'queue') {
-        @for (lead of filteredLeads; let i = $index; track trackByLead(i, lead)) {
-            <div
-                class="flex items-center gap-[10px] py-[10px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
-                [class.bg-primary-50]="selectedLeadId === lead.lead_id"
-                [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
-                [class.border-l-3]="selectedLeadId === lead.lead_id"
-                [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
-                (click)="selectLead(lead)"
-            >
-                <!-- Position number -->
-                <div class="w-[28px] h-[28px] min-w-[28px] rounded-full bg-gray-100 dark:bg-[#172036] flex items-center justify-center text-gray-500 dark:text-gray-400 text-xs font-bold">
-                    {{ i + 1 }}
-                </div>
-
-                <!-- Lead info -->
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between gap-[6px]">
-                        <span class="font-semibold text-sm text-black dark:text-white truncate">
-                            {{ lead.name || lead.phone_number }}
-                        </span>
-                        @if (lead.sum_calls_performed > 0) {
-                            <span class="flex items-center gap-[3px] text-[10px] text-gray-400 whitespace-nowrap">
-                                <i class="material-symbols-outlined !text-[12px]">phone_missed</i>
-                                {{ lead.sum_calls_performed }}
-                            </span>
-                        }
-                    </div>
-                    <div class="flex items-center gap-[6px] mt-[2px]">
-                        <i class="material-symbols-outlined !text-[13px] text-gray-400">phone</i>
-                        <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.phone_number }}</span>
-                    </div>
-                    @if (lead.last_call_at) {
-                        <div class="mt-[2px] text-[10px] text-gray-400 dark:text-gray-500">
-                            {{ formatDate(lead.last_call_at) }}
-                        </div>
-                    }
-                </div>
-            </div>
-        } @empty {
+        @if (overdueFollowUps.length === 0 && filteredLeads.length === 0) {
             <div class="text-center py-[40px] text-gray-400">
                 <i class="material-symbols-outlined !text-[40px] mb-[8px]">queue</i>
                 <p class="text-sm">{{ 'LEAD_MANAGEMENT.QUEUE_EMPTY' | translate }}</p>
             </div>
+        } @else {
+            <!-- Overdue follow-ups pinned to top -->
+            @if (overdueFollowUps.length > 0) {
+                <div class="flex items-center gap-[6px] text-[10px] font-semibold text-red-500 uppercase tracking-wide px-[2px] mb-[6px]">
+                    <i class="material-symbols-outlined !text-[13px]">alarm</i>
+                    {{ 'LEAD_MANAGEMENT.FOLLOW_UP_OVERDUE' | translate }}
+                </div>
+                @for (lead of overdueFollowUps; let i = $index; track trackByLead(i, lead)) {
+                    <div
+                        class="flex items-center gap-[10px] py-[10px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
+                        [class.bg-primary-50]="selectedLeadId === lead.lead_id"
+                        [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
+                        [class.border-l-3]="selectedLeadId === lead.lead_id"
+                        [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
+                        (click)="selectLead(lead)"
+                    >
+                        <div class="w-[28px] h-[28px] min-w-[28px] rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
+                            <i class="material-symbols-outlined !text-[14px] text-red-500">alarm</i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between gap-[6px]">
+                                <span class="font-semibold text-sm text-black dark:text-white truncate">
+                                    {{ lead.name || lead.phone_number }}
+                                </span>
+                                <span class="text-[10px] font-semibold px-[6px] py-[1px] rounded-full bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-400 whitespace-nowrap">
+                                    {{ 'LEAD_MANAGEMENT.FOLLOW_UP_OVERDUE' | translate }}
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-[6px] mt-[2px]">
+                                <i class="material-symbols-outlined !text-[13px] text-gray-400">phone</i>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.phone_number }}</span>
+                            </div>
+                            @if (lead.follow_up_date) {
+                                <div class="mt-[2px] text-[10px] text-red-400 dark:text-red-500">
+                                    {{ formatDate(lead.follow_up_date) }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                @if (filteredLeads.length > 0) {
+                    <div class="border-t border-dashed border-gray-200 dark:border-[#172036] my-[8px]"></div>
+                }
+            }
+
+            <!-- Regular pending queue -->
+            @for (lead of filteredLeads; let i = $index; track trackByLead(i, lead)) {
+                <div
+                    class="flex items-center gap-[10px] py-[10px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
+                    [class.bg-primary-50]="selectedLeadId === lead.lead_id"
+                    [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
+                    [class.border-l-3]="selectedLeadId === lead.lead_id"
+                    [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
+                    (click)="selectLead(lead)"
+                >
+                    <div class="w-[28px] h-[28px] min-w-[28px] rounded-full bg-gray-100 dark:bg-[#172036] flex items-center justify-center text-gray-500 dark:text-gray-400 text-xs font-bold">
+                        {{ i + 1 }}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-[6px]">
+                            <span class="font-semibold text-sm text-black dark:text-white truncate">
+                                {{ lead.name || lead.phone_number }}
+                            </span>
+                            @if (lead.sum_calls_performed > 0) {
+                                <span class="flex items-center gap-[3px] text-[10px] text-gray-400 whitespace-nowrap">
+                                    <i class="material-symbols-outlined !text-[12px]">phone_missed</i>
+                                    {{ lead.sum_calls_performed }}
+                                </span>
+                            }
+                        </div>
+                        <div class="flex items-center gap-[6px] mt-[2px]">
+                            <i class="material-symbols-outlined !text-[13px] text-gray-400">phone</i>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.phone_number }}</span>
+                        </div>
+                        @if (lead.last_call_at) {
+                            <div class="mt-[2px] text-[10px] text-gray-400 dark:text-gray-500">
+                                {{ formatDate(lead.last_call_at) }}
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
         }
     }
 
