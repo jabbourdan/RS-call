@@ -109,6 +109,7 @@ export interface RollStats {
     callsAnswered: number;
     callsNoAnswer: number;
     leadsRemaining: number;
+    currentCallId?: string | null;
     currentLead: {
         leadId: string;
         name: string;

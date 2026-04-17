@@ -171,6 +171,9 @@ class CampaignService:
         if payload.cooldown_minutes is not None:
             settings.cooldown_minutes = payload.cooldown_minutes
 
+        if payload.ring_timeout_seconds is not None:
+            settings.ring_timeout_seconds = max(5, payload.ring_timeout_seconds)
+
         settings.updated_at = datetime.utcnow()
         await db.commit()
         await db.refresh(settings)

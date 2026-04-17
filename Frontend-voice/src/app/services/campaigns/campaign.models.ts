@@ -21,6 +21,7 @@ export interface CampaignSettings {
     max_calls_to_unanswered_lead: number;
     calling_algorithm: CallingAlgorithm;
     cooldown_minutes: number;
+    ring_timeout_seconds: number;
     campaign_status: CampaignStatusConfig;
     created_at: string;
     updated_at: string;
@@ -102,5 +103,6 @@ export interface UpdateCampaignSettingsRequest {
     max_calls_to_unanswered_lead?: number;
     calling_algorithm?: CallingAlgorithm;
     cooldown_minutes?: number;
+    ring_timeout_seconds?: number;
     campaign_status?: CampaignStatusConfig;
 }

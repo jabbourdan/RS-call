@@ -48,6 +48,7 @@ interface CampaignFormData {
     max_calls_to_unanswered_lead: string;
     calling_algorithm: CallingAlgorithm;
     cooldown_minutes: string;
+    ring_timeout_seconds: string;
     statusesRaw: string;   // comma-separated for textarea
 }
 
@@ -156,6 +157,7 @@ export class CampaignsComponent implements OnInit {
             max_calls_to_unanswered_lead: '3',
             calling_algorithm: 'priority',
             cooldown_minutes: '120',
+            ring_timeout_seconds: '15',
             statusesRaw: DEFAULT_STATUSES.join(', '),
         };
     }
@@ -188,6 +190,7 @@ export class CampaignsComponent implements OnInit {
             max_calls_to_unanswered_lead: String(s.max_calls_to_unanswered_lead),
             calling_algorithm:            s.calling_algorithm,
             cooldown_minutes:             String(s.cooldown_minutes),
+            ring_timeout_seconds:         String(s.ring_timeout_seconds ?? 15),
             statusesRaw:                  (s.campaign_status?.statuses ?? DEFAULT_STATUSES).join(', '),
         };
         this.showFormDialog = true;
@@ -224,6 +227,7 @@ export class CampaignsComponent implements OnInit {
             max_calls_to_unanswered_lead: Number(this.formData.max_calls_to_unanswered_lead) || 3,
             calling_algorithm:            this.formData.calling_algorithm,
             cooldown_minutes:             Number(this.formData.cooldown_minutes) || 120,
+            ring_timeout_seconds:         parseInt(this.formData.ring_timeout_seconds, 10) || 15,
             campaign_status:              { statuses: statuses.length > 0 ? statuses : DEFAULT_STATUSES },
         };
 

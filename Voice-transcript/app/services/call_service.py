@@ -203,6 +203,10 @@ class CallService:
             try:
                 from app.services.roll_service import RollService
 
+                # Agent already triggered hangup and set the gate — skip double-handling
+                if getattr(call, "agent_terminated", False):
+                    return {"status": "updated", "call_id": str(call.call_id)}
+
                 # Auto-set "לא ענה" for unanswered roll calls
                 if new_status == "no_answer" and call.lead_id:
                     lead_res = await db.execute(select(Lead).where(Lead.lead_id == call.lead_id))
@@ -221,7 +225,31 @@ class CallService:
                             ))
                             await db.commit()
 
-                if call.campaign_id:
+                if new_status in ("no_answer", "completed") and call.campaign_id:
+                    # Terminate any lingering conference (handles no-answer where lead never joined)
+                    twilio = TwilioClient()
+                    conf_name = f"roll_{str(call.call_id).replace('-', '')}"
+                    try:
+                        conferences = twilio.client.conferences.list(
+                            friendly_name=conf_name, status="in-progress"
+                        )
+                        for conf in conferences:
+                            for participant in twilio.client.conferences(conf.sid).participants.list():
+                                twilio.client.conferences(conf.sid).participants(
+                                    participant.call_sid
+                                ).update(status="completed")
+                    except Exception:
+                        pass
+
+                    # Look up user to pass to _advance_roll
+                    user_res = await db.execute(select(User).where(User.user_id == call.user_id))
+                    user = user_res.scalars().first()
+                    if user:
+                        await RollService._advance_roll(
+                            db=db, campaign_id=call.campaign_id, current_user=user
+                        )
+
+                elif new_status == "failed" and call.campaign_id:
                     await RollService.pause_roll(db=db, campaign_id=call.campaign_id)
 
             except Exception as e:

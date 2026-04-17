@@ -9,6 +9,7 @@ import { TwilioVoiceService } from '../twilio-voice.service';
 const STATUS_I18N: Record<string, string> = {
     'ממתין':        'LEAD_MANAGEMENT.STATUS_PENDING',
     'ענה':          'LEAD_MANAGEMENT.STATUS_ANSWERED',
+    'לא ענה':       'LEAD_MANAGEMENT.STATUS_NO_ANSWER',
     'לא רלוונטי':   'LEAD_MANAGEMENT.STATUS_NOT_RELEVANT',
     'עסקה נסגרה':   'LEAD_MANAGEMENT.STATUS_CLOSED_DEAL',
     'פולו אפ':      'LEAD_MANAGEMENT.STATUS_FOLLOW_UP',

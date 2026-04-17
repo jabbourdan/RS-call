@@ -93,6 +93,7 @@
         "ERROR_NAME_REQUIRED": "اسم الحملة مطلوب.",
         "SUCCESS_CREATED": "تم إنشاء الحملة بنجاح.",
         "SUCCESS_UPDATED": "تم تحديث الحملة بنجاح.",
+        "RING_TIMEOUT_SECONDS": "مهلة الرنين (ثوان)",
         "SUCCESS_DELETED": "تم حذف الحملة."
     },
     "CONTACTS": {
@@ -368,6 +369,7 @@
         "BTN_SAVE_SETTINGS": "حفظ الإعدادات",
         "STATUS_PENDING": "قيد الانتظار",
         "STATUS_ANSWERED": "تم الرد",
+        "STATUS_NO_ANSWER": "لم يرد",
         "STATUS_NOT_RELEVANT": "غير ذي صلة",
         "STATUS_CLOSED_DEAL": "صفقة مغلقة",
         "STATUS_FOLLOW_UP": "متابعة",

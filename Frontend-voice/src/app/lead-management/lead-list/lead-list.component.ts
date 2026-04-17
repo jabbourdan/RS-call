@@ -8,6 +8,7 @@ import { CampaignOption, LeadManagementItem, RollStats } from '../lead-managemen
 const STATUS_BADGE: Record<string, string> = {
     'ממתין':        'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300',
     'ענה':          'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+    'לא ענה':       'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
     'לא רלוונטי':   'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300',
     'עסקה נסגרה':   'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
     'פולו אפ':      'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
@@ -17,6 +18,7 @@ const STATUS_BADGE: Record<string, string> = {
 const STATUS_I18N: Record<string, string> = {
     'ממתין':        'LEAD_MANAGEMENT.STATUS_PENDING',
     'ענה':          'LEAD_MANAGEMENT.STATUS_ANSWERED',
+    'לא ענה':       'LEAD_MANAGEMENT.STATUS_NO_ANSWER',
     'לא רלוונטי':   'LEAD_MANAGEMENT.STATUS_NOT_RELEVANT',
     'עסקה נסגרה':   'LEAD_MANAGEMENT.STATUS_CLOSED_DEAL',
     'פולו אפ':      'LEAD_MANAGEMENT.STATUS_FOLLOW_UP',

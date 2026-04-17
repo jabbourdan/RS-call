@@ -309,8 +309,17 @@ async def hangup_call(
 
     twilio = TwilioClient()
 
-    # Terminate every active call leg in the conference (conference name pattern)
-    conf_name = f"manual_{str(call_id).replace('-', '')}"
+    call.agent_terminated = True
+    await db.commit()
+
+    # Use the correct conference name depending on call type
+    conf_name = (
+        f"roll_{str(call_id).replace('-', '')}"
+        if call.is_roll
+        else f"manual_{str(call_id).replace('-', '')}"
+    )
+
+    # Terminate every active call leg in the conference
     try:
         conferences = twilio.client.conferences.list(friendly_name=conf_name, status="in-progress")
         for conf in conferences:
@@ -331,6 +340,10 @@ async def hangup_call(
 
     call.status = "completed"
     await db.commit()
+
+    # For roll calls: pause so the agent sees the status gate
+    if call.is_roll and call.campaign_id:
+        await RollService.pause_roll(db=db, campaign_id=call.campaign_id)
 
     return {"status": "terminated", "call_id": str(call_id)}
 

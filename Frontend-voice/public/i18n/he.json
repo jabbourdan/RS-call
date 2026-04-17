@@ -93,6 +93,7 @@
         "ERROR_NAME_REQUIRED": "שם הקמפיין הוא שדה חובה.",
         "SUCCESS_CREATED": "הקמפיין נוצר בהצלחה.",
         "SUCCESS_UPDATED": "הקמפיין עודכן בהצלחה.",
+        "RING_TIMEOUT_SECONDS": "זמן המתנה לאחר חיוג (שניות)",
         "SUCCESS_DELETED": "הקמפיין נמחק."
     },
     "CONTACTS": {
@@ -368,6 +369,7 @@
         "BTN_SAVE_SETTINGS": "שמור הגדרות",
         "STATUS_PENDING": "ממתין",
         "STATUS_ANSWERED": "ענה",
+        "STATUS_NO_ANSWER": "לא ענה",
         "STATUS_NOT_RELEVANT": "לא רלוונטי",
         "STATUS_CLOSED_DEAL": "עסקה נסגרה",
         "STATUS_FOLLOW_UP": "פולו אפ",

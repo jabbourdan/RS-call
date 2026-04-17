@@ -93,6 +93,7 @@
         "ERROR_NAME_REQUIRED": "Campaign name is required.",
         "SUCCESS_CREATED": "Campaign created successfully.",
         "SUCCESS_UPDATED": "Campaign updated successfully.",
+        "RING_TIMEOUT_SECONDS": "Ring Timeout (seconds)",
         "SUCCESS_DELETED": "Campaign deleted."
     },
     "CONTACTS": {
@@ -368,6 +369,7 @@
         "BTN_SAVE_SETTINGS": "Save Settings",
         "STATUS_PENDING": "Pending",
         "STATUS_ANSWERED": "Answered",
+        "STATUS_NO_ANSWER": "Didn't Answer",
         "STATUS_NOT_RELEVANT": "Not Relevant",
         "STATUS_CLOSED_DEAL": "Closed Deal",
         "STATUS_FOLLOW_UP": "Follow Up",
