@@ -13,6 +13,8 @@ import {
     UpdateCampaignRequest,
     UpdateCampaignSettingsRequest,
 } from '../services/campaigns/campaign.models';
+import { OrgPhoneNumberService } from '../services/org-phone-numbers/org-phone-number.service';
+import { OrgPhoneNumber } from '../services/org-phone-numbers/org-phone-number.models';
 
 // ─── Status badge colours ─────────────────────────────────────────────────────
 
@@ -40,8 +42,8 @@ interface CampaignFormData {
     name: string;
     description: string;
     status: CampaignStatus;
-    phone_number_used1: string;
-    phone_number_used2: string;
+    primary_phone_id: string;
+    secondary_phone_id: string;
     change_number_after: string;
     max_calls_to_unanswered_lead: string;
     calling_algorithm: CallingAlgorithm;
@@ -91,14 +93,20 @@ export class CampaignsComponent implements OnInit {
     deletingName    = '';
     deleteSubmitting = false;
 
+    // ─── Org phone numbers (for campaign settings dropdowns) ───────────────────
+
+    orgPhoneNumbers: OrgPhoneNumber[] = [];
+
     constructor(
         private campaignService: CampaignService,
+        private phoneNumberService: OrgPhoneNumberService,
         private translate: TranslateService,
         private router: Router
     ) {}
 
     ngOnInit(): void {
         this.loadCampaigns();
+        this.loadOrgPhoneNumbers();
     }
 
     // ─── Load ─────────────────────────────────────────────────────────────────────
@@ -115,6 +123,13 @@ export class CampaignsComponent implements OnInit {
                 this.errorMessage = this.extractError(err);
                 this.isLoading = false;
             }
+        });
+    }
+
+    loadOrgPhoneNumbers(): void {
+        this.phoneNumberService.list().subscribe({
+            next: (numbers) => { this.orgPhoneNumbers = numbers; },
+            error: () => { this.orgPhoneNumbers = []; }
         });
     }
 
@@ -135,8 +150,8 @@ export class CampaignsComponent implements OnInit {
             name: '',
             description: '',
             status: 'draft',
-            phone_number_used1: '',
-            phone_number_used2: '',
+            primary_phone_id: '',
+            secondary_phone_id: '',
             change_number_after: '',
             max_calls_to_unanswered_lead: '3',
             calling_algorithm: 'priority',
@@ -167,8 +182,8 @@ export class CampaignsComponent implements OnInit {
             name:                         campaign.name,
             description:                  campaign.description ?? '',
             status:                       campaign.status,
-            phone_number_used1:           s.phone_number_used1 ?? '',
-            phone_number_used2:           s.phone_number_used2 ?? '',
+            primary_phone_id:             s.primary_phone_id ?? '',
+            secondary_phone_id:           s.secondary_phone_id ?? '',
             change_number_after:          s.change_number_after != null ? String(s.change_number_after) : '',
             max_calls_to_unanswered_lead: String(s.max_calls_to_unanswered_lead),
             calling_algorithm:            s.calling_algorithm,
@@ -203,8 +218,8 @@ export class CampaignsComponent implements OnInit {
             .filter(s => s.length > 0);
 
         const settingsPayload: UpdateCampaignSettingsRequest = {
-            phone_number_used1:           this.formData.phone_number_used1.trim() || null,
-            phone_number_used2:           this.formData.phone_number_used2.trim() || null,
+            primary_phone_id:             this.formData.primary_phone_id || null,
+            secondary_phone_id:           this.formData.secondary_phone_id || null,
             change_number_after:          this.formData.change_number_after !== '' ? Number(this.formData.change_number_after) : null,
             max_calls_to_unanswered_lead: Number(this.formData.max_calls_to_unanswered_lead) || 3,
             calling_algorithm:            this.formData.calling_algorithm,

@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
+from sqlalchemy import delete as sql_delete, update as sql_update
 from typing import Optional, List, Dict
 from uuid import UUID
 from datetime import datetime
@@ -8,7 +9,7 @@ import pandas as pd
 import re
 import io
 
-from app.models.base import Lead, Campaign, CampaignSettings, User, LeadStatusHistory
+from app.models.base import Lead, Campaign, CampaignSettings, User, LeadStatusHistory, Call, LeadComment
 
 
 # =========================
@@ -150,7 +151,13 @@ class LeadService:
                 continue
 
             # Build extra_data (non-mapped columns)
-            extra_data = {col: row[col] for col in df.columns if col not in mapped_columns and pd.notna(row[col])}
+            extra_data = {}
+            for col in df.columns:
+                if col not in mapped_columns and pd.notna(row[col]):
+                    val = row[col]
+                    if isinstance(val, datetime):
+                        val = val.isoformat()
+                    extra_data[col] = val
 
             lead = Lead(
                 org_id=current_user.org_id,
@@ -268,7 +275,7 @@ class LeadService:
         comment: Optional[str] = None,
     ) -> dict:
 
-        VALID_STATUSES = {"ממתין", "ענה", "לא רלוונטי", "עסקה נסגרה", "פולו אפ", "אל תתקשר"}
+        VALID_STATUSES = {"ממתין", "ענה", "לא ענה", "לא רלוונטי", "עסקה נסגרה", "פולו אפ", "אל תתקשר"}
 
         # 1. Basic Status Validation
         if new_status not in VALID_STATUSES:
@@ -355,7 +362,13 @@ class LeadService:
         if not lead:
             raise HTTPException(status_code=404, detail="Lead not found.")
 
-        await db.delete(lead)
+        # Delete in correct order to avoid NOT NULL FK constraint violations.
+        # Call records are preserved but disassociated from the lead.
+        # CallAnalysis.call_id is NOT NULL so we cannot SET NULL through ORM cascade.
+        await db.execute(sql_update(Call).where(Call.lead_id == lead_id).values(lead_id=None))
+        await db.execute(sql_delete(LeadComment).where(LeadComment.lead_id == lead_id))
+        await db.execute(sql_delete(LeadStatusHistory).where(LeadStatusHistory.lead_id == lead_id))
+        await db.execute(sql_delete(Lead).where(Lead.lead_id == lead_id))
         await db.commit()
         return {"status": "deleted", "lead_id": str(lead_id)}
 
@@ -370,6 +383,8 @@ class LeadService:
         phone_number: Optional[str] = None,
         name: Optional[str] = None,
         email: Optional[str] = None,
+        status: Optional[str] = None,
+        follow_up_date: Optional[datetime] = None,
         extra_data: Optional[Dict] = None,
     ) -> Lead:
         # ── Fetch lead with org + campaign guard ──────────────────
@@ -414,6 +429,19 @@ class LeadService:
             lead.email = email
         if extra_data is not None:
             lead.extra_data = extra_data
+
+        # ── Update status if provided ─────────────────────────────
+        if status is not None:
+            VALID_STATUSES = {"ממתין", "ענה", "לא ענה", "לא רלוונטי", "עסקה נסגרה", "פולו אפ", "אל תתקשר"}
+            if status not in VALID_STATUSES:
+                raise HTTPException(status_code=400, detail=f"Invalid status '{status}'")
+            lead.status = {"current": status, "options": list(VALID_STATUSES)}
+            if status == "פולו אפ" and follow_up_date is not None:
+                if follow_up_date.tzinfo is not None:
+                    follow_up_date = follow_up_date.replace(tzinfo=None)
+                lead.follow_up_date = follow_up_date
+            else:
+                lead.follow_up_date = None
 
         try:
             await db.commit()

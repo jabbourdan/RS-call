@@ -44,7 +44,7 @@
         "CONTACTS": "אנשי קשר",
         "LEADS": "לידים",
         "CAMPAIGNS": "קמפיינים",
-        "LEAD_MANAGEMENT": "ניהול לידים",
+        "LEAD_MANAGEMENT": "שיחות",
         "APP_SETTINGS": "הגדרות מערכת"
     },
     "CAMPAIGNS": {
@@ -85,6 +85,8 @@
         "SETTINGS_COOLDOWN": "זמן המתנה",
         "SETTINGS_MINUTES": "דק'",
         "SETTINGS_STATUSES": "סטטוסי לידים (מופרדים בפסיק)",
+        "SETTINGS_PHONE_NONE": "— ללא —",
+        "SETTINGS_NO_PHONES": "אין מספרי טלפון בארגון שלך. הוסף אותם בהגדרות מערכת.",
         "SETTINGS_STATUSES_HINT": "הפרד כל סטטוס בפסיק. אלה יוצגו לנציגים במהלך שיחות.",
         "DELETE_TITLE": "מחיקת קמפיין?",
         "DELETE_DESC": "פעולה זו תמחק לצמיתות את הקמפיין וכל הנתונים שלו. האם אתה בטוח שברצונך למחוק:",
@@ -322,8 +324,14 @@
         "SHOW_LEADS": "הצג לידים",
         "AUTO_DIALER_START": "הפעל חייגן אוטומטי",
         "AUTO_DIALER": "חייגן אוטומטי",
+        "TAB_QUEUE": "תור",
         "TAB_FOLLOW_UPS": "פולו-אפ",
         "TAB_SEARCH": "חיפוש",
+        "QUEUE_EMPTY": "התור ריק",
+        "NO_FOLLOW_UPS": "אין פולו-אפ מתוזמן",
+        "QUEUE_CALLS": "שיחות",
+        "FOLLOW_UP_DUE": "מועד:",
+        "FOLLOW_UP_OVERDUE": "פג תוקף",
         "SHOW_UNANSWERED": "הצג שיחות פולו-אפ שלא נענו",
         "SEARCH_PLACEHOLDER": "חיפוש לפי שם, טלפון, מייל...",
         "NO_LEADS": "אין לידים בקמפיין זה",
@@ -380,7 +388,8 @@
         "ROLL_ERROR_NO_LEADS": "אין לידים זמינים להתקשרות בקמפיין זה",
         "ROLL_ERROR_START_FAILED": "לא ניתן להפעיל את החייגן האוטומטי. נסה שנית",
         "ROLL_ERROR_TWILIO_INIT": "לא ניתן להתחבר לשירות השיחות. בדוק את החיבור ונסה שנית",
-        "ROLL_ERROR_CONNECTION_LOST": "החיבור לסטטוס החייגן האוטומטי נותק. הסבב הופסק"
+        "ROLL_ERROR_CONNECTION_LOST": "החיבור לסטטוס החייגן האוטומטי נותק. הסבב הופסק",
+        "STATUS_GATE_REQUIRED": "עדכן סטטוס לפני המשך לשיחה הבאה"
     },
     "APP_SETTINGS": {
         "TITLE": "הגדרות מערכת",
@@ -398,6 +407,10 @@
         "FIELD_PHONE_1": "מספר טלפון 1",
         "FIELD_PHONE_2": "מספר טלפון 2",
         "FIELD_PHONE_LOCKED": "מנוהל על ידי המערכת — לקריאה בלבד",
+        "TAB_PHONES": "מספרי טלפון",
+        "PHONE_OVERVIEW_DESC": "מספרי הטלפון של הארגון שלך.",
+        "PHONE_MANAGE_LINK": "נהל מספרי טלפון",
+        "NO_PHONES": "עדיין לא הוגדרו מספרי טלפון.",
         "FIELD_MAX_CALLS": "מקסימום שיחות ללידים ללא מענה",
         "FIELD_ALGORITHM": "אלגוריתם חיוג",
         "FIELD_ALGORITHM_PRIORITY": "עדיפות",
@@ -416,5 +429,39 @@
         "USERS_ROLE_SUPERVISOR": "מפקח",
         "USERS_STATUS_ACTIVE": "פעיל",
         "USERS_STATUS_INACTIVE": "לא פעיל"
+    },
+    "PHONE_NUMBERS": {
+        "TITLE": "מספרי טלפון",
+        "TOTAL_LABEL": "מספרי טלפון",
+        "BTN_ADD": "הוסף מספר טלפון",
+        "BTN_EDIT": "עריכה",
+        "BTN_DELETE": "מחק",
+        "BTN_DEACTIVATE": "השבת",
+        "SHOW_INACTIVE": "הצג לא פעילים",
+        "NO_LABEL": "ללא תווית",
+        "STATUS_ACTIVE": "פעיל",
+        "STATUS_INACTIVE": "לא פעיל",
+        "EMPTY_TITLE": "אין מספרי טלפון",
+        "EMPTY_DESC": "הוסף מספרי טלפון לארגון שלך כדי להשתמש בהם בקמפיינים.",
+        "ADD_TITLE": "הוסף מספר טלפון",
+        "EDIT_TITLE": "ערוך מספר טלפון",
+        "FIELD_NUMBER": "מספר טלפון",
+        "FIELD_LABEL": "תווית",
+        "LABEL_PLACEHOLDER": "למשל קו מכירות, תמיכה",
+        "HINT_E164": "פורמט בינלאומי עם קידומת מדינה (למשל 972501234567+)",
+        "ERROR_REQUIRED": "מספר טלפון נדרש.",
+        "ERROR_E164": "חייב להיות בפורמט בינלאומי (למשל 972501234567+).",
+        "DELETE_TITLE": "להשבית מספר טלפון?",
+        "DELETE_DESC": "פעולה זו תשבית את מספר הטלפון. קמפיינים המשתמשים בו יקבלו הודעה.",
+        "SUCCESS_ADDED": "מספר טלפון נוסף בהצלחה.",
+        "SUCCESS_UPDATED": "מספר טלפון עודכן.",
+        "SUCCESS_DELETED": "מספר טלפון הושבת."
+    },
+    "ROLL": {
+        "PAUSED_TITLE": "השיחה הסתיימה — עדכן סטטוס",
+        "PAUSED_SUBTITLE": "עדכן את סטטוס הליד לפני המעבר לשיחה הבאה. לחץ Enter או על הכפתור כדי להמשיך עם הסטטוס הנוכחי.",
+        "AUTO_SET_STATUS": "עודכן אוטומטית: לא ענה",
+        "KEEP_AND_PROCEED": "שמור סטטוס והמשך",
+        "PROCEED_ERROR": "השגיאה: לא ניתן להמשיך לשיחה הבאה. נסה שוב."
     }
 }

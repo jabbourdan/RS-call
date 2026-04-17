@@ -40,6 +40,8 @@ class LeadUpdateRequest(BaseModel):
     phone_number: Optional[str] = None          # will be normalized to Israeli format
     name: Optional[str] = None
     email: Optional[str] = None
+    status: Optional[str] = None
+    follow_up_date: Optional[datetime] = None
     extra_data: Optional[Dict[str, Any]] = None
 
 class LeadResponse(BaseModel):
@@ -189,6 +191,8 @@ async def update_lead(
         phone_number=payload.phone_number,
         name=payload.name,
         email=payload.email,
+        status=payload.status,
+        follow_up_date=payload.follow_up_date,
         extra_data=payload.extra_data,
     )
 

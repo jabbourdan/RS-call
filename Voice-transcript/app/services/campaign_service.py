@@ -9,6 +9,7 @@ from sqlalchemy.orm import selectinload
 from sqlalchemy import func, cast, Date
 
 from app.models.base import Campaign, CampaignSettings, Lead, Call, User
+from app.services.org_phone_number_service import OrgPhoneNumberService
 
 
 DEFAULT_STATUS_OPTIONS = {
@@ -133,10 +134,23 @@ class CampaignService:
             )
 
         # Update only fields that were sent
-        if payload.phone_number_used1 is not None:
-            settings.phone_number_used1 = payload.phone_number_used1
-        if payload.phone_number_used2 is not None:
-            settings.phone_number_used2 = payload.phone_number_used2
+        if payload.primary_phone_id is not None:
+            await OrgPhoneNumberService.validate_phone_for_org(db, payload.primary_phone_id, current_user.org_id)
+            settings.primary_phone_id = payload.primary_phone_id
+        if payload.secondary_phone_id is not None:
+            await OrgPhoneNumberService.validate_phone_for_org(db, payload.secondary_phone_id, current_user.org_id)
+            settings.secondary_phone_id = payload.secondary_phone_id
+        if (
+            (payload.primary_phone_id or settings.primary_phone_id)
+            and (payload.secondary_phone_id or settings.secondary_phone_id)
+        ):
+            p_id = payload.primary_phone_id or settings.primary_phone_id
+            s_id = payload.secondary_phone_id or settings.secondary_phone_id
+            if p_id == s_id:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Primary and secondary phone numbers must be different.",
+                )
         if payload.change_number_after is not None:
             settings.change_number_after = payload.change_number_after
         if payload.max_calls_to_unanswered_lead is not None:

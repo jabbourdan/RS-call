@@ -61,7 +61,19 @@
 
 <!-- Tabs -->
 <ul class="flex border-b border-gray-100 dark:border-[#172036] mb-[12px]">
-    <li class="ltr:mr-[20px] rtl:ml-[20px]" [class.active]="currentTab === 'follow-ups'">
+    <li class="ltr:mr-[20px] rtl:ml-[20px]">
+        <button
+            type="button"
+            (click)="switchTab('queue')"
+            class="font-medium relative pb-[8px] transition-all text-sm"
+            [class.text-primary-500]="currentTab === 'queue'"
+            [class.border-b-2]="currentTab === 'queue'"
+            [class.border-primary-500]="currentTab === 'queue'"
+        >
+            {{ 'LEAD_MANAGEMENT.TAB_QUEUE' | translate }}
+        </button>
+    </li>
+    <li class="ltr:mr-[20px] rtl:ml-[20px]">
         <button
             type="button"
             (click)="switchTab('follow-ups')"
@@ -73,7 +85,7 @@
             {{ 'LEAD_MANAGEMENT.TAB_FOLLOW_UPS' | translate }}
         </button>
     </li>
-    <li [class.active]="currentTab === 'search'">
+    <li>
         <button
             type="button"
             (click)="switchTab('search')"
@@ -87,31 +99,7 @@
     </li>
 </ul>
 
-<!-- Show unanswered toggle -->
-@if (currentTab === 'follow-ups') {
-    <div class="flex items-center gap-[8px] mb-[12px]">
-        <button
-            type="button"
-            (click)="toggleUnanswered()"
-            class="relative w-[36px] h-[20px] rounded-full transition-all"
-            [class.bg-primary-500]="showUnansweredOnly"
-            [class.bg-gray-300]="!showUnansweredOnly"
-        >
-            <span
-                class="absolute top-[2px] w-[16px] h-[16px] rounded-full bg-white shadow transition-all"
-                [class.ltr:left-[2px]]="!showUnansweredOnly"
-                [class.ltr:left-[18px]]="showUnansweredOnly"
-                [class.rtl:right-[2px]]="!showUnansweredOnly"
-                [class.rtl:right-[18px]]="showUnansweredOnly"
-            ></span>
-        </button>
-        <span class="text-xs text-gray-500 dark:text-gray-400">
-            {{ 'LEAD_MANAGEMENT.SHOW_UNANSWERED' | translate }}
-        </span>
-    </div>
-}
-
-<!-- Search input -->
+<!-- Search input (search tab only) -->
 @if (currentTab === 'search') {
     <form class="relative mb-[12px]" (ngSubmit)="onSearch()">
         <label class="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-gray-400 top-1/2 -translate-y-1/2">
@@ -130,52 +118,159 @@
 
 <!-- Lead List -->
 <div class="lead-list-scroll overflow-y-auto ltr:-mr-[8px] rtl:-ml-[8px] ltr:pr-[8px] rtl:pl-[8px]">
-    @for (lead of filteredLeads; track trackByLead($index, lead)) {
-        <div
-            class="flex items-start gap-[10px] py-[12px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
-            [class.bg-primary-50]="selectedLeadId === lead.lead_id"
-            [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
-            [class.border-l-3]="selectedLeadId === lead.lead_id"
-            [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
-            (click)="selectLead(lead)"
-        >
-            <!-- Avatar circle -->
-            <div class="w-[36px] h-[36px] min-w-[36px] rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-primary-600 dark:text-primary-300 text-sm font-semibold mt-[2px]">
-                @if (lead.status.current === 'ענה') {
-                    <i class="material-symbols-outlined !text-[18px] text-green-500">call_received</i>
-                } @else {
-                    <i class="material-symbols-outlined !text-[18px]">call</i>
-                }
-            </div>
 
-            <!-- Lead info -->
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between">
-                    <span class="font-semibold text-sm text-black dark:text-white truncate">
-                        {{ lead.name || lead.phone_number }}
-                    </span>
-                    @if (lead.follow_up_date) {
-                        <span class="text-xs text-red-500 flex items-center gap-[3px] whitespace-nowrap ltr:ml-[8px] rtl:mr-[8px]">
-                            <i class="material-symbols-outlined !text-[14px]">alarm</i>
-                            {{ formatDate(lead.follow_up_date) }}
+    <!-- ── QUEUE TAB ─────────────────────────────────────────────────────── -->
+    @if (currentTab === 'queue') {
+        @for (lead of filteredLeads; let i = $index; track trackByLead(i, lead)) {
+            <div
+                class="flex items-center gap-[10px] py-[10px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
+                [class.bg-primary-50]="selectedLeadId === lead.lead_id"
+                [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
+                [class.border-l-3]="selectedLeadId === lead.lead_id"
+                [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
+                (click)="selectLead(lead)"
+            >
+                <!-- Position number -->
+                <div class="w-[28px] h-[28px] min-w-[28px] rounded-full bg-gray-100 dark:bg-[#172036] flex items-center justify-center text-gray-500 dark:text-gray-400 text-xs font-bold">
+                    {{ i + 1 }}
+                </div>
+
+                <!-- Lead info -->
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-[6px]">
+                        <span class="font-semibold text-sm text-black dark:text-white truncate">
+                            {{ lead.name || lead.phone_number }}
+                        </span>
+                        @if (lead.sum_calls_performed > 0) {
+                            <span class="flex items-center gap-[3px] text-[10px] text-gray-400 whitespace-nowrap">
+                                <i class="material-symbols-outlined !text-[12px]">phone_missed</i>
+                                {{ lead.sum_calls_performed }}
+                            </span>
+                        }
+                    </div>
+                    <div class="flex items-center gap-[6px] mt-[2px]">
+                        <i class="material-symbols-outlined !text-[13px] text-gray-400">phone</i>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.phone_number }}</span>
+                    </div>
+                    @if (lead.last_call_at) {
+                        <div class="mt-[2px] text-[10px] text-gray-400 dark:text-gray-500">
+                            {{ formatDate(lead.last_call_at) }}
+                        </div>
+                    }
+                </div>
+            </div>
+        } @empty {
+            <div class="text-center py-[40px] text-gray-400">
+                <i class="material-symbols-outlined !text-[40px] mb-[8px]">queue</i>
+                <p class="text-sm">{{ 'LEAD_MANAGEMENT.QUEUE_EMPTY' | translate }}</p>
+            </div>
+        }
+    }
+
+    <!-- ── FOLLOW-UPS TAB ────────────────────────────────────────────────── -->
+    @if (currentTab === 'follow-ups') {
+        @for (lead of filteredLeads; let i = $index; track trackByLead(i, lead)) {
+            <div
+                class="py-[12px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
+                [class.bg-primary-50]="selectedLeadId === lead.lead_id"
+                [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
+                [class.border-l-3]="selectedLeadId === lead.lead_id"
+                [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
+                (click)="selectLead(lead)"
+            >
+                <!-- Name row -->
+                <div class="flex items-center justify-between gap-[6px] mb-[6px]">
+                    <div class="flex items-center gap-[8px] min-w-0">
+                        <div class="w-[30px] h-[30px] min-w-[30px] rounded-full bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center">
+                            <i class="material-symbols-outlined !text-[16px] text-orange-500">alarm</i>
+                        </div>
+                        <span class="font-semibold text-sm text-black dark:text-white truncate">
+                            {{ lead.name || lead.phone_number }}
+                        </span>
+                    </div>
+                    @if (isOverdue(lead.follow_up_date)) {
+                        <span class="text-[10px] font-semibold px-[6px] py-[1px] rounded-full bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-400 whitespace-nowrap">
+                            {{ 'LEAD_MANAGEMENT.FOLLOW_UP_OVERDUE' | translate }}
                         </span>
                     }
                 </div>
-                <div class="flex items-center gap-[6px] mt-[3px]">
-                    <i class="material-symbols-outlined !text-[14px] text-gray-400">real_estate_agent</i>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.campaign_name }}</span>
+
+                <!-- Phone -->
+                <div class="flex items-center gap-[5px] mb-[6px] ltr:pl-[38px] rtl:pr-[38px]">
+                    <i class="material-symbols-outlined !text-[13px] text-gray-400">phone</i>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">{{ lead.phone_number }}</span>
                 </div>
-                <div class="mt-[4px]">
-                    <span class="inline-block text-[10px] px-[6px] py-[1px] rounded-full font-medium {{ getStatusBadge(lead.status.current) }}">
-                        {{ getStatusI18n(lead.status.current) | translate }}
-                    </span>
+
+                <!-- Follow-up date/time — prominent -->
+                @if (lead.follow_up_date) {
+                    <div
+                        [class]="'ltr:ml-[38px] rtl:mr-[38px] rounded-md px-[10px] py-[6px] flex items-center gap-[8px] border ' + (isOverdue(lead.follow_up_date) ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700' : 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700')"
+                    >
+                        <i [class]="'material-symbols-outlined !text-[16px] ' + (isOverdue(lead.follow_up_date) ? 'text-red-500' : 'text-orange-500')">schedule</i>
+                        <div [class]="'text-xs font-semibold ' + (isOverdue(lead.follow_up_date) ? 'text-red-700 dark:text-red-300' : 'text-orange-700 dark:text-orange-300')">
+                            {{ formatDate(lead.follow_up_date) }}
+                        </div>
+                    </div>
+                }
+            </div>
+        } @empty {
+            <div class="text-center py-[40px] text-gray-400">
+                <i class="material-symbols-outlined !text-[40px] mb-[8px]">event_available</i>
+                <p class="text-sm">{{ 'LEAD_MANAGEMENT.NO_FOLLOW_UPS' | translate }}</p>
+            </div>
+        }
+    }
+
+    <!-- ── SEARCH TAB ────────────────────────────────────────────────────── -->
+    @if (currentTab === 'search') {
+        @for (lead of filteredLeads; let i = $index; track trackByLead(i, lead)) {
+            <div
+                class="flex items-start gap-[10px] py-[12px] px-[10px] border-b border-gray-100 dark:border-[#172036] cursor-pointer rounded-md transition-all hover:bg-gray-50 dark:hover:bg-[#15203c]"
+                [class.bg-primary-50]="selectedLeadId === lead.lead_id"
+                [class.dark:bg-primary-900]="selectedLeadId === lead.lead_id"
+                [class.border-l-3]="selectedLeadId === lead.lead_id"
+                [class.border-l-primary-500]="selectedLeadId === lead.lead_id"
+                (click)="selectLead(lead)"
+            >
+                <!-- Avatar circle -->
+                <div class="w-[36px] h-[36px] min-w-[36px] rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-primary-600 dark:text-primary-300 text-sm font-semibold mt-[2px]">
+                    @if (lead.status.current === 'ענה') {
+                        <i class="material-symbols-outlined !text-[18px] text-green-500">call_received</i>
+                    } @else {
+                        <i class="material-symbols-outlined !text-[18px]">call</i>
+                    }
+                </div>
+
+                <!-- Lead info -->
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold text-sm text-black dark:text-white truncate">
+                            {{ lead.name || lead.phone_number }}
+                        </span>
+                        @if (lead.follow_up_date) {
+                            <span class="text-xs text-red-500 flex items-center gap-[3px] whitespace-nowrap ltr:ml-[8px] rtl:mr-[8px]">
+                                <i class="material-symbols-outlined !text-[14px]">alarm</i>
+                                {{ formatDate(lead.follow_up_date) }}
+                            </span>
+                        }
+                    </div>
+                    <div class="flex items-center gap-[6px] mt-[3px]">
+                        <i class="material-symbols-outlined !text-[14px] text-gray-400">real_estate_agent</i>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ lead.campaign_name }}</span>
+                    </div>
+                    <div class="mt-[4px]">
+                        <span class="inline-block text-[10px] px-[6px] py-[1px] rounded-full font-medium {{ getStatusBadge(lead.status.current) }}">
+                            {{ getStatusI18n(lead.status.current) | translate }}
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    } @empty {
-        <div class="text-center py-[40px] text-gray-400">
-            <i class="material-symbols-outlined !text-[40px] mb-[8px]">person_search</i>
-            <p class="text-sm">{{ 'LEAD_MANAGEMENT.NO_LEADS' | translate }}</p>
-        </div>
+        } @empty {
+            <div class="text-center py-[40px] text-gray-400">
+                <i class="material-symbols-outlined !text-[40px] mb-[8px]">person_search</i>
+                <p class="text-sm">{{ 'LEAD_MANAGEMENT.NO_LEADS' | translate }}</p>
+            </div>
+        }
     }
+
 </div>

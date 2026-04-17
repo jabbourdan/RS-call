@@ -276,20 +276,30 @@
                 ></textarea>
             </div>
 
+            <!-- Status gate: operator must confirm before next call proceeds -->
+            @if (statusGateActive) {
+                <div class="mb-[8px] rounded-md bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 p-[10px] flex items-center gap-[8px]">
+                    <i class="material-symbols-outlined !text-[18px] text-amber-600 dark:text-amber-400">warning</i>
+                    <p class="text-xs text-amber-700 dark:text-amber-300 font-medium">
+                        {{ 'LEAD_MANAGEMENT.STATUS_GATE_REQUIRED' | translate }}
+                    </p>
+                </div>
+            }
+
             <!-- Save Settings Button -->
             <div class="mt-[8px]">
                 <button
                     type="button"
                     (click)="saveSettings()"
-                    [disabled]="!hasUnsavedChanges || isSaving"
+                    [disabled]="(!hasUnsavedChanges && !statusGateActive) || isSaving"
                     class="w-full h-[44px] rounded-md font-medium text-sm flex items-center justify-center gap-[6px] transition-all"
-                    [class.bg-primary-500]="hasUnsavedChanges && !isSaving"
-                    [class.hover:bg-primary-600]="hasUnsavedChanges && !isSaving"
-                    [class.text-white]="hasUnsavedChanges && !isSaving"
-                    [class.bg-gray-100]="!hasUnsavedChanges || isSaving"
-                    [class.dark:bg-gray-800]="!hasUnsavedChanges || isSaving"
-                    [class.text-gray-400]="!hasUnsavedChanges || isSaving"
-                    [class.cursor-not-allowed]="!hasUnsavedChanges || isSaving"
+                    [class.bg-primary-500]="(hasUnsavedChanges || statusGateActive) && !isSaving"
+                    [class.hover:bg-primary-600]="(hasUnsavedChanges || statusGateActive) && !isSaving"
+                    [class.text-white]="(hasUnsavedChanges || statusGateActive) && !isSaving"
+                    [class.bg-gray-100]="(!hasUnsavedChanges && !statusGateActive) || isSaving"
+                    [class.dark:bg-gray-800]="(!hasUnsavedChanges && !statusGateActive) || isSaving"
+                    [class.text-gray-400]="(!hasUnsavedChanges && !statusGateActive) || isSaving"
+                    [class.cursor-not-allowed]="(!hasUnsavedChanges && !statusGateActive) || isSaving"
                 >
                     @if (isSaving) {
                         <i class="material-symbols-outlined !text-[18px] animate-spin">autorenew</i>

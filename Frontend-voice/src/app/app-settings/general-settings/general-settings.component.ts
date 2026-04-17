@@ -1,21 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { OrgPhoneNumberService } from '../../services/org-phone-numbers/org-phone-number.service';
+import { OrgPhoneNumber } from '../../services/org-phone-numbers/org-phone-number.models';
 
 @Component({
     selector: 'app-general-settings',
     standalone: true,
-    imports: [CommonModule, FormsModule, TranslateModule],
+    imports: [CommonModule, FormsModule, RouterLink, TranslateModule],
     templateUrl: './general-settings.component.html',
     styleUrl: './general-settings.component.scss'
 })
-export class GeneralSettingsComponent {
+export class GeneralSettingsComponent implements OnInit {
 
     // Organisation
     orgName = 'Acme Corp';
     businessType = 'Real Estate';
     readonly plan = 'Professional';
+
+    // Phone numbers (loaded from API)
+    phoneNumbers: OrgPhoneNumber[] = [];
 
     // Dialing config
     maxCallsToUnanswered = 3;
@@ -41,6 +48,15 @@ export class GeneralSettingsComponent {
         'Australia/Sydney',
         'UTC'
     ];
+
+    constructor(private phoneNumberService: OrgPhoneNumberService) {}
+
+    ngOnInit(): void {
+        this.phoneNumberService.list().subscribe({
+            next: (numbers) => { this.phoneNumbers = numbers; },
+            error: () => { this.phoneNumbers = []; }
+        });
+    }
 
     onSave(): void {
         console.log('[GeneralSettings] Save triggered', {

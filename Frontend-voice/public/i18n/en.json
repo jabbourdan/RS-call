@@ -44,7 +44,7 @@
         "CONTACTS": "Contacts",
         "LEADS": "Leads",
         "CAMPAIGNS": "Campaigns",
-        "LEAD_MANAGEMENT": "Lead Management",
+        "LEAD_MANAGEMENT": "Calls",
         "APP_SETTINGS": "App Settings"
     },
     "CAMPAIGNS": {
@@ -85,6 +85,8 @@
         "SETTINGS_COOLDOWN": "Cooldown",
         "SETTINGS_MINUTES": "min",
         "SETTINGS_STATUSES": "Lead Statuses (comma-separated)",
+        "SETTINGS_PHONE_NONE": "— None —",
+        "SETTINGS_NO_PHONES": "No phone numbers in your organization. Add them in App Settings.",
         "SETTINGS_STATUSES_HINT": "Separate each status with a comma. These will be available to agents during calls.",
         "DELETE_TITLE": "Delete Campaign?",
         "DELETE_DESC": "This will permanently delete the campaign and all its data. Are you sure you want to delete:",
@@ -322,8 +324,14 @@
         "SHOW_LEADS": "Show Leads",
         "AUTO_DIALER_START": "Start Auto Dialer",
         "AUTO_DIALER": "Auto Dialer",
+        "TAB_QUEUE": "QUEUE",
         "TAB_FOLLOW_UPS": "FOLLOW-UPS",
         "TAB_SEARCH": "SEARCH",
+        "QUEUE_EMPTY": "Queue is empty",
+        "NO_FOLLOW_UPS": "No follow-ups scheduled",
+        "QUEUE_CALLS": "calls",
+        "FOLLOW_UP_DUE": "Due:",
+        "FOLLOW_UP_OVERDUE": "Overdue",
         "SHOW_UNANSWERED": "Show unanswered follow-up conversations",
         "SEARCH_PLACEHOLDER": "Search by name, phone, email...",
         "NO_LEADS": "No leads in this campaign",
@@ -380,7 +388,8 @@
         "ROLL_ERROR_NO_LEADS": "No leads available to call in this campaign",
         "ROLL_ERROR_START_FAILED": "Failed to start the auto dialer. Please try again",
         "ROLL_ERROR_TWILIO_INIT": "Failed to connect to calling service. Please check your connection and try again",
-        "ROLL_ERROR_CONNECTION_LOST": "Lost connection to auto dialer status. The roll has been stopped"
+        "ROLL_ERROR_CONNECTION_LOST": "Lost connection to auto dialer status. The roll has been stopped",
+        "STATUS_GATE_REQUIRED": "Update status before continuing to next call"
     },
     "APP_SETTINGS": {
         "TITLE": "App Settings",
@@ -398,6 +407,10 @@
         "FIELD_PHONE_1": "Phone Number 1",
         "FIELD_PHONE_2": "Phone Number 2",
         "FIELD_PHONE_LOCKED": "Managed by system — read only",
+        "TAB_PHONES": "Phone Numbers",
+        "PHONE_OVERVIEW_DESC": "Your organization's phone numbers.",
+        "PHONE_MANAGE_LINK": "Manage phone numbers",
+        "NO_PHONES": "No phone numbers configured yet.",
         "FIELD_MAX_CALLS": "Max Calls to Unanswered Lead",
         "FIELD_ALGORITHM": "Calling Algorithm",
         "FIELD_ALGORITHM_PRIORITY": "Priority",
@@ -416,5 +429,39 @@
         "USERS_ROLE_SUPERVISOR": "Supervisor",
         "USERS_STATUS_ACTIVE": "Active",
         "USERS_STATUS_INACTIVE": "Inactive"
+    },
+    "PHONE_NUMBERS": {
+        "TITLE": "Phone Numbers",
+        "TOTAL_LABEL": "phone numbers",
+        "BTN_ADD": "Add Phone Number",
+        "BTN_EDIT": "Edit",
+        "BTN_DELETE": "Delete",
+        "BTN_DEACTIVATE": "Deactivate",
+        "SHOW_INACTIVE": "Show inactive",
+        "NO_LABEL": "No label",
+        "STATUS_ACTIVE": "Active",
+        "STATUS_INACTIVE": "Inactive",
+        "EMPTY_TITLE": "No phone numbers",
+        "EMPTY_DESC": "Add phone numbers to your organization to use them in campaigns.",
+        "ADD_TITLE": "Add Phone Number",
+        "EDIT_TITLE": "Edit Phone Number",
+        "FIELD_NUMBER": "Phone Number",
+        "FIELD_LABEL": "Label",
+        "LABEL_PLACEHOLDER": "e.g. Sales Line, Support",
+        "HINT_E164": "International format with country code (e.g. +972501234567)",
+        "ERROR_REQUIRED": "Phone number is required.",
+        "ERROR_E164": "Must be in international format (e.g. +972501234567).",
+        "DELETE_TITLE": "Deactivate Phone Number?",
+        "DELETE_DESC": "This will deactivate the phone number. Campaigns using it will be notified.",
+        "SUCCESS_ADDED": "Phone number added successfully.",
+        "SUCCESS_UPDATED": "Phone number updated.",
+        "SUCCESS_DELETED": "Phone number deactivated."
+    },
+    "ROLL": {
+        "PAUSED_TITLE": "Call Ended — Update Status",
+        "PAUSED_SUBTITLE": "Update this lead's status before continuing to the next call. Press Enter or click the button to keep the current status.",
+        "AUTO_SET_STATUS": "Auto-set: Didn't Answer",
+        "KEEP_AND_PROCEED": "Keep Status & Continue",
+        "PROCEED_ERROR": "Failed to proceed to next call. Please try again."
     }
 }

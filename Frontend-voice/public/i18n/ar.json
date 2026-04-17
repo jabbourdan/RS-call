@@ -44,7 +44,7 @@
         "CONTACTS": "جهات الاتصال",
         "LEADS": "العملاء المحتملون",
         "CAMPAIGNS": "الحملات",
-        "LEAD_MANAGEMENT": "إدارة العملاء المحتملين",
+        "LEAD_MANAGEMENT": "مكالمات",
         "APP_SETTINGS": "إعدادات التطبيق"
     },
     "CAMPAIGNS": {
@@ -85,6 +85,8 @@
         "SETTINGS_COOLDOWN": "وقت الانتظار",
         "SETTINGS_MINUTES": "دقيقة",
         "SETTINGS_STATUSES": "حالات العملاء (مفصولة بفواصل)",
+        "SETTINGS_PHONE_NONE": "— بدون —",
+        "SETTINGS_NO_PHONES": "لا توجد أرقام هاتف في مؤسستك. أضفها في إعدادات التطبيق.",
         "SETTINGS_STATUSES_HINT": "افصل كل حالة بفاصلة. ستكون هذه الحالات متاحة للوكلاء أثناء المكالمات.",
         "DELETE_TITLE": "حذف الحملة؟",
         "DELETE_DESC": "سيؤدي هذا إلى حذف الحملة وجميع بياناتها نهائياً. هل أنت متأكد من حذف:",
@@ -322,8 +324,14 @@
         "SHOW_LEADS": "عرض العملاء",
         "AUTO_DIALER_START": "بدء الاتصال التلقائي",
         "AUTO_DIALER": "الاتصال التلقائي",
+        "TAB_QUEUE": "الطابور",
         "TAB_FOLLOW_UPS": "المتابعات",
         "TAB_SEARCH": "بحث",
+        "QUEUE_EMPTY": "الطابور فارغ",
+        "NO_FOLLOW_UPS": "لا توجد متابعات مجدولة",
+        "QUEUE_CALLS": "مكالمات",
+        "FOLLOW_UP_DUE": "موعد:",
+        "FOLLOW_UP_OVERDUE": "متأخر",
         "SHOW_UNANSWERED": "عرض محادثات المتابعة التي لم يتم الرد عليها",
         "SEARCH_PLACEHOLDER": "بحث بالاسم، الهاتف، البريد...",
         "NO_LEADS": "لا يوجد عملاء في هذه الحملة",
@@ -380,7 +388,8 @@
         "ROLL_ERROR_NO_LEADS": "لا يوجد عملاء متاحون للاتصال في هذه الحملة",
         "ROLL_ERROR_START_FAILED": "فشل في بدء الاتصال التلقائي. يرجى المحاولة مرة أخرى",
         "ROLL_ERROR_TWILIO_INIT": "فشل الاتصال بخدمة المكالمات. يرجى التحقق من الاتصال والمحاولة مرة أخرى",
-        "ROLL_ERROR_CONNECTION_LOST": "فُقد الاتصال بحالة الاتصال التلقائي. تم إيقاف الجولة"
+        "ROLL_ERROR_CONNECTION_LOST": "فُقد الاتصال بحالة الاتصال التلقائي. تم إيقاف الجولة",
+        "STATUS_GATE_REQUIRED": "قم بتحديث الحالة قبل المتابعة إلى المكالمة التالية"
     },
     "APP_SETTINGS": {
         "TITLE": "إعدادات التطبيق",
@@ -398,6 +407,10 @@
         "FIELD_PHONE_1": "رقم الهاتف 1",
         "FIELD_PHONE_2": "رقم الهاتف 2",
         "FIELD_PHONE_LOCKED": "يُدار من قِبل النظام — للقراءة فقط",
+        "TAB_PHONES": "أرقام الهاتف",
+        "PHONE_OVERVIEW_DESC": "أرقام هاتف مؤسستك.",
+        "PHONE_MANAGE_LINK": "إدارة أرقام الهاتف",
+        "NO_PHONES": "لم يتم تكوين أرقام هاتف بعد.",
         "FIELD_MAX_CALLS": "الحد الأقصى للمكالمات للعميل غير المجاب",
         "FIELD_ALGORITHM": "خوارزمية الاتصال",
         "FIELD_ALGORITHM_PRIORITY": "الأولوية",
@@ -416,5 +429,39 @@
         "USERS_ROLE_SUPERVISOR": "مشرف",
         "USERS_STATUS_ACTIVE": "نشط",
         "USERS_STATUS_INACTIVE": "غير نشط"
+    },
+    "PHONE_NUMBERS": {
+        "TITLE": "أرقام الهاتف",
+        "TOTAL_LABEL": "أرقام هاتف",
+        "BTN_ADD": "إضافة رقم هاتف",
+        "BTN_EDIT": "تعديل",
+        "BTN_DELETE": "حذف",
+        "BTN_DEACTIVATE": "تعطيل",
+        "SHOW_INACTIVE": "عرض غير النشطة",
+        "NO_LABEL": "بدون تسمية",
+        "STATUS_ACTIVE": "نشط",
+        "STATUS_INACTIVE": "غير نشط",
+        "EMPTY_TITLE": "لا توجد أرقام هاتف",
+        "EMPTY_DESC": "أضف أرقام هاتف إلى مؤسستك لاستخدامها في الحملات.",
+        "ADD_TITLE": "إضافة رقم هاتف",
+        "EDIT_TITLE": "تعديل رقم هاتف",
+        "FIELD_NUMBER": "رقم الهاتف",
+        "FIELD_LABEL": "التسمية",
+        "LABEL_PLACEHOLDER": "مثال: خط المبيعات، الدعم",
+        "HINT_E164": "صيغة دولية مع رمز البلد (مثال: 972501234567+)",
+        "ERROR_REQUIRED": "رقم الهاتف مطلوب.",
+        "ERROR_E164": "يجب أن يكون بصيغة دولية (مثال: 972501234567+).",
+        "DELETE_TITLE": "تعطيل رقم الهاتف؟",
+        "DELETE_DESC": "سيؤدي هذا إلى تعطيل رقم الهاتف. سيتم إخطار الحملات التي تستخدمه.",
+        "SUCCESS_ADDED": "تم إضافة رقم الهاتف بنجاح.",
+        "SUCCESS_UPDATED": "تم تحديث رقم الهاتف.",
+        "SUCCESS_DELETED": "تم تعطيل رقم الهاتف."
+    },
+    "ROLL": {
+        "PAUSED_TITLE": "انتهت المكالمة — حدّث الحالة",
+        "PAUSED_SUBTITLE": "حدّث حالة هذا العميل المحتمل قبل الانتقال للمكالمة التالية. اضغط Enter أو الزر للمتابعة بالحالة الحالية.",
+        "AUTO_SET_STATUS": "تم الضبط تلقائياً: لم يرد",
+        "KEEP_AND_PROCEED": "الإبقاء على الحالة والمتابعة",
+        "PROCEED_ERROR": "فشل الانتقال للمكالمة التالية. يرجى المحاولة مجدداً."
     }
 }

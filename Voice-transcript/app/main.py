@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from fastapi.openapi.utils import get_openapi
 import os
 
-from app.api.v1 import calls, auth, campaigns, leads, lead_management, calls_test, dashboard, contacts
+from app.api.v1 import calls, auth, campaigns, leads, lead_management, calls_test, dashboard, contacts, org_phone_numbers
 
 app = FastAPI(
     title="Voicely CRM - Voice Intelligence",
@@ -76,6 +76,7 @@ app.include_router(leads.router,           prefix="/api/v1")
 app.include_router(lead_management.router, prefix="/api/v1")
 app.include_router(dashboard.router,       prefix="/api/v1")
 app.include_router(contacts.router,        prefix="/api/v1")
+app.include_router(org_phone_numbers.router, prefix="/api/v1")
 
 
 # ── Root ──────────────────────────────────────────────────────────

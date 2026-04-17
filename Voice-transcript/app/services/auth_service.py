@@ -6,7 +6,7 @@ from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import func
 
-from app.models.base import Organization, User
+from app.models.base import Organization, User, OrgPhoneNumber
 from app.core.security import (
     hash_password,
     verify_password,
@@ -15,6 +15,7 @@ from app.core.security import (
     hash_token,
 )
 from app.core.config import settings
+from app.services.org_phone_number_service import OrgPhoneNumberService
 
 ROLE_HIERARCHY = {"owner": 4, "admin": 3, "member": 2, "viewer": 1}
 MAX_ATTEMPTS = 5
@@ -32,7 +33,10 @@ class AuthService:
         plan: str,
         bus_type: str,
         calls_destination: str,
-        num_agents: int = 1, 
+        num_agents: int = 1,
+        max_phone_numbers: int = 2,
+        primary_phone_number: str = None,
+        secondary_phone_number: str = None,
     ) -> Organization:
 
         result = await db.execute(select(Organization).where(Organization.org_name == org_name))
@@ -48,10 +52,37 @@ class AuthService:
             bus_type=bus_type,
             calls_destination=calls_destination,
             num_agents=num_agents,
+            max_phone_numbers=max_phone_numbers,
         )
         db.add(org)
         await db.commit()
         await db.refresh(org)
+
+        # Create phone numbers if provided
+        if primary_phone_number:
+            try:
+                await OrgPhoneNumberService.add_phone_number(
+                    db=db,
+                    org_id=org.org_id,
+                    phone_number=primary_phone_number,
+                    label="Primary",
+                )
+            except HTTPException:
+                # If phone creation fails, still return org (phone is optional on creation)
+                pass
+
+        if secondary_phone_number:
+            try:
+                await OrgPhoneNumberService.add_phone_number(
+                    db=db,
+                    org_id=org.org_id,
+                    phone_number=secondary_phone_number,
+                    label="Secondary",
+                )
+            except HTTPException:
+                # If phone creation fails, still return org (phone is optional on creation)
+                pass
+
         return org
 
     # ── CREATE USER ───────────────────────────────────────────────────────────
@@ -144,6 +175,7 @@ class AuthService:
             bus_type=payload.bus_type,
             calls_destination=payload.calls_destination,
             num_agents=payload.num_agents or 1,
+            max_phone_numbers=getattr(payload, 'max_phone_numbers', 2) or 2,
         )
         db.add(org)
         await db.flush()        # get org_id before creating user
@@ -160,6 +192,31 @@ class AuthService:
         await db.commit()
         await db.refresh(user)
         await db.refresh(org)
+
+        # Create phone numbers if provided
+        if getattr(payload, 'primary_phone_number', None):
+            try:
+                await OrgPhoneNumberService.add_phone_number(
+                    db=db,
+                    org_id=org.org_id,
+                    phone_number=payload.primary_phone_number,
+                    label="Primary",
+                )
+            except HTTPException:
+                # If phone creation fails, still return (phone is optional on creation)
+                pass
+
+        if getattr(payload, 'secondary_phone_number', None):
+            try:
+                await OrgPhoneNumberService.add_phone_number(
+                    db=db,
+                    org_id=org.org_id,
+                    phone_number=payload.secondary_phone_number,
+                    label="Secondary",
+                )
+            except HTTPException:
+                # If phone creation fails, still return (phone is optional on creation)
+                pass
 
         # Issue tokens so user is logged in immediately
         token_data = {

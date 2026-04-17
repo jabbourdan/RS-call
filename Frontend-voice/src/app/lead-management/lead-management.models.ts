@@ -104,6 +104,7 @@ export type KeypadKey = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '*
 /** Live roll stats displayed in the UI */
 export interface RollStats {
     isActive: boolean;
+    isPaused: boolean;
     callsMade: number;
     callsAnswered: number;
     callsNoAnswer: number;

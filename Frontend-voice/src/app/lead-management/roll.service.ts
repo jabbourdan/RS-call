@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take, takeUntil } from 'rxjs';
 import { LeadManagementService } from '../services/lead-management/lead-management.service';
 import { TwilioVoiceService } from './twilio-voice.service';
 import { RollStats } from './lead-management.models';
@@ -29,14 +29,17 @@ export class RollService implements OnDestroy {
 
     // ── Public observables ───────────────────────────────────────────────────
     private readonly _isActive$ = new BehaviorSubject<boolean>(false);
+    private readonly _isPaused$ = new BehaviorSubject<boolean>(false);
     private readonly _rollStats$ = new BehaviorSubject<RollStats | null>(null);
     private readonly _error$ = new BehaviorSubject<string>('');
     private readonly _currentLeadChanged$ = new Subject<string>(); // emits lead_id
 
     readonly isActive$: Observable<boolean> = this._isActive$.asObservable();
+    /** Emits true when roll is paused awaiting agent status confirmation */
+    readonly isPaused$: Observable<boolean> = this._isPaused$.asObservable();
     readonly rollStats$: Observable<RollStats | null> = this._rollStats$.asObservable();
     readonly error$: Observable<string> = this._error$.asObservable();
-    /** Fires every time the roll moves to a NEW lead (different lead_id) */
+    /** Fires when the roll pauses on a new lead (different lead_id from last) */
     readonly currentLeadChanged$: Observable<string> = this._currentLeadChanged$.asObservable();
 
     // ── Getters for synchronous checks ───────────────────────────────────
@@ -52,6 +55,34 @@ export class RollService implements OnDestroy {
         private lmService: LeadManagementService,
         private twilioService: TwilioVoiceService,
     ) {}
+
+    // ── Sync state from server (called on page load / campaign switch) ────────
+
+    /**
+     * Polls the server once for the current roll state.
+     * If a roll is already active (e.g. after a page refresh), re-attaches
+     * local state and resumes polling — prevents spurious "already active" errors.
+     */
+    syncState(campaignId: string): void {
+        this.lmService.getRollStatus(campaignId)
+            .pipe(take(1))
+            .subscribe({
+                next: async (res) => {
+                    if (!res.roll_active) return;
+
+                    // Roll is active on the server — re-attach
+                    this.activeCampaignId = campaignId;
+                    this._isActive$.next(true);
+                    this._isPaused$.next(res.roll_paused);
+
+                    // Re-initialize Twilio so incoming conference legs can connect
+                    try { await this.twilioService.initialize(); } catch { /* best-effort */ }
+
+                    this.startPolling();
+                },
+                error: () => { /* non-critical — ignore */ },
+            });
+    }
 
     // ── Start Roll ───────────────────────────────────────────────────────────
 
@@ -97,6 +128,15 @@ export class RollService implements OnDestroy {
                     this.startPolling();
                 },
                 error: (err) => {
+                    // Backend says roll is already active (stale state from prev session)
+                    // → re-attach to it instead of showing an error
+                    const detail = err?.error?.detail ?? '';
+                    if (err?.status === 400 && detail.includes('already active')) {
+                        this._isActive$.next(true);
+                        this.startPolling();
+                        return;
+                    }
+
                     this._error$.next('LEAD_MANAGEMENT.ROLL_ERROR_START_FAILED');
                     this._isActive$.next(false);
                     // Twilio was initialized but roll failed — clean up
@@ -177,6 +217,7 @@ export class RollService implements OnDestroy {
 
                     const stats: RollStats = {
                         isActive: res.roll_active,
+                        isPaused: res.roll_paused,
                         callsMade: res.calls_made,
                         callsAnswered: res.calls_answered,
                         callsNoAnswer: res.calls_no_answer,
@@ -192,9 +233,10 @@ export class RollService implements OnDestroy {
                     };
 
                     this._rollStats$.next(stats);
+                    this._isPaused$.next(res.roll_paused);
 
-                    // Detect lead change → emit so the parent can auto-select
-                    if (res.current_lead && res.current_lead.lead_id !== this.lastLeadId) {
+                    // Emit lead change when roll pauses on a new lead
+                    if (res.roll_paused && res.current_lead && res.current_lead.lead_id !== this.lastLeadId) {
                         this.lastLeadId = res.current_lead.lead_id;
                         this._currentLeadChanged$.next(res.current_lead.lead_id);
                     }
@@ -202,6 +244,10 @@ export class RollService implements OnDestroy {
                 error: () => {
                     // On error stop polling to avoid hammering server
                     this._error$.next('LEAD_MANAGEMENT.ROLL_ERROR_CONNECTION_LOST');
+                    // Stop backend roll so it doesn't stay stuck as "active"
+                    if (this.activeCampaignId) {
+                        this.lmService.stopRoll(this.activeCampaignId).subscribe();
+                    }
                     this.resetAll();
                 },
             });
@@ -214,6 +260,7 @@ export class RollService implements OnDestroy {
         this.twilioService.hangup();
         this.twilioService.destroy();
         this._isActive$.next(false);
+        this._isPaused$.next(false);
         this._rollStats$.next(null);
         this.activeCampaignId = null;
         this.lastLeadId = null;

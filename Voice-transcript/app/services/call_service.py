@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import Optional, List, Dict
 
-from app.models.base import Call, Lead, Campaign, CampaignSettings, User, CallAnalysis
+from app.models.base import Call, Lead, Campaign, CampaignSettings, User, CallAnalysis, OrgPhoneNumber, LeadStatusHistory
 from app.services.transcibe_service import TranscribeService
 from app.services.llm_service import LLMService
 from app.integrations.twilio_client import TwilioClient
@@ -95,11 +95,17 @@ class CallService:
 
         try:
             twilio = TwilioClient()
-            from_number = (
-                camp_settings.phone_number_used1
-                if camp_settings and camp_settings.phone_number_used1
-                else settings.FROM_NUMBER
-            )
+            from_number = settings.FROM_NUMBER
+            if camp_settings and camp_settings.primary_phone_id:
+                phone_result = await db.execute(
+                    select(OrgPhoneNumber).where(
+                        OrgPhoneNumber.phone_id == camp_settings.primary_phone_id,
+                        OrgPhoneNumber.is_active == True,
+                    )
+                )
+                org_phone = phone_result.scalars().first()
+                if org_phone:
+                    from_number = org_phone.phone_number
             to_number = to_international(lead.phone_number)
 
             # ── Conference bridge — same pattern as roll ──────────
@@ -179,7 +185,7 @@ class CallService:
             "in-progress": "in_progress",
             "completed":   "completed",
             "failed":      "failed",
-            "busy":        "failed",
+            "busy":        "no_answer",
             "no-answer":   "no_answer",
             "canceled":    "failed",
         }
@@ -196,10 +202,28 @@ class CallService:
         if getattr(call, "is_roll", False) and is_ended:
             try:
                 from app.services.roll_service import RollService
-                user_res = await db.execute(select(User).where(User.user_id == call.user_id))
-                user = user_res.scalars().first()
-                if user:
-                    await RollService.continue_roll(db=db, call=call, current_user=user)
+
+                # Auto-set "לא ענה" for unanswered roll calls
+                if new_status == "no_answer" and call.lead_id:
+                    lead_res = await db.execute(select(Lead).where(Lead.lead_id == call.lead_id))
+                    lead = lead_res.scalars().first()
+                    if lead:
+                        current_status = lead.status.get("current", "ממתין") if lead.status else "ממתין"
+                        if current_status in ("ממתין", "לא ענה"):
+                            options = lead.status.get("options", []) if lead.status else []
+                            lead.status = {"current": "לא ענה", "options": options}
+                            db.add(LeadStatusHistory(
+                                lead_id=lead.lead_id,
+                                org_id=lead.org_id,
+                                user_id=call.user_id,
+                                old_status=current_status,
+                                new_status="לא ענה",
+                            ))
+                            await db.commit()
+
+                if call.campaign_id:
+                    await RollService.pause_roll(db=db, campaign_id=call.campaign_id)
+
             except Exception as e:
                 print(f"⚠️ Roll Error: {e}")
 

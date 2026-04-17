@@ -34,6 +34,18 @@ class OrgCreateRequest(BaseModel):
     bus_type: Optional[str] = None
     calls_destination: Optional[str] = None
     num_agents: Optional[int] = 1
+    max_phone_numbers: Optional[int] = 2
+    primary_phone_number: Optional[str] = None  # E.164 format, optional
+    secondary_phone_number: Optional[str] = None  # E.164 format, optional
+
+    @field_validator("primary_phone_number", "secondary_phone_number")
+    @classmethod
+    def validate_phone_format(cls, v):
+        if v is None:
+            return v
+        if not re.match(r"^\+[1-9]\d{1,14}$", v):
+            raise ValueError("Phone number must be in E.164 format (e.g., +972501234567).")
+        return v
 
 
 class OrgResponse(BaseModel):
@@ -41,7 +53,8 @@ class OrgResponse(BaseModel):
     org_name: str
     plan: str
     is_active: bool
-    num_agents: int 
+    num_agents: int
+    max_phone_numbers: int
     created_at: datetime
     model_config = {"from_attributes": True}
 
@@ -97,11 +110,23 @@ class RegisterRequest(BaseModel):
     bus_type: Optional[str] = None
     calls_destination: Optional[str] = None
     num_agents: Optional[int] = 1
+    max_phone_numbers: Optional[int] = 2
+    primary_phone_number: Optional[str] = None  # E.164 format, optional
+    secondary_phone_number: Optional[str] = None  # E.164 format, optional
 
     # User
     full_name: str = Field(..., min_length=2, max_length=255)
     email: EmailStr
     password: str
+
+    @field_validator("primary_phone_number", "secondary_phone_number")
+    @classmethod
+    def validate_phone_format(cls, v):
+        if v is None:
+            return v
+        if not re.match(r"^\+[1-9]\d{1,14}$", v):
+            raise ValueError("Phone number must be in E.164 format (e.g., +972501234567).")
+        return v
 
     #@field_validator("password")
     #@classmethod
@@ -135,7 +160,7 @@ class RefreshResponse(BaseModel):
 async def create_organization(
     payload: OrgCreateRequest,
     request: Request,
-    db: Session = Depends(get_session),
+    db: AsyncSession = Depends(get_session),
 ):
     return await service.create_organization(
         db=db,
@@ -143,7 +168,10 @@ async def create_organization(
         plan=payload.plan,
         bus_type=payload.bus_type,
         calls_destination=payload.calls_destination,
-        num_agents=payload.num_agents, 
+        num_agents=payload.num_agents,
+        max_phone_numbers=payload.max_phone_numbers,
+        primary_phone_number=payload.primary_phone_number,
+        secondary_phone_number=payload.secondary_phone_number,
     )
 
 @router.post("/CreateUsers", response_model=UserResponse, status_code=201)

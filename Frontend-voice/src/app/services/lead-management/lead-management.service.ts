@@ -8,6 +8,7 @@ import {
     FullTimelineResponse,
     HangupResponse,
     OrgUser,
+    ProceedRollResponse,
     RollStatusResponse,
     StartCallResponse,
     StartRollResponse,
@@ -129,6 +130,14 @@ export class LeadManagementService {
     getRollStatus(campaignId: string): Observable<RollStatusResponse> {
         return this.http.get<RollStatusResponse>(
             `${this.calls}/roll-status/${campaignId}`,
+            { withCredentials: true },
+        );
+    }
+
+    proceedRoll(campaignId: string): Observable<ProceedRollResponse> {
+        return this.http.post<ProceedRollResponse>(
+            `${this.calls}/roll/proceed`,
+            { campaign_id: campaignId },
             { withCredentials: true },
         );
     }

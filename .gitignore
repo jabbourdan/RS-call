@@ -1,0 +1,65 @@
+# Claude / AI tooling
+.claude/
+claude-created/
+CLAUDE.md
+
+# Specs & documentation
+specs/
+*.md
+!README.md
+
+# GitHub automation / wiki
+.github/
+.wiki-guidelines/
+
+# Editor
+.vscode/
+.specify/
+
+# macOS
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python backend (Voice-transcript)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+*.egg
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.cover
+coverage.xml
+*.log
+
+# Alembic
+Voice-transcript/alembic/versions/__pycache__/
+
+# Angular frontend (Frontend-voice)
+Frontend-voice/node_modules/
+Frontend-voice/dist/
+Frontend-voice/.angular/
+Frontend-voice/*.js.map
+
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

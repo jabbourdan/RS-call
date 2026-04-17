@@ -7,9 +7,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func
 
-from app.models.base import Call, Lead, Campaign, CampaignSettings, User
+from app.models.base import Call, Lead, Campaign, CampaignSettings, User, OrgPhoneNumber
 from app.core.config import settings
 from app.integrations.twilio_client import TwilioClient
+
+# Seconds to wait for agent status confirmation before auto-proceeding
+ROLL_PAUSE_TIMEOUT_SECONDS = 60
 
 
 # =========================
@@ -37,6 +40,8 @@ class RollService:
             )
 
         settings_obj.roll_active = True
+        settings_obj.roll_paused = False
+        settings_obj.roll_paused_at = None
         await db.flush()
 
         next_lead = await RollService._get_next_lead(db, campaign_id, current_user, settings_obj)
@@ -95,6 +100,8 @@ class RollService:
             }
 
         settings_obj.roll_active = False
+        settings_obj.roll_paused = False
+        settings_obj.roll_paused_at = None
         await db.commit()
 
         print(f"🛑 Roll stopped for campaign {campaign_id}")
@@ -146,14 +153,37 @@ class RollService:
         )
         calls_no_answer = no_answer_result.scalar() or 0
 
-        current_call_result = await db.execute(
-            select(Call).where(
-                Call.campaign_id == campaign_id,
-                Call.org_id == current_user.org_id,
-                Call.is_roll == True,
-                Call.status.in_(["initiated", "ringing", "in_progress"]),
-            ).order_by(Call.created_at.desc()).limit(1)
-        )
+        # ── 60-second auto-proceed timeout ───────────────────────────────────
+        if settings_obj.roll_paused and settings_obj.roll_paused_at:
+            paused_at = settings_obj.roll_paused_at.replace(tzinfo=None) if settings_obj.roll_paused_at.tzinfo else settings_obj.roll_paused_at
+            elapsed = datetime.utcnow() - paused_at
+            if elapsed.total_seconds() > ROLL_PAUSE_TIMEOUT_SECONDS:
+                print(f"⏱ Roll pause timeout for campaign {campaign_id} — auto-proceeding")
+                settings_obj.roll_paused = False
+                settings_obj.roll_paused_at = None
+                await db.commit()
+                await RollService._advance_roll(db=db, campaign_id=campaign_id, current_user=current_user)
+                # Re-read settings to reflect updated state
+                settings_obj = await RollService._get_settings(db, campaign_id)
+
+        # ── Current call query (active if not paused, most recent if paused) ─
+        if settings_obj.roll_paused:
+            current_call_result = await db.execute(
+                select(Call).where(
+                    Call.campaign_id == campaign_id,
+                    Call.org_id == current_user.org_id,
+                    Call.is_roll == True,
+                ).order_by(Call.created_at.desc()).limit(1)
+            )
+        else:
+            current_call_result = await db.execute(
+                select(Call).where(
+                    Call.campaign_id == campaign_id,
+                    Call.org_id == current_user.org_id,
+                    Call.is_roll == True,
+                    Call.status.in_(["initiated", "ringing", "in_progress"]),
+                ).order_by(Call.created_at.desc()).limit(1)
+            )
         current_call = current_call_result.scalars().first()
 
         current_lead_info = None
@@ -200,6 +230,7 @@ class RollService:
 
         return {
             "roll_active": settings_obj.roll_active,
+            "roll_paused": settings_obj.roll_paused,
             "campaign_id": str(campaign_id),
             "calls_made": calls_made,
             "calls_answered": calls_answered,
@@ -208,7 +239,7 @@ class RollService:
             "leads_remaining": leads_remaining,
         }
 
-    # ── CONTINUE ROLL (called from webhook) ──────────────────────────────────
+    # ── CONTINUE ROLL (called from webhook after call ends) ──────────────────
 
     @staticmethod
     async def continue_roll(
@@ -226,6 +257,53 @@ class RollService:
         if not settings_obj.roll_active:
             print(f"🛑 Roll stopped for campaign {campaign_id}")
             return
+
+        await RollService.pause_roll(db=db, campaign_id=campaign_id)
+
+    # ── PAUSE ROLL (set paused flag, wait for agent to proceed) ──────────────
+
+    @staticmethod
+    async def pause_roll(
+        db: AsyncSession,
+        campaign_id: UUID,
+    ) -> None:
+        settings_obj = await RollService._get_settings(db, campaign_id)
+        settings_obj.roll_paused = True
+        settings_obj.roll_paused_at = datetime.utcnow()
+        await db.commit()
+        print(f"⏸ Roll paused for campaign {campaign_id} — awaiting agent status update")
+
+    # ── PROCEED ROLL (agent confirmed status; fire next call) ─────────────────
+
+    @staticmethod
+    async def proceed_roll(
+        db: AsyncSession,
+        campaign_id: UUID,
+        current_user: User,
+    ) -> dict:
+        await RollService._get_campaign(db, campaign_id, current_user)
+        settings_obj = await RollService._get_settings(db, campaign_id)
+
+        if not settings_obj.roll_active:
+            raise HTTPException(status_code=400, detail="Roll is not active.")
+
+        settings_obj.roll_paused = False
+        settings_obj.roll_paused_at = None
+        await db.commit()
+
+        await RollService._advance_roll(db=db, campaign_id=campaign_id, current_user=current_user)
+
+        return await RollService.get_roll_status(db=db, campaign_id=campaign_id, current_user=current_user)
+
+    # ── ADVANCE ROLL (pick next lead and fire call) ───────────────────────────
+
+    @staticmethod
+    async def _advance_roll(
+        db: AsyncSession,
+        campaign_id: UUID,
+        current_user: User,
+    ) -> None:
+        settings_obj = await RollService._get_settings(db, campaign_id)
 
         next_lead = await RollService._get_next_lead(
             db=db,
@@ -342,9 +420,17 @@ class RollService:
         return eligible[0]
 
     @staticmethod
-    async def _pick_phone_number(settings_obj: CampaignSettings) -> str:
-        if settings_obj.phone_number_used1:
-            return settings_obj.phone_number_used1
+    async def _pick_phone_number(settings_obj: CampaignSettings, db: AsyncSession = None) -> str:
+        if settings_obj.primary_phone_id and db:
+            result = await db.execute(
+                select(OrgPhoneNumber).where(
+                    OrgPhoneNumber.phone_id == settings_obj.primary_phone_id,
+                    OrgPhoneNumber.is_active == True,
+                )
+            )
+            phone = result.scalars().first()
+            if phone:
+                return phone.phone_number
         return settings.FROM_NUMBER
 
     @staticmethod
@@ -368,7 +454,7 @@ class RollService:
                 return "+972" + cleaned[1:]
             return "+972" + cleaned
 
-        from_number = await RollService._pick_phone_number(settings_obj)
+        from_number = await RollService._pick_phone_number(settings_obj, db=db)
         to_number = to_international(lead.phone_number)
 
         # ── Create Call record ────────────────────────────────────

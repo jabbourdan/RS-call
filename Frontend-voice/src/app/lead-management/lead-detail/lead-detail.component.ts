@@ -28,6 +28,7 @@ export class LeadDetailComponent implements OnChanges, OnInit, OnDestroy {
     @Input() performance: PerformanceStats | null = null;
     @Input() isRollActive = false;
     @Input() activeCallId: string | null = null;
+    @Input() statusGateActive = false;
 
     @Output() statusChanged = new EventEmitter<{ leadId: string; status: string; followUpDate?: string; representativeId?: string; comment?: string }>();
     @Output() callInitiated = new EventEmitter<string>(); // lead_id

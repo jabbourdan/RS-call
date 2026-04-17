@@ -198,6 +198,7 @@ export interface RollCurrentLead {
 
 export interface RollStatusResponse {
     roll_active: boolean;
+    roll_paused: boolean;
     campaign_id: string;
     calls_made: number;
     calls_answered: number;
@@ -205,6 +206,12 @@ export interface RollStatusResponse {
     leads_remaining: number;
     current_lead: RollCurrentLead | null;
 }
+
+export interface ProceedRollRequest {
+    campaign_id: string;
+}
+
+export type ProceedRollResponse = RollStatusResponse;
 
 // ─── Twilio Token ────────────────────────────────────────────────────────────
 

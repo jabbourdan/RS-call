@@ -308,31 +308,44 @@
                         @if (showSettings) {
                             <div class="border border-gray-100 dark:border-gray-700 rounded-md p-[16px] mb-[18px] space-y-[14px]">
 
-                                <!-- Phone 1 + Phone 2 -->
+                                <!-- Phone 1 + Phone 2 (dropdowns from org phone numbers) -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
                                     <div>
                                         <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
                                             {{ 'CAMPAIGNS.SETTINGS_PHONE1' | translate }}
                                         </label>
-                                        <input
-                                            type="text"
-                                            [(ngModel)]="formData.phone_number_used1"
+                                        <select
+                                            [(ngModel)]="formData.primary_phone_id"
                                             name="phone1"
-                                            placeholder="+972501234567"
-                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
-                                        />
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                        >
+                                            <option value="">{{ 'CAMPAIGNS.SETTINGS_PHONE_NONE' | translate }}</option>
+                                            @for (phone of orgPhoneNumbers; track phone.phone_id) {
+                                                <option [value]="phone.phone_id">
+                                                    {{ phone.phone_number }}{{ phone.label ? ' (' + phone.label + ')' : '' }}
+                                                </option>
+                                            }
+                                        </select>
+                                        @if (orgPhoneNumbers.length === 0) {
+                                            <p class="text-[11px] text-gray-400 mt-1">{{ 'CAMPAIGNS.SETTINGS_NO_PHONES' | translate }}</p>
+                                        }
                                     </div>
                                     <div>
                                         <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
                                             {{ 'CAMPAIGNS.SETTINGS_PHONE2' | translate }}
                                         </label>
-                                        <input
-                                            type="text"
-                                            [(ngModel)]="formData.phone_number_used2"
+                                        <select
+                                            [(ngModel)]="formData.secondary_phone_id"
                                             name="phone2"
-                                            placeholder="+972509876543"
-                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
-                                        />
+                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                        >
+                                            <option value="">{{ 'CAMPAIGNS.SETTINGS_PHONE_NONE' | translate }}</option>
+                                            @for (phone of orgPhoneNumbers; track phone.phone_id) {
+                                                <option [value]="phone.phone_id">
+                                                    {{ phone.phone_number }}{{ phone.label ? ' (' + phone.label + ')' : '' }}
+                                                </option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
 
