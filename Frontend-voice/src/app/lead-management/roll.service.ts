@@ -222,6 +222,7 @@ export class RollService implements OnDestroy {
                         callsAnswered: res.calls_answered,
                         callsNoAnswer: res.calls_no_answer,
                         leadsRemaining: res.leads_remaining,
+                        currentCallId: res.current_call_id ?? null,
                         currentLead: res.current_lead
                             ? {
                                 leadId: res.current_lead.lead_id,

@@ -241,6 +241,7 @@ class RollService:
             "calls_made": calls_made,
             "calls_answered": calls_answered,
             "calls_no_answer": calls_no_answer,
+            "current_call_id": str(current_call.call_id) if current_call else None,
             "current_lead": current_lead_info,
             "leads_remaining": leads_remaining,
         }
@@ -611,6 +612,7 @@ class RollService:
                 status_callback=f"{settings.BASE_URL}/api/v1/calls/webhook?call_id={str(call.call_id)}",
                 status_callback_method="POST",
                 status_callback_event=["initiated", "ringing", "answered", "completed"],
+                timeout=max(5, settings_obj.ring_timeout_seconds),
             )
         else:
             # ── Fallback: no browser — just record ────────────────

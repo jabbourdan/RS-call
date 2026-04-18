@@ -204,6 +204,7 @@ export interface RollStatusResponse {
     calls_answered: number;
     calls_no_answer: number;
     leads_remaining: number;
+    current_call_id: string | null;
     current_lead: RollCurrentLead | null;
 }
 

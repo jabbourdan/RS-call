@@ -449,13 +449,16 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
     // ── Call ended (hangup from agent) ────────────────────────────────────────
 
     onCallEnded(callId: string | null): void {
-        if (callId) {
+        const effectiveCallId = callId ?? (
+            this.isRollActive ? (this.rollService.rollStats?.currentCallId ?? null) : null
+        );
+        if (effectiveCallId) {
             // Tell the backend to terminate the conference/call
-            this.lmService.hangupCall(callId)
+            this.lmService.hangupCall(effectiveCallId)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe({
                     next: () => {
-                        console.log('[LeadManagement] Call terminated on backend:', callId);
+                        console.log('[LeadManagement] Call terminated on backend:', effectiveCallId);
                     },
                     error: (err) => {
                         console.error('[LeadManagement] Failed to hangup on backend:', err);

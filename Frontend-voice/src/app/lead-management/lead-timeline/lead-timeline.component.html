@@ -26,7 +26,7 @@
                 <i class="material-symbols-outlined !text-[20px] text-green-500">autorenew</i>
                 @if (callStatus) {
                     <span class="text-sm font-medium text-primary-500">
-                        {{ callStatus.status_label }}
+                        {{ getStatusI18n(callStatus.status_label) | translate }}
                     </span>
                     @if (callStatus.follow_up_date) {
                         <span class="text-xs text-gray-500">({{ callStatus.follow_up_date }}, {{ callStatus.follow_up_time }})</span>
@@ -174,9 +174,9 @@
                     <!-- Status change -->
                     @if (event.type === 'status_change') {
                         <p class="text-sm text-gray-600 dark:text-gray-300">
-                            <span class="text-gray-400">{{ event.old_status }}</span>
+                            <span class="text-gray-400">{{ getStatusI18n(event.old_status) | translate }}</span>
                             <i class="material-symbols-outlined !text-[14px] mx-[4px] align-middle">arrow_forward</i>
-                            <span class="font-medium">{{ event.new_status }}</span>
+                            <span class="font-medium">{{ getStatusI18n(event.new_status) | translate }}</span>
                         </p>
                     }
 

@@ -175,6 +175,7 @@ class CampaignSettings(SQLModel, table=True):
         },
         sa_column=Column(HebrewJSON)
     )
+    ring_timeout_seconds: int = Field(default=15)
     roll_active: bool = Field(default=False)
     roll_paused: bool = Field(default=False)
     roll_paused_at: Optional[datetime] = Field(default=None)
@@ -261,6 +262,7 @@ class Call(SQLModel, table=True):
     direction: str = Field(default="outbound")
     duration: int = Field(default=0)
     is_roll: bool = Field(default=False)
+    agent_terminated: bool = Field(default=False)
     status: str = Field(default="initiated")
     created_at: datetime = Field(default_factory=datetime.utcnow)
 

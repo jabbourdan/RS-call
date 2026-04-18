@@ -115,4 +115,19 @@ export class LeadTimelineComponent {
     trackByEvent(_: number, ev: TimelineEvent): string {
         return ev.id;
     }
+
+    getStatusI18n(status: string | null | undefined): string {
+        if (!status) return '';
+
+        const STATUS_I18N: Record<string, string> = {
+            'ממתין':      'LEAD_MANAGEMENT.STATUS_PENDING',
+            'ענה':        'LEAD_MANAGEMENT.STATUS_ANSWERED',
+            'לא ענה':     'LEAD_MANAGEMENT.STATUS_NO_ANSWER',
+            'לא רלוונטי': 'LEAD_MANAGEMENT.STATUS_NOT_RELEVANT',
+            'עסקה נסגרה': 'LEAD_MANAGEMENT.STATUS_CLOSED_DEAL',
+            'פולו אפ':    'LEAD_MANAGEMENT.STATUS_FOLLOW_UP',
+            'אל תתקשר':   'LEAD_MANAGEMENT.STATUS_DO_NOT_CALL',
+        };
+        return STATUS_I18N[status] ?? status;
+    }
 }
