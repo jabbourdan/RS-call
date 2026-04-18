@@ -61,6 +61,7 @@ class CampaignSettingsUpdateRequest(BaseModel):
     max_calls_to_unanswered_lead: Optional[int] = Field(default=None, ge=1)
     calling_algorithm: Optional[str] = None
     cooldown_minutes: Optional[int] = Field(default=None, ge=0)
+    ring_timeout_seconds: Optional[int] = Field(default=None, ge=5)
     campaign_status: Optional[Dict[str, Any]] = None
 
 

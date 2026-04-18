@@ -431,7 +431,7 @@ class RollService:
                     try:
                         twilio.client.conferences(conf.sid).participants(
                             participant.call_sid
-                        ).update(status="completed")
+                        ).delete()
                     except Exception as e:
                         print(f"⚠️ Could not drop participant {participant.call_sid}: {e}")
         except Exception as e:
