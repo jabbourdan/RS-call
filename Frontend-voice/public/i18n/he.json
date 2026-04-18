@@ -93,7 +93,17 @@
         "ERROR_NAME_REQUIRED": "שם הקמפיין הוא שדה חובה.",
         "SUCCESS_CREATED": "הקמפיין נוצר בהצלחה.",
         "SUCCESS_UPDATED": "הקמפיין עודכן בהצלחה.",
-        "SUCCESS_DELETED": "הקמפיין נמחק."
+        "SUCCESS_DELETED": "הקמפיין נמחק.",
+        "STATUSES_LIST_TITLE": "סטטוסי ליד",
+        "STATUSES_ADD_PLACEHOLDER": "הוסף סטטוס…",
+        "STATUSES_ADD_BUTTON": "הוסף",
+        "STATUSES_REMOVE_ARIA": "הסר סטטוס {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "הזז סטטוס {{value}} למעלה",
+        "STATUSES_MOVE_DOWN_ARIA": "הזז סטטוס {{value}} למטה",
+        "STATUSES_ERROR_EMPTY": "יש להזין סטטוס לפני ההוספה.",
+        "STATUSES_ERROR_DUPLICATE": "סטטוס זה כבר קיים ברשימה.",
+        "STATUSES_ERROR_MIN_ONE": "נדרש לפחות סטטוס אחד.",
+        "ERROR_ALGORITHM_INVALID": "אלגוריתם חיוג לא נתמך. נתמכים: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "אנשי קשר",

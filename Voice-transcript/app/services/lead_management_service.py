@@ -61,9 +61,9 @@ class LeadManagementService:  # Fixed spelling: Managment -> Management
             )
 
         algorithm = settings.calling_algorithm or "priority"
-        if algorithm == "fifo":
+        if algorithm == "random":
             eligible.sort(key=lambda l: l.created_at)
-        elif algorithm == "round_robin":
+        elif algorithm == "sequential":
             eligible.sort(key=lambda l: (l.tried_to_reach, l.created_at))
         else:
             def priority_key(lead):

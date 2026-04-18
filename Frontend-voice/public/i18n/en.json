@@ -93,7 +93,17 @@
         "ERROR_NAME_REQUIRED": "Campaign name is required.",
         "SUCCESS_CREATED": "Campaign created successfully.",
         "SUCCESS_UPDATED": "Campaign updated successfully.",
-        "SUCCESS_DELETED": "Campaign deleted."
+        "SUCCESS_DELETED": "Campaign deleted.",
+        "STATUSES_LIST_TITLE": "Lead Statuses",
+        "STATUSES_ADD_PLACEHOLDER": "Add a status…",
+        "STATUSES_ADD_BUTTON": "Add",
+        "STATUSES_REMOVE_ARIA": "Remove status {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "Move status {{value}} up",
+        "STATUSES_MOVE_DOWN_ARIA": "Move status {{value}} down",
+        "STATUSES_ERROR_EMPTY": "Enter a status before adding.",
+        "STATUSES_ERROR_DUPLICATE": "This status is already in the list.",
+        "STATUSES_ERROR_MIN_ONE": "At least one status is required.",
+        "ERROR_ALGORITHM_INVALID": "Unsupported calling algorithm. Supported: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "Contacts",

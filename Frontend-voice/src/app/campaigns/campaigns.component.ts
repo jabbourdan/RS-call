@@ -15,6 +15,8 @@ import {
 } from '../services/campaigns/campaign.models';
 import { OrgPhoneNumberService } from '../services/org-phone-numbers/org-phone-number.service';
 import { OrgPhoneNumber } from '../services/org-phone-numbers/org-phone-number.models';
+import { LeadStatusListComponent } from './lead-status-list/lead-status-list.component';
+import { environment } from '../../environments/environment';
 
 // ─── Status badge colours ─────────────────────────────────────────────────────
 
@@ -48,13 +50,13 @@ interface CampaignFormData {
     max_calls_to_unanswered_lead: string;
     calling_algorithm: CallingAlgorithm;
     cooldown_minutes: string;
-    statusesRaw: string;   // comma-separated for textarea
+    statusesArray: string[];
 }
 
 @Component({
     selector: 'app-campaigns',
     standalone: true,
-    imports: [RouterLink, CommonModule, FormsModule, TranslateModule],
+    imports: [RouterLink, CommonModule, FormsModule, TranslateModule, LeadStatusListComponent],
     templateUrl: './campaigns.component.html',
     styleUrl: './campaigns.component.scss'
 })
@@ -67,6 +69,10 @@ export class CampaignsComponent implements OnInit {
     isLoading = false;
     successMessage = '';
     errorMessage = '';
+
+    // ─── Feature flags ───────────────────────────────────────────────────────────
+
+    readonly secondaryFieldsEnabled = environment.campaignSecondaryFieldsEnabled;
 
     // ─── Status helpers (exposed to template) ────────────────────────────────────
 
@@ -156,7 +162,7 @@ export class CampaignsComponent implements OnInit {
             max_calls_to_unanswered_lead: '3',
             calling_algorithm: 'priority',
             cooldown_minutes: '120',
-            statusesRaw: DEFAULT_STATUSES.join(', '),
+            statusesArray: [...DEFAULT_STATUSES],
         };
     }
 
@@ -188,7 +194,7 @@ export class CampaignsComponent implements OnInit {
             max_calls_to_unanswered_lead: String(s.max_calls_to_unanswered_lead),
             calling_algorithm:            s.calling_algorithm,
             cooldown_minutes:             String(s.cooldown_minutes),
-            statusesRaw:                  (s.campaign_status?.statuses ?? DEFAULT_STATUSES).join(', '),
+            statusesArray:                [...(s.campaign_status?.statuses ?? DEFAULT_STATUSES)],
         };
         this.showFormDialog = true;
     }
@@ -212,19 +218,16 @@ export class CampaignsComponent implements OnInit {
         this.successMessage = '';
         this.errorMessage   = '';
 
-        const statuses = this.formData.statusesRaw
-            .split(',')
-            .map(s => s.trim())
-            .filter(s => s.length > 0);
-
         const settingsPayload: UpdateCampaignSettingsRequest = {
             primary_phone_id:             this.formData.primary_phone_id || null,
-            secondary_phone_id:           this.formData.secondary_phone_id || null,
-            change_number_after:          this.formData.change_number_after !== '' ? Number(this.formData.change_number_after) : null,
             max_calls_to_unanswered_lead: Number(this.formData.max_calls_to_unanswered_lead) || 3,
             calling_algorithm:            this.formData.calling_algorithm,
-            cooldown_minutes:             Number(this.formData.cooldown_minutes) || 120,
-            campaign_status:              { statuses: statuses.length > 0 ? statuses : DEFAULT_STATUSES },
+            cooldown_minutes:             this.formData.cooldown_minutes !== '' ? Number(this.formData.cooldown_minutes) : 120,
+            campaign_status:              { statuses: this.formData.statusesArray.length > 0 ? this.formData.statusesArray : DEFAULT_STATUSES },
+            ...(this.secondaryFieldsEnabled && {
+                secondary_phone_id:  this.formData.secondary_phone_id || null,
+                change_number_after: this.formData.change_number_after !== '' ? Number(this.formData.change_number_after) : null,
+            }),
         };
 
         if (this.isEditMode && this.editingId) {

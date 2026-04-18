@@ -93,7 +93,17 @@
         "ERROR_NAME_REQUIRED": "اسم الحملة مطلوب.",
         "SUCCESS_CREATED": "تم إنشاء الحملة بنجاح.",
         "SUCCESS_UPDATED": "تم تحديث الحملة بنجاح.",
-        "SUCCESS_DELETED": "تم حذف الحملة."
+        "SUCCESS_DELETED": "تم حذف الحملة.",
+        "STATUSES_LIST_TITLE": "حالات العميل المحتمل",
+        "STATUSES_ADD_PLACEHOLDER": "أضف حالة…",
+        "STATUSES_ADD_BUTTON": "إضافة",
+        "STATUSES_REMOVE_ARIA": "إزالة الحالة {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "تحريك الحالة {{value}} لأعلى",
+        "STATUSES_MOVE_DOWN_ARIA": "تحريك الحالة {{value}} لأسفل",
+        "STATUSES_ERROR_EMPTY": "يرجى إدخال حالة قبل الإضافة.",
+        "STATUSES_ERROR_DUPLICATE": "هذه الحالة موجودة بالفعل في القائمة.",
+        "STATUSES_ERROR_MIN_ONE": "مطلوب حالة واحدة على الأقل.",
+        "ERROR_ALGORITHM_INVALID": "خوارزمية الاتصال غير مدعومة. المدعومة: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "جهات الاتصال",

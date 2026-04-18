@@ -160,10 +160,10 @@ class CampaignService:
         
         if payload.calling_algorithm is not None:
 
-            if payload.calling_algorithm not in {"priority", "fifo", "round_robin"}:
+            if payload.calling_algorithm not in {"priority", "random", "sequential"}:
                 raise HTTPException(
                     status_code=400,
-                    detail="calling_algorithm must be: priority, fifo, or round_robin"
+                    detail="calling_algorithm must be one of: priority, random, sequential"
                 )
             
             settings.calling_algorithm = payload.calling_algorithm

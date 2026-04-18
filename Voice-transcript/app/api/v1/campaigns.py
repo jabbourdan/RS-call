@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from typing import Optional, Dict, Any
 from uuid import UUID
 from datetime import datetime
@@ -57,10 +57,10 @@ class CampaignResponse(BaseModel):
 class CampaignSettingsUpdateRequest(BaseModel):
     primary_phone_id: Optional[UUID] = None
     secondary_phone_id: Optional[UUID] = None
-    change_number_after: Optional[int] = None
-    max_calls_to_unanswered_lead: Optional[int] = None
+    change_number_after: Optional[int] = Field(default=None, ge=1)
+    max_calls_to_unanswered_lead: Optional[int] = Field(default=None, ge=1)
     calling_algorithm: Optional[str] = None
-    cooldown_minutes: Optional[int] = None
+    cooldown_minutes: Optional[int] = Field(default=None, ge=0)
     campaign_status: Optional[Dict[str, Any]] = None
 
 
