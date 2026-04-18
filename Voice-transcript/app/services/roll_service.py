@@ -14,6 +14,12 @@ from app.integrations.twilio_client import TwilioClient
 # Seconds to wait for agent status confirmation before auto-proceeding
 ROLL_PAUSE_TIMEOUT_SECONDS = 60
 
+# Hard minimum cooldown between consecutive dials of the same lead, regardless
+# of campaign cooldown_minutes. Prevents immediate re-dial loops when a call
+# ends quickly (e.g. no-answer auto-advance). Must be larger than Twilio's
+# no-answer timeout (~30s) or the boundary check won't catch it.
+MIN_SAME_LEAD_COOLDOWN_SECONDS = 90
+
 
 # =========================
 # RollService
@@ -222,7 +228,7 @@ class RollService:
                 continue
             if lead.last_call_at and lead.last_call_at > cooldown_cutoff:
                 continue
-            if current_status == "ממתין":
+            if current_status in ("ממתין", "לא ענה"):
                 leads_remaining += 1
             elif current_status == "פולו אפ":
                 if lead.follow_up_date and lead.follow_up_date.date() <= today:
@@ -303,14 +309,25 @@ class RollService:
         db: AsyncSession,
         campaign_id: UUID,
         current_user: User,
+        exclude_lead_id: Optional[UUID] = None,
+        previous_call_id: Optional[UUID] = None,
     ) -> None:
         settings_obj = await RollService._get_settings(db, campaign_id)
+
+        # Tear down the specific previous conference (if given) so the agent
+        # browser isn't stuck in an empty room. We accept an EXPLICIT call_id
+        # rather than looking up "most recent" — on a webhook retry, the most
+        # recent call is the brand-new one we just fired, and terminating it
+        # causes the "2-second second call" bug.
+        if previous_call_id:
+            await RollService._terminate_roll_conference(previous_call_id)
 
         next_lead = await RollService._get_next_lead(
             db=db,
             campaign_id=campaign_id,
             current_user=current_user,
             settings_obj=settings_obj,
+            exclude_lead_id=exclude_lead_id,
         )
 
         if not next_lead:
@@ -330,6 +347,95 @@ class RollService:
 
         await db.commit()
         print(f"📞 Roll next call: {next_lead.name} ({next_lead.phone_number})")
+
+    # ── HANDLE NO-ANSWER (auto-advance without agent confirmation) ────────────
+
+    @staticmethod
+    async def handle_no_answer(
+        db: AsyncSession,
+        call: Call,
+    ) -> None:
+        """
+        Called from the webhook when a roll call ends with no_answer/failed.
+        Skips the pause-for-status-confirm step and advances immediately.
+        """
+        if not call.campaign_id:
+            return
+
+        settings_obj = await RollService._get_settings(db, call.campaign_id)
+        if not settings_obj.roll_active:
+            return
+
+        # Idempotency: if a newer roll call already exists for this campaign,
+        # we've already advanced past this failed call. Webhook retries from
+        # Twilio (when our handler exceeds the 15s timeout) would otherwise
+        # trigger a second advance that kills the just-fired new call and
+        # manifests as the "2-second second call" bug.
+        newer_result = await db.execute(
+            select(Call).where(
+                Call.campaign_id == call.campaign_id,
+                Call.org_id == call.org_id,
+                Call.is_roll == True,
+                Call.created_at > call.created_at,
+            ).limit(1)
+        )
+        if newer_result.scalars().first():
+            print(f"⏭ Roll already advanced past call {call.call_id} — skipping")
+            return
+
+        # Clear any previously paused state — we're taking ownership of the
+        # advance directly from the webhook.
+        settings_obj.roll_paused = False
+        settings_obj.roll_paused_at = None
+        await db.commit()
+
+        # Look up the agent user who owns this call so _advance_roll's
+        # tenant-scoped queries work correctly.
+        user_res = await db.execute(select(User).where(User.user_id == call.user_id))
+        current_user = user_res.scalars().first()
+        if not current_user:
+            print(f"⚠️ Roll no-answer auto-advance: user {call.user_id} not found")
+            return
+
+        try:
+            # Explicitly exclude the lead we just no-answered so it can never
+            # be picked again on this same advance — belt-and-suspenders on
+            # top of the MIN_SAME_LEAD_COOLDOWN_SECONDS check.
+            await RollService._advance_roll(
+                db=db,
+                campaign_id=call.campaign_id,
+                current_user=current_user,
+                exclude_lead_id=call.lead_id,
+                previous_call_id=call.call_id,
+            )
+        except Exception as e:
+            print(f"⚠️ Roll no-answer auto-advance error: {e}")
+
+    # ── TERMINATE A SPECIFIC ROLL CONFERENCE ──────────────────────────────────
+
+    @staticmethod
+    async def _terminate_roll_conference(call_id: UUID) -> None:
+        """
+        Kill any still-active conference legs belonging to this specific call.
+        Takes an EXPLICIT call_id so webhook retries can't accidentally
+        terminate a brand-new conference by picking it up as "most recent".
+        """
+        conf_name = f"roll_{str(call_id).replace('-', '')}"
+        try:
+            twilio = TwilioClient()
+            conferences = twilio.client.conferences.list(
+                friendly_name=conf_name, status="in-progress"
+            )
+            for conf in conferences:
+                for participant in twilio.client.conferences(conf.sid).participants.list():
+                    try:
+                        twilio.client.conferences(conf.sid).participants(
+                            participant.call_sid
+                        ).update(status="completed")
+                    except Exception as e:
+                        print(f"⚠️ Could not drop participant {participant.call_sid}: {e}")
+        except Exception as e:
+            print(f"⚠️ Conference cleanup error for {conf_name}: {e}")
 
     # ── HELPERS ───────────────────────────────────────────────────────────────
 
@@ -362,6 +468,7 @@ class RollService:
         campaign_id: UUID,
         current_user: User,
         settings_obj: CampaignSettings,
+        exclude_lead_id: Optional[UUID] = None,
     ) -> Optional[Lead]:
 
         EXCLUDED_STATUSES = {"לא רלוונטי", "עסקה נסגרה", "אל תתקשר"}
@@ -377,9 +484,14 @@ class RollService:
         now = datetime.utcnow()
         today = now.date()
         cooldown_cutoff = now - timedelta(minutes=settings_obj.cooldown_minutes)
+        min_safety_cutoff = now - timedelta(seconds=MIN_SAME_LEAD_COOLDOWN_SECONDS)
 
         eligible = []
         for lead in all_leads:
+            # Hard-exclude the lead that was just dialed (e.g. the one that
+            # just no-answered) — regardless of cooldown settings.
+            if exclude_lead_id and lead.lead_id == exclude_lead_id:
+                continue
             current_status = lead.status.get("current", "ממתין") if lead.status else "ממתין"
             if current_status in EXCLUDED_STATUSES:
                 continue
@@ -387,7 +499,12 @@ class RollService:
                 continue
             if lead.last_call_at and lead.last_call_at > cooldown_cutoff:
                 continue
-            if current_status == "ממתין":
+            # Hard safety: never redial the same lead within MIN_SAME_LEAD_COOLDOWN_SECONDS,
+            # even if the campaign cooldown is 0. Use >= so the boundary case
+            # (last_call_at exactly equal to cutoff) still blocks the redial.
+            if lead.last_call_at and lead.last_call_at >= min_safety_cutoff:
+                continue
+            if current_status in ("ממתין", "לא ענה"):
                 eligible.append(lead)
             elif current_status == "פולו אפ":
                 if lead.follow_up_date and lead.follow_up_date.date() <= today:
@@ -398,9 +515,9 @@ class RollService:
 
         algorithm = settings_obj.calling_algorithm or "priority"
 
-        if algorithm == "fifo":
+        if algorithm == "random":
             eligible.sort(key=lambda l: l.created_at)
-        elif algorithm == "round_robin":
+        elif algorithm == "sequential":
             eligible.sort(key=lambda l: (l.tried_to_reach, l.created_at))
         else:
             def priority_key(lead):

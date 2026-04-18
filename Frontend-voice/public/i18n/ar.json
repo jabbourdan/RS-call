@@ -93,8 +93,17 @@
         "ERROR_NAME_REQUIRED": "اسم الحملة مطلوب.",
         "SUCCESS_CREATED": "تم إنشاء الحملة بنجاح.",
         "SUCCESS_UPDATED": "تم تحديث الحملة بنجاح.",
-        "RING_TIMEOUT_SECONDS": "مهلة الرنين (ثوان)",
-        "SUCCESS_DELETED": "تم حذف الحملة."
+        "SUCCESS_DELETED": "تم حذف الحملة.",
+        "STATUSES_LIST_TITLE": "حالات العميل المحتمل",
+        "STATUSES_ADD_PLACEHOLDER": "أضف حالة…",
+        "STATUSES_ADD_BUTTON": "إضافة",
+        "STATUSES_REMOVE_ARIA": "إزالة الحالة {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "تحريك الحالة {{value}} لأعلى",
+        "STATUSES_MOVE_DOWN_ARIA": "تحريك الحالة {{value}} لأسفل",
+        "STATUSES_ERROR_EMPTY": "يرجى إدخال حالة قبل الإضافة.",
+        "STATUSES_ERROR_DUPLICATE": "هذه الحالة موجودة بالفعل في القائمة.",
+        "STATUSES_ERROR_MIN_ONE": "مطلوب حالة واحدة على الأقل.",
+        "ERROR_ALGORITHM_INVALID": "خوارزمية الاتصال غير مدعومة. المدعومة: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "جهات الاتصال",
@@ -229,7 +238,8 @@
         "STATUS_NOT_RELEVANT": "غير ذي صلة",
         "STATUS_DEAL_CLOSED": "صفقة مغلقة",
         "STATUS_FOLLOW_UP": "متابعة",
-        "STATUS_DO_NOT_CALL": "لا تتصل"
+        "STATUS_DO_NOT_CALL": "لا تتصل",
+        "STATUS_NO_ANSWER": "لم يرد"
     },
     "REA_WELCOME": {
         "HELLO": "مرحباً",
@@ -369,11 +379,12 @@
         "BTN_SAVE_SETTINGS": "حفظ الإعدادات",
         "STATUS_PENDING": "قيد الانتظار",
         "STATUS_ANSWERED": "تم الرد",
-        "STATUS_NO_ANSWER": "لم يرد",
         "STATUS_NOT_RELEVANT": "غير ذي صلة",
         "STATUS_CLOSED_DEAL": "صفقة مغلقة",
         "STATUS_FOLLOW_UP": "متابعة",
         "STATUS_DO_NOT_CALL": "لا تتصل",
+        "STATUS_NO_ANSWER": "لم يرد",
+        "CALL_STATUS_FAILED": "فشل",
         "PERF_FOLLOW_UP_CALLS": "مكالمات المتابعة اليوم",
         "PERF_CLOSED_DEALS": "الصفقات المغلقة",
         "PERF_NEW_CUSTOMER_CALLS": "المكالمات مع عملاء جدد",
@@ -463,6 +474,7 @@
         "PAUSED_TITLE": "انتهت المكالمة — حدّث الحالة",
         "PAUSED_SUBTITLE": "حدّث حالة هذا العميل المحتمل قبل الانتقال للمكالمة التالية. اضغط Enter أو الزر للمتابعة بالحالة الحالية.",
         "AUTO_SET_STATUS": "تم الضبط تلقائياً: لم يرد",
+        "PAUSED_SUBTITLE_NO_ANSWER": "لم يرد هذا العميل وسيتم إعادة الاتصال به تلقائياً بعد انتهاء فترة الانتظار.",
         "KEEP_AND_PROCEED": "الإبقاء على الحالة والمتابعة",
         "PROCEED_ERROR": "فشل الانتقال للمكالمة التالية. يرجى المحاولة مجدداً."
     }

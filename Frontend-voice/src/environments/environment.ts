@@ -5,4 +5,5 @@ export const environment = {
     pollingIntervalMs: 4000,       // roll status polling (4 seconds)
     tokenRefreshBufferMs: 30000,   // refresh JWT 30s before expiry
     logLevel: 'debug' as const,
+    campaignSecondaryFieldsEnabled: false,
 };

@@ -151,6 +151,11 @@ class Campaign(SQLModel, table=True):
 # CampaignSettings
 # =========================
 class CampaignSettings(SQLModel, table=True):
+    # Exposure notes:
+    #   settings_id, campaign_id, primary_phone_id, secondary_phone_id,
+    #   change_number_after, max_calls_to_unanswered_lead, calling_algorithm,
+    #   cooldown_minutes, campaign_status — API: returned & accepted
+    #   roll_active, roll_paused, roll_paused_at — internal only, not in API responses
     settings_id: UUID = Field(default_factory=uuid4, primary_key=True)
     campaign_id: UUID = Field(foreign_key="campaign.campaign_id", unique=True)
 

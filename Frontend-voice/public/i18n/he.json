@@ -93,8 +93,17 @@
         "ERROR_NAME_REQUIRED": "שם הקמפיין הוא שדה חובה.",
         "SUCCESS_CREATED": "הקמפיין נוצר בהצלחה.",
         "SUCCESS_UPDATED": "הקמפיין עודכן בהצלחה.",
-        "RING_TIMEOUT_SECONDS": "זמן המתנה לאחר חיוג (שניות)",
-        "SUCCESS_DELETED": "הקמפיין נמחק."
+        "SUCCESS_DELETED": "הקמפיין נמחק.",
+        "STATUSES_LIST_TITLE": "סטטוסי ליד",
+        "STATUSES_ADD_PLACEHOLDER": "הוסף סטטוס…",
+        "STATUSES_ADD_BUTTON": "הוסף",
+        "STATUSES_REMOVE_ARIA": "הסר סטטוס {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "הזז סטטוס {{value}} למעלה",
+        "STATUSES_MOVE_DOWN_ARIA": "הזז סטטוס {{value}} למטה",
+        "STATUSES_ERROR_EMPTY": "יש להזין סטטוס לפני ההוספה.",
+        "STATUSES_ERROR_DUPLICATE": "סטטוס זה כבר קיים ברשימה.",
+        "STATUSES_ERROR_MIN_ONE": "נדרש לפחות סטטוס אחד.",
+        "ERROR_ALGORITHM_INVALID": "אלגוריתם חיוג לא נתמך. נתמכים: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "אנשי קשר",
@@ -229,7 +238,8 @@
         "STATUS_NOT_RELEVANT": "לא רלוונטי",
         "STATUS_DEAL_CLOSED": "עסקה נסגרה",
         "STATUS_FOLLOW_UP": "פולו אפ",
-        "STATUS_DO_NOT_CALL": "אל תתקשר"
+        "STATUS_DO_NOT_CALL": "אל תתקשר",
+        "STATUS_NO_ANSWER": "לא ענה"
     },
     "REA_WELCOME": {
         "HELLO": "שלום ",
@@ -369,11 +379,12 @@
         "BTN_SAVE_SETTINGS": "שמור הגדרות",
         "STATUS_PENDING": "ממתין",
         "STATUS_ANSWERED": "ענה",
-        "STATUS_NO_ANSWER": "לא ענה",
         "STATUS_NOT_RELEVANT": "לא רלוונטי",
         "STATUS_CLOSED_DEAL": "עסקה נסגרה",
         "STATUS_FOLLOW_UP": "פולו אפ",
         "STATUS_DO_NOT_CALL": "אל תתקשר",
+        "STATUS_NO_ANSWER": "לא ענה",
+        "CALL_STATUS_FAILED": "נכשל",
         "PERF_FOLLOW_UP_CALLS": "שיחות פולו-אפ היום",
         "PERF_CLOSED_DEALS": "עסקאות שנסגרו",
         "PERF_NEW_CUSTOMER_CALLS": "שיחות עם לקוחות חדשים",
@@ -463,6 +474,7 @@
         "PAUSED_TITLE": "השיחה הסתיימה — עדכן סטטוס",
         "PAUSED_SUBTITLE": "עדכן את סטטוס הליד לפני המעבר לשיחה הבאה. לחץ Enter או על הכפתור כדי להמשיך עם הסטטוס הנוכחי.",
         "AUTO_SET_STATUS": "עודכן אוטומטית: לא ענה",
+        "PAUSED_SUBTITLE_NO_ANSWER": "ליד זה לא ענה ויחוייג שוב אוטומטית לאחר זמן ההמתנה.",
         "KEEP_AND_PROCEED": "שמור סטטוס והמשך",
         "PROCEED_ERROR": "השגיאה: לא ניתן להמשיך לשיחה הבאה. נסה שוב."
     },

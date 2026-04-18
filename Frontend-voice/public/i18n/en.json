@@ -93,8 +93,17 @@
         "ERROR_NAME_REQUIRED": "Campaign name is required.",
         "SUCCESS_CREATED": "Campaign created successfully.",
         "SUCCESS_UPDATED": "Campaign updated successfully.",
-        "RING_TIMEOUT_SECONDS": "Ring Timeout (seconds)",
-        "SUCCESS_DELETED": "Campaign deleted."
+        "SUCCESS_DELETED": "Campaign deleted.",
+        "STATUSES_LIST_TITLE": "Lead Statuses",
+        "STATUSES_ADD_PLACEHOLDER": "Add a status…",
+        "STATUSES_ADD_BUTTON": "Add",
+        "STATUSES_REMOVE_ARIA": "Remove status {{value}}",
+        "STATUSES_MOVE_UP_ARIA": "Move status {{value}} up",
+        "STATUSES_MOVE_DOWN_ARIA": "Move status {{value}} down",
+        "STATUSES_ERROR_EMPTY": "Enter a status before adding.",
+        "STATUSES_ERROR_DUPLICATE": "This status is already in the list.",
+        "STATUSES_ERROR_MIN_ONE": "At least one status is required.",
+        "ERROR_ALGORITHM_INVALID": "Unsupported calling algorithm. Supported: priority, random, sequential."
     },
     "CONTACTS": {
         "PAGE_TITLE": "Contacts",
@@ -229,7 +238,8 @@
         "STATUS_NOT_RELEVANT": "Not Relevant",
         "STATUS_DEAL_CLOSED": "Deal Closed",
         "STATUS_FOLLOW_UP": "Follow Up",
-        "STATUS_DO_NOT_CALL": "Do Not Call"
+        "STATUS_DO_NOT_CALL": "Do Not Call",
+        "STATUS_NO_ANSWER": "Didn't Answer"
     },
     "REA_WELCOME": {
         "HELLO": "Hello",
@@ -369,11 +379,12 @@
         "BTN_SAVE_SETTINGS": "Save Settings",
         "STATUS_PENDING": "Pending",
         "STATUS_ANSWERED": "Answered",
-        "STATUS_NO_ANSWER": "Didn't Answer",
         "STATUS_NOT_RELEVANT": "Not Relevant",
         "STATUS_CLOSED_DEAL": "Closed Deal",
         "STATUS_FOLLOW_UP": "Follow Up",
         "STATUS_DO_NOT_CALL": "Do Not Call",
+        "STATUS_NO_ANSWER": "Didn't Answer",
+        "CALL_STATUS_FAILED": "Failed",
         "PERF_FOLLOW_UP_CALLS": "Today's Follow-up Calls",
         "PERF_CLOSED_DEALS": "Closed Deals",
         "PERF_NEW_CUSTOMER_CALLS": "Calls with New Customers",
@@ -382,7 +393,7 @@
         "AUTO_DIALER_STOP": "Stop Auto Dialer",
         "ROLL_MADE": "made",
         "ROLL_ANSWERED": "answered",
-        "ROLL_NO_ANSWER": "no answer",
+        "ROLL_NO_ANSWER": "Didn't Answer",
         "ROLL_REMAINING": "remaining",
         "ROLL_CURRENTLY_CALLING": "Currently calling",
         "ROLL_ACTIVE_BADGE": "Auto Dialer Active",
@@ -463,6 +474,7 @@
         "PAUSED_TITLE": "Call Ended — Update Status",
         "PAUSED_SUBTITLE": "Update this lead's status before continuing to the next call. Press Enter or click the button to keep the current status.",
         "AUTO_SET_STATUS": "Auto-set: Didn't Answer",
+        "PAUSED_SUBTITLE_NO_ANSWER": "This lead didn't answer and will be automatically recalled after the cooldown period.",
         "KEEP_AND_PROCEED": "Keep Status & Continue",
         "PROCEED_ERROR": "Failed to proceed to next call. Please try again."
     }

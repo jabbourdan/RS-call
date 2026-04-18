@@ -330,40 +330,44 @@
                                             <p class="text-[11px] text-gray-400 mt-1">{{ 'CAMPAIGNS.SETTINGS_NO_PHONES' | translate }}</p>
                                         }
                                     </div>
-                                    <div>
-                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
-                                            {{ 'CAMPAIGNS.SETTINGS_PHONE2' | translate }}
-                                        </label>
-                                        <select
-                                            [(ngModel)]="formData.secondary_phone_id"
-                                            name="phone2"
-                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
-                                        >
-                                            <option value="">{{ 'CAMPAIGNS.SETTINGS_PHONE_NONE' | translate }}</option>
-                                            @for (phone of orgPhoneNumbers; track phone.phone_id) {
-                                                <option [value]="phone.phone_id">
-                                                    {{ phone.phone_number }}{{ phone.label ? ' (' + phone.label + ')' : '' }}
-                                                </option>
-                                            }
-                                        </select>
-                                    </div>
+                                    @if (secondaryFieldsEnabled) {
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                                {{ 'CAMPAIGNS.SETTINGS_PHONE2' | translate }}
+                                            </label>
+                                            <select
+                                                [(ngModel)]="formData.secondary_phone_id"
+                                                name="phone2"
+                                                class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white focus:outline-none focus:border-primary-500"
+                                            >
+                                                <option value="">{{ 'CAMPAIGNS.SETTINGS_PHONE_NONE' | translate }}</option>
+                                                @for (phone of orgPhoneNumbers; track phone.phone_id) {
+                                                    <option [value]="phone.phone_id">
+                                                        {{ phone.phone_number }}{{ phone.label ? ' (' + phone.label + ')' : '' }}
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    }
                                 </div>
 
                                 <!-- Change number after + Max calls -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-[14px]">
-                                    <div>
-                                        <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
-                                            {{ 'CAMPAIGNS.SETTINGS_CHANGE_AFTER' | translate }}
-                                        </label>
-                                        <input
-                                            type="number"
-                                            [(ngModel)]="formData.change_number_after"
-                                            name="changeAfter"
-                                            min="1"
-                                            placeholder="e.g. 50"
-                                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
-                                        />
-                                    </div>
+                                    @if (secondaryFieldsEnabled) {
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
+                                                {{ 'CAMPAIGNS.SETTINGS_CHANGE_AFTER' | translate }}
+                                            </label>
+                                            <input
+                                                type="number"
+                                                [(ngModel)]="formData.change_number_after"
+                                                name="changeAfter"
+                                                min="1"
+                                                placeholder="e.g. 50"
+                                                class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500"
+                                            />
+                                        </div>
+                                    }
                                     <div>
                                         <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
                                             {{ 'CAMPAIGNS.SETTINGS_MAX_CALLS' | translate }}
@@ -423,20 +427,15 @@
                                     </div>
                                 </div>
 
-                                <!-- Statuses (comma-separated) -->
+                                <!-- Statuses (discrete list) -->
                                 <div>
                                     <label class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-[5px]">
-                                        {{ 'CAMPAIGNS.SETTINGS_STATUSES' | translate }}
+                                        {{ 'CAMPAIGNS.STATUSES_LIST_TITLE' | translate }}
                                     </label>
-                                    <textarea
-                                        [(ngModel)]="formData.statusesRaw"
-                                        name="statusesRaw"
-                                        rows="2"
-                                        placeholder="ממתין, ענה, לא רלוונטי, עסקה נסגרה, פולו אפ, אל תתקשר"
-                                        class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[8px] px-[12px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 resize-none"
-                                        dir="rtl"
-                                    ></textarea>
-                                    <p class="text-[11px] text-gray-400 mt-1">{{ 'CAMPAIGNS.SETTINGS_STATUSES_HINT' | translate }}</p>
+                                    <app-lead-status-list
+                                        [statuses]="formData.statusesArray"
+                                        (statusesChange)="formData.statusesArray = $event"
+                                    ></app-lead-status-list>
                                 </div>
                             </div>
                         }

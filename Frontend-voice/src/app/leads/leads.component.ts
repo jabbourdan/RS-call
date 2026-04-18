@@ -22,6 +22,7 @@ const LS_EXTRA_COLS_KEY = 'leads_visible_extra_cols';
 export const STATUS_I18N_KEY: Record<string, string> = {
     'ממתין':       'LEADS.STATUS_WAITING',
     'ענה':         'LEADS.STATUS_ANSWERED',
+    'לא ענה':      'LEADS.STATUS_NO_ANSWER',
     'לא רלוונטי':  'LEADS.STATUS_NOT_RELEVANT',
     'עסקה נסגרה':  'LEADS.STATUS_DEAL_CLOSED',
     'פולו אפ':     'LEADS.STATUS_FOLLOW_UP',
@@ -32,6 +33,7 @@ export const STATUS_I18N_KEY: Record<string, string> = {
 export const STATUS_BADGE_CLASS: Record<string, string> = {
     'ממתין':       'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400',
     'ענה':         'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400',
+    'לא ענה':      'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400',
     'לא רלוונטי':  'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400',
     'עסקה נסגרה':  'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400',
     'פולו אפ':     'bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400',
