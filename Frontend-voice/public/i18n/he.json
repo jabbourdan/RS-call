@@ -238,7 +238,8 @@
         "STATUS_NOT_RELEVANT": "לא רלוונטי",
         "STATUS_DEAL_CLOSED": "עסקה נסגרה",
         "STATUS_FOLLOW_UP": "פולו אפ",
-        "STATUS_DO_NOT_CALL": "אל תתקשר"
+        "STATUS_DO_NOT_CALL": "אל תתקשר",
+        "STATUS_NO_ANSWER": "לא ענה"
     },
     "REA_WELCOME": {
         "HELLO": "שלום ",
@@ -382,6 +383,8 @@
         "STATUS_CLOSED_DEAL": "עסקה נסגרה",
         "STATUS_FOLLOW_UP": "פולו אפ",
         "STATUS_DO_NOT_CALL": "אל תתקשר",
+        "STATUS_NO_ANSWER": "לא ענה",
+        "CALL_STATUS_FAILED": "נכשל",
         "PERF_FOLLOW_UP_CALLS": "שיחות פולו-אפ היום",
         "PERF_CLOSED_DEALS": "עסקאות שנסגרו",
         "PERF_NEW_CUSTOMER_CALLS": "שיחות עם לקוחות חדשים",
@@ -471,6 +474,7 @@
         "PAUSED_TITLE": "השיחה הסתיימה — עדכן סטטוס",
         "PAUSED_SUBTITLE": "עדכן את סטטוס הליד לפני המעבר לשיחה הבאה. לחץ Enter או על הכפתור כדי להמשיך עם הסטטוס הנוכחי.",
         "AUTO_SET_STATUS": "עודכן אוטומטית: לא ענה",
+        "PAUSED_SUBTITLE_NO_ANSWER": "ליד זה לא ענה ויחוייג שוב אוטומטית לאחר זמן ההמתנה.",
         "KEEP_AND_PROCEED": "שמור סטטוס והמשך",
         "PROCEED_ERROR": "השגיאה: לא ניתן להמשיך לשיחה הבאה. נסה שוב."
     },

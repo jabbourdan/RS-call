@@ -309,8 +309,12 @@ async def hangup_call(
 
     twilio = TwilioClient()
 
-    # Terminate every active call leg in the conference (conference name pattern)
-    conf_name = f"manual_{str(call_id).replace('-', '')}"
+    # Terminate every active call leg in the conference. Conference name uses
+    # a different prefix for manual vs. roll calls — try both so hangup works
+    # regardless of how the call was started.
+    call_id_hex = str(call_id).replace('-', '')
+    prefix = "roll_" if getattr(call, "is_roll", False) else "manual_"
+    conf_name = f"{prefix}{call_id_hex}"
     try:
         conferences = twilio.client.conferences.list(friendly_name=conf_name, status="in-progress")
         for conf in conferences:

@@ -238,7 +238,8 @@
         "STATUS_NOT_RELEVANT": "غير ذي صلة",
         "STATUS_DEAL_CLOSED": "صفقة مغلقة",
         "STATUS_FOLLOW_UP": "متابعة",
-        "STATUS_DO_NOT_CALL": "لا تتصل"
+        "STATUS_DO_NOT_CALL": "لا تتصل",
+        "STATUS_NO_ANSWER": "لم يرد"
     },
     "REA_WELCOME": {
         "HELLO": "مرحباً",
@@ -382,6 +383,8 @@
         "STATUS_CLOSED_DEAL": "صفقة مغلقة",
         "STATUS_FOLLOW_UP": "متابعة",
         "STATUS_DO_NOT_CALL": "لا تتصل",
+        "STATUS_NO_ANSWER": "لم يرد",
+        "CALL_STATUS_FAILED": "فشل",
         "PERF_FOLLOW_UP_CALLS": "مكالمات المتابعة اليوم",
         "PERF_CLOSED_DEALS": "الصفقات المغلقة",
         "PERF_NEW_CUSTOMER_CALLS": "المكالمات مع عملاء جدد",
@@ -471,6 +474,7 @@
         "PAUSED_TITLE": "انتهت المكالمة — حدّث الحالة",
         "PAUSED_SUBTITLE": "حدّث حالة هذا العميل المحتمل قبل الانتقال للمكالمة التالية. اضغط Enter أو الزر للمتابعة بالحالة الحالية.",
         "AUTO_SET_STATUS": "تم الضبط تلقائياً: لم يرد",
+        "PAUSED_SUBTITLE_NO_ANSWER": "لم يرد هذا العميل وسيتم إعادة الاتصال به تلقائياً بعد انتهاء فترة الانتظار.",
         "KEEP_AND_PROCEED": "الإبقاء على الحالة والمتابعة",
         "PROCEED_ERROR": "فشل الانتقال للمكالمة التالية. يرجى المحاولة مجدداً."
     }

@@ -204,7 +204,7 @@ class CallService:
                 from app.services.roll_service import RollService
 
                 # Auto-set "לא ענה" for unanswered roll calls
-                if new_status == "no_answer" and call.lead_id:
+                if new_status in ("no_answer", "failed") and call.lead_id:
                     lead_res = await db.execute(select(Lead).where(Lead.lead_id == call.lead_id))
                     lead = lead_res.scalars().first()
                     if lead:
@@ -222,7 +222,13 @@ class CallService:
                             await db.commit()
 
                 if call.campaign_id:
-                    await RollService.pause_roll(db=db, campaign_id=call.campaign_id)
+                    # No-answer / failed: auto-advance immediately so the agent
+                    # doesn't have to click "continue". Answered calls still
+                    # pause so the agent can confirm the outcome status.
+                    if new_status in ("no_answer", "failed"):
+                        await RollService.handle_no_answer(db=db, call=call)
+                    else:
+                        await RollService.pause_roll(db=db, campaign_id=call.campaign_id)
 
             except Exception as e:
                 print(f"⚠️ Roll Error: {e}")

@@ -168,6 +168,7 @@ export class LeadManagementComponent implements OnInit, OnDestroy {
                     .map(c => ({
                         campaign_id: c.campaign_id,
                         name: c.name,
+                        max_calls_to_unanswered_lead: c.settings?.max_calls_to_unanswered_lead ?? 3,
                     }));
                 this.representatives = this.mapUsersToRepresentatives(users);
 

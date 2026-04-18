@@ -38,7 +38,7 @@
                 ▶ {{ 'LEAD_MANAGEMENT.ROLL_CURRENTLY_CALLING' | translate }}: {{ rollStats!.currentLead.name }}
                 @if (rollStats!.currentLead.callStatus) {
                     <span class="inline-block px-[6px] py-[1px] rounded-full text-[10px] font-medium bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200">
-                        {{ rollStats!.currentLead.callStatus }}
+                        {{ getCallStatusI18n(rollStats!.currentLead.callStatus) | translate }}
                     </span>
                 }
             </div>

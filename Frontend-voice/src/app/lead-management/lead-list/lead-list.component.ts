@@ -8,15 +8,23 @@ import { CampaignOption, LeadManagementItem, RollStats } from '../lead-managemen
 const STATUS_BADGE: Record<string, string> = {
     'ממתין':        'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300',
     'ענה':          'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+    'לא ענה':       'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
     'לא רלוונטי':   'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300',
     'עסקה נסגרה':   'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
     'פולו אפ':      'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
     'אל תתקשר':     'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
 };
 
+const CALL_STATUS_I18N: Record<string, string> = {
+    'no_answer':   'LEAD_MANAGEMENT.STATUS_NO_ANSWER',
+    'completed':   'LEAD_MANAGEMENT.STATUS_ANSWERED',
+    'failed':      'LEAD_MANAGEMENT.CALL_STATUS_FAILED',
+};
+
 const STATUS_I18N: Record<string, string> = {
     'ממתין':        'LEAD_MANAGEMENT.STATUS_PENDING',
     'ענה':          'LEAD_MANAGEMENT.STATUS_ANSWERED',
+    'לא ענה':       'LEAD_MANAGEMENT.STATUS_NO_ANSWER',
     'לא רלוונטי':   'LEAD_MANAGEMENT.STATUS_NOT_RELEVANT',
     'עסקה נסגרה':   'LEAD_MANAGEMENT.STATUS_CLOSED_DEAL',
     'פולו אפ':      'LEAD_MANAGEMENT.STATUS_FOLLOW_UP',
@@ -50,7 +58,7 @@ export class LeadListComponent implements OnChanges {
     overdueFollowUps: LeadManagementItem[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['leads'] || changes['selectedCampaignId']) {
+        if (changes['leads'] || changes['selectedCampaignId'] || changes['campaigns']) {
             this.applyFilters();
         }
     }
@@ -80,14 +88,18 @@ export class LeadListComponent implements OnChanges {
 
         if (this.currentTab === 'queue') {
             const now = new Date();
+            const maxCalls = this.campaigns.find(c => c.campaign_id === this.selectedCampaignId)?.max_calls_to_unanswered_lead ?? Infinity;
 
             // Overdue follow-ups: פולו אפ leads whose scheduled time has passed
             this.overdueFollowUps = result
                 .filter(l => l.status.current === 'פולו אפ' && l.follow_up_date && new Date(l.follow_up_date) < now)
                 .sort((a, b) => new Date(a.follow_up_date!).getTime() - new Date(b.follow_up_date!).getTime());
 
-            // Regular queue: pending leads, never-called first, then by last call date
-            result = result.filter(l => l.status.current === 'ממתין');
+            // Regular queue: pending + didn't-answer leads still under the per-campaign call cap
+            result = result.filter(l =>
+                (l.status.current === 'ממתין' || l.status.current === 'לא ענה') &&
+                l.tried_to_reach < maxCalls
+            );
             result.sort((a, b) => {
                 if (!a.last_call_at && !b.last_call_at) return 0;
                 if (!a.last_call_at) return -1;
@@ -130,6 +142,10 @@ export class LeadListComponent implements OnChanges {
 
     getStatusI18n(status: string): string {
         return STATUS_I18N[status] ?? status;
+    }
+
+    getCallStatusI18n(status: string): string {
+        return CALL_STATUS_I18N[status] ?? status;
     }
 
     formatDate(iso: string | null): string {

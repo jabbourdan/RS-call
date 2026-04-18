@@ -87,7 +87,7 @@
                     }
                 </div>
                 <p class="text-xs text-orange-600 dark:text-orange-400 mb-[12px]">
-                    {{ 'ROLL.PAUSED_SUBTITLE' | translate }}
+                    {{ (rollStats?.currentLead?.callStatus === 'no_answer' ? 'ROLL.PAUSED_SUBTITLE_NO_ANSWER' : 'ROLL.PAUSED_SUBTITLE') | translate }}
                 </p>
                 @if (rollProceedError) {
                     <p class="text-xs text-red-500 mb-[8px]">{{ rollProceedError | translate }}</p>

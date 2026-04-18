@@ -93,6 +93,7 @@ export interface CallStatusInfo {
 export interface CampaignOption {
     campaign_id: string;
     name: string;
+    max_calls_to_unanswered_lead: number;
 }
 
 // ─── Keypad Key ──────────────────────────────────────────────────────────────
