@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import {
     Lead,
+    LeadBriefing,
     LeadCreateRequest,
     LeadUpdateRequest,
     LeadPreviewColumnsResponse,
@@ -74,6 +76,29 @@ export class LeadService {
             `${this.base}/${campaignId}/upload`,
             formData,
             { withCredentials: true }
+        );
+    }
+
+    // ─── Lead Briefing (AI summary of lead fields) ───────────────────────────────
+
+    getLeadBriefing(leadId: string): Observable<LeadBriefing | null> {
+        return this.http
+            .get<LeadBriefing>(`${this.base}/${leadId}/briefing`, { withCredentials: true })
+            .pipe(
+                catchError((err: HttpErrorResponse) => {
+                    if (err.status === 404) {
+                        return of(null);
+                    }
+                    return throwError(() => err);
+                }),
+            );
+    }
+
+    createOrRegenerateLeadBriefing(leadId: string): Observable<LeadBriefing> {
+        return this.http.post<LeadBriefing>(
+            `${this.base}/${leadId}/briefing`,
+            {},
+            { withCredentials: true },
         );
     }
 }

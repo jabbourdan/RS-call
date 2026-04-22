@@ -38,6 +38,7 @@ class CampaignSettingsResponse(BaseModel):
     cooldown_minutes: int
     campaign_status: Optional[Dict[str, Any]]
     summary_prompt_override: Optional[str] = None
+    briefing_prompt_override: Optional[str] = None
     created_at: datetime
     updated_at: datetime
     model_config = {"from_attributes": True}
@@ -67,6 +68,8 @@ class CampaignSettingsUpdateRequest(BaseModel):
     campaign_status: Optional[Dict[str, Any]] = None
     summary_prompt_override: Optional[str] = None
     revert_summary_prompt: Optional[bool] = False
+    briefing_prompt_override: Optional[str] = None
+    revert_briefing_prompt: Optional[bool] = False
 
     @field_validator("summary_prompt_override")
     @classmethod
@@ -80,6 +83,20 @@ class CampaignSettingsUpdateRequest(BaseModel):
             raise ValueError("summary_prompt_override must be at least 20 characters.")
         if len(stripped) > 4000:
             raise ValueError("summary_prompt_override must be at most 4000 characters.")
+        return stripped
+
+    @field_validator("briefing_prompt_override")
+    @classmethod
+    def validate_briefing_prompt(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return v
+        stripped = v.strip()
+        if not stripped:
+            raise ValueError("briefing_prompt_override must not be empty or whitespace-only.")
+        if len(stripped) < 20:
+            raise ValueError("briefing_prompt_override must be at least 20 characters.")
+        if len(stripped) > 4000:
+            raise ValueError("briefing_prompt_override must be at most 4000 characters.")
         return stripped
 
 
@@ -148,6 +165,7 @@ async def _enrich_settings_response(db: AsyncSession, settings: CampaignSettings
         cooldown_minutes=settings.cooldown_minutes,
         campaign_status=settings.campaign_status,
         summary_prompt_override=settings.summary_prompt_override,
+        briefing_prompt_override=settings.briefing_prompt_override,
         created_at=settings.created_at,
         updated_at=settings.updated_at,
     )
@@ -228,6 +246,17 @@ async def get_default_summary_prompt(
     from app.services.llm_service import LLMService
     return JSONResponse(
         content={"default_prompt": LLMService.DEFAULT_SUMMARY_PROMPT},
+        headers={"Cache-Control": "private, max-age=3600"},
+    )
+
+
+@router.get("/briefing-prompt/default")
+async def get_default_briefing_prompt(
+    current_user: User = Depends(get_current_user),
+):
+    from app.services.lead_briefing_service import DEFAULT_BRIEFING_PROMPT
+    return JSONResponse(
+        content={"default_prompt": DEFAULT_BRIEFING_PROMPT},
         headers={"Cache-Control": "private, max-age=3600"},
     )
 

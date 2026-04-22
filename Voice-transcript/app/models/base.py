@@ -180,6 +180,7 @@ class CampaignSettings(SQLModel, table=True):
     roll_paused: bool = Field(default=False)
     roll_paused_at: Optional[datetime] = Field(default=None)
     summary_prompt_override: Optional[str] = Field(default=None)
+    briefing_prompt_override: Optional[str] = Field(default=None)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -308,6 +309,22 @@ class CallAnalysis(SQLModel, table=True):
 
     # Relationships
     call: Optional[Call] = Relationship(back_populates="analysis")
+
+# =========================
+# LeadBriefing
+# =========================
+class LeadBriefing(SQLModel, table=True):
+    briefing_id: UUID = Field(default_factory=uuid4, primary_key=True)
+    lead_id: UUID = Field(foreign_key="lead.lead_id", unique=True, index=True)
+    org_id: UUID = Field(foreign_key="organization.org_id", index=True)
+
+    briefing_text: str
+    prompt_used: str
+    prompt_version: str = Field(max_length=32)
+
+    generated_by: UUID = Field(foreign_key="user.user_id")
+    generated_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
 
 # =========================
 # LeadComment

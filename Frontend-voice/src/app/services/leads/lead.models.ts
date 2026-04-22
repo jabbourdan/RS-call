@@ -64,3 +64,14 @@ export interface LeadUploadResponse {
     failed_invalid: number;
     errors: string[];
 }
+
+// ─── Lead Briefing ───────────────────────────────────────────────────────────
+
+export interface LeadBriefing {
+    briefing_id: string;
+    lead_id: string;
+    briefing_text: string;
+    prompt_version: string;
+    generated_at: string;    // ISO-8601 timestamp
+    generated_by: string;
+}

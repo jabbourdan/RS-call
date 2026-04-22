@@ -56,6 +56,112 @@
         </div>
     </div>
 
+    <!-- AI Lead Briefing card (pinned above the timeline; collapsible) -->
+    <div class="rounded-lg border border-gray-100 dark:border-[#172036] bg-white dark:bg-[#0c1427] p-[14px] mb-[16px]">
+        <!-- Header (always visible) -->
+        <div class="flex items-center gap-[8px]">
+            <i class="material-symbols-outlined !text-[18px] text-purple-500">auto_awesome</i>
+            <h6 class="text-sm font-semibold text-black dark:text-white flex-1 truncate">
+                {{ 'LEAD_MANAGEMENT.BRIEFING.TITLE' | translate }}
+                @if (lead.name) {
+                    <span class="text-gray-500 dark:text-gray-400 font-normal"> — {{ lead.name }}</span>
+                }
+            </h6>
+            @if (briefing && !isBriefingGenerating && !isBriefingCollapsed) {
+                <button
+                    type="button"
+                    class="text-xs text-primary-500 hover:underline"
+                    (click)="onRegenerateBriefing()">
+                    {{ 'LEAD_MANAGEMENT.BRIEFING.REGENERATE_BUTTON' | translate }}
+                </button>
+            }
+            <button
+                type="button"
+                class="text-gray-400 hover:text-primary-500 transition-all"
+                (click)="toggleBriefingCollapsed()"
+                [attr.aria-label]="(isBriefingCollapsed ? 'LEAD_MANAGEMENT.BRIEFING.EXPAND' : 'LEAD_MANAGEMENT.BRIEFING.COLLAPSE') | translate"
+                [attr.title]="(isBriefingCollapsed ? 'LEAD_MANAGEMENT.BRIEFING.EXPAND' : 'LEAD_MANAGEMENT.BRIEFING.COLLAPSE') | translate">
+                <i class="material-symbols-outlined !text-[20px]">
+                    {{ isBriefingCollapsed ? 'expand_more' : 'expand_less' }}
+                </i>
+            </button>
+        </div>
+
+        <!-- Body (hidden while collapsed) -->
+        @if (!isBriefingCollapsed) {
+            <!-- Basic lead details — always visible when expanded -->
+            <div class="mt-[10px] pt-[10px] border-t border-gray-50 dark:border-[#172036]">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-[12px] gap-y-[4px] text-xs">
+                    @if (lead.name) {
+                        <div class="flex gap-[6px]">
+                            <span class="text-gray-400 min-w-[70px]">{{ 'LEAD_MANAGEMENT.BRIEFING.NAME_LABEL' | translate }}</span>
+                            <span class="text-black dark:text-white font-medium truncate">{{ lead.name }}</span>
+                        </div>
+                    }
+                    @if (lead.phone_number) {
+                        <div class="flex gap-[6px]">
+                            <span class="text-gray-400 min-w-[70px]">{{ 'LEAD_MANAGEMENT.BRIEFING.PHONE_LABEL' | translate }}</span>
+                            <span class="text-black dark:text-white font-mono truncate" dir="ltr">{{ lead.phone_number }}</span>
+                        </div>
+                    }
+                    @for (item of basicExtraDataEntries; track item.key) {
+                        <div class="flex gap-[6px]">
+                            <span class="text-gray-400 min-w-[70px] truncate">{{ item.key }}</span>
+                            <span class="text-black dark:text-white truncate" dir="rtl">{{ item.value }}</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- AI brief section — only when the agent asked for one -->
+            <div class="mt-[10px] pt-[10px] border-t border-gray-50 dark:border-[#172036]">
+                @if (isBriefingGenerating) {
+                    <div class="flex items-center gap-[8px] text-sm text-gray-600 dark:text-gray-300">
+                        <i class="material-symbols-outlined !text-[18px] animate-spin">progress_activity</i>
+                        <span>{{ 'LEAD_MANAGEMENT.BRIEFING.GENERATING' | translate }}</span>
+                    </div>
+                } @else if (briefing) {
+                    <p
+                        dir="rtl"
+                        class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap mb-[6px]">
+                        {{ briefing.briefing_text }}
+                    </p>
+                    <div class="text-xs text-gray-400">
+                        {{ 'LEAD_MANAGEMENT.BRIEFING.GENERATED_AT' | translate }}
+                        {{ formatDateTime(briefing.generated_at).replace('\n', ' ') }}
+                    </div>
+                    @if (briefingError) {
+                        <div class="text-xs text-red-500 mt-[6px]">
+                            {{ briefingError | translate }}
+                        </div>
+                    }
+                } @else if (briefingError) {
+                    <div class="flex items-start gap-[8px]">
+                        <span class="text-sm text-red-500 flex-1">{{ briefingError | translate }}</span>
+                        <button
+                            type="button"
+                            class="h-[28px] px-[10px] rounded-md bg-primary-500 text-white text-xs hover:bg-primary-600 transition-all"
+                            (click)="onCreateBriefing()">
+                            {{ 'LEAD_MANAGEMENT.BRIEFING.CREATE_BUTTON' | translate }}
+                        </button>
+                    </div>
+                } @else if (!isBriefingLoading) {
+                    <div class="flex items-start gap-[12px]">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 flex-1">
+                            {{ 'LEAD_MANAGEMENT.BRIEFING.EMPTY_HINT' | translate }}
+                        </p>
+                        <button
+                            type="button"
+                            class="h-[30px] px-[12px] rounded-md bg-primary-500 text-white text-xs font-medium hover:bg-primary-600 transition-all whitespace-nowrap"
+                            (click)="onCreateBriefing()">
+                            {{ 'LEAD_MANAGEMENT.BRIEFING.CREATE_BUTTON' | translate }}
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
     <!-- History header -->
     <div class="flex items-center justify-between mb-[16px]">
         <h6 class="text-md font-semibold text-black dark:text-white flex items-center gap-[6px]">

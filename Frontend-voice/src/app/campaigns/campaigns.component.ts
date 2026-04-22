@@ -102,6 +102,15 @@ export class CampaignsComponent implements OnInit {
     promptSaving          = false;
     promptHasOverride     = false;
 
+    // ─── Briefing prompt editing (parallel to summary prompt) ─────────────────
+
+    defaultBriefingPrompt   = '';
+    briefingPromptLocked    = true;
+    briefingPromptValue     = '';
+    briefingPromptErrorKey  = '';
+    briefingPromptSaving    = false;
+    briefingPromptHasOverride = false;
+
     unlockPrompt(): void {
         if (!this.isEditMode) { return; }
         this.promptLocked   = false;
@@ -113,6 +122,63 @@ export class CampaignsComponent implements OnInit {
         this.promptValue    = s?.summary_prompt_override ?? this.defaultSummaryPrompt;
         this.promptLocked   = true;
         this.promptErrorKey = '';
+    }
+
+    unlockBriefingPrompt(): void {
+        if (!this.isEditMode) { return; }
+        this.briefingPromptLocked   = false;
+        this.briefingPromptErrorKey = '';
+    }
+
+    cancelBriefingPromptEdit(): void {
+        const s = this.campaigns.find(c => c.campaign_id === this.editingId)?.settings;
+        this.briefingPromptValue    = s?.briefing_prompt_override ?? this.defaultBriefingPrompt;
+        this.briefingPromptLocked   = true;
+        this.briefingPromptErrorKey = '';
+    }
+
+    saveBriefingPrompt(): void {
+        if (!this.editingId) { return; }
+        const trimmed = this.briefingPromptValue.trim();
+        if (!trimmed) { this.briefingPromptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_EMPTY'; return; }
+        if (trimmed.length < 20) { this.briefingPromptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_TOO_SHORT'; return; }
+        if (trimmed.length > 4000) { this.briefingPromptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_TOO_LONG'; return; }
+
+        this.briefingPromptSaving   = true;
+        this.briefingPromptErrorKey = '';
+        this.campaignService.updateSettings(this.editingId, { briefing_prompt_override: trimmed }).subscribe({
+            next: () => {
+                this.briefingPromptHasOverride = true;
+                this.briefingPromptValue       = trimmed;
+                this.briefingPromptLocked      = true;
+                this.briefingPromptSaving      = false;
+                this.loadCampaigns();
+            },
+            error: (err) => {
+                this.briefingPromptErrorKey = '';
+                this.errorMessage           = this.extractError(err);
+                this.briefingPromptSaving   = false;
+            }
+        });
+    }
+
+    revertBriefingPromptToDefault(): void {
+        if (!this.editingId) { return; }
+        if (!confirm(this.translate.instant('CAMPAIGN_SETTINGS.CONFIRM_REVERT'))) { return; }
+        this.briefingPromptSaving = true;
+        this.campaignService.updateSettings(this.editingId, { revert_briefing_prompt: true }).subscribe({
+            next: () => {
+                this.briefingPromptHasOverride = false;
+                this.briefingPromptValue       = this.defaultBriefingPrompt;
+                this.briefingPromptLocked      = true;
+                this.briefingPromptSaving      = false;
+                this.loadCampaigns();
+            },
+            error: (err) => {
+                this.errorMessage         = this.extractError(err);
+                this.briefingPromptSaving = false;
+            }
+        });
     }
 
     savePrompt(): void {
@@ -182,6 +248,9 @@ export class CampaignsComponent implements OnInit {
         this.loadOrgPhoneNumbers();
         this.campaignService.getDefaultSummaryPrompt().subscribe({
             next: (res) => { this.defaultSummaryPrompt = res.default_prompt; },
+        });
+        this.campaignService.getDefaultBriefingPrompt().subscribe({
+            next: (res) => { this.defaultBriefingPrompt = res.default_prompt; },
         });
     }
 
@@ -273,6 +342,11 @@ export class CampaignsComponent implements OnInit {
         this.promptValue       = s.summary_prompt_override ?? this.defaultSummaryPrompt;
         this.promptLocked      = true;
         this.promptErrorKey    = '';
+
+        this.briefingPromptHasOverride = !!s.briefing_prompt_override;
+        this.briefingPromptValue       = s.briefing_prompt_override ?? this.defaultBriefingPrompt;
+        this.briefingPromptLocked      = true;
+        this.briefingPromptErrorKey    = '';
 
         this.showFormDialog = true;
     }
