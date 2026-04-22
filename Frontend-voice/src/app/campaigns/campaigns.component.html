@@ -440,6 +440,68 @@
                             </div>
                         }
 
+                        <!-- ─── AI Summary Prompt (edit mode only) ────────── -->
+                        @if (isEditMode) {
+                            <div class="border-t border-gray-100 dark:border-[#172036] pt-[16px] mt-[4px]">
+                                <div class="flex items-center gap-[8px] mb-[6px]">
+                                    <label class="text-xs font-medium text-gray-600 dark:text-gray-400 flex-1">
+                                        {{ 'CAMPAIGN_SETTINGS.SUMMARY_PROMPT_LABEL' | translate }}
+                                    </label>
+                                    @if (promptHasOverride) {
+                                        <span class="text-[10px] font-semibold px-[6px] py-[2px] rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+                                            {{ 'CAMPAIGN_SETTINGS.CUSTOM_BADGE' | translate }}
+                                        </span>
+                                    } @else {
+                                        <span class="text-[10px] font-semibold px-[6px] py-[2px] rounded-full bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+                                            {{ 'CAMPAIGN_SETTINGS.DEFAULT_BADGE' | translate }}
+                                        </span>
+                                    }
+                                    @if (promptLocked) {
+                                        <button type="button" (click)="unlockPrompt()"
+                                            class="flex items-center gap-[4px] text-xs text-primary-500 hover:text-primary-600 font-medium">
+                                            <i class="material-symbols-outlined !text-[14px]">lock</i>
+                                            {{ 'CAMPAIGN_SETTINGS.EDIT' | translate }}
+                                        </button>
+                                    }
+                                </div>
+                                <p class="text-[11px] text-gray-400 mb-[8px]">{{ 'CAMPAIGN_SETTINGS.SUMMARY_PROMPT_HELPER' | translate }}</p>
+                                <textarea
+                                    dir="rtl"
+                                    rows="6"
+                                    [(ngModel)]="promptValue"
+                                    name="summaryPrompt"
+                                    [disabled]="promptLocked"
+                                    class="w-full rounded-md text-sm text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#15203c] p-[10px] outline-0 transition-all focus:border-primary-500 resize-none leading-relaxed"
+                                    [class.opacity-60]="promptLocked"
+                                    [class.cursor-not-allowed]="promptLocked"
+                                ></textarea>
+                                @if (promptErrorKey) {
+                                    <p class="text-xs text-red-500 mt-[4px]">{{ promptErrorKey | translate }}</p>
+                                }
+                                @if (!promptLocked) {
+                                    <div class="flex gap-[8px] mt-[8px] justify-end flex-wrap">
+                                        @if (promptHasOverride) {
+                                            <button type="button" (click)="revertPromptToDefault()" [disabled]="promptSaving"
+                                                class="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 underline">
+                                                {{ 'CAMPAIGN_SETTINGS.REVERT_TO_DEFAULT' | translate }}
+                                            </button>
+                                        }
+                                        <button type="button" (click)="cancelPromptEdit()" [disabled]="promptSaving"
+                                            class="py-[6px] px-[14px] text-xs rounded-md border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors">
+                                            {{ 'CAMPAIGN_SETTINGS.CANCEL' | translate }}
+                                        </button>
+                                        <button type="button" (click)="savePrompt()" [disabled]="promptSaving"
+                                            class="py-[6px] px-[14px] text-xs rounded-md bg-primary-500 hover:bg-primary-600 text-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-[4px]">
+                                            @if (promptSaving) {
+                                                <i class="ri-loader-4-line animate-spin leading-none"></i>
+                                            }
+                                            {{ 'CAMPAIGN_SETTINGS.SAVE' | translate }}
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        }
+
                         <!-- ─── Form actions ──────────────────────────────── -->
                         <div class="flex gap-[10px] justify-end mt-[8px]">
                             <button

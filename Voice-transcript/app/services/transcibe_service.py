@@ -164,24 +164,90 @@ class TranscribeService:
 
             # ── Step 2: Run AI analysis ───────────────────────────
             segments = transcript_data.get("segments", [])
-            if segments: # Check if the list is not empty
+            if segments:
                 try:
-                    llm = LLMService(model="fast")
-                    insights = await llm.analyze_call(segments) # Pass the LIST of dicts
+                    # Fetch campaign's prompt override + metadata for role anchoring
+                    from app.models.base import Call, CampaignSettings, Campaign, User, Lead
+                    prompt_override = None
+                    agent_name = ""
+                    customer_name = ""
+                    campaign_name = ""
+                    call_duration_str = ""
 
-                    # ── Guard: ensure insights is a dict ──────────
+                    call_result = await db.execute(
+                        select(Call).where(Call.call_id == UUID(call_id))
+                    )
+                    call_row = call_result.scalars().first()
+                    if call_row:
+                        if call_row.campaign_id:
+                            cs_result = await db.execute(
+                                select(CampaignSettings).where(
+                                    CampaignSettings.campaign_id == call_row.campaign_id
+                                )
+                            )
+                            cs = cs_result.scalars().first()
+                            if cs and cs.summary_prompt_override:
+                                prompt_override = cs.summary_prompt_override
+
+                            camp_result = await db.execute(
+                                select(Campaign).where(Campaign.campaign_id == call_row.campaign_id)
+                            )
+                            camp = camp_result.scalars().first()
+                            if camp:
+                                campaign_name = camp.name or ""
+
+                        user_result = await db.execute(
+                            select(User).where(User.user_id == call_row.user_id)
+                        )
+                        user_row = user_result.scalars().first()
+                        if user_row:
+                            agent_name = user_row.full_name or ""
+
+                        if call_row.lead_id:
+                            lead_result = await db.execute(
+                                select(Lead).where(Lead.lead_id == call_row.lead_id)
+                            )
+                            lead_row = lead_result.scalars().first()
+                            if lead_row and lead_row.name:
+                                customer_name = lead_row.name
+                        if not customer_name and call_row.destination:
+                            customer_name = call_row.destination
+
+                        if call_row.duration:
+                            call_duration_str = (
+                                f"{call_row.duration // 60:02d}:{call_row.duration % 60:02d}"
+                            )
+
+                    analysis.summary_status = "generating"
+                    await db.flush()
+
+                    llm = LLMService(model="quality")
+                    insights = await llm.analyze_call(
+                        segments,
+                        prompt_override=prompt_override,
+                        agent_name=agent_name,
+                        customer_name=customer_name,
+                        campaign_name=campaign_name,
+                        call_duration=call_duration_str,
+                    )
+
                     if not isinstance(insights, dict):
                         print(f"⚠️ AI returned unexpected type: {type(insights)} — skipping")
+                        analysis.summary_status = "failed"
                     else:
-                        analysis.summary     = insights.get("summary")
-                        analysis.sentiment   = insights.get("sentiment")
-                        analysis.key_points  = insights.get("key_points")
-                        analysis.next_action = insights.get("next_action")
-                        analysis.updated_at  = datetime.utcnow()
-                        print(f"✅ AI insights saved — sentiment: {analysis.sentiment}")
+                        analysis.summary_sections    = insights.get("summary_sections")
+                        analysis.summary_status      = insights.get("summary_status", "failed")
+                        analysis.prompt_version_used = insights.get("prompt_version_used")
+                        analysis.summary             = insights.get("summary")
+                        analysis.sentiment           = insights.get("sentiment")
+                        analysis.key_points          = insights.get("key_points")
+                        analysis.next_action         = insights.get("next_action")
+                        analysis.updated_at          = datetime.utcnow()
+                        print(f"✅ AI insights saved — status: {analysis.summary_status}, version: {analysis.prompt_version_used}")
 
                 except Exception as e:
                     print(f"⚠️ AI analysis failed: {type(e).__name__}: {e}")
+                    analysis.summary_status = "failed"
             else:
                 print("⚠️ Empty transcript — skipping AI analysis")
 

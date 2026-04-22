@@ -480,5 +480,33 @@
     },
     "TEST": {
         "TEST_NAME": "שם בדיקה"
+    },
+    "CAMPAIGN_SETTINGS": {
+        "SUMMARY_PROMPT_LABEL": "פרומפט לסיכום AI",
+        "SUMMARY_PROMPT_HELPER": "הפרומפט הזה משמש את ה-AI לייצור סיכומי שיחות לקמפיין זה. ערוך אותו כדי להתאים את הפלט.",
+        "EDIT": "ערוך",
+        "SAVE": "שמור",
+        "CANCEL": "ביטול",
+        "REVERT_TO_DEFAULT": "חזור לברירת מחדל",
+        "DEFAULT_BADGE": "ברירת מחדל",
+        "CUSTOM_BADGE": "מותאם אישית",
+        "ERROR_TOO_SHORT": "הפרומפט חייב להכיל לפחות 20 תווים.",
+        "ERROR_TOO_LONG": "הפרומפט לא יכול לחרוג מ-4000 תווים.",
+        "ERROR_EMPTY": "הפרומפט לא יכול להיות ריק.",
+        "CONFIRM_REVERT": "האם אתה בטוח שברצונך לחזור לפרומפט ברירת המחדל? הפרומפט המותאם אישית שלך יימחק."
+    },
+    "CALL_SUMMARY": {
+        "PURPOSE": "מטרת השיחה",
+        "MAIN_TOPICS": "נושאים עיקריים",
+        "RESOLUTION": "פתרון/תוצאה",
+        "FOLLOW_UPS": "פעולות המשך",
+        "LOGISTICS": "פרטים לוגיסטיים",
+        "ACTION_ITEMS": "Action Items",
+        "MEETING_TIME": "מועד הפגישה",
+        "LOCATION": "מיקום",
+        "NOTES": "הערות",
+        "GENERATING": "מייצר סיכום…",
+        "FAILED": "הפקת הסיכום נכשלה.",
+        "LEGACY": "סיכום AI"
     }
 }

@@ -33,6 +33,9 @@ export interface TimelineEvent {
     /** For ai_summary */
     ai_summary_text?: string | null;
     ai_disclaimer?: boolean;
+    summary_sections?: import('../services/lead-management/lead-management-api.models').StructuredSummary | null;
+    summary_status?: import('../services/lead-management/lead-management-api.models').SummaryStatus;
+    prompt_version_used?: import('../services/lead-management/lead-management-api.models').PromptVersion | null;
     /** For comment */
     comment_text?: string | null;
     /** For status_change */
@@ -160,6 +163,9 @@ export function mapApiEventsToUi(apiEvents: TimelineEventFromAPI[]): TimelineEve
                     agent_name: ev.agent_name,
                     ai_summary_text: d.summary,
                     ai_disclaimer: d.summary?.includes('פחות מ') ?? false,
+                    summary_sections: d.summary_sections ?? null,
+                    summary_status: d.summary_status,
+                    prompt_version_used: d.prompt_version_used ?? null,
                 });
                 break;
             }

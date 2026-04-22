@@ -179,6 +179,7 @@ class CampaignSettings(SQLModel, table=True):
     roll_active: bool = Field(default=False)
     roll_paused: bool = Field(default=False)
     roll_paused_at: Optional[datetime] = Field(default=None)
+    summary_prompt_override: Optional[str] = Field(default=None)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -295,6 +296,12 @@ class CallAnalysis(SQLModel, table=True):
         default=None, sa_column=Column(HebrewJSON)
     )
     next_action: Optional[str] = None
+
+    summary_sections: Optional[Dict[str, Any]] = Field(
+        default=None, sa_column=Column(HebrewJSON)
+    )
+    summary_status: str = Field(default="unstructured_legacy", max_length=32)
+    prompt_version_used: Optional[str] = Field(default=None, max_length=32)
 
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)

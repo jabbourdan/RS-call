@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, status
+from fastapi.responses import JSONResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Optional, Dict, Any
 from uuid import UUID
 from datetime import datetime
@@ -36,6 +37,7 @@ class CampaignSettingsResponse(BaseModel):
     calling_algorithm: str
     cooldown_minutes: int
     campaign_status: Optional[Dict[str, Any]]
+    summary_prompt_override: Optional[str] = None
     created_at: datetime
     updated_at: datetime
     model_config = {"from_attributes": True}
@@ -63,6 +65,22 @@ class CampaignSettingsUpdateRequest(BaseModel):
     cooldown_minutes: Optional[int] = Field(default=None, ge=0)
     ring_timeout_seconds: Optional[int] = Field(default=None, ge=5)
     campaign_status: Optional[Dict[str, Any]] = None
+    summary_prompt_override: Optional[str] = None
+    revert_summary_prompt: Optional[bool] = False
+
+    @field_validator("summary_prompt_override")
+    @classmethod
+    def validate_summary_prompt(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return v
+        stripped = v.strip()
+        if not stripped:
+            raise ValueError("summary_prompt_override must not be empty or whitespace-only.")
+        if len(stripped) < 20:
+            raise ValueError("summary_prompt_override must be at least 20 characters.")
+        if len(stripped) > 4000:
+            raise ValueError("summary_prompt_override must be at most 4000 characters.")
+        return stripped
 
 
 class CampaignUpdateRequest(BaseModel):
@@ -129,6 +147,7 @@ async def _enrich_settings_response(db: AsyncSession, settings: CampaignSettings
         calling_algorithm=settings.calling_algorithm,
         cooldown_minutes=settings.cooldown_minutes,
         campaign_status=settings.campaign_status,
+        summary_prompt_override=settings.summary_prompt_override,
         created_at=settings.created_at,
         updated_at=settings.updated_at,
     )
@@ -200,6 +219,17 @@ async def update_campaign_settings(
 ):
     settings = await CampaignService.update_settings(db=db, campaign_id=campaign_id, payload=payload, current_user=current_user)
     return await _enrich_settings_response(db, settings)
+
+
+@router.get("/summary-prompt/default")
+async def get_default_summary_prompt(
+    current_user: User = Depends(get_current_user),
+):
+    from app.services.llm_service import LLMService
+    return JSONResponse(
+        content={"default_prompt": LLMService.DEFAULT_SUMMARY_PROMPT},
+        headers={"Cache-Control": "private, max-age=3600"},
+    )
 
 
 @router.delete("/{campaign_id}", status_code=204)

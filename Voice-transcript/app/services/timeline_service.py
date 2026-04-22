@@ -272,6 +272,9 @@ class TimelineService:
                 "next_action": analysis.next_action,
                 "transcript": analysis.transcript,
                 "transcription_status": analysis.transcription_status,
+                "summary_sections": analysis.summary_sections,
+                "summary_status": analysis.summary_status,
+                "prompt_version_used": analysis.prompt_version_used,
             })
 
         return {

@@ -116,6 +116,24 @@ export class LeadTimelineComponent {
         return ev.id;
     }
 
+    isStructured(event: TimelineEvent): boolean {
+        return event.type === 'ai_summary' && event.summary_status === 'available' && !!event.summary_sections;
+    }
+
+    isGenerating(event: TimelineEvent): boolean {
+        return event.type === 'ai_summary' && event.summary_status === 'generating';
+    }
+
+    isFailed(event: TimelineEvent): boolean {
+        return event.type === 'ai_summary' && event.summary_status === 'failed';
+    }
+
+    isLegacy(event: TimelineEvent): boolean {
+        return event.type === 'ai_summary' && (
+            !event.summary_status || event.summary_status === 'unstructured_legacy'
+        );
+    }
+
     getStatusI18n(status: string | null | undefined): string {
         if (!status) return '';
 

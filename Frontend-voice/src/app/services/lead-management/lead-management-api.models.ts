@@ -21,6 +21,32 @@ export interface ApiAiSummaryData {
     next_action?: string | null;
     transcript?: string | null;
     transcription_status?: string;
+    summary_sections?: StructuredSummary | null;
+    summary_status?: SummaryStatus;
+    prompt_version_used?: PromptVersion | null;
+}
+
+export type SummaryStatus = 'generating' | 'available' | 'failed' | 'unstructured_legacy';
+export type PromptVersion = 'default' | 'campaign_override';
+
+export interface StructuredSummaryTopic {
+    title: string;
+    detail: string;
+}
+
+export interface StructuredSummaryLogistics {
+    meeting_time: string | null;
+    location: string | null;
+    notes: string | null;
+}
+
+export interface StructuredSummary {
+    purpose?: string | null;
+    main_topics?: StructuredSummaryTopic[];
+    resolution?: string | null;
+    follow_ups?: string[];
+    logistics?: StructuredSummaryLogistics | null;
+    action_items?: string[];
 }
 
 export interface ApiCommentData {

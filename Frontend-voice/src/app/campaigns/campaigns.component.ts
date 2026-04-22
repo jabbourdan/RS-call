@@ -93,6 +93,72 @@ export class CampaignsComponent implements OnInit {
     formSubmitting  = false;
     showSettings    = false;
 
+    // ─── Summary prompt editing ────────────────────────────────────────────────────
+
+    defaultSummaryPrompt  = '';
+    promptLocked          = true;
+    promptValue           = '';
+    promptErrorKey        = '';
+    promptSaving          = false;
+    promptHasOverride     = false;
+
+    unlockPrompt(): void {
+        if (!this.isEditMode) { return; }
+        this.promptLocked   = false;
+        this.promptErrorKey = '';
+    }
+
+    cancelPromptEdit(): void {
+        const s = this.campaigns.find(c => c.campaign_id === this.editingId)?.settings;
+        this.promptValue    = s?.summary_prompt_override ?? this.defaultSummaryPrompt;
+        this.promptLocked   = true;
+        this.promptErrorKey = '';
+    }
+
+    savePrompt(): void {
+        if (!this.editingId) { return; }
+        const trimmed = this.promptValue.trim();
+        if (!trimmed) { this.promptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_EMPTY'; return; }
+        if (trimmed.length < 20) { this.promptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_TOO_SHORT'; return; }
+        if (trimmed.length > 4000) { this.promptErrorKey = 'CAMPAIGN_SETTINGS.ERROR_TOO_LONG'; return; }
+
+        this.promptSaving   = true;
+        this.promptErrorKey = '';
+        this.campaignService.updateSettings(this.editingId, { summary_prompt_override: trimmed }).subscribe({
+            next: () => {
+                this.promptHasOverride = true;
+                this.promptValue       = trimmed;
+                this.promptLocked      = true;
+                this.promptSaving      = false;
+                this.loadCampaigns();
+            },
+            error: (err) => {
+                this.promptErrorKey = '';
+                this.errorMessage   = this.extractError(err);
+                this.promptSaving   = false;
+            }
+        });
+    }
+
+    revertPromptToDefault(): void {
+        if (!this.editingId) { return; }
+        if (!confirm(this.translate.instant('CAMPAIGN_SETTINGS.CONFIRM_REVERT'))) { return; }
+        this.promptSaving = true;
+        this.campaignService.updateSettings(this.editingId, { revert_summary_prompt: true }).subscribe({
+            next: () => {
+                this.promptHasOverride = false;
+                this.promptValue       = this.defaultSummaryPrompt;
+                this.promptLocked      = true;
+                this.promptSaving      = false;
+                this.loadCampaigns();
+            },
+            error: (err) => {
+                this.errorMessage = this.extractError(err);
+                this.promptSaving = false;
+            }
+        });
+    }
+
     // ─── Delete dialog ────────────────────────────────────────────────────────────
 
     showDeleteConfirm = false;
@@ -114,6 +180,9 @@ export class CampaignsComponent implements OnInit {
     ngOnInit(): void {
         this.loadCampaigns();
         this.loadOrgPhoneNumbers();
+        this.campaignService.getDefaultSummaryPrompt().subscribe({
+            next: (res) => { this.defaultSummaryPrompt = res.default_prompt; },
+        });
     }
 
     // ─── Load ─────────────────────────────────────────────────────────────────────
@@ -199,6 +268,12 @@ export class CampaignsComponent implements OnInit {
             ring_timeout_seconds:         String(s.ring_timeout_seconds ?? 15),
             statusesArray:                [...(s.campaign_status?.statuses ?? DEFAULT_STATUSES)],
         };
+
+        this.promptHasOverride = !!s.summary_prompt_override;
+        this.promptValue       = s.summary_prompt_override ?? this.defaultSummaryPrompt;
+        this.promptLocked      = true;
+        this.promptErrorKey    = '';
+
         this.showFormDialog = true;
     }
 

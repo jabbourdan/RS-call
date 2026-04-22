@@ -477,5 +477,33 @@
         "PAUSED_SUBTITLE_NO_ANSWER": "This lead didn't answer and will be automatically recalled after the cooldown period.",
         "KEEP_AND_PROCEED": "Keep Status & Continue",
         "PROCEED_ERROR": "Failed to proceed to next call. Please try again."
+    },
+    "CAMPAIGN_SETTINGS": {
+        "SUMMARY_PROMPT_LABEL": "AI Summary Prompt",
+        "SUMMARY_PROMPT_HELPER": "This prompt is used by the AI to generate call summaries for this campaign. Edit it to customize the output.",
+        "EDIT": "Edit",
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "REVERT_TO_DEFAULT": "Revert to Default",
+        "DEFAULT_BADGE": "Default",
+        "CUSTOM_BADGE": "Custom",
+        "ERROR_TOO_SHORT": "Prompt must be at least 20 characters.",
+        "ERROR_TOO_LONG": "Prompt must be at most 4000 characters.",
+        "ERROR_EMPTY": "Prompt must not be empty.",
+        "CONFIRM_REVERT": "Are you sure you want to revert to the default prompt? Your custom prompt will be lost."
+    },
+    "CALL_SUMMARY": {
+        "PURPOSE": "Call Purpose",
+        "MAIN_TOPICS": "Main Topics",
+        "RESOLUTION": "Resolution",
+        "FOLLOW_UPS": "Follow-ups",
+        "LOGISTICS": "Logistics",
+        "ACTION_ITEMS": "Action Items",
+        "MEETING_TIME": "Meeting Time",
+        "LOCATION": "Location",
+        "NOTES": "Notes",
+        "GENERATING": "Generating summary…",
+        "FAILED": "Summary generation failed.",
+        "LEGACY": "AI Summary"
     }
 }

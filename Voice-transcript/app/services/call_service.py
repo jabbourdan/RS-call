@@ -338,13 +338,63 @@ class CallService:
                     analysis.transcription_status = "completed"
 
                     if data["segments"]:
-                        llm = LLMService(model="fast")
-                        insights = await llm.analyze_call(data["segments"])
-                        
-                        analysis.summary = insights.get("summary")
-                        analysis.sentiment = insights.get("sentiment")
-                        analysis.key_points = insights.get("key_points")
-                        analysis.next_action = insights.get("next_action")
+                        prompt_override = None
+                        campaign_name = ""
+                        if call.campaign_id:
+                            cs_result = await db.execute(
+                                select(CampaignSettings).where(
+                                    CampaignSettings.campaign_id == call.campaign_id
+                                )
+                            )
+                            cs = cs_result.scalars().first()
+                            if cs and cs.summary_prompt_override:
+                                prompt_override = cs.summary_prompt_override
+
+                            camp_result = await db.execute(
+                                select(Campaign).where(Campaign.campaign_id == call.campaign_id)
+                            )
+                            camp = camp_result.scalars().first()
+                            if camp:
+                                campaign_name = camp.name or ""
+
+                        agent_name = ""
+                        user_result = await db.execute(select(User).where(User.user_id == call.user_id))
+                        user_row = user_result.scalars().first()
+                        if user_row:
+                            agent_name = user_row.full_name or ""
+
+                        customer_name = ""
+                        if call.lead_id:
+                            lead_result = await db.execute(select(Lead).where(Lead.lead_id == call.lead_id))
+                            lead_row = lead_result.scalars().first()
+                            if lead_row and lead_row.name:
+                                customer_name = lead_row.name
+                        if not customer_name and call.destination:
+                            customer_name = call.destination
+
+                        call_duration_str = (
+                            f"{call.duration // 60:02d}:{call.duration % 60:02d}"
+                            if call.duration else ""
+                        )
+
+                        analysis.summary_status = "generating"
+                        llm = LLMService(model="quality")
+                        insights = await llm.analyze_call(
+                            data["segments"],
+                            prompt_override=prompt_override,
+                            agent_name=agent_name,
+                            customer_name=customer_name,
+                            campaign_name=campaign_name,
+                            call_duration=call_duration_str,
+                        )
+
+                        analysis.summary_sections    = insights.get("summary_sections")
+                        analysis.summary_status      = insights.get("summary_status", "failed")
+                        analysis.prompt_version_used = insights.get("prompt_version_used")
+                        analysis.summary             = insights.get("summary")
+                        analysis.sentiment           = insights.get("sentiment")
+                        analysis.key_points          = insights.get("key_points")
+                        analysis.next_action         = insights.get("next_action")
 
                     analysis.updated_at = datetime.utcnow()
                     await db.commit()
@@ -370,11 +420,14 @@ class CallService:
                 "status": analysis.transcription_status,
                 "transcript": analysis.transcript,
                 "transcript_json": analysis.transcript_json,
+                "summary_sections": analysis.summary_sections,
+                "summary_status": analysis.summary_status,
+                "prompt_version_used": analysis.prompt_version_used,
                 "insights": {
                     "summary": analysis.summary,
                     "sentiment": analysis.sentiment,
                     "key_points": analysis.key_points,
-                    "next_action": analysis.next_action
+                    "next_action": analysis.next_action,
                 }
             } if analysis else None
         }

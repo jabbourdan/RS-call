@@ -174,6 +174,11 @@ class CampaignService:
         if payload.ring_timeout_seconds is not None:
             settings.ring_timeout_seconds = max(5, payload.ring_timeout_seconds)
 
+        if getattr(payload, "revert_summary_prompt", False):
+            settings.summary_prompt_override = None
+        elif getattr(payload, "summary_prompt_override", None) is not None:
+            settings.summary_prompt_override = payload.summary_prompt_override
+
         settings.updated_at = datetime.utcnow()
         await db.commit()
         await db.refresh(settings)

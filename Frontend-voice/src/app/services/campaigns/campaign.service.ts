@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
     Campaign,
@@ -17,6 +17,9 @@ export class CampaignService {
 
     private readonly base = `${environment.apiUrl}/campaigns`;
     private readonly leadMgmt = `${environment.apiUrl}/lead_management`;
+
+    private _defaultPrompt$ = new ReplaySubject<{ default_prompt: string }>(1);
+    private _defaultPromptLoaded = false;
 
     constructor(private http: HttpClient) {}
 
@@ -64,6 +67,19 @@ export class CampaignService {
 
     delete(campaignId: string): Observable<void> {
         return this.http.delete<void>(`${this.base}/${campaignId}`, { withCredentials: true });
+    }
+
+    // ─── Default Summary Prompt (cached for session) ──────────────────────────────
+
+    getDefaultSummaryPrompt(): Observable<{ default_prompt: string }> {
+        if (!this._defaultPromptLoaded) {
+            this._defaultPromptLoaded = true;
+            this.http
+                .get<{ default_prompt: string }>(`${this.base}/summary-prompt/default`, { withCredentials: true })
+                .pipe(tap(v => this._defaultPrompt$.next(v)))
+                .subscribe({ error: () => { this._defaultPromptLoaded = false; } });
+        }
+        return this._defaultPrompt$.asObservable();
     }
 
     // ─── Stats (single campaign fallback) ────────────────────────────────────────
