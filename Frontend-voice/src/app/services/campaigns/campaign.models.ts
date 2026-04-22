@@ -24,6 +24,7 @@ export interface CampaignSettings {
     ring_timeout_seconds: number;
     campaign_status: CampaignStatusConfig;
     summary_prompt_override?: string | null;
+    briefing_prompt_override?: string | null;
     created_at: string;
     updated_at: string;
 }
@@ -108,4 +109,6 @@ export interface UpdateCampaignSettingsRequest {
     campaign_status?: CampaignStatusConfig;
     summary_prompt_override?: string | null;
     revert_summary_prompt?: boolean;
+    briefing_prompt_override?: string | null;
+    revert_briefing_prompt?: boolean;
 }

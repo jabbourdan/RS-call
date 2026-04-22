@@ -179,6 +179,11 @@ class CampaignService:
         elif getattr(payload, "summary_prompt_override", None) is not None:
             settings.summary_prompt_override = payload.summary_prompt_override
 
+        if getattr(payload, "revert_briefing_prompt", False):
+            settings.briefing_prompt_override = None
+        elif getattr(payload, "briefing_prompt_override", None) is not None:
+            settings.briefing_prompt_override = payload.briefing_prompt_override
+
         settings.updated_at = datetime.utcnow()
         await db.commit()
         await db.refresh(settings)

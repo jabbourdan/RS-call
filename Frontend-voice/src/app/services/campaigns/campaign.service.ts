@@ -20,6 +20,8 @@ export class CampaignService {
 
     private _defaultPrompt$ = new ReplaySubject<{ default_prompt: string }>(1);
     private _defaultPromptLoaded = false;
+    private _defaultBriefingPrompt$ = new ReplaySubject<{ default_prompt: string }>(1);
+    private _defaultBriefingPromptLoaded = false;
 
     constructor(private http: HttpClient) {}
 
@@ -80,6 +82,19 @@ export class CampaignService {
                 .subscribe({ error: () => { this._defaultPromptLoaded = false; } });
         }
         return this._defaultPrompt$.asObservable();
+    }
+
+    // ─── Default Briefing Prompt (cached for session) ────────────────────────────
+
+    getDefaultBriefingPrompt(): Observable<{ default_prompt: string }> {
+        if (!this._defaultBriefingPromptLoaded) {
+            this._defaultBriefingPromptLoaded = true;
+            this.http
+                .get<{ default_prompt: string }>(`${this.base}/briefing-prompt/default`, { withCredentials: true })
+                .pipe(tap(v => this._defaultBriefingPrompt$.next(v)))
+                .subscribe({ error: () => { this._defaultBriefingPromptLoaded = false; } });
+        }
+        return this._defaultBriefingPrompt$.asObservable();
     }
 
     // ─── Stats (single campaign fallback) ────────────────────────────────────────

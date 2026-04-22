@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CampaignOption, CallStatusInfo, LeadManagementItem, TimelineEvent } from '../lead-management.models';
+import { LeadService } from '../../services/leads/lead.service';
+import { LeadBriefing } from '../../services/leads/lead.models';
 
 @Component({
     selector: 'app-lead-timeline',
@@ -11,7 +13,7 @@ import { CampaignOption, CallStatusInfo, LeadManagementItem, TimelineEvent } fro
     templateUrl: './lead-timeline.component.html',
     styleUrls: ['./lead-timeline.component.scss'],
 })
-export class LeadTimelineComponent {
+export class LeadTimelineComponent implements OnChanges {
     @Input() lead: LeadManagementItem | null = null;
     @Input() events: TimelineEvent[] = [];
     @Input() callStatus: CallStatusInfo | null = null;
@@ -24,8 +26,113 @@ export class LeadTimelineComponent {
     newComment = '';
     creationNoteExpanded = false;
 
+    // ─── Lead Briefing state ─────────────────────────────────────────────────
+    briefing: LeadBriefing | null = null;
+    isBriefingLoading = false;        // initial GET in flight
+    isBriefingGenerating = false;     // POST in flight (create or regenerate)
+    briefingError: string | null = null;
+    isBriefingCollapsed = false;      // agent can collapse the card to free up timeline space
+    private loadedBriefingForLeadId: string | null = null;
+
+    toggleBriefingCollapsed(): void {
+        this.isBriefingCollapsed = !this.isBriefingCollapsed;
+    }
+
+    /** Ordered (key, label, value) entries from lead.extra_data for compact display.
+     *  Skips empty / null values and stringifies non-primitives. */
+    get basicExtraDataEntries(): Array<{ key: string; value: string }> {
+        const data = this.lead?.extra_data;
+        if (!data) return [];
+        const out: Array<{ key: string; value: string }> = [];
+        for (const [key, raw] of Object.entries(data)) {
+            if (raw === null || raw === undefined || raw === '') continue;
+            const value = typeof raw === 'object' ? JSON.stringify(raw) : String(raw);
+            out.push({ key, value });
+        }
+        return out;
+    }
+
+    private readonly leadService = inject(LeadService);
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['lead']) {
+            this.refreshBriefingForCurrentLead();
+        }
+    }
+
     onCampaignChange(): void {
         this.campaignChanged.emit(this.selectedCampaignId);
+    }
+
+    // ─── Briefing actions ────────────────────────────────────────────────────
+
+    private refreshBriefingForCurrentLead(): void {
+        const leadId = this.lead?.lead_id ?? null;
+        if (leadId === this.loadedBriefingForLeadId) {
+            return;
+        }
+        this.loadedBriefingForLeadId = leadId;
+        this.briefing = null;
+        this.briefingError = null;
+        this.isBriefingGenerating = false;
+        if (!leadId) {
+            return;
+        }
+        this.isBriefingLoading = true;
+        this.leadService.getLeadBriefing(leadId).subscribe({
+            next: (b) => {
+                if (this.loadedBriefingForLeadId === leadId) {
+                    this.briefing = b;
+                    this.isBriefingLoading = false;
+                }
+            },
+            error: () => {
+                if (this.loadedBriefingForLeadId === leadId) {
+                    this.isBriefingLoading = false;
+                    // Treat initial GET errors (non-404) the same as "no briefing yet".
+                    this.briefing = null;
+                }
+            },
+        });
+    }
+
+    onCreateBriefing(): void {
+        const leadId = this.lead?.lead_id;
+        if (!leadId || this.isBriefingGenerating) {
+            return;
+        }
+        this.isBriefingGenerating = true;
+        this.briefingError = null;
+        this.leadService.createOrRegenerateLeadBriefing(leadId).subscribe({
+            next: (b) => {
+                this.briefing = b;
+                this.isBriefingGenerating = false;
+            },
+            error: () => {
+                this.isBriefingGenerating = false;
+                this.briefingError = 'LEAD_MANAGEMENT.BRIEFING.ERROR_TEXT';
+            },
+        });
+    }
+
+    onRegenerateBriefing(): void {
+        const leadId = this.lead?.lead_id;
+        if (!leadId || this.isBriefingGenerating) {
+            return;
+        }
+        this.isBriefingGenerating = true;
+        this.briefingError = null;
+        this.leadService.createOrRegenerateLeadBriefing(leadId).subscribe({
+            next: (b) => {
+                this.briefing = b;
+                this.isBriefingGenerating = false;
+            },
+            error: () => {
+                this.isBriefingGenerating = false;
+                // Keep the previously-shown briefing visible on regen failure.
+                this.briefingError = 'LEAD_MANAGEMENT.BRIEFING.REGENERATE_ERROR';
+            },
+        });
     }
 
     submitComment(): void {

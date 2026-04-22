@@ -402,7 +402,21 @@
         "ROLL_ERROR_START_FAILED": "Failed to start the auto dialer. Please try again",
         "ROLL_ERROR_TWILIO_INIT": "Failed to connect to calling service. Please check your connection and try again",
         "ROLL_ERROR_CONNECTION_LOST": "Lost connection to auto dialer status. The roll has been stopped",
-        "STATUS_GATE_REQUIRED": "Update status before continuing to next call"
+        "STATUS_GATE_REQUIRED": "Update status before continuing to next call",
+        "BRIEFING": {
+            "TITLE": "Lead briefing",
+            "EMPTY_HINT": "Generate a short AI briefing: who the owner is, what property they're offering and on what terms, and a suggested opening angle.",
+            "CREATE_BUTTON": "Create brief",
+            "REGENERATE_BUTTON": "Regenerate",
+            "GENERATING": "Generating briefing…",
+            "ERROR_TEXT": "Failed to generate briefing. Try again.",
+            "REGENERATE_ERROR": "Couldn't regenerate — keeping the current briefing.",
+            "GENERATED_AT": "Generated",
+            "COLLAPSE": "Collapse",
+            "EXPAND": "Expand",
+            "NAME_LABEL": "Name",
+            "PHONE_LABEL": "Phone"
+        }
     },
     "APP_SETTINGS": {
         "TITLE": "App Settings",
@@ -481,6 +495,8 @@
     "CAMPAIGN_SETTINGS": {
         "SUMMARY_PROMPT_LABEL": "AI Summary Prompt",
         "SUMMARY_PROMPT_HELPER": "This prompt is used by the AI to generate call summaries for this campaign. Edit it to customize the output.",
+        "BRIEFING_PROMPT_LABEL": "AI Lead Briefing Prompt",
+        "BRIEFING_PROMPT_HELPER": "This prompt is used by the AI to brief agents on leads before the call, built from the lead's fields. Edit it to tune what the briefing emphasizes for this campaign.",
         "EDIT": "Edit",
         "SAVE": "Save",
         "CANCEL": "Cancel",

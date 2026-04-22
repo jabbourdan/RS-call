@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException
+from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
@@ -9,6 +9,8 @@ from app.database import get_session
 from app.core.dependencies import get_current_user, require_admin
 from app.models.base import User
 from app.services.lead_service import LeadService
+from app.services import lead_briefing_service
+from app.services.lead_briefing_service import BriefingGenerationError
 
 router = APIRouter(prefix="/leads", tags=["Leads"])
 
@@ -58,6 +60,14 @@ class LeadResponse(BaseModel):
     last_call_at: Optional[datetime]
     follow_up_date: Optional[datetime]
     created_at: datetime
+
+class LeadBriefingResponse(BaseModel):
+    briefing_id: UUID
+    lead_id: UUID
+    briefing_text: str
+    prompt_version: str
+    generated_at: datetime
+    generated_by: UUID
     model_config = {"from_attributes": True}
 
 
@@ -215,4 +225,76 @@ async def delete_lead(
         campaign_id=campaign_id,
         lead_id=lead_id,
         current_user=current_user,
+    )
+
+
+# ── LEAD BRIEFING (AI summary of lead fields for the call timeline) ──────────
+
+@router.get(
+    "/{lead_id}/briefing",
+    response_model=LeadBriefingResponse,
+    summary="Get the current AI briefing for a lead",
+)
+async def get_lead_briefing(
+    lead_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    """Return the current `LeadBriefing` for the given lead (tenant-scoped),
+    or 404 if the lead has no briefing yet (the agent must click Create brief).
+    """
+    briefing = await lead_briefing_service.get_briefing(
+        session=db,
+        org_id=current_user.org_id,
+        lead_id=lead_id,
+    )
+    if briefing is None:
+        raise HTTPException(
+            status_code=404,
+            detail="No briefing exists for this lead. Use POST to create one.",
+        )
+    return LeadBriefingResponse(
+        briefing_id=briefing.briefing_id,
+        lead_id=briefing.lead_id,
+        briefing_text=briefing.briefing_text,
+        prompt_version=briefing.prompt_version,
+        generated_at=briefing.generated_at,
+        generated_by=briefing.generated_by,
+    )
+
+
+@router.post(
+    "/{lead_id}/briefing",
+    response_model=LeadBriefingResponse,
+    summary="Create or regenerate the AI briefing for a lead",
+)
+async def create_or_regenerate_lead_briefing(
+    lead_id: UUID,
+    response: Response,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    """Generate a fresh AI briefing for the lead and upsert the `leadbriefing`
+    row. Returns 201 on first-time create, 200 on regenerate.
+    """
+    try:
+        briefing, created = await lead_briefing_service.create_or_regenerate_briefing(
+            session=db,
+            current_user=current_user,
+            lead_id=lead_id,
+        )
+    except BriefingGenerationError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Briefing generation failed: {exc}",
+        )
+
+    response.status_code = 201 if created else 200
+    return LeadBriefingResponse(
+        briefing_id=briefing.briefing_id,
+        lead_id=briefing.lead_id,
+        briefing_text=briefing.briefing_text,
+        prompt_version=briefing.prompt_version,
+        generated_at=briefing.generated_at,
+        generated_by=briefing.generated_by,
     )

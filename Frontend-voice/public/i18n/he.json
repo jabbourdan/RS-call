@@ -402,7 +402,21 @@
         "ROLL_ERROR_START_FAILED": "לא ניתן להפעיל את החייגן האוטומטי. נסה שנית",
         "ROLL_ERROR_TWILIO_INIT": "לא ניתן להתחבר לשירות השיחות. בדוק את החיבור ונסה שנית",
         "ROLL_ERROR_CONNECTION_LOST": "החיבור לסטטוס החייגן האוטומטי נותק. הסבב הופסק",
-        "STATUS_GATE_REQUIRED": "עדכן סטטוס לפני המשך לשיחה הבאה"
+        "STATUS_GATE_REQUIRED": "עדכן סטטוס לפני המשך לשיחה הבאה",
+        "BRIEFING": {
+            "TITLE": "תקציר ליד",
+            "EMPTY_HINT": "צור תקציר קצר ב-AI: מי בעל הנכס, איזה נכס הוא מציע ובאילו תנאים, וזווית פתיחה מומלצת לשיחה.",
+            "CREATE_BUTTON": "צור תקציר",
+            "REGENERATE_BUTTON": "צור מחדש",
+            "GENERATING": "יוצר תקציר…",
+            "ERROR_TEXT": "יצירת התקציר נכשלה. נסה שנית.",
+            "REGENERATE_ERROR": "היצירה מחדש נכשלה — התקציר הקיים נשמר.",
+            "GENERATED_AT": "נוצר",
+            "COLLAPSE": "מזער",
+            "EXPAND": "הרחב",
+            "NAME_LABEL": "שם",
+            "PHONE_LABEL": "טלפון"
+        }
     },
     "APP_SETTINGS": {
         "TITLE": "הגדרות מערכת",
@@ -484,6 +498,8 @@
     "CAMPAIGN_SETTINGS": {
         "SUMMARY_PROMPT_LABEL": "פרומפט לסיכום AI",
         "SUMMARY_PROMPT_HELPER": "הפרומפט הזה משמש את ה-AI לייצור סיכומי שיחות לקמפיין זה. ערוך אותו כדי להתאים את הפלט.",
+        "BRIEFING_PROMPT_LABEL": "פרומפט לתקציר ליד (AI)",
+        "BRIEFING_PROMPT_HELPER": "הפרומפט הזה משמש את ה-AI ליצירת תקציר על הליד לפני השיחה, מתוך שדות הליד. ערוך אותו כדי לכוון את מה שהתקציר יבליט בקמפיין הזה.",
         "EDIT": "ערוך",
         "SAVE": "שמור",
         "CANCEL": "ביטול",
