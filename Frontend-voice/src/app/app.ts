@@ -10,7 +10,7 @@ import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 })
 export class App {
 
-    protected readonly title = signal('Trezo - Angular 20 Admin Dashboard Template');
+    protected readonly title = signal('Voicely');
 
     private previousUrl: string | null = null;
 

@@ -11,6 +11,9 @@
         ".specify/scripts/powershell/": true
     },
     "python-envs.pythonProjects": [],
+    "python.defaultInterpreterPath": "${workspaceFolder}/Voice-transcript/venv/bin/python",
+    "python.analysis.extraPaths": ["${workspaceFolder}/Voice-transcript"],
+    "pyrefly.pythonPath": "${workspaceFolder}/Voice-transcript/venv/bin/python",
     "files.exclude": {
         "**/__pycache__": true,
         "**/*.pyc": true

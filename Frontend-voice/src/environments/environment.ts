@@ -6,4 +6,5 @@ export const environment = {
     tokenRefreshBufferMs: 30000,   // refresh JWT 30s before expiry
     logLevel: 'debug' as const,
     campaignSecondaryFieldsEnabled: false,
+    adminWhatsAppNumber: '+972509444706',
 };
