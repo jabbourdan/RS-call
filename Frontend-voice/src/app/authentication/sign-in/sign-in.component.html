@@ -51,28 +51,7 @@
                     </h1>
                     <p class="font-medium lg:text-md text-[#445164] dark:text-gray-400">
                         {{ 'SIGN_IN.WELCOME' | translate }}
-                        <a routerLink="/authentication/sign-up" class="text-primary-500 transition-all font-semibold hover:underline ms-[4px]">
-                            {{ 'SIGN_IN.CREATE_ACCOUNT' | translate }}
-                        </a>
                     </p>
-                </div>
-                <!-- Social buttons (UI only, no function yet) -->
-                <div class="flex items-center justify-between mb-[20px] md:mb-[23px] gap-[12px]">
-                    <div class="grow">
-                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                            <img src="images/icons/google.svg" class="inline-block" alt="google">
-                        </button>
-                    </div>
-                    <div class="grow">
-                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                            <img src="images/icons/facebook2.svg" class="inline-block" alt="facebook">
-                        </button>
-                    </div>
-                    <div class="grow">
-                        <button type="button" class="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500">
-                            <img src="images/icons/apple.svg" class="inline-block" alt="apple">
-                        </button>
-                    </div>
                 </div>
                 <!-- Sign-in form -->
                 <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
@@ -113,7 +92,7 @@
                     </div>
                 }
 
-                <a routerLink="/authentication/forgot-password" class="inline-block text-primary-500 transition-all font-semibold hover:underline">
+                <a routerLink="/authentication/forgot-password" [state]="{ email: email }" class="inline-block text-primary-500 transition-all font-semibold hover:underline">
                     {{ 'SIGN_IN.FORGOT_PASSWORD' | translate }}
                 </a>
                 <button
@@ -132,9 +111,8 @@
                     </span>
                 </button>
                 <p class="mt-[15px] md:mt-[20px]">
-                    {{ 'SIGN_IN.NO_ACCOUNT' | translate }}
-                    <a routerLink="/authentication/sign-up" class="text-primary-500 transition-all font-semibold hover:underline ms-[4px]">
-                        {{ 'SIGN_IN.SIGN_UP' | translate }}
+                    <a routerLink="/authentication/sign-up" class="text-primary-500 transition-all font-semibold hover:underline">
+                        {{ 'AUTH_WHATSAPP.NEED_ACCOUNT_CTA' | translate }}
                     </a>
                 </p>
                 </form>
