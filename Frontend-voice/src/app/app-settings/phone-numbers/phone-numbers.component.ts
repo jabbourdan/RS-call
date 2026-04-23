@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
+import { environment } from '../../../environments/environment';
 import { OrgPhoneNumberService } from '../../services/org-phone-numbers/org-phone-number.service';
 import { OrgPhoneNumber } from '../../services/org-phone-numbers/org-phone-number.models';
 import { AuthService } from '../../services/auth/auth.service';
+import { OrgSettingsService } from '../../services/org-settings/org-settings.service';
+import { WhatsappLinkService } from '../../services/whatsapp/whatsapp-link.service';
 
 @Component({
     selector: 'app-phone-numbers',
     standalone: true,
     imports: [CommonModule, FormsModule, TranslateModule],
     templateUrl: './phone-numbers.component.html',
-    styleUrl: './phone-numbers.component.scss'
+    styleUrl: './phone-numbers.component.scss',
 })
 export class PhoneNumbersComponent implements OnInit {
+    private readonly phoneNumberService = inject(OrgPhoneNumberService);
+    private readonly authService = inject(AuthService);
+    private readonly orgSettingsService = inject(OrgSettingsService);
+    private readonly whatsapp = inject(WhatsappLinkService);
+    private readonly translate = inject(TranslateService);
 
     phoneNumbers: OrgPhoneNumber[] = [];
     isLoading = false;
     successMessage = '';
     errorMessage = '';
-
-    // Add dialog
-    showAddDialog = false;
-    addPhoneNumber = '';
-    addLabel = '';
-    addSubmitting = false;
-    addErrors: { phone?: string } = {};
 
     // Edit dialog
     showEditDialog = false;
@@ -39,22 +40,21 @@ export class PhoneNumbersComponent implements OnInit {
     deletingPhone: OrgPhoneNumber | null = null;
     deleteSubmitting = false;
 
-    // Org settings
+    // Filter
     showIncludeInactive = false;
 
     // Role check
     isAdmin = false;
 
-    constructor(
-        private phoneNumberService: OrgPhoneNumberService,
-        private authService: AuthService,
-        private translate: TranslateService
-    ) {}
+    // Plan limit (for the WhatsApp request message)
+    maxPhoneNumbers: number | null = null;
+    orgName = '';
 
     ngOnInit(): void {
         const user = this.authService.currentUser();
         this.isAdmin = user?.role === 'owner' || user?.role === 'admin';
         this.loadPhoneNumbers();
+        this.loadOrgSettings();
     }
 
     loadPhoneNumbers(): void {
@@ -68,7 +68,19 @@ export class PhoneNumbersComponent implements OnInit {
             error: (err) => {
                 this.errorMessage = this.extractError(err);
                 this.isLoading = false;
-            }
+            },
+        });
+    }
+
+    loadOrgSettings(): void {
+        this.orgSettingsService.get().subscribe({
+            next: (settings) => {
+                this.maxPhoneNumbers = settings.max_phone_numbers;
+                this.orgName = settings.org_name;
+            },
+            error: () => {
+                this.maxPhoneNumbers = null;
+            },
         });
     }
 
@@ -77,49 +89,24 @@ export class PhoneNumbersComponent implements OnInit {
         this.loadPhoneNumbers();
     }
 
-    // ─── Add Phone ──────────────────────────────────────────────────────────────
+    // ─── Request new number (WhatsApp — visible to all authenticated users) ─────
 
-    openAddDialog(): void {
-        this.addPhoneNumber = '';
-        this.addLabel = '';
-        this.addErrors = {};
-        this.showAddDialog = true;
-    }
-
-    closeAddDialog(): void {
-        this.showAddDialog = false;
-    }
-
-    submitAdd(): void {
-        this.addErrors = {};
-        if (!this.addPhoneNumber.trim()) {
-            this.addErrors.phone = this.translate.instant('PHONE_NUMBERS.ERROR_REQUIRED');
-            return;
-        }
-        if (!/^\+[1-9]\d{1,14}$/.test(this.addPhoneNumber.trim())) {
-            this.addErrors.phone = this.translate.instant('PHONE_NUMBERS.ERROR_E164');
-            return;
-        }
-
-        this.addSubmitting = true;
-        this.phoneNumberService.add({
-            phone_number: this.addPhoneNumber.trim(),
-            label: this.addLabel.trim() || undefined,
-        }).subscribe({
-            next: () => {
-                this.successMessage = this.translate.instant('PHONE_NUMBERS.SUCCESS_ADDED');
-                this.addSubmitting = false;
-                this.showAddDialog = false;
-                this.loadPhoneNumbers();
-            },
-            error: (err) => {
-                this.errorMessage = this.extractError(err);
-                this.addSubmitting = false;
-            }
+    onRequestNewNumber(): void {
+        const message = this.translate.instant('PHONE_NUMBERS.REQUEST_WA_MESSAGE', {
+            org_name: this.orgName || '',
+            current: this.phoneNumbers.length,
+            max: this.maxPhoneNumbers ?? '—',
         });
+        const url = this.whatsapp.buildChatUrl(
+            environment.adminWhatsAppNumber,
+            message
+        );
+        if (url) {
+            window.open(url, '_blank', 'noopener');
+        }
     }
 
-    // ─── Edit Phone ─────────────────────────────────────────────────────────────
+    // ─── Edit Phone ──────────────────────────────────────────────────────────────
 
     openEditDialog(phone: OrgPhoneNumber): void {
         this.editingPhone = phone;
@@ -135,21 +122,25 @@ export class PhoneNumbersComponent implements OnInit {
     submitEdit(): void {
         if (!this.editingPhone) return;
         this.editSubmitting = true;
-        this.phoneNumberService.update(this.editingPhone.phone_id, {
-            label: this.editLabel.trim() || undefined,
-        }).subscribe({
-            next: () => {
-                this.successMessage = this.translate.instant('PHONE_NUMBERS.SUCCESS_UPDATED');
-                this.editSubmitting = false;
-                this.showEditDialog = false;
-                this.editingPhone = null;
-                this.loadPhoneNumbers();
-            },
-            error: (err) => {
-                this.errorMessage = this.extractError(err);
-                this.editSubmitting = false;
-            }
-        });
+        this.phoneNumberService
+            .update(this.editingPhone.phone_id, {
+                label: this.editLabel.trim() || undefined,
+            })
+            .subscribe({
+                next: () => {
+                    this.successMessage = this.translate.instant(
+                        'PHONE_NUMBERS.SUCCESS_UPDATED'
+                    );
+                    this.editSubmitting = false;
+                    this.showEditDialog = false;
+                    this.editingPhone = null;
+                    this.loadPhoneNumbers();
+                },
+                error: (err) => {
+                    this.errorMessage = this.extractError(err);
+                    this.editSubmitting = false;
+                },
+            });
     }
 
     // ─── Delete (soft-delete) Phone ─────────────────────────────────────────────
@@ -183,7 +174,7 @@ export class PhoneNumbersComponent implements OnInit {
                 this.errorMessage = this.extractError(err);
                 this.deleteSubmitting = false;
                 this.showDeleteConfirm = false;
-            }
+            },
         });
     }
 
@@ -197,7 +188,9 @@ export class PhoneNumbersComponent implements OnInit {
     private extractError(err: any): string {
         if (err?.error?.detail) {
             if (Array.isArray(err.error.detail)) {
-                return err.error.detail.map((e: any) => e.msg ?? JSON.stringify(e)).join(', ');
+                return err.error.detail
+                    .map((e: any) => e.msg ?? JSON.stringify(e))
+                    .join(', ');
             }
             return err.error.detail;
         }

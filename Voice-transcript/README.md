@@ -1,4 +1,4 @@
-# Voicely CRM — Voice Intelligence Platform
+# Kolligent — Voice Intelligence Platform
 
 > [!IMPORTANT]
 > **Documentation Maintenance Rule**

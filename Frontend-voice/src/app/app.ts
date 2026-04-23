@@ -10,7 +10,7 @@ import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 })
 export class App {
 
-    protected readonly title = signal('Voicely');
+    protected readonly title = signal('Kolligent');
 
     private previousUrl: string | null = null;
 
