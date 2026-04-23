@@ -9,7 +9,10 @@ import pandas as pd
 import re
 import io
 
-from app.models.base import Lead, Campaign, CampaignSettings, User, LeadStatusHistory, Call, LeadComment
+from app.models.base import (
+    Lead, Campaign, CampaignSettings, User, LeadStatusHistory, Call, LeadComment,
+    InboundCallNotification, UnknownInbound,
+)
 
 
 # =========================
@@ -46,6 +49,36 @@ def normalize_israeli_phone(raw: str) -> Optional[str]:
     if re.match(r"^0[2348]\d{7}$", cleaned):
         return cleaned
 
+    return None
+
+
+def e164_to_israeli_domestic(e164: str) -> Optional[str]:
+    """Reverse of normalize_israeli_phone for E.164 input from Twilio.
+
+    +972501234567 → 0501234567. Returns None for foreign / malformed input.
+    """
+    if not e164:
+        return None
+    cleaned = re.sub(r"[\s\-\.\(\)\/]", "", str(e164).strip())
+    if cleaned.startswith("+972"):
+        cleaned = "0" + cleaned[4:]
+    elif cleaned.startswith("972"):
+        cleaned = "0" + cleaned[3:]
+    else:
+        return None
+    cleaned = re.sub(r"\D", "", cleaned)
+    if re.match(r"^05\d{8}$", cleaned) or re.match(r"^0[2348]\d{7}$", cleaned):
+        return cleaned
+    return None
+
+
+def domestic_to_e164(domestic: str) -> Optional[str]:
+    """0501234567 → +972501234567."""
+    if not domestic:
+        return None
+    cleaned = re.sub(r"\D", "", str(domestic).strip())
+    if cleaned.startswith("0"):
+        return "+972" + cleaned[1:]
     return None
 
 
@@ -366,6 +399,18 @@ class LeadService:
         # Call records are preserved but disassociated from the lead.
         # CallAnalysis.call_id is NOT NULL so we cannot SET NULL through ORM cascade.
         await db.execute(sql_update(Call).where(Call.lead_id == lead_id).values(lead_id=None))
+        # Inbound-call artifacts reference the lead; null the FK so the notification
+        # history + unknown-inbound promotions survive lead deletion.
+        await db.execute(
+            sql_update(InboundCallNotification)
+            .where(InboundCallNotification.lead_id == lead_id)
+            .values(lead_id=None)
+        )
+        await db.execute(
+            sql_update(UnknownInbound)
+            .where(UnknownInbound.converted_to_lead_id == lead_id)
+            .values(converted_to_lead_id=None)
+        )
         await db.execute(sql_delete(LeadComment).where(LeadComment.lead_id == lead_id))
         await db.execute(sql_delete(LeadStatusHistory).where(LeadStatusHistory.lead_id == lead_id))
         await db.execute(sql_delete(Lead).where(Lead.lead_id == lead_id))

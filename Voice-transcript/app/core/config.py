@@ -31,6 +31,10 @@ class Settings(BaseSettings):
     # LLM
     GROQ_API_KEY: str = ""
 
+    # Runtime environment (dev|prod). Controls Twilio signature enforcement
+    # and similar dev-only leniencies.
+    ENV: str = "dev"
+
     class Config:
         env_file = ".env"
         extra = "ignore"

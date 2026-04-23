@@ -1,18 +1,25 @@
 import { Component, Inject, PLATFORM_ID, Renderer2, Signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { isPlatformBrowser, NgClass } from '@angular/common';
+import { DatePipe, isPlatformBrowser, NgClass } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToggleService } from './toggle.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { CurrentUser } from '../../services/auth/auth.models';
+import {
+    InboundNotificationItem,
+    InboundNotificationsService,
+} from '../../services/notifications/inbound-notifications.service';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterLink, NgClass, TranslateModule],
+    imports: [RouterLink, NgClass, TranslateModule, DatePipe],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+    readonly notifItems: Signal<readonly InboundNotificationItem[]>;
+    readonly notifUnread: Signal<number>;
 
     isSidebarVisible = true;
     currentLang: string = 'en';
@@ -42,9 +49,12 @@ export class HeaderComponent {
         private renderer: Renderer2,
         private translate: TranslateService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private inboundNotifs: InboundNotificationsService
     ) {
         this.currentUser = this.authService.currentUser;
+        this.notifItems = this.inboundNotifs.items;
+        this.notifUnread = this.inboundNotifs.unreadCount;
         this.translate.addLangs(['en', 'ar', 'he']);
         this.translate.setDefaultLang('en');
     }
@@ -54,6 +64,46 @@ export class HeaderComponent {
         this.toggleService.initializeTheme();
         const saved = localStorage.getItem('trezo_lang') || 'en';
         this.changeLanguage(saved);
+        if (isPlatformBrowser(this.platformId)) {
+            this.inboundNotifs.start();
+        }
+    }
+
+    onNotificationClick(item: InboundNotificationItem): void {
+        if (!item.read_at) {
+            this.inboundNotifs.markRead(item.notification_id).subscribe({
+                next: () => this.inboundNotifs.refresh().subscribe(),
+                error: () => { /* non-fatal */ },
+            });
+        }
+        this.buttonStates['notificationsMenuBtn'] = false;
+        if (item.lead_id) {
+            this.router.navigate(['/dashboard/lead-management'], {
+                queryParams: { lead_id: item.lead_id },
+            });
+        }
+    }
+
+    markAllNotificationsRead(): void {
+        this.inboundNotifs.markAllRead().subscribe({
+            next: () => this.inboundNotifs.refresh().subscribe(),
+            error: () => { /* non-fatal */ },
+        });
+    }
+
+    dismissNotification(event: Event, item: InboundNotificationItem): void {
+        event.stopPropagation();
+        this.inboundNotifs.dismiss(item.notification_id).subscribe({
+            next: () => this.inboundNotifs.refresh().subscribe(),
+            error: () => { /* non-fatal */ },
+        });
+    }
+
+    clearAllNotifications(): void {
+        this.inboundNotifs.clearAll().subscribe({
+            next: () => this.inboundNotifs.refresh().subscribe(),
+            error: () => { /* non-fatal */ },
+        });
     }
 
     changeLanguage(lang: string): void {
