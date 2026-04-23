@@ -8,7 +8,7 @@ import os
 from app.api.v1 import calls, auth, campaigns, leads, lead_management, calls_test, dashboard, contacts, org_phone_numbers
 
 app = FastAPI(
-    title="Voicely CRM - Voice Intelligence",
+    title="Kolligent - Voice Intelligence",
     description="S3 Upload, AWS Transcribe, and PostgreSQL Storage",
     version="1.0.0"
 )

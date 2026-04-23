@@ -1,215 +1,156 @@
-<form (ngSubmit)="onSave()">
+<!-- ─── Success / Error banners ───────────────────────────────────────────── -->
+@if (successMessage) {
+    <div class="flex items-center gap-3 p-4 mb-[20px] rounded-md bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400">
+        <i class="ri-checkbox-circle-line text-xl leading-none"></i>
+        <span class="flex-1 text-sm font-medium">{{ successMessage }}</span>
+        <button (click)="dismissMessages()" class="leading-none opacity-60 hover:opacity-100">
+            <i class="ri-close-fill text-lg"></i>
+        </button>
+    </div>
+}
+@if (errorMessage) {
+    <div class="flex items-center gap-3 p-4 mb-[20px] rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400">
+        <i class="ri-error-warning-line text-xl leading-none"></i>
+        <span class="flex-1 text-sm font-medium">{{ errorMessage }}</span>
+        <button (click)="dismissMessages()" class="leading-none opacity-60 hover:opacity-100">
+            <i class="ri-close-fill text-lg"></i>
+        </button>
+    </div>
+}
 
-    <!-- ── Organization ───────────────────────────────────────── -->
-    <h5 class="!text-lg !mb-[6px] mt-[5px]">
-        {{ 'APP_SETTINGS.SECTION_ORG' | translate }}
-    </h5>
-    <p class="!mb-[20px] md:!mb-[25px] text-gray-500 dark:text-gray-400 text-sm">
-        {{ 'APP_SETTINGS.FIELD_PHONE_LOCKED' | translate }}
-    </p>
+<!-- ─── Header with Edit/Save/Cancel ──────────────────────────────────────── -->
+<div class="flex items-center justify-between mb-[20px] md:mb-[25px]">
+    <h5 class="!text-lg !mb-0">{{ 'APP_SETTINGS.SECTION_ORG' | translate }}</h5>
+
+    @if (isAdmin() && !isLoading && settings) {
+        @if (!isEditing) {
+            <button
+                type="button"
+                (click)="enterEdit()"
+                class="inline-flex items-center gap-[6px] font-medium transition-all rounded-md py-[9px] px-[18px] bg-primary-500 text-white hover:bg-primary-400 text-sm"
+            >
+                <i class="material-symbols-outlined !text-[18px] leading-none">edit</i>
+                {{ 'APP_SETTINGS.BTN_EDIT' | translate }}
+            </button>
+        } @else {
+            <div class="flex items-center gap-[10px]">
+                <button
+                    type="button"
+                    (click)="cancelEdit()"
+                    [disabled]="isSaving"
+                    class="font-medium transition-all rounded-md py-[9px] px-[18px] bg-danger-500 text-white hover:bg-danger-400 text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                    {{ 'APP_SETTINGS.BTN_CANCEL' | translate }}
+                </button>
+                <button
+                    type="button"
+                    (click)="save()"
+                    [disabled]="isSaving"
+                    class="font-medium transition-all rounded-md py-[9px] px-[18px] bg-primary-500 text-white hover:bg-primary-400 text-sm disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-[6px]"
+                >
+                    @if (isSaving) {
+                        <i class="ri-loader-4-line animate-spin leading-none"></i>
+                    } @else {
+                        <i class="material-symbols-outlined !text-[18px] leading-none">check</i>
+                    }
+                    {{ 'APP_SETTINGS.BTN_SAVE' | translate }}
+                </button>
+            </div>
+        }
+    }
+</div>
+
+<!-- ─── Loading skeleton ─────────────────────────────────────────────────── -->
+@if (isLoading) {
+    <div class="space-y-3">
+        @for (i of [1, 2, 3]; track i) {
+            <div class="h-[55px] rounded-md bg-gray-100 dark:bg-[#172036] animate-pulse"></div>
+        }
+    </div>
+}
+
+<!-- ─── Fields ───────────────────────────────────────────────────────────── -->
+@if (!isLoading && settings) {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
 
+        <!-- Organization Name -->
         <div>
             <label class="mb-[10px] text-black dark:text-white font-medium block">
                 {{ 'APP_SETTINGS.FIELD_ORG_NAME' | translate }}
             </label>
-            <input
-                type="text"
-                [(ngModel)]="orgName"
-                name="orgName"
-                class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-            >
+            @if (isEditing) {
+                <input
+                    type="text"
+                    [(ngModel)]="editOrgName"
+                    name="orgName"
+                    class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all focus:border-primary-500"
+                    [class.border-red-400]="validationError"
+                />
+                @if (validationError) {
+                    <p class="text-xs text-red-500 mt-[6px]">{{ validationError }}</p>
+                }
+            } @else {
+                <input
+                    type="text"
+                    [value]="settings.org_name"
+                    readonly
+                    class="h-[55px] rounded-md text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] block w-full outline-0 cursor-default"
+                />
+            }
         </div>
 
+        <!-- Business Type -->
         <div>
             <label class="mb-[10px] text-black dark:text-white font-medium block">
                 {{ 'APP_SETTINGS.FIELD_BUSINESS_TYPE' | translate }}
             </label>
-            <input
-                type="text"
-                [(ngModel)]="businessType"
-                name="businessType"
-                class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:border-primary-500"
-            >
+            @if (isEditing) {
+                <input
+                    type="text"
+                    [(ngModel)]="editBusType"
+                    name="busType"
+                    class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all focus:border-primary-500"
+                />
+            } @else {
+                <input
+                    type="text"
+                    [value]="settings.bus_type || '—'"
+                    readonly
+                    class="h-[55px] rounded-md text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] block w-full outline-0 cursor-default"
+                />
+            }
         </div>
 
-        <div>
+        <!-- Plan (always locked) -->
+        <div class="sm:col-span-2">
             <label class="mb-[10px] text-black dark:text-white font-medium block">
                 {{ 'APP_SETTINGS.FIELD_PLAN' | translate }}
             </label>
             <div class="relative">
                 <input
                     type="text"
-                    [value]="plan"
+                    [value]="settings.plan"
                     readonly
                     class="h-[55px] rounded-md text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] ltr:pr-[46px] rtl:pl-[46px] block w-full outline-0 cursor-not-allowed"
-                >
+                />
                 <i class="material-symbols-outlined absolute top-1/2 -translate-y-1/2 ltr:right-[14px] rtl:left-[14px] text-gray-400 !text-[20px]">
                     lock
                 </i>
             </div>
-            <p class="text-xs text-gray-400 mt-[6px]">
-                {{ 'APP_SETTINGS.FIELD_PLAN_LOCKED' | translate }}
-            </p>
-        </div>
-
-    </div>
-
-    <!-- ── Phone Numbers ──────────────────────────────────────── -->
-    <h5 class="!text-lg !mb-[6px] mt-[20px] md:mt-[25px]">
-        {{ 'APP_SETTINGS.SECTION_PHONES' | translate }}
-    </h5>
-    <p class="!mb-[20px] md:!mb-[25px] text-gray-500 dark:text-gray-400 text-sm">
-        {{ 'APP_SETTINGS.PHONE_OVERVIEW_DESC' | translate }}
-        <a routerLink="/dashboard/app-settings/phone-numbers" class="text-primary-500 hover:underline ltr:ml-1 rtl:mr-1">
-            {{ 'APP_SETTINGS.PHONE_MANAGE_LINK' | translate }}
-        </a>
-    </p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px]">
-        @if (phoneNumbers.length === 0) {
-            <div class="col-span-2 text-sm text-gray-400 dark:text-gray-500 italic">
-                {{ 'APP_SETTINGS.NO_PHONES' | translate }}
+            <div class="flex items-center justify-between gap-2 mt-[6px]">
+                <p class="text-xs text-gray-400">
+                    {{ 'APP_SETTINGS.FIELD_PLAN_LOCKED' | translate }}
+                </p>
+                <button
+                    type="button"
+                    (click)="requestUpgrade()"
+                    class="inline-flex items-center gap-[6px] text-xs font-medium text-primary-500 hover:text-primary-600 transition-colors"
+                >
+                    <i class="ri-whatsapp-line text-sm leading-none"></i>
+                    {{ 'APP_SETTINGS.BTN_REQUEST_UPGRADE' | translate }}
+                </button>
             </div>
-        }
-        @for (phone of phoneNumbers; track phone.phone_id) {
-            <div>
-                <label class="mb-[10px] text-black dark:text-white font-medium block">
-                    {{ phone.label || ('PHONE_NUMBERS.NO_LABEL' | translate) }}
-                </label>
-                <div class="relative">
-                    <input
-                        type="text"
-                        [value]="phone.phone_number"
-                        readonly
-                        dir="ltr"
-                        class="h-[55px] rounded-md text-gray-400 dark:text-gray-500 border border-gray-200 dark:border-[#172036] bg-gray-50 dark:bg-[#0d1628] px-[17px] ltr:pr-[46px] rtl:pl-[46px] block w-full outline-0 cursor-not-allowed"
-                    >
-                    <i class="ri-phone-line absolute top-1/2 -translate-y-1/2 ltr:right-[14px] rtl:left-[14px] text-gray-400 text-lg"></i>
-                </div>
-            </div>
-        }
-    </div>
-
-    <!-- ── Call / Dialing Config ───────────────────────────────── -->
-    <h5 class="!text-lg !mb-[6px] mt-[20px] md:mt-[25px]">
-        {{ 'APP_SETTINGS.SECTION_DIALING' | translate }}
-    </h5>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px] mt-[20px] md:mt-[25px]">
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_MAX_CALLS' | translate }}
-            </label>
-            <input
-                type="number"
-                [(ngModel)]="maxCallsToUnanswered"
-                name="maxCallsToUnanswered"
-                min="1"
-                max="20"
-                class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all focus:border-primary-500"
-            >
-        </div>
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_ALGORITHM' | translate }}
-            </label>
-            <select
-                [(ngModel)]="callingAlgorithm"
-                name="callingAlgorithm"
-                class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500 text-black dark:text-white"
-            >
-                <option value="priority">{{ 'APP_SETTINGS.FIELD_ALGORITHM_PRIORITY' | translate }}</option>
-                <option value="round-robin">{{ 'APP_SETTINGS.FIELD_ALGORITHM_ROUND_ROBIN' | translate }}</option>
-            </select>
-        </div>
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_COOLDOWN' | translate }}
-            </label>
-            <input
-                type="number"
-                [(ngModel)]="cooldownMinutes"
-                name="cooldownMinutes"
-                min="0"
-                class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all focus:border-primary-500"
-            >
-        </div>
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_CHANGE_AFTER' | translate }}
-            </label>
-            <input
-                type="number"
-                [(ngModel)]="changeNumberAfter"
-                name="changeNumberAfter"
-                min="1"
-                class="h-[55px] rounded-md text-black dark:text-white border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[17px] block w-full outline-0 transition-all focus:border-primary-500"
-            >
         </div>
 
     </div>
-
-    <!-- ── Language & Timezone ────────────────────────────────── -->
-    <h5 class="!text-lg !mb-[6px] mt-[20px] md:mt-[25px]">
-        {{ 'APP_SETTINGS.SECTION_LOCALE' | translate }}
-    </h5>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-[25px] mt-[20px] md:mt-[25px]">
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_LANGUAGE' | translate }}
-            </label>
-            <select
-                [(ngModel)]="language"
-                name="language"
-                class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500 text-black dark:text-white"
-            >
-                <option value="en">English (EN)</option>
-                <option value="ar">العربية (AR)</option>
-                <option value="he">עברית (HE)</option>
-            </select>
-        </div>
-
-        <div>
-            <label class="mb-[10px] text-black dark:text-white font-medium block">
-                {{ 'APP_SETTINGS.FIELD_TIMEZONE' | translate }}
-            </label>
-            <select
-                [(ngModel)]="timezone"
-                name="timezone"
-                class="h-[55px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-[13px] block w-full outline-0 cursor-pointer transition-all focus:border-primary-500 text-black dark:text-white"
-            >
-                @for (tz of timezones; track tz) {
-                    <option [value]="tz">{{ tz }}</option>
-                }
-            </select>
-        </div>
-
-    </div>
-
-    <!-- ── Action Buttons ─────────────────────────────────────── -->
-    <div class="mt-[20px] md:mt-[25px]">
-        <button
-            type="button"
-            (click)="onCancel()"
-            class="font-medium inline-block transition-all rounded-md ltr:mr-[19px] rtl:ml-[19px] py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-danger-500 text-white hover:bg-danger-400"
-        >
-            {{ 'APP_SETTINGS.BTN_CANCEL' | translate }}
-        </button>
-        <button
-            type="submit"
-            class="font-medium inline-block transition-all rounded-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400"
-        >
-            <span class="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
-                <i class="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
-                    check
-                </i>
-                {{ 'APP_SETTINGS.BTN_SAVE' | translate }}
-            </span>
-        </button>
-    </div>
-
-</form>
+}

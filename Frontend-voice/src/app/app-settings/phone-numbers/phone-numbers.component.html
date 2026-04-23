@@ -36,15 +36,13 @@
             />
             {{ 'PHONE_NUMBERS.SHOW_INACTIVE' | translate }}
         </label>
-        @if (isAdmin) {
-            <button
-                (click)="openAddDialog()"
-                class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
-            >
-                <i class="ri-add-line text-base leading-none"></i>
-                {{ 'PHONE_NUMBERS.BTN_ADD' | translate }}
-            </button>
-        }
+        <button
+            (click)="onRequestNewNumber()"
+            class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
+        >
+            <i class="ri-whatsapp-line text-base leading-none"></i>
+            {{ 'PHONE_NUMBERS.BTN_REQUEST_NUMBER' | translate }}
+        </button>
     </div>
 </div>
 
@@ -71,15 +69,13 @@
         <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[300px] mb-4">
             {{ 'PHONE_NUMBERS.EMPTY_DESC' | translate }}
         </p>
-        @if (isAdmin) {
-            <button
-                (click)="openAddDialog()"
-                class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
-            >
-                <i class="ri-add-line text-base leading-none"></i>
-                {{ 'PHONE_NUMBERS.BTN_ADD' | translate }}
-            </button>
-        }
+        <button
+            (click)="onRequestNewNumber()"
+            class="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium py-[9px] px-[16px] rounded-md transition-colors"
+        >
+            <i class="ri-whatsapp-line text-base leading-none"></i>
+            {{ 'PHONE_NUMBERS.BTN_REQUEST_NUMBER' | translate }}
+        </button>
     </div>
 }
 
@@ -146,88 +142,6 @@
                 }
             </div>
         }
-    </div>
-}
-
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- ─── Add Phone Dialog ─────────────────────────────────────────────────── -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-@if (showAddDialog) {
-    <div class="add-new-popup z-[999] fixed transition-all inset-0 overflow-x-hidden overflow-y-auto lg:py-[20px] active">
-        <div class="popup-dialog flex transition-all max-w-[460px] min-h-full items-center mx-auto">
-            <div class="trezo-card w-full bg-white dark:bg-[#0c1427] p-[20px] md:p-[25px] rounded-md">
-
-                <!-- Dialog header -->
-                <div class="flex items-center justify-between gap-2 mb-[20px]">
-                    <h5 class="mb-0">{{ 'PHONE_NUMBERS.ADD_TITLE' | translate }}</h5>
-                    <button
-                        (click)="closeAddDialog()"
-                        class="inline-block transition-all rounded-full w-[32px] h-[32px] text-center leading-[32px] text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-[#15203c]"
-                    >
-                        <i class="ri-close-fill text-2xl leading-none"></i>
-                    </button>
-                </div>
-
-                <form (ngSubmit)="submitAdd()" novalidate>
-                    <div class="mb-[16px]">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-[6px]">
-                            {{ 'PHONE_NUMBERS.FIELD_NUMBER' | translate }}
-                            <span class="text-red-500 ltr:ml-1 rtl:mr-1">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            [(ngModel)]="addPhoneNumber"
-                            name="phoneNumber"
-                            placeholder="+972501234567"
-                            dir="ltr"
-                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[10px] px-[14px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
-                            [ngClass]="{'border-red-400': addErrors.phone}"
-                        />
-                        @if (addErrors.phone) {
-                            <p class="text-xs text-red-500 mt-1">{{ addErrors.phone }}</p>
-                        }
-                        <p class="text-[11px] text-gray-400 mt-1">{{ 'PHONE_NUMBERS.HINT_E164' | translate }}</p>
-                    </div>
-
-                    <div class="mb-[20px]">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-[6px]">
-                            {{ 'PHONE_NUMBERS.FIELD_LABEL' | translate }}
-                        </label>
-                        <input
-                            type="text"
-                            [(ngModel)]="addLabel"
-                            name="label"
-                            placeholder="{{ 'PHONE_NUMBERS.LABEL_PLACEHOLDER' | translate }}"
-                            class="w-full border border-gray-200 dark:border-gray-600 rounded-md py-[10px] px-[14px] text-sm bg-white dark:bg-[#0a1020] text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
-                        />
-                    </div>
-
-                    <div class="flex gap-[10px] justify-end">
-                        <button
-                            type="button"
-                            (click)="closeAddDialog()"
-                            class="py-[9px] px-[18px] rounded-md text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors"
-                        >
-                            {{ 'CONTACTS.BTN_CANCEL' | translate }}
-                        </button>
-                        <button
-                            type="submit"
-                            [disabled]="addSubmitting"
-                            class="py-[9px] px-[18px] rounded-md text-sm font-medium bg-primary-500 hover:bg-primary-600 text-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                        >
-                            @if (addSubmitting) {
-                                <span class="flex items-center gap-2">
-                                    <i class="ri-loader-4-line animate-spin leading-none"></i>
-                                    {{ 'CONTACTS.BTN_SAVING' | translate }}
-                                </span>
-                            } @else {
-                                {{ 'PHONE_NUMBERS.BTN_ADD' | translate }}
-                            }
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 }
 

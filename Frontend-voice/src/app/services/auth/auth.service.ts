@@ -95,6 +95,12 @@ export class AuthService {
             );
     }
 
+    // ─── Get all users in caller's organization ──────────────────────────────────
+
+    getOrgUsers(): Observable<CurrentUser[]> {
+        return this.http.get<CurrentUser[]>(`${environment.apiUrl}/auth/users`);
+    }
+
     // ─── Token Helpers ───────────────────────────────────────────────────────────
 
     getAccessToken(): string | null {
@@ -116,6 +122,7 @@ export class AuthService {
             full_name: '',
             role: res.role,
             is_active: true,
+            last_login_at: null,
             created_at: '',
         };
         this._currentUser.set(userSnapshot);
