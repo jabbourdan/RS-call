@@ -7,14 +7,21 @@ from uuid import UUID
 from typing import Optional
 
 from fastapi import BackgroundTasks
+from datetime import datetime
 from app.services.transcibe_service import TranscribeService
 from app.services.roll_service import RollService
 from app.services.twilio_service import TwilioService
 from app.services.call_service import CallService
+from app.services.inbound_call_service import (
+    handle_inbound_voice,
+    handle_inbound_status,
+    process_inbound_background,
+)
 from app.database import get_session
 from app.core.dependencies import get_current_user
 from app.core.config import settings
-from app.models.base import User, Call
+from app.core.twilio_signature import verify_twilio_signature
+from app.models.base import User, Call, InboundCallNotification, UnknownInbound
 
 router = APIRouter(prefix="/calls", tags=["Calls"])
 
@@ -58,6 +65,232 @@ async def get_access_token(
     )
 
 
+# =============================================================================
+# INBOUND-CALL LISTING / NOTIFICATIONS
+# Must sit above the `/{call_id}` catch-all below — otherwise FastAPI would try
+# to parse "inbound-notifications" as a UUID and return 422.
+# =============================================================================
+
+class InboundNotificationItem(BaseModel):
+    notification_id: UUID
+    kind: str
+    caller_display: str
+    campaign_name: Optional[str] = None
+    lead_id: Optional[UUID] = None
+    call_id: Optional[UUID] = None
+    unknown_id: Optional[UUID] = None
+    created_at: datetime
+    read_at: Optional[datetime] = None
+
+
+class InboundNotificationsResponse(BaseModel):
+    unread_count: int
+    items: list[InboundNotificationItem]
+
+
+class UnknownInboundItem(BaseModel):
+    unknown_id: UUID
+    caller_phone: Optional[str] = None
+    caller_phone_domestic: Optional[str] = None
+    to_phone: str
+    received_at: datetime
+    call_duration_sec: Optional[int] = None
+    outcome: Optional[str] = None
+    converted_to_lead_id: Optional[UUID] = None
+
+
+@router.get(
+    "/inbound-notifications",
+    response_model=InboundNotificationsResponse,
+    summary="List in-app notifications for inbound calls for the current user",
+)
+async def list_inbound_notifications(
+    unread_only: bool = False,
+    limit: int = 50,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    limit = max(1, min(limit, 200))
+
+    stmt = select(InboundCallNotification).where(
+        InboundCallNotification.user_id == current_user.user_id,
+        InboundCallNotification.org_id == current_user.org_id,
+    )
+    if unread_only:
+        stmt = stmt.where(InboundCallNotification.read_at.is_(None))
+    stmt = stmt.order_by(InboundCallNotification.created_at.desc()).limit(limit)
+
+    rows = (await db.execute(stmt)).scalars().all()
+
+    unread_count_stmt = select(InboundCallNotification).where(
+        InboundCallNotification.user_id == current_user.user_id,
+        InboundCallNotification.org_id == current_user.org_id,
+        InboundCallNotification.read_at.is_(None),
+    )
+    unread_count = len((await db.execute(unread_count_stmt)).scalars().all())
+
+    return InboundNotificationsResponse(
+        unread_count=unread_count,
+        items=[
+            InboundNotificationItem(
+                notification_id=n.notification_id,
+                kind=n.kind,
+                caller_display=n.caller_display,
+                campaign_name=n.campaign_name,
+                lead_id=n.lead_id,
+                call_id=n.call_id,
+                unknown_id=n.unknown_id,
+                created_at=n.created_at,
+                read_at=n.read_at,
+            )
+            for n in rows
+        ],
+    )
+
+
+@router.post(
+    "/inbound-notifications/{notification_id}/read",
+    summary="Mark an inbound-call notification as read",
+)
+async def mark_inbound_notification_read(
+    notification_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    from fastapi import HTTPException
+
+    result = await db.execute(
+        select(InboundCallNotification).where(
+            InboundCallNotification.notification_id == notification_id,
+            InboundCallNotification.user_id == current_user.user_id,
+            InboundCallNotification.org_id == current_user.org_id,
+        )
+    )
+    notif = result.scalars().first()
+    if notif is None:
+        raise HTTPException(status_code=404, detail="Notification not found.")
+
+    if notif.read_at is None:
+        notif.read_at = datetime.utcnow()
+        await db.commit()
+
+    return {"notification_id": str(notification_id), "read_at": notif.read_at}
+
+
+@router.post(
+    "/inbound-notifications/mark-all-read",
+    summary="Mark all inbound-call notifications as read for the current user",
+)
+async def mark_all_inbound_notifications_read(
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    from sqlalchemy import update as sql_update
+
+    now = datetime.utcnow()
+    await db.execute(
+        sql_update(InboundCallNotification)
+        .where(
+            InboundCallNotification.user_id == current_user.user_id,
+            InboundCallNotification.org_id == current_user.org_id,
+            InboundCallNotification.read_at.is_(None),
+        )
+        .values(read_at=now)
+    )
+    await db.commit()
+    return {"status": "ok", "read_at": now}
+
+
+@router.delete(
+    "/inbound-notifications/{notification_id}",
+    summary="Dismiss (delete) a single inbound-call notification",
+)
+async def delete_inbound_notification(
+    notification_id: UUID,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    from fastapi import HTTPException
+    from sqlalchemy import delete as sql_delete
+
+    result = await db.execute(
+        select(InboundCallNotification).where(
+            InboundCallNotification.notification_id == notification_id,
+            InboundCallNotification.user_id == current_user.user_id,
+            InboundCallNotification.org_id == current_user.org_id,
+        )
+    )
+    notif = result.scalars().first()
+    if notif is None:
+        raise HTTPException(status_code=404, detail="Notification not found.")
+
+    await db.execute(
+        sql_delete(InboundCallNotification).where(
+            InboundCallNotification.notification_id == notification_id,
+            InboundCallNotification.user_id == current_user.user_id,
+        )
+    )
+    await db.commit()
+    return {"status": "deleted", "notification_id": str(notification_id)}
+
+
+@router.delete(
+    "/inbound-notifications",
+    summary="Clear inbound-call notifications for the current user (read_only=true clears only read ones)",
+)
+async def clear_inbound_notifications(
+    read_only: bool = False,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    from sqlalchemy import delete as sql_delete
+
+    stmt = sql_delete(InboundCallNotification).where(
+        InboundCallNotification.user_id == current_user.user_id,
+        InboundCallNotification.org_id == current_user.org_id,
+    )
+    if read_only:
+        stmt = stmt.where(InboundCallNotification.read_at.is_not(None))
+
+    await db.execute(stmt)
+    await db.commit()
+    return {"status": "cleared"}
+
+
+@router.get(
+    "/unknown-inbounds",
+    response_model=list[UnknownInboundItem],
+    summary="List unknown-caller inbound calls for the current org",
+)
+async def list_unknown_inbounds(
+    include_converted: bool = False,
+    limit: int = 100,
+    db: AsyncSession = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+):
+    limit = max(1, min(limit, 500))
+
+    stmt = select(UnknownInbound).where(UnknownInbound.org_id == current_user.org_id)
+    if not include_converted:
+        stmt = stmt.where(UnknownInbound.converted_to_lead_id.is_(None))
+    stmt = stmt.order_by(UnknownInbound.received_at.desc()).limit(limit)
+
+    rows = (await db.execute(stmt)).scalars().all()
+    return [
+        UnknownInboundItem(
+            unknown_id=r.unknown_id,
+            caller_phone=r.caller_phone,
+            caller_phone_domestic=r.caller_phone_domestic,
+            to_phone=r.to_phone,
+            received_at=r.received_at,
+            call_duration_sec=r.call_duration_sec,
+            outcome=r.outcome,
+            converted_to_lead_id=r.converted_to_lead_id,
+        )
+        for r in rows
+    ]
+
+
 @router.get("/{call_id}", summary="Get call status + transcription from DB")
 async def get_call_status(
     call_id: UUID,
@@ -74,6 +307,61 @@ async def get_call_status(
 # =============================================================================
 # TWILIO WEBHOOKS
 # =============================================================================
+
+@router.post(
+    "/inbound-voice",
+    summary="Twilio webhook — inbound call arrives, returns greeting TwiML",
+    dependencies=[Depends(verify_twilio_signature)],
+)
+async def inbound_voice(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_session),
+):
+    """Twilio "A call comes in" webhook for inbound numbers owned by an org.
+
+    Returns a short TwiML `<Say>...<Hangup/>` rendered from the org's greeting
+    config, and queues a background task to match the caller to a lead, promote
+    the lead to the top of the queue, and fan out notifications.
+    """
+    form_data = await request.form()
+    form_dict = {k: v for k, v in form_data.multi_items()}
+    twiml = await handle_inbound_voice(db, form_dict)
+
+    call_sid = form_dict.get("CallSid")
+    to_phone = form_dict.get("To") or ""
+    from_phone = form_dict.get("From") or ""
+    if call_sid:
+        background_tasks.add_task(
+            process_inbound_background,
+            call_sid=call_sid,
+            to_phone=to_phone,
+            from_phone=from_phone,
+            started_at=datetime.utcnow(),
+        )
+
+    return Response(content=twiml, media_type="application/xml")
+
+
+@router.post(
+    "/inbound-status",
+    summary="Twilio webhook — inbound call status callback (duration/outcome)",
+    dependencies=[Depends(verify_twilio_signature)],
+)
+async def inbound_status(
+    request: Request,
+    db: AsyncSession = Depends(get_session),
+):
+    """Twilio statusCallback for inbound calls — fires at completed/no-answer/busy/failed.
+
+    Updates the Call or UnknownInbound row with the final outcome + duration.
+    Returns an empty TwiML `<Response/>`.
+    """
+    form_data = await request.form()
+    form_dict = {k: v for k, v in form_data.multi_items()}
+    twiml = await handle_inbound_status(db, form_dict)
+    return Response(content=twiml, media_type="application/xml")
+
 
 @router.post("/voice", summary="Twilio webhook — TwiML for single production calls")
 async def voice_handler(
@@ -393,3 +681,5 @@ async def proceed_roll(
         campaign_id=payload.campaign_id,
         current_user=current_user,
     )
+
+

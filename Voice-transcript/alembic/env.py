@@ -14,6 +14,7 @@ from app.models.base import (
     Organization, User, Contact, Call, CallAnalysis,
     Campaign, CampaignSettings, Lead,
     LeadComment, LeadStatusHistory,
+    UnknownInbound, InboundCallNotification,
 )
 
 # Alembic config object

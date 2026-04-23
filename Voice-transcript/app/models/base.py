@@ -2,7 +2,7 @@ from typing import Optional, List, Dict, Any
 from uuid import UUID, uuid4
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship, Column, JSON
-from sqlalchemy import types, UniqueConstraint
+from sqlalchemy import types, UniqueConstraint, Index
 import json
 
 # =========================
@@ -34,6 +34,10 @@ class Organization(SQLModel, table=True):
     is_active: bool = Field(default=True)
     num_agents: int = Field(default=1)
     max_phone_numbers: int = Field(default=2)
+    # Public URL of a pre-recorded MP3 played to inbound callers (Twilio has
+    # no Hebrew TTS voice, so we <Play> this instead of <Say>). NULL → the
+    # webhook falls back to an English <Say>.
+    greeting_audio_url: Optional[str] = Field(default=None)
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Relationships
@@ -362,3 +366,49 @@ class LeadStatusHistory(SQLModel, table=True):
     # Relationships
     lead: Optional["Lead"] = Relationship(back_populates="status_history")
     user: Optional["User"] = Relationship(back_populates="lead_status_changes")
+
+# =========================
+# UnknownInbound — inbound call from a number not matching any lead
+# =========================
+class UnknownInbound(SQLModel, table=True):
+    __tablename__ = "unknowninbound"
+    __table_args__ = (
+        UniqueConstraint("twilio_call_sid", name="uq_unknowninbound_twilio_call_sid"),
+        Index("ix_unknowninbound_org_caller_domestic", "org_id", "caller_phone_domestic"),
+        Index("ix_unknowninbound_org_received_at", "org_id", "received_at"),
+    )
+
+    unknown_id: UUID = Field(default_factory=uuid4, primary_key=True)
+    org_id: UUID = Field(foreign_key="organization.org_id", index=True)
+    caller_phone: Optional[str] = Field(default=None)
+    caller_phone_domestic: Optional[str] = Field(default=None)
+    to_phone: str
+    twilio_call_sid: str
+    received_at: datetime = Field(default_factory=datetime.utcnow)
+    call_duration_sec: Optional[int] = Field(default=None)
+    outcome: Optional[str] = Field(default=None)
+    converted_to_lead_id: Optional[UUID] = Field(default=None, foreign_key="lead.lead_id")
+
+# =========================
+# InboundCallNotification — in-app notification consumed by NotificationService poll
+# =========================
+class InboundCallNotification(SQLModel, table=True):
+    __tablename__ = "inboundcallnotification"
+    # NOTE: the two partial-unique indexes (user_id, call_id, kind) WHERE call_id IS NOT NULL
+    # and (user_id, unknown_id, kind) WHERE unknown_id IS NOT NULL are created in the
+    # Alembic migration, since SQLAlchemy's Index() needs raw SQL for partial predicates.
+    __table_args__ = (
+        Index("ix_inboundnotif_user_read", "user_id", "read_at"),
+    )
+
+    notification_id: UUID = Field(default_factory=uuid4, primary_key=True)
+    user_id: UUID = Field(foreign_key="user.user_id", index=True)
+    org_id: UUID = Field(foreign_key="organization.org_id", index=True)
+    kind: str = Field(default="inbound_call", max_length=32)
+    call_id: Optional[UUID] = Field(default=None, foreign_key="call.call_id")
+    unknown_id: Optional[UUID] = Field(default=None, foreign_key="unknowninbound.unknown_id")
+    lead_id: Optional[UUID] = Field(default=None, foreign_key="lead.lead_id")
+    caller_display: str
+    campaign_name: Optional[str] = Field(default=None)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    read_at: Optional[datetime] = Field(default=None)

@@ -60,17 +60,77 @@
                     <i class="material-symbols-outlined !text-[22px] md:!text-xl">
                         notifications
                     </i>
+                    @if (notifUnread() > 0) {
+                        <span class="absolute -top-[6px] -right-[8px] min-w-[18px] h-[18px] px-[4px] rounded-full bg-danger-500 text-white text-[10px] leading-[18px] font-semibold text-center">
+                            {{ notifUnread() > 99 ? '99+' : notifUnread() }}
+                        </span>
+                    }
                 </button>
                 <div class="notifications-menu-dropdown bg-white dark:bg-[#0c1427] transition-all shadow-3xl dark:shadow-none py-[17px] absolute mt-[17px] md:mt-[20px] w-[290px] md:w-[350px] z-[1] top-full ltr:-right-[120px] ltr:md:right-0 rtl:-left-[120px] rtl:md:left-0 rounded-md">
-                    <div class="flex items-center justify-between px-[20px] pb-[17px]">
+                    <div class="flex items-center justify-between px-[20px] pb-[12px] gap-[10px]">
                         <span class="font-semibold text-black dark:text-white text-[15px]">
                             Notifications
                         </span>
+                        <div class="flex items-center gap-[10px]">
+                            @if (notifUnread() > 0) {
+                                <button type="button" class="text-xs text-primary-500 hover:underline" (click)="markAllNotificationsRead()">
+                                    Mark all read
+                                </button>
+                            }
+                            @if (notifItems().length > 0) {
+                                <button type="button" class="text-xs text-gray-500 hover:text-danger-500 hover:underline" (click)="clearAllNotifications()">
+                                    Clear all
+                                </button>
+                            }
+                        </div>
                     </div>
-                    <div class="px-[20px] py-[30px] text-center text-gray-400 dark:text-gray-500 text-sm">
-                        <i class="material-symbols-outlined !text-[40px] mb-[8px] block">notifications_none</i>
-                        No notifications yet
-                    </div>
+                    @if (notifItems().length === 0) {
+                        <div class="px-[20px] py-[30px] text-center text-gray-400 dark:text-gray-500 text-sm">
+                            <i class="material-symbols-outlined !text-[40px] mb-[8px] block">notifications_none</i>
+                            No notifications yet
+                        </div>
+                    } @else {
+                        <ul class="max-h-[360px] overflow-y-auto">
+                            @for (item of notifItems(); track item.notification_id) {
+                                <li class="group relative border-t border-gray-100 dark:border-[#172036]">
+                                    <button type="button"
+                                            class="w-full ltr:text-left rtl:text-right px-[20px] py-[10px] ltr:pr-[40px] rtl:pl-[40px] hover:bg-gray-50 dark:hover:bg-[#15203c] transition-colors"
+                                            [class.bg-primary-50]="!item.read_at"
+                                            (click)="onNotificationClick(item)">
+                                        <div class="flex items-start gap-[10px]">
+                                            <i class="material-symbols-outlined !text-[20px] mt-[2px]"
+                                               [class.text-primary-500]="item.lead_id"
+                                               [class.text-orange-500]="!item.lead_id">
+                                                {{ item.lead_id ? 'call_received' : 'phone_missed' }}
+                                            </i>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="font-medium text-black dark:text-white text-sm truncate">
+                                                    {{ item.caller_display }}
+                                                </div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                                    @if (item.campaign_name) {
+                                                        {{ item.campaign_name }} ·
+                                                    } @else {
+                                                        Unknown caller ·
+                                                    }
+                                                    {{ item.created_at | date:'short' }}
+                                                </div>
+                                            </div>
+                                            @if (!item.read_at) {
+                                                <span class="w-[8px] h-[8px] rounded-full bg-primary-500 mt-[6px]"></span>
+                                            }
+                                        </div>
+                                    </button>
+                                    <button type="button"
+                                            title="Dismiss"
+                                            class="absolute top-[10px] ltr:right-[10px] rtl:left-[10px] w-[22px] h-[22px] flex items-center justify-center rounded-full text-gray-400 hover:text-danger-500 hover:bg-gray-100 dark:hover:bg-[#172036] opacity-0 group-hover:opacity-100 transition-opacity"
+                                            (click)="dismissNotification($event, item)">
+                                        <i class="material-symbols-outlined !text-[16px]">close</i>
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    }
                 </div>
             </li>
             <li class="relative profile-menu mx-[8px] md:mx-[10px] lg:mx-[12px] ltr:first:ml-0 ltr:last:mr-0 rtl:first:mr-0 rtl:last:ml-0">
