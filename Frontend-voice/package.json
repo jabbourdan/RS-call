@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node scripts/generate-env.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -58,6 +59,7 @@
     "@angular/compiler-cli": "^20.1.0",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "dotenv": "^17.4.2",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
